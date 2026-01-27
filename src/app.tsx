@@ -19,6 +19,7 @@ import Footer from "./components/layout/Footer";
 import Terminal from "./components/terminal/Terminal";
 import LoginPanel from "./components/login/LoginPanel";
 import MatrixBackground from "./components/background/MatrixBackground";
+import TacticalMap from "./components/background/TacticalMap";
 import ChatBubble from "./components/chat/ChatBubble";
 
 // Hook que encapsula toda la lógica de la terminal
@@ -55,7 +56,9 @@ export function App() {
 
   return (
     <div class="relative min-h-screen flex flex-col">
-      {/* Fondo animado estilo Matrix (canvas independiente) */}
+      {/* Capa 1: Mapa táctico de fondo */}
+      <TacticalMap />
+      {/* Capa 2: Neural Rain encima con opacidad reducida */}
       <MatrixBackground />
 
       {/* Chatbot flotante */}
