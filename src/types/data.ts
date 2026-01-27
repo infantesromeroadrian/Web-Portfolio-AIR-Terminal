@@ -131,9 +131,9 @@ export interface CertificacionObtenida {
   icon: string;
   color: IconColor;
   nombre: string;
-  anio: string;
-  id: string;
-  url: string;
+  anio?: string;
+  id?: string;
+  url?: string;
   detalles: string[];
 }
 

@@ -162,7 +162,7 @@ Español (nativo), Inglés (profesional), Italiano (profesional), Chino (básico
 • **Grado en Ingeniería del Software** — U-tad
 • **ASIR** — Administración de Sistemas
 
-Certificaciones: ML Engineer Track, AI Engineer Track, LangChain for LLMs, Cybersecurity.
+Certificaciones: Azure AI-102, AI-900, IT Specialist Python, ML Specialist IBM, OSINT, Linux 101, LangChain, EU AI Act, y más.
 
 Escribe \`cat certs.txt\` para verlas todas.`,
   },

@@ -152,7 +152,8 @@ export function formatCertificaciones(data: CertificacionesData): string {
   const obtenidas = data.obtenidas.length
     ? data.obtenidas
         .map((c: CertificacionObtenida) => {
-          let entry = `${colorIcon(c.icon, c.color)} ${c.nombre} (${c.anio})`;
+          let entry = `${colorIcon(c.icon, c.color)} ${c.nombre}`;
+          if (c.anio) entry += ` (${c.anio})`;
           if (c.id) entry += `\n     - ID Credencial: ${c.id}`;
           if (c.url) entry += `\n     - URL: ${linkify(c.url)}`;
           entry += `\n${c.detalles.map((d: string) => `     - ${d}`).join("\n")}\n`;
