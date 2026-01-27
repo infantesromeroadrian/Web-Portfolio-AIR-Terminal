@@ -1,0 +1,71 @@
+{
+  "title": "<span style=\"color:#fffd00\">Certificaciones & Reconocimientos</span>",
+  "obtenidas": [
+    {
+      "icon": "[+]",
+      "color": "green",
+      "nombre": "Machine Learning Engineer Track",
+      "anio": "2024",
+      "id": "",
+      "url": "",
+      "detalles": [
+        "Especialización en ingeniería de ML end-to-end",
+        "Pipelines de producción y MLOps"
+      ]
+    },
+    {
+      "icon": "[+]",
+      "color": "green",
+      "nombre": "AI Engineer Track",
+      "anio": "2024",
+      "id": "",
+      "url": "",
+      "detalles": ["Arquitectura de sistemas de IA", "Despliegue y escalabilidad"]
+    },
+    {
+      "icon": "[+]",
+      "color": "green",
+      "nombre": "LangChain for LLM Application Development",
+      "anio": "2024",
+      "id": "",
+      "url": "",
+      "detalles": ["Desarrollo de aplicaciones con LLMs", "RAG, Agents y Chains"]
+    },
+    {
+      "icon": "[+]",
+      "color": "green",
+      "nombre": "Introduction to Cybersecurity",
+      "anio": "2023",
+      "id": "",
+      "url": "",
+      "detalles": ["Fundamentos de ciberseguridad", "Threat landscape y defensa"]
+    },
+    {
+      "icon": "[+]",
+      "color": "green",
+      "nombre": "Data Literacy Fundamentals",
+      "anio": "2023",
+      "id": "",
+      "url": "",
+      "detalles": ["Alfabetización en datos", "Análisis y visualización"]
+    }
+  ],
+  "enPreparacion": [],
+  "objetivos": [
+    {
+      "icon": "[↑]",
+      "color": "red",
+      "nombre": "AWS Solutions Architect"
+    },
+    {
+      "icon": "[↑]",
+      "color": "red",
+      "nombre": "Azure AI Engineer Associate"
+    },
+    {
+      "icon": "[↑]",
+      "color": "red",
+      "nombre": "GIAC Machine Learning Security (GMLE)"
+    }
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "title": "<span style=\"color:#fffd00\">Habilidades Técnicas</span>",
+  "categorias": [
+    {
+      "nombre": "• AI Security & Adversarial ML",
+      "items": [
+        { "icon": "[+]", "color": "red", "text": "OWASP LLM Top 10 & MITRE ATLAS" },
+        { "icon": "[+]", "color": "red", "text": "Adversarial Robustness Toolbox (ART)" },
+        { "icon": "[+]", "color": "red", "text": "Red Teaming de modelos LLM" },
+        { "icon": "[+]", "color": "red", "text": "Prompt Injection & Data Exfiltration Defense" },
+        { "icon": "[+]", "color": "red", "text": "Azure AI Content Safety & Bedrock Guardrails" }
+      ]
+    },
+    {
+      "nombre": "• AI/ML Engineering",
+      "items": [
+        {
+          "icon": "[+]",
+          "color": "green",
+          "text": "LLMs: Llama, Mistral, GPT, Fine-tuning (LoRA, QLoRA)"
+        },
+        {
+          "icon": "[+]",
+          "color": "green",
+          "text": "RAG Systems: LangChain, Vector DBs (Pinecone, OpenSearch)"
+        },
+        {
+          "icon": "[+]",
+          "color": "green",
+          "text": "Deep Learning: PyTorch, TensorFlow, Transformers"
+        },
+        { "icon": "[+]", "color": "green", "text": "NLP: BERT, Whisper, Wav2Vec, spaCy" },
+        { "icon": "[+]", "color": "green", "text": "Computer Vision: YOLO, EfficientNet, Edge AI" },
+        {
+          "icon": "[+]",
+          "color": "green",
+          "text": "MLOps: MLflow, SageMaker, vLLM, GGUF quantization"
+        }
+      ]
+    },
+    {
+      "nombre": "• Cloud & Secure Architecture",
+      "items": [
+        { "icon": "[+]", "color": "orange", "text": "AWS: SageMaker, Bedrock, EKS, Lambda, IoT" },
+        {
+          "icon": "[+]",
+          "color": "orange",
+          "text": "Azure: Azure ML, AKS, ExpressRoute, Key Vault"
+        },
+        {
+          "icon": "[+]",
+          "color": "orange",
+          "text": "Hybrid Cloud: NVIDIA DGX + Cloud orchestration"
+        },
+        { "icon": "[+]", "color": "orange", "text": "Kubernetes, Docker, Helm, GitOps" },
+        { "icon": "[+]", "color": "orange", "text": "Air-gapped deployments & Data Sovereignty" }
+      ]
+    },
+    {
+      "nombre": "• Programación & Data",
+      "items": [
+        { "icon": "[+]", "color": "yellow", "text": "Python, SQL, Bash, TypeScript" },
+        { "icon": "[+]", "color": "yellow", "text": "Spark, Kafka, ETL Pipelines" },
+        { "icon": "[+]", "color": "yellow", "text": "PostgreSQL, Elasticsearch, OpenSearch" },
+        { "icon": "[+]", "color": "yellow", "text": "Git, CI/CD, DevSecOps" }
+      ]
+    },
+    {
+      "nombre": "• Idiomas",
+      "items": [
+        { "icon": "[+]", "color": "blue", "text": "Español: Nativo" },
+        { "icon": "[+]", "color": "blue", "text": "Inglés: Profesional completo" },
+        { "icon": "[+]", "color": "blue", "text": "Italiano: Profesional completo" },
+        { "icon": "[+]", "color": "blue", "text": "Chino: Básico laboral" }
+      ]
+    }
+  ]
+}

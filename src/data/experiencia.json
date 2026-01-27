@@ -1,0 +1,258 @@
+{
+  "title": "<span style=\"color:#fffd00\">Experiencia Profesional</span>",
+  "items": [
+    {
+      "id": "<span style=\"color:#3399ff\">[01]",
+      "puesto": "AI Security Architect | Secure Hybrid Cloud & Intelligence Systems</span>",
+      "inicio": "Ene 2026",
+      "fin": "Actualidad",
+      "empresa": "<span style=\"color:#ff3333\">BBVA Technology</span>",
+      "ubicacion": "Madrid, España",
+      "responsabilidades": [
+        {
+          "icon": "[→]",
+          "color": "orange",
+          "text": "Diseño de arquitecturas de IA Híbridas y Soberanas en la Unidad de Inteligencia Financiera"
+        },
+        {
+          "icon": "[→]",
+          "color": "orange",
+          "text": "Garantía de resistencia operativa y cumplimiento normativo de datos clasificados"
+        },
+        {
+          "icon": "[→]",
+          "color": "orange",
+          "text": "Estrategia de seguridad para capacidades avanzadas (GenAI/LLMs)"
+        }
+      ],
+      "logros": [
+        {
+          "icon": "[+]",
+          "color": "green",
+          "text": "Arquitectura híbrida NVIDIA DGX + Azure: -20% latencia táctica, blindaje total GDPR"
+        },
+        {
+          "icon": "[+]",
+          "color": "green",
+          "text": "Sistemas RAG seguros: +15% precisión en extracción de entidades de riesgo, mitigación total de Prompt Injection"
+        },
+        {
+          "icon": "[+]",
+          "color": "green",
+          "text": "Procesamiento SIGINT >10M interacciones/año: -35% costes mediante computación asimétrica"
+        },
+        {
+          "icon": "[+]",
+          "color": "green",
+          "text": "DevSecOps para IA: -40% Time-to-Market manteniendo protocolos de seguridad"
+        }
+      ],
+      "stackGroups": [
+        {
+          "icon": "[★]",
+          "color": "yellow",
+          "title": "AI Security",
+          "items": ["OWASP LLM Top 10", "MITRE ATLAS", "ART", "Azure AI Content Safety"]
+        },
+        {
+          "icon": "[★]",
+          "color": "yellow",
+          "title": "Secure Architecture",
+          "items": ["Azure ExpressRoute", "NVIDIA DGX", "AKS", "Air-gapped deployments"]
+        },
+        {
+          "icon": "[★]",
+          "color": "yellow",
+          "title": "ML/AI",
+          "items": ["Llama 3", "Mistral", "Whisper", "MLflow", "vLLM"]
+        }
+      ]
+    },
+    {
+      "id": "<span style=\"color:#3399ff\">[02]",
+      "puesto": "AI/ML Engineer | LLMs, RAG, NLP, MLOps</span>",
+      "inicio": "Ene 2024",
+      "fin": "Ene 2026",
+      "empresa": "<span style=\"color:#ff3333\">BBVA Technology</span>",
+      "ubicacion": "Madrid, España",
+      "responsabilidades": [
+        {
+          "icon": "[→]",
+          "color": "orange",
+          "text": "Diseño e implementación de arquitecturas de IA híbridas y seguras"
+        },
+        {
+          "icon": "[→]",
+          "color": "orange",
+          "text": "Orquestación de cargas de trabajo entre On-Premise y AWS"
+        },
+        {
+          "icon": "[→]",
+          "color": "orange",
+          "text": "Cumplimiento normativo (GDPR), privacidad y escalabilidad"
+        }
+      ],
+      "logros": [
+        {
+          "icon": "[+]",
+          "color": "green",
+          "text": "GenAI & RAG Híbrido: +15% precisión, -20% latencia en red local"
+        },
+        {
+          "icon": "[+]",
+          "color": "green",
+          "text": "NLP & Procesamiento de Voz: +18% CSAT, -35% costes"
+        },
+        {
+          "icon": "[+]",
+          "color": "green",
+          "text": "Modelos de Riesgo (Fraud Scoring): +22% AUC-ROC en detección real-time"
+        }
+      ],
+      "stackGroups": [
+        {
+          "icon": "[★]",
+          "color": "yellow",
+          "title": "Cloud",
+          "items": ["AWS SageMaker", "Bedrock", "EKS", "OpenShift"]
+        },
+        {
+          "icon": "[★]",
+          "color": "yellow",
+          "title": "ML/NLP",
+          "items": ["LLMs", "RAG", "Whisper", "Wav2Vec", "XGBoost"]
+        },
+        {
+          "icon": "[★]",
+          "color": "yellow",
+          "title": "Data",
+          "items": ["Elasticsearch", "OpenSearch", "Pinecone"]
+        }
+      ]
+    },
+    {
+      "id": "<span style=\"color:#3399ff\">[03]",
+      "puesto": "Machine Learning Engineer | Computer Vision & IoT (Edge + Cloud)</span>",
+      "inicio": "Feb 2020",
+      "fin": "Ene 2024",
+      "empresa": "<span style=\"color:#ff3333\">Ecoembes</span>",
+      "ubicacion": "Madrid, España",
+      "responsabilidades": [
+        {
+          "icon": "[→]",
+          "color": "orange",
+          "text": "Liderazgo de modernización tecnológica de plantas de reciclaje"
+        },
+        {
+          "icon": "[→]",
+          "color": "orange",
+          "text": "Arquitecturas híbridas AWS + On-Premise Edge para Visión Artificial"
+        },
+        {
+          "icon": "[→]",
+          "color": "orange",
+          "text": "Automatización de clasificación de materiales con Deep Learning"
+        }
+      ],
+      "logros": [
+        {
+          "icon": "[+]",
+          "color": "green",
+          "text": "Computer Vision Edge AI: 85% precisión (+15% vs manual), 45k imágenes/hora, <100ms latencia"
+        },
+        {
+          "icon": "[+]",
+          "color": "green",
+          "text": "Optimización logística: -25% kilómetros, -18% huella de carbono"
+        },
+        {
+          "icon": "[+]",
+          "color": "green",
+          "text": "NLP con BERT multilingüe: +40% precisión, -40% falsos positivos"
+        }
+      ],
+      "stackGroups": [
+        {
+          "icon": "[★]",
+          "color": "yellow",
+          "title": "Computer Vision",
+          "items": ["Inception-v3", "EfficientNet", "AWS IoT Greengrass"]
+        },
+        {
+          "icon": "[★]",
+          "color": "yellow",
+          "title": "Cloud/IoT",
+          "items": ["AWS IoT Core", "Kinesis", "SageMaker", "Lambda"]
+        },
+        {
+          "icon": "[★]",
+          "color": "yellow",
+          "title": "MLOps",
+          "items": ["SageMaker Pipelines", "MLflow", "Docker"]
+        }
+      ]
+    },
+    {
+      "id": "<span style=\"color:#3399ff\">[04]",
+      "puesto": "Data Scientist Junior | Cloud Data Analytics & AWS Foundations</span>",
+      "inicio": "Ene 2017",
+      "fin": "Feb 2020",
+      "empresa": "<span style=\"color:#ff3333\">Capgemini</span>",
+      "ubicacion": "Las Rozas, Madrid, España",
+      "responsabilidades": [
+        {
+          "icon": "[→]",
+          "color": "orange",
+          "text": "Migración de procesos analíticos tradicionales a arquitecturas AWS"
+        },
+        {
+          "icon": "[→]",
+          "color": "orange",
+          "text": "Diseño de Data Lakes y pipelines ETL"
+        },
+        {
+          "icon": "[→]",
+          "color": "orange",
+          "text": "Desarrollo de modelos predictivos y dashboards BI"
+        }
+      ],
+      "logros": [
+        {
+          "icon": "[+]",
+          "color": "green",
+          "text": "Data Lake en S3: -30% ciclo de análisis de datos"
+        },
+        {
+          "icon": "[+]",
+          "color": "green",
+          "text": "Modelado predictivo: +20% precisión en forecast de producto"
+        },
+        {
+          "icon": "[+]",
+          "color": "green",
+          "text": "Automatización serverless con Lambda: ahorro de 10h/semana por analista"
+        }
+      ],
+      "stackGroups": [
+        {
+          "icon": "[★]",
+          "color": "yellow",
+          "title": "AWS",
+          "items": ["S3", "EC2", "RDS", "Lambda", "QuickSight"]
+        },
+        {
+          "icon": "[★]",
+          "color": "yellow",
+          "title": "Data Science",
+          "items": ["Python", "scikit-learn", "statsmodels", "Tableau"]
+        },
+        {
+          "icon": "[★]",
+          "color": "yellow",
+          "title": "Databases",
+          "items": ["PostgreSQL", "SQL", "ETL pipelines"]
+        }
+      ]
+    }
+  ]
+}

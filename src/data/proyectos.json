@@ -1,0 +1,66 @@
+{
+  "watchdogs": {
+    "nombre": "WatchDogs OSINT",
+    "archivo": "watchdogs.txt",
+    "descripcion": "Sistema multi-agente para análisis de video con GPT-4 Vision",
+    "score": "95/100",
+    "estado": "Production-Ready",
+    "github": "https://github.com/infantesromeroadrian/WatchDogs-Security-City",
+    "detalles": [
+      "LangGraph Native Parallelism - 4 agentes simultáneos",
+      "Vision Agent + OCR Agent + Detection Agent + Geolocation Agent",
+      "Retry Logic con Exponential Backoff + Circuit Breaker",
+      "Rate Limiting (30 req/min) + CORS restrictivo",
+      "Dashboard de monitoreo en tiempo real"
+    ],
+    "stack": ["LangGraph", "GPT-4 Vision", "Flask", "Pydantic", "Docker"]
+  },
+  "threatintel": {
+    "nombre": "Threat Intelligence Aggregator",
+    "archivo": "threatintel.txt",
+    "descripcion": "Plataforma enterprise de threat intel con NER, BERT y LDA",
+    "score": "35 endpoints",
+    "estado": "Production-Ready",
+    "github": "https://github.com/infantesromeroadrian/Threat-Intelligence-ML-Detector",
+    "detalles": [
+      "NER con spaCy para extracción de IPs, dominios, hashes",
+      "Clasificación de severidad con BERT (5 niveles)",
+      "Topic Modeling con LDA + coherence scoring",
+      "Integración AlienVault OTX",
+      "Workflow de alertas: NEW → ACKNOWLEDGED → RESOLVED"
+    ],
+    "stack": ["spaCy", "BERT", "LDA", "FastAPI", "SQLAlchemy", "Docker"]
+  },
+  "siem": {
+    "nombre": "SIEM Anomaly Detector",
+    "archivo": "siem.txt",
+    "descripcion": "SIEM con ML no supervisado para detectar ataques 0-day",
+    "score": "ROI $310k/año",
+    "estado": "Production-Ready",
+    "github": "https://github.com/infantesromeroadrian/SIEM-Anomaly-Detector-ML",
+    "detalles": [
+      "Ensemble: Isolation Forest (50%) + DBSCAN (30%) + GMM (20%)",
+      "Multi-parser: Syslog, Nginx, Auth logs, Firewall",
+      "Feature Engineering: 15+ features de comportamiento",
+      "Online Learning con feedback loop",
+      "Reducción 80% false positives vs SIEM tradicional"
+    ],
+    "stack": ["Scikit-learn", "Isolation Forest", "DBSCAN", "FastAPI", "PostgreSQL", "Docker"]
+  },
+  "emailthreat": {
+    "nombre": "Email Threat Platform",
+    "archivo": "emailthreat.txt",
+    "descripcion": "Detector dual SPAM + Phishing con dashboard SOC profesional",
+    "score": "95% accuracy",
+    "estado": "Production-Ready",
+    "github": "https://github.com/infantesromeroadrian/ML-Spam-Phising-Detector",
+    "detalles": [
+      "Dual Analysis: SPAM (~95%) + Phishing (~92%)",
+      "Threat Report: IOCs, trigger words, risk score",
+      "TF-IDF vectorization (5000 features)",
+      "Dashboard SOC dark theme profesional",
+      "Inferencia <10ms por email"
+    ],
+    "stack": ["Scikit-learn", "NLTK", "TF-IDF", "FastAPI", "Docker"]
+  }
+}

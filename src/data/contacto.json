@@ -1,0 +1,45 @@
+{
+  "title": "<span style=\"color:#fffd00\">Contacto</span>",
+  "items": [
+    {
+      "icon": "[+]",
+      "color": "green",
+      "label": "Email",
+      "value": "infantesromeroadrian@proton.me"
+    },
+    {
+      "icon": "[+]",
+      "color": "green",
+      "label": "LinkedIn",
+      "value": "https://linkedin.com/in/adrianinfantes"
+    },
+    {
+      "icon": "[+]",
+      "color": "green",
+      "label": "GitHub",
+      "value": "https://github.com/infantesromeroadrian"
+    },
+    {
+      "icon": "[+]",
+      "color": "green",
+      "label": "Portfolio",
+      "value": "https://cyber-agent-aqua-grass.reflex.run/"
+    },
+    { "icon": "[+]", "color": "green", "label": "Teléfono", "value": "+34 636 259 064" },
+    { "icon": "[+]", "color": "green", "label": "Ubicación", "value": "Madrid, España" }
+  ],
+  "disponibilidad": [
+    {
+      "icon": "[+]",
+      "color": "blue",
+      "text": "Actualmente en BBVA Technology - Abierto a oportunidades estratégicas"
+    },
+    { "icon": "[+]", "color": "blue", "text": "Zona horaria: CET (UTC+1)" }
+  ],
+  "idiomas": [
+    { "icon": "[+]", "color": "red", "text": "Español: Nativo" },
+    { "icon": "[+]", "color": "red", "text": "Inglés: Profesional completo" },
+    { "icon": "[+]", "color": "red", "text": "Italiano: Profesional completo" },
+    { "icon": "[+]", "color": "red", "text": "Chino: Básico laboral" }
+  ]
+}

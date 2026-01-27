@@ -1,0 +1,118 @@
+/**
+ * Variables globales de color.
+ *
+ * Estas variables definen la paleta principal del portfolio.
+ * Se usan en todo el proyecto para mantener coherencia visual
+ * y facilitar cambios de tema en el futuro.
+ *
+ * Decisiones de diseño:
+ *  - Colores inspirados en estética Purple Team / AI Security
+ *  - Tonos apagados para elegancia profesional
+ *  - Nombres semánticos para facilitar mantenimiento
+ */
+:root {
+  --purple-accent: #7c3aed; /* Púrpura principal - Purple Team */
+  --purple-soft: #8b5cf6; /* Púrpura suave para detalles */
+  --purple-dark: #5b21b6; /* Púrpura oscuro para bordes */
+  --black-carbon: #0d0d0d; /* Negro carbón */
+  --gray-terminal: #cfcfcf; /* Gris terminal */
+  --white-soft: #f2f2f2; /* Blanco suave */
+
+  /* Aliases para compatibilidad con código existente */
+  --red-accent: var(--purple-accent);
+  --red-soft: var(--purple-soft);
+}
+
+/**
+ * Fondo degradado para paneles importantes (ej: LoginPanel).
+ *
+ * Razón:
+ *  - Añade profundidad visual sin distraer
+ *  - Mantiene estética oscura y elegante
+ */
+.panel-bg {
+  background: linear-gradient(to bottom, #0d0d0d, #000000);
+}
+
+/**
+ * Efecto glow púrpura para elementos interactivos.
+ *
+ * Se usa en botones clave para reforzar la estética AI Security.
+ * El glow es suave para evitar ruido visual.
+ */
+.glow-red:hover {
+  box-shadow: 0 0 12px rgba(139, 92, 246, 0.45);
+}
+
+/**
+ * Borde superior púrpura para paneles estilo terminal.
+ *
+ * Se usa en LoginPanel y otros contenedores importantes.
+ * Refuerza la identidad visual del portfolio.
+ */
+.border-top-red {
+  border-top: 2px solid var(--purple-accent);
+}
+
+/**
+ * Estilo base para botones del menú superior.
+ *
+ * Se usa @apply para integrar Tailwind con variables CSS.
+ * Esto permite mantener consistencia sin repetir clases.
+ */
+.nav-btn {
+  @apply text-[var(--purple-soft)] hover:text-[var(--white-soft)] transition-colors duration-200;
+}
+
+/**
+ * Scrollbar personalizado estilo Purple Team.
+ *
+ * Decisiones de diseño:
+ *  - Scroll rectangular (sin bordes redondeados) para estética CLI
+ *  - Colores púrpura oscuro y púrpura brillante para coherencia temática
+ *  - Track negro para integrarse con el fondo de la terminal
+ *
+ * Solo afecta a contenedores con clase .terminal-scroll.
+ */
+.terminal-scroll::-webkit-scrollbar {
+  width: 10px; /* ancho del scroll */
+}
+
+.terminal-scroll::-webkit-scrollbar-track {
+  background: #000; /* interior negro */
+  border: 1px solid #5b21b6; /* borde púrpura oscuro */
+}
+
+.terminal-scroll::-webkit-scrollbar-thumb {
+  background: #5b21b6; /* púrpura oscuro */
+  border: 1px solid #8b5cf6; /* borde púrpura brillante */
+  border-radius: 0; /* rectangular */
+}
+
+.terminal-scroll::-webkit-scrollbar-thumb:hover {
+  background: #7c3aed; /* púrpura más brillante al pasar el ratón */
+}
+
+/**
+ * Animación del cursor parpadeante estilo terminal.
+ *
+ * - steps(1) → parpadeo duro, no suave (como en terminal real)
+ * - 0.8s → velocidad equilibrada para lectura
+ *
+ * Se aplica mediante la clase .cursor-blink.
+ */
+@keyframes cursor-blink {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.cursor-blink {
+  animation: cursor-blink 0.8s steps(1) infinite;
+}

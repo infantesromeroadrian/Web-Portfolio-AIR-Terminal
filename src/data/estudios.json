@@ -1,0 +1,64 @@
+{
+  "title": "<span style=\"color:#fffd00\">Formación Académica</span>",
+  "items": [
+    {
+      "id": "<span style=\"color:#3399ff\">[01]",
+      "titulo": "Master in Gen AI & Deep Learning</span>",
+      "inicio": "2024",
+      "fin": "2025",
+      "centro": "MIOTI | Tech & Business School",
+      "ubicacion": "Madrid, España",
+      "temas": [
+        { "icon": "[+]", "color": "green", "text": "Arquitecturas de Deep Learning avanzadas" },
+        { "icon": "[+]", "color": "green", "text": "Large Language Models (LLMs) y Fine-tuning" },
+        { "icon": "[+]", "color": "green", "text": "Sistemas RAG y Vector Databases" },
+        { "icon": "[+]", "color": "green", "text": "Prompt Engineering y AI Agents" }
+      ]
+    },
+    {
+      "id": "<span style=\"color:#3399ff\">[02]",
+      "titulo": "Master in Big Data & Data Science</span>",
+      "inicio": "2022",
+      "fin": "2023",
+      "centro": "MIOTI | Tech & Business School",
+      "ubicacion": "Madrid, España",
+      "temas": [
+        {
+          "icon": "[+]",
+          "color": "green",
+          "text": "Procesamiento de datos a escala (Spark, Kafka)"
+        },
+        { "icon": "[+]", "color": "green", "text": "Machine Learning y estadística avanzada" },
+        { "icon": "[+]", "color": "green", "text": "Cloud Computing (AWS, Azure)" },
+        { "icon": "[+]", "color": "green", "text": "Data Engineering y ETL pipelines" }
+      ]
+    },
+    {
+      "id": "<span style=\"color:#3399ff\">[03]",
+      "titulo": "Grado en Ingeniería de Software - Especialización IA</span>",
+      "inicio": "2017",
+      "fin": "2021",
+      "centro": "U-tad",
+      "ubicacion": "Las Rozas, Madrid, España",
+      "temas": [
+        { "icon": "[+]", "color": "green", "text": "Fundamentos de Inteligencia Artificial" },
+        { "icon": "[+]", "color": "green", "text": "Desarrollo de Software y Arquitectura" },
+        { "icon": "[+]", "color": "green", "text": "Algoritmos y Estructuras de Datos" },
+        { "icon": "[+]", "color": "green", "text": "Bases de Datos y Sistemas Distribuidos" }
+      ]
+    },
+    {
+      "id": "<span style=\"color:#3399ff\">[04]",
+      "titulo": "CFGS Administración de Sistemas Informáticos en Red (ASIR)</span>",
+      "inicio": "2015",
+      "fin": "2017",
+      "centro": "U-tad",
+      "ubicacion": "Las Rozas, Madrid, España",
+      "temas": [
+        { "icon": "[+]", "color": "green", "text": "Administración de sistemas Windows/Linux" },
+        { "icon": "[+]", "color": "green", "text": "Seguridad de redes y sistemas" },
+        { "icon": "[+]", "color": "green", "text": "Virtualización y Cloud basics" }
+      ]
+    }
+  ]
+}

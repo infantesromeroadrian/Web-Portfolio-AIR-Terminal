@@ -1,0 +1,24 @@
+{
+  "title": "<span style=\"color:#fffd00\">Perfil Profesional</span>",
+  "description": "<span style=\"color:#e60026\">AI Security Architect</span> especializado en proteger infraestructuras críticas de IA. Actualmente en la Unidad de Inteligencia Financiera de BBVA, orquesto arquitecturas de seguridad que procesan millones de señales para neutralizar redes de fraude y blanqueo de capitales.\n\nUtilizo LLMs y Sistemas RAG como multiplicadores de fuerza para analistas de inteligencia, reduciendo tiempo de investigación bajo estrictos estándares de auditoría y trazabilidad.",
+  "specialization": [
+    { "icon": "[+]", "color": "red", "text": "Adversarial ML & Red Teaming de modelos" },
+    { "icon": "[+]", "color": "red", "text": "Secure GenAI (LLMs, RAG, Guardrails)" },
+    { "icon": "[+]", "color": "red", "text": "Arquitecturas Híbridas Seguras (On-Prem + Cloud)" },
+    { "icon": "[+]", "color": "red", "text": "Financial Crime & Threat Intelligence" },
+    { "icon": "[+]", "color": "red", "text": "MLOps Securizado & Model Governance" }
+  ],
+  "goals": [
+    {
+      "icon": "[→]",
+      "color": "orange",
+      "text": "Liderar equipos de AI Security en entornos críticos"
+    },
+    { "icon": "[→]", "color": "orange", "text": "Evangelizar la seguridad en IA desde el diseño" },
+    {
+      "icon": "[→]",
+      "color": "orange",
+      "text": "Contribuir a estándares de seguridad en IA (OWASP, MITRE ATLAS)"
+    }
+  ]
+}
