@@ -20,7 +20,7 @@ import { useEffect, useRef } from "preact/hooks";
 
 const LETTERS = "λ∑∂θσ∇⊗∫π01αβγδεη";
 const FONT_SIZE = 14;
-const FRAME_INTERVAL = 50; // ~20 FPS
+const FRAME_INTERVAL_MS = 50; // ~20 FPS — used for rate-limiting rAF
 const RESIZE_DEBOUNCE = 200;
 
 export default function MatrixBackground() {
@@ -115,10 +115,21 @@ export default function MatrixBackground() {
       });
     }
 
-    const interval = setInterval(draw, FRAME_INTERVAL);
+    // requestAnimationFrame with frame-rate limiting (~20fps)
+    // Auto-pauses when tab is hidden → battery-friendly
+    let animId: number;
+    let lastFrame = 0;
+
+    function loop(timestamp: number) {
+      animId = requestAnimationFrame(loop);
+      if (timestamp - lastFrame < FRAME_INTERVAL_MS) return;
+      lastFrame = timestamp;
+      draw();
+    }
+    animId = requestAnimationFrame(loop);
 
     return () => {
-      clearInterval(interval);
+      cancelAnimationFrame(animId);
       window.removeEventListener("resize", handleResize);
       if (resizeTimeout) window.clearTimeout(resizeTimeout);
     };

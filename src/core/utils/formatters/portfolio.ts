@@ -1,9 +1,11 @@
 /**
  * Formateadores para secciones del portfolio.
  *
- * Funciones puras que transforman datos JSON en HTML
+ * Funciones puras que transforman datos JSON (texto plano) en HTML
  * para: whoami, perfil, estudios, experiencia, skills,
  * certificaciones y contacto.
+ *
+ * REGLA: Los JSON nunca contienen HTML. Toda la presentación se genera aquí.
  */
 
 import type {
@@ -27,16 +29,58 @@ import type {
 
 import { colorIcon, linkify } from "./helpers";
 
+// ── Helpers de presentación ─────────────────────────────────
+
+/** Colorea un título de sección en amarillo */
+function sectionTitle(title: string): string {
+  return `<span style="color:#fffd00">=== ${title.toUpperCase()} ===</span>`;
+}
+
+/** Colorea texto en azul (accent) */
+function accent(text: string): string {
+  return `<span style="color:#2563eb">${text}</span>`;
+}
+
+/** Colorea texto en verde */
+function green(text: string): string {
+  return `<span style="color:#0fff00">${text}</span>`;
+}
+
+/** Colorea texto en rojo */
+function red(text: string): string {
+  return `<span style="color:#ff3333">${text}</span>`;
+}
+
+/** Colorea un ID de sección en azul (e.g. [01]) */
+function blueId(id: string): string {
+  return `<span style="color:#3399ff">${id}</span>`;
+}
+
+/** Genera un enlace HTML clicable */
+function link(url: string, label: string): string {
+  return `<a href="${url}" target="_blank" rel="noopener noreferrer" style="color:#3399ff">${label}</a>`;
+}
+
 // =============================================================================
 // WHOAMI
 // =============================================================================
 
 export function formatWhoami(data: WhoamiData): string {
-  return `
-Nombre: ${data.name}
-Rol: ${data.role}
+  // Highlight keywords in the text
+  const text = data.text
+    .replace(/AI Security Architect/g, accent("AI Security Architect"))
+    .replace(
+      /Ingeniería de IA Ofensiva y Defensiva/g,
+      accent("Ingeniería de IA Ofensiva y Defensiva")
+    )
+    .replace(/Defensa en Profundidad/g, accent("Defensa en Profundidad"))
+    .replace(/"([^"]+)"/g, `${accent("»")} <i>"$1"</i>`);
 
-${data.text}
+  return `
+Nombre: ${green(data.name)}
+Rol: ${accent(data.role)}
+
+${text}
 `;
 }
 
@@ -45,6 +89,12 @@ ${data.text}
 // =============================================================================
 
 export function formatPerfil(data: PerfilData): string {
+  // Highlight role in description
+  const description = data.description.replace(
+    /AI Security Architect/g,
+    accent("AI Security Architect")
+  );
+
   const specialization = data.specialization
     .map((item: IconItem) => `${colorIcon(item.icon, item.color)} ${item.text}`)
     .join("\n");
@@ -54,9 +104,9 @@ export function formatPerfil(data: PerfilData): string {
     .join("\n");
 
   return `
-=== ${data.title.toUpperCase()} ===
+${sectionTitle(data.title)}
 
-${data.description}
+${description}
 
 === ESPECIALIZACIÓN ===
 ${specialization}
@@ -72,11 +122,11 @@ ${goals}
 
 export function formatEstudios(data: EstudiosData): string {
   return `
-=== ${data.title.toUpperCase()} ===
+${sectionTitle(data.title)}
 ${data.items
   .map(
     (item: EstudioItem) => `
-${item.id} ${item.titulo} (${item.inicio} - ${item.fin})
+${blueId(item.id)} ${item.titulo} (${item.inicio} - ${item.fin})
      • Centro: ${item.centro}
      • Ubicación: ${item.ubicacion}
 ${item.temas
@@ -94,12 +144,12 @@ ${item.temas
 
 export function formatExperiencia(data: ExperienciaData): string {
   return `
-=== ${data.title.toUpperCase()} ===
+${sectionTitle(data.title)}
 ${data.items
   .map((item: ExperienciaItem) => {
     return `
-${item.id} ${item.puesto} (${item.inicio} - ${item.fin})
-     • Empresa: ${item.empresa}
+${blueId(item.id)} ${item.puesto} (${item.inicio} - ${item.fin})
+     • Empresa: ${red(item.empresa)}
      • Ubicación: ${item.ubicacion}
 
      • Responsabilidades:
@@ -129,7 +179,7 @@ ${item.stackGroups
 
 export function formatSkills(data: SkillsData): string {
   return `
-=== ${data.title.toUpperCase()} ===
+${sectionTitle(data.title)}
 ${data.categorias
   .map(
     (cat: SkillCategoria) => `
@@ -186,7 +236,7 @@ ${c.detalles.map((d: string) => `     - ${d}`).join("\n")}
 
   // --- CONSTRUCCIÓN FINAL DINÁMICA ---
   let output = `
-=== ${data.title.toUpperCase()} ===
+${sectionTitle(data.title)}
 `;
 
   if (obtenidas) {
@@ -219,10 +269,11 @@ ${objetivos}
 
 export function formatContacto(data: ContactoData): string {
   const contacto = data.items
-    .map(
-      (i: ContactItem) =>
-        `${i.icon ? colorIcon(i.icon, i.color) + " " : "- "}${i.label}: ${linkify(i.value)}`
-    )
+    .map((i: ContactItem) => {
+      const icon = i.icon ? colorIcon(i.icon, i.color) + " " : "- ";
+      const value = i.href ? link(i.href, i.value) : i.value;
+      return `${icon}${i.label}: ${value}`;
+    })
     .join("\n");
 
   const disponibilidad = data.disponibilidad
@@ -234,7 +285,7 @@ export function formatContacto(data: ContactoData): string {
     .join("\n");
 
   return `
-=== ${data.title.toUpperCase()} ===
+${sectionTitle(data.title)}
 ${contacto}
 
 === DISPONIBILIDAD ===

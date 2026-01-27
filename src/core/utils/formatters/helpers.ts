@@ -60,6 +60,7 @@ export function linkify(text: string): string {
   const urlRegex = /(https?:\/\/[^\s]+)/g;
   return text.replace(
     urlRegex,
-    (url) => `<a href="${url}" target="_blank" style="color:#3399ff">${url}</a>`
+    (url) =>
+      `<a href="${url}" target="_blank" rel="noopener noreferrer" style="color:#3399ff">${url}</a>`
   );
 }

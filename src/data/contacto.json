@@ -1,29 +1,33 @@
 {
-  "title": "<span style=\"color:#fffd00\">Contacto</span>",
+  "title": "Contacto",
   "items": [
     {
       "icon": "[+]",
       "color": "green",
       "label": "Email",
-      "value": "<a href=\"mailto:infantesromeroadrian@proton.me\" style=\"color:#3399ff\">infantesromeroadrian@proton.me</a>"
+      "value": "infantesromeroadrian@proton.me",
+      "href": "mailto:infantesromeroadrian@proton.me"
     },
     {
       "icon": "[+]",
       "color": "green",
       "label": "LinkedIn",
-      "value": "<a href=\"https://www.linkedin.com/in/adrianinfantes/\" target=\"_blank\" style=\"color:#3399ff\">linkedin.com/in/adrianinfantes</a>"
+      "value": "linkedin.com/in/adrianinfantes",
+      "href": "https://www.linkedin.com/in/adrianinfantes/"
     },
     {
       "icon": "[+]",
       "color": "green",
       "label": "GitHub",
-      "value": "<a href=\"https://github.com/infantesromeroadrian\" target=\"_blank\" style=\"color:#3399ff\">github.com/infantesromeroadrian</a>"
+      "value": "github.com/infantesromeroadrian",
+      "href": "https://github.com/infantesromeroadrian"
     },
     {
       "icon": "[+]",
       "color": "green",
       "label": "Portfolio",
-      "value": "<a href=\"https://infantesromeroadrian.github.io/Web-Portfolio-AIR-Terminal/\" target=\"_blank\" style=\"color:#3399ff\">Web-Portfolio-AIR-Terminal</a>"
+      "value": "Web-Portfolio-AIR-Terminal",
+      "href": "https://infantesromeroadrian.github.io/Web-Portfolio-AIR-Terminal/"
     },
     { "icon": "[+]", "color": "green", "label": "Ubicación", "value": "Madrid, España" }
   ],

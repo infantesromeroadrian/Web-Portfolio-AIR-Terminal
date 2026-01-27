@@ -80,8 +80,8 @@ export function formatNeofetch(): string {
     `<span style="color:#2563eb">Theme:</span>   Blue Cyber [dark]`,
     `<span style="color:#2563eb">Stack:</span>   Python, TypeScript, Docker`,
     `<span style="color:#2563eb">ML:</span>      LangGraph, PyTorch, scikit`,
-    `<span style="color:#2563eb">Cloud:</span>   AWS, GCP, Kubernetes`,
-    `<span style="color:#2563eb">Uptime:</span>  5+ years in AI/Security`,
+    `<span style="color:#2563eb">Cloud:</span>   AWS, Azure, Kubernetes`,
+    `<span style="color:#2563eb">Uptime:</span>  8+ years in AI/Security`,
     ``,
     `<span style="color:#2563eb">██</span><span style="color:#3b82f6">██</span><span style="color:#60a5fa">██</span><span style="color:#93c5fd">██</span><span style="color:#00ff00">██</span><span style="color:#3399ff">██</span><span style="color:#ff9900">██</span><span style="color:#ff3333">██</span>`,
   ];

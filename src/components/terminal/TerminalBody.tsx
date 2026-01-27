@@ -212,13 +212,19 @@ export default function TerminalBody({ terminal }: { terminal: TerminalState }) 
       ref={scrollRef}
       class="terminal-scroll p-4 font-mono text-[var(--white-soft)] text-sm h-[60vh] overflow-y-auto overflow-x-hidden cursor-text"
       onClick={handleContainerClick}
+      role="log"
+      aria-live="polite"
+      aria-label="Salida de terminal"
     >
       {/* Renderizado del historial de salida */}
-      {terminal.output.map((item: OutputItem) =>
+      {terminal.output.map((item: OutputItem, idx: number) =>
         item.type === "raw" ? (
-          <pre class="whitespace-pre mb-2">{item.content}</pre>
+          <pre key={idx} class="whitespace-pre mb-2">
+            {item.content}
+          </pre>
         ) : (
           <div
+            key={idx}
             class="whitespace-pre-wrap break-words mb-2"
             dangerouslySetInnerHTML={{ __html: sanitizeHtml(item.content) }}
           />
@@ -254,6 +260,7 @@ export default function TerminalBody({ terminal }: { terminal: TerminalState }) 
               spellcheck={false}
               autocomplete="off"
               autocapitalize="off"
+              aria-label="Comando de terminal"
               class="ml-2 flex-1 bg-transparent border-none outline-none text-[var(--white-soft)] font-mono text-sm caret-[var(--accent-soft)]"
               onInput={(e) => {
                 setInputValue((e.target as HTMLInputElement).value);

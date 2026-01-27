@@ -1,9 +1,9 @@
 {
-  "title": "<span style=\"color:#fffd00\">Formación Académica</span>",
+  "title": "Formación Académica",
   "items": [
     {
-      "id": "<span style=\"color:#3399ff\">[01]",
-      "titulo": "Master in Gen AI & Deep Learning</span>",
+      "id": "[01]",
+      "titulo": "Master in Gen AI & Deep Learning",
       "inicio": "2024",
       "fin": "2025",
       "centro": "MIOTI | Tech & Business School",
@@ -16,8 +16,8 @@
       ]
     },
     {
-      "id": "<span style=\"color:#3399ff\">[02]",
-      "titulo": "Master in Big Data & Data Science</span>",
+      "id": "[02]",
+      "titulo": "Master in Big Data & Data Science",
       "inicio": "2022",
       "fin": "2023",
       "centro": "MIOTI | Tech & Business School",
@@ -34,8 +34,8 @@
       ]
     },
     {
-      "id": "<span style=\"color:#3399ff\">[03]",
-      "titulo": "Grado en Ingeniería de Software - Especialización IA</span>",
+      "id": "[03]",
+      "titulo": "Grado en Ingeniería de Software - Especialización IA",
       "inicio": "2017",
       "fin": "2021",
       "centro": "U-tad",
@@ -48,8 +48,8 @@
       ]
     },
     {
-      "id": "<span style=\"color:#3399ff\">[04]",
-      "titulo": "Ciclo Formativo de Grado Superior, Administración de Sistemas Informáticos en Red (ASIR)</span>",
+      "id": "[04]",
+      "titulo": "Ciclo Formativo de Grado Superior, Administración de Sistemas Informáticos en Red (ASIR)",
       "inicio": "2015",
       "fin": "2017",
       "centro": "U-tad",

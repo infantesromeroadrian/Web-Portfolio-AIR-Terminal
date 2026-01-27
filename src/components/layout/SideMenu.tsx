@@ -19,6 +19,8 @@
  * Esto mantiene la UI completamente desacoplada de la lógica interna (SRP - SOLID).
  */
 
+import { NAV_ITEMS } from "../../core/navItems";
+
 export default function SideMenu({
   open,
   onClose,
@@ -76,118 +78,15 @@ export default function SideMenu({
           <div class="space-y-2 lg:hidden">
             <p class="text-sm text-[var(--gray-terminal)]">Navegación</p>
 
-            {/* WHOAMI */}
-            <button
-              class="w-full text-left px-3 py-2 bg-black border border-gray-600 rounded hover:bg-blue-900/30 transition"
-              onClick={() => {
-                onClose();
-                void runCommand("whoami");
-              }}
-            >
-              WHOAMI
-            </button>
-
-            {/* PERFIL */}
-            <button
-              class="w-full text-left px-3 py-2 bg-black border border-gray-600 rounded hover:bg-blue-900/30 transition"
-              onClick={() => {
-                onClose();
-                void runCommand("cat profile.txt");
-              }}
-            >
-              PERFIL
-            </button>
-
-            {/* ESTUDIOS */}
-            <button
-              class="w-full text-left px-3 py-2 bg-black border border-gray-600 rounded hover:bg-blue-900/30 transition"
-              onClick={() => {
-                onClose();
-                void runCommand("cat edu.txt");
-              }}
-            >
-              ESTUDIOS
-            </button>
-
-            {/* EXPERIENCIA */}
-            <button
-              class="w-full text-left px-3 py-2 bg-black border border-gray-600 rounded hover:bg-blue-900/30 transition"
-              onClick={() => {
-                onClose();
-                void runCommand("cat exp.txt");
-              }}
-            >
-              EXPERIENCIA
-            </button>
-
-            {/* HABILIDADES */}
-            <button
-              class="w-full text-left px-3 py-2 bg-black border border-gray-600 rounded hover:bg-blue-900/30 transition"
-              onClick={() => {
-                onClose();
-                void runCommand("cat skills.txt");
-              }}
-            >
-              HABILIDADES
-            </button>
-
-            {/* CERTIFICACIONES */}
-            <button
-              class="w-full text-left px-3 py-2 bg-black border border-gray-600 rounded hover:bg-blue-900/30 transition"
-              onClick={() => {
-                onClose();
-                void runCommand("cat certs.txt");
-              }}
-            >
-              CERTIFICACIONES
-            </button>
-
-            {/* PROYECTOS */}
-            <button
-              class="w-full text-left px-3 py-2 bg-black border border-gray-600 rounded hover:bg-blue-900/30 transition"
-              onClick={() => {
-                onClose();
-                void runCommand("ls projects/");
-              }}
-            >
-              PROYECTOS
-            </button>
-
-            {/* CONTACTO */}
-            <button
-              class="w-full text-left px-3 py-2 bg-black border border-gray-600 rounded hover:bg-blue-900/30 transition"
-              onClick={() => {
-                onClose();
-                void runCommand("cat contact.txt");
-              }}
-            >
-              CONTACTO
-            </button>
-          </div>
-
-          {/**
-           * SECCIÓN FUTURA
-           *
-           * Espacio reservado para futuras funcionalidades:
-           *  - Cambio de tema (Blue Cyber/Dark/Light)
-           *  - Ajustes de idioma
-           *  - ...
-           *
-           */}
-          {/* <div class="space-y-2"> ... </div> */}
-
-          {/**
-           * SECCIÓN "Más opciones"
-           *
-           * Placeholder para futuras extensiones del menú.
-           * Mantiene la estructura modular del componente.
-           */}
-          <div class="space-y-2">
-            <p class="text-sm text-[var(--gray-terminal)]">Más opciones</p>
-
-            <button class="w-full text-left px-3 py-2 bg-black border border-gray-600 rounded hover:bg-gray-800 transition">
-              Próximamente...
-            </button>
+            {NAV_ITEMS.map((item) => (
+              <button
+                key={item.command}
+                class="w-full text-left px-3 py-2 bg-black border border-gray-600 rounded hover:bg-blue-900/30 transition"
+                onClick={() => void runCommand(item.command)}
+              >
+                {item.label}
+              </button>
+            ))}
           </div>
         </div>
       </aside>

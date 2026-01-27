@@ -39,6 +39,8 @@ export interface ContactItem {
   color: IconColor;
   label: string;
   value: string;
+  /** Optional link URL. If present, value is rendered as a clickable link. */
+  href?: string;
 }
 
 // =============================================================================

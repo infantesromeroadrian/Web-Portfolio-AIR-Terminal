@@ -38,7 +38,10 @@ export default function Footer() {
          *
          * Esto refuerza la identidad del portfolio y da contexto al visitante.
          */}
-        <div>© 2026 Adrián Infantes Romero | AI Security Architect | Blue Cyber AI</div>
+        <div>
+          © {new Date().getFullYear()} Adrián Infantes Romero | AI Security Architect | Blue Cyber
+          AI
+        </div>
 
         {/**
          * Línea secundaria estilo terminal.

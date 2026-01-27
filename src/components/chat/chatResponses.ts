@@ -159,7 +159,7 @@ Español (nativo), Inglés (profesional), Italiano (profesional), Chino (básico
 
 • **Máster en Generative AI** — MIOTI (2024-2025)
 • **Máster en Big Data** — MIOTI (2023-2024)
-• **Grado en Ingeniería del Software** — U-tad
+• **Grado en Ingeniería de Software** — U-tad
 • **ASIR** — Administración de Sistemas
 
 Certificaciones: Azure AI-102, AI-900, IT Specialist Python, ML Specialist IBM, OSINT, Linux 101, LangChain, EU AI Act, y más.

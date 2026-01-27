@@ -150,7 +150,13 @@ export default function LoginPanel({ onLogin }: { onLogin: () => void }) {
         </div>
 
         {/* Formulario visual (no funcional) */}
-        <form class="space-y-6">
+        <form
+          class="space-y-6"
+          onSubmit={(e) => {
+            e.preventDefault();
+            onLogin();
+          }}
+        >
           {/* Usuario */}
           <div>
             <label class="block text-[var(--gray-terminal)] font-mono text-sm mb-2">

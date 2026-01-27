@@ -57,6 +57,7 @@ Pregúntame sobre:
     setMessages((prev) => [...prev, { role: "user", content: userMessage }]);
     setIsLoading(true);
 
+    // Intentional UX delay — no async work, simulates "thinking" for natural feel
     setTimeout(() => {
       const response = getResponse(userMessage);
       setMessages((prev) => [...prev, { role: "assistant", content: response }]);

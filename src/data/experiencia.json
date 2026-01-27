@@ -1,12 +1,12 @@
 {
-  "title": "<span style=\"color:#fffd00\">Experiencia Profesional</span>",
+  "title": "Experiencia Profesional",
   "items": [
     {
-      "id": "<span style=\"color:#3399ff\">[01]",
-      "puesto": "AI Security Architect | Secure Hybrid Cloud & Intelligence Systems</span>",
+      "id": "[01]",
+      "puesto": "AI Security Architect | Secure Hybrid Cloud & Intelligence Systems",
       "inicio": "Ene 2026",
       "fin": "Actualidad",
-      "empresa": "<span style=\"color:#ff3333\">BBVA Technology</span>",
+      "empresa": "BBVA Technology",
       "ubicacion": "Madrid, España",
       "responsabilidades": [
         {
@@ -69,11 +69,11 @@
       ]
     },
     {
-      "id": "<span style=\"color:#3399ff\">[02]",
-      "puesto": "AI/ML Engineer | LLMs, RAG, NLP, MLOps</span>",
+      "id": "[02]",
+      "puesto": "AI/ML Engineer | LLMs, RAG, NLP, MLOps",
       "inicio": "Ene 2024",
       "fin": "Ene 2026",
-      "empresa": "<span style=\"color:#ff3333\">BBVA Technology</span>",
+      "empresa": "BBVA Technology",
       "ubicacion": "Madrid, España",
       "responsabilidades": [
         {
@@ -131,11 +131,11 @@
       ]
     },
     {
-      "id": "<span style=\"color:#3399ff\">[03]",
-      "puesto": "Machine Learning Engineer | Computer Vision & IoT (Edge + Cloud)</span>",
+      "id": "[03]",
+      "puesto": "Machine Learning Engineer | Computer Vision & IoT (Edge + Cloud)",
       "inicio": "Feb 2020",
       "fin": "Ene 2024",
-      "empresa": "<span style=\"color:#ff3333\">Ecoembes</span>",
+      "empresa": "Ecoembes",
       "ubicacion": "Madrid, España",
       "responsabilidades": [
         {
@@ -193,11 +193,11 @@
       ]
     },
     {
-      "id": "<span style=\"color:#3399ff\">[04]",
-      "puesto": "Data Scientist Junior | Cloud Data Analytics & AWS Foundations</span>",
+      "id": "[04]",
+      "puesto": "Data Scientist Junior | Cloud Data Analytics & AWS Foundations",
       "inicio": "Ene 2017",
       "fin": "Feb 2020",
-      "empresa": "<span style=\"color:#ff3333\">Capgemini</span>",
+      "empresa": "Capgemini",
       "ubicacion": "Las Rozas, Madrid, España",
       "responsabilidades": [
         {
@@ -205,11 +205,7 @@
           "color": "orange",
           "text": "Migración de procesos analíticos tradicionales a arquitecturas AWS"
         },
-        {
-          "icon": "[→]",
-          "color": "orange",
-          "text": "Diseño de Data Lakes y pipelines ETL"
-        },
+        { "icon": "[→]", "color": "orange", "text": "Diseño de Data Lakes y pipelines ETL" },
         {
           "icon": "[→]",
           "color": "orange",
