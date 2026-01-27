@@ -68,6 +68,14 @@ import {
   formatProjectNotFound,
   formatHelp,
   formatNeofetch,
+  formatNmap,
+  formatSudoRm,
+  formatHack,
+  formatExploit,
+  formatCurl,
+  formatThreatMap,
+  formatCve,
+  formatDemo,
   sectionSeparator,
   textToHtml,
 } from "../utils/formatters";
@@ -96,6 +104,15 @@ const AVAILABLE_COMMANDS: string[] = [
   "cat projects/emailthreat.txt",
   "ls projects/",
   "whoami && cat *.txt",
+  // Easter eggs & Security commands
+  "nmap localhost",
+  "sudo rm -rf /",
+  "hack",
+  "exploit",
+  "curl",
+  "threat-map",
+  "cve",
+  "demo",
 ];
 
 /**
@@ -309,6 +326,31 @@ ${formatContacto(contacto)}
         break;
       case "ls projects/":
         print(formatLsProjects(proyectos), "html");
+        break;
+      // Easter eggs & Security commands
+      case "nmap localhost":
+        print(formatNmap(), "html");
+        break;
+      case "sudo rm -rf /":
+        print(formatSudoRm(), "html");
+        break;
+      case "hack":
+        print(formatHack(), "html");
+        break;
+      case "exploit":
+        print(formatExploit(), "html");
+        break;
+      case "curl":
+        print(formatCurl(), "html");
+        break;
+      case "threat-map":
+        print(formatThreatMap(), "html");
+        break;
+      case "cve":
+        print(formatCve(), "html");
+        break;
+      case "demo":
+        print(formatDemo(), "html");
         break;
       default:
         print(

@@ -5,27 +5,26 @@
       "icon": "[+]",
       "color": "green",
       "label": "Email",
-      "value": "infantesromeroadrian@proton.me"
+      "value": "<a href=\"mailto:infantesromeroadrian@proton.me\" style=\"color:#3399ff\">infantesromeroadrian@proton.me</a>"
     },
     {
       "icon": "[+]",
       "color": "green",
       "label": "LinkedIn",
-      "value": "https://linkedin.com/in/adrianinfantes"
+      "value": "<a href=\"https://www.linkedin.com/in/adrianinfantes/\" target=\"_blank\" style=\"color:#3399ff\">linkedin.com/in/adrianinfantes</a>"
     },
     {
       "icon": "[+]",
       "color": "green",
       "label": "GitHub",
-      "value": "https://github.com/infantesromeroadrian"
+      "value": "<a href=\"https://github.com/infantesromeroadrian\" target=\"_blank\" style=\"color:#3399ff\">github.com/infantesromeroadrian</a>"
     },
     {
       "icon": "[+]",
       "color": "green",
       "label": "Portfolio",
-      "value": "https://cyber-agent-aqua-grass.reflex.run/"
+      "value": "<a href=\"https://infantesromeroadrian.github.io/Web-Portfolio-AIR-Terminal/\" target=\"_blank\" style=\"color:#3399ff\">Web-Portfolio-AIR-Terminal</a>"
     },
-    { "icon": "[+]", "color": "green", "label": "Teléfono", "value": "+34 636 259 064" },
     { "icon": "[+]", "color": "green", "label": "Ubicación", "value": "Madrid, España" }
   ],
   "disponibilidad": [
