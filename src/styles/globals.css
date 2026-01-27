@@ -1,105 +1,79 @@
 /**
  * Variables globales de color.
  *
- * Estas variables definen la paleta principal del portfolio.
- * Se usan en todo el proyecto para mantener coherencia visual
- * y facilitar cambios de tema en el futuro.
- *
- * Decisiones de diseño:
- *  - Colores inspirados en estética Purple Team / AI Security
- *  - Tonos apagados para elegancia profesional
- *  - Nombres semánticos para facilitar mantenimiento
+ * Paleta Blue Cyber / AI Security:
+ *  - Azul eléctrico como acento principal
+ *  - Cian para detalles y highlights
+ *  - Fondo negro carbón para estética terminal
  */
 :root {
-  --purple-accent: #7c3aed; /* Púrpura principal - Purple Team */
-  --purple-soft: #8b5cf6; /* Púrpura suave para detalles */
-  --purple-dark: #5b21b6; /* Púrpura oscuro para bordes */
+  --blue-accent: #2563eb; /* Azul eléctrico principal */
+  --blue-soft: #3b82f6; /* Azul suave para detalles */
+  --blue-dark: #1d4ed8; /* Azul oscuro para bordes */
+  --cyan-glow: #22d3ee; /* Cian para highlights/glitch */
   --black-carbon: #0d0d0d; /* Negro carbón */
   --gray-terminal: #cfcfcf; /* Gris terminal */
   --white-soft: #f2f2f2; /* Blanco suave */
 
   /* Aliases para compatibilidad con código existente */
-  --red-accent: var(--purple-accent);
-  --red-soft: var(--purple-soft);
+  --red-accent: var(--blue-accent);
+  --red-soft: var(--blue-soft);
+  --purple-accent: var(--blue-accent);
+  --purple-soft: var(--blue-soft);
 }
 
 /**
  * Fondo degradado para paneles importantes (ej: LoginPanel).
- *
- * Razón:
- *  - Añade profundidad visual sin distraer
- *  - Mantiene estética oscura y elegante
  */
 .panel-bg {
   background: linear-gradient(to bottom, #0d0d0d, #000000);
 }
 
 /**
- * Efecto glow púrpura para elementos interactivos.
- *
- * Se usa en botones clave para reforzar la estética AI Security.
- * El glow es suave para evitar ruido visual.
+ * Efecto glow azul para elementos interactivos.
  */
 .glow-red:hover {
-  box-shadow: 0 0 12px rgba(139, 92, 246, 0.45);
+  box-shadow: 0 0 12px rgba(37, 99, 235, 0.5);
 }
 
 /**
- * Borde superior púrpura para paneles estilo terminal.
- *
- * Se usa en LoginPanel y otros contenedores importantes.
- * Refuerza la identidad visual del portfolio.
+ * Borde superior azul para paneles estilo terminal.
  */
 .border-top-red {
-  border-top: 2px solid var(--purple-accent);
+  border-top: 2px solid var(--blue-accent);
 }
 
 /**
  * Estilo base para botones del menú superior.
- *
- * Se usa @apply para integrar Tailwind con variables CSS.
- * Esto permite mantener consistencia sin repetir clases.
  */
 .nav-btn {
-  @apply text-[var(--purple-soft)] hover:text-[var(--white-soft)] transition-colors duration-200;
+  @apply text-[var(--blue-soft)] hover:text-[var(--white-soft)] transition-colors duration-200;
 }
 
 /**
- * Scrollbar personalizado estilo Purple Team.
- *
- * Decisiones de diseño:
- *  - Scroll rectangular (sin bordes redondeados) para estética CLI
- *  - Colores púrpura oscuro y púrpura brillante para coherencia temática
- *  - Track negro para integrarse con el fondo de la terminal
- *
- * Solo afecta a contenedores con clase .terminal-scroll.
+ * Scrollbar personalizado estilo Blue Cyber.
  */
 .terminal-scroll::-webkit-scrollbar {
-  width: 10px; /* ancho del scroll */
+  width: 10px;
 }
 
 .terminal-scroll::-webkit-scrollbar-track {
-  background: #000; /* interior negro */
-  border: 1px solid #5b21b6; /* borde púrpura oscuro */
+  background: #000;
+  border: 1px solid #1d4ed8;
 }
 
 .terminal-scroll::-webkit-scrollbar-thumb {
-  background: #5b21b6; /* púrpura oscuro */
-  border: 1px solid #8b5cf6; /* borde púrpura brillante */
-  border-radius: 0; /* rectangular */
+  background: #1d4ed8;
+  border: 1px solid #3b82f6;
+  border-radius: 0;
 }
 
 .terminal-scroll::-webkit-scrollbar-thumb:hover {
-  background: #7c3aed; /* púrpura más brillante al pasar el ratón */
+  background: #2563eb;
 }
 
 /**
  * Animación del cursor parpadeante estilo terminal.
- *
- * - steps(1) → parpadeo duro, no suave (como en terminal real)
- * - 0.8s → velocidad equilibrada para lectura
- *
- * Se aplica mediante la clase .cursor-blink.
  */
 @keyframes cursor-blink {
   0% {
@@ -115,4 +89,126 @@
 
 .cursor-blink {
   animation: cursor-blink 0.8s steps(1) infinite;
+}
+
+/**
+ * Efecto glitch / interferencia para el logo.
+ *
+ * Crea un efecto de líneas de escaneo + desplazamiento RGB
+ * estilo pantalla CRT con interferencia de señal.
+ */
+@keyframes glitch-anim {
+  0% {
+    clip-path: inset(40% 0 61% 0);
+    transform: translate(-2px, 2px);
+  }
+  20% {
+    clip-path: inset(92% 0 1% 0);
+    transform: translate(2px, -1px);
+  }
+  40% {
+    clip-path: inset(43% 0 1% 0);
+    transform: translate(-1px, 3px);
+  }
+  60% {
+    clip-path: inset(25% 0 58% 0);
+    transform: translate(3px, -2px);
+  }
+  80% {
+    clip-path: inset(54% 0 7% 0);
+    transform: translate(-3px, 1px);
+  }
+  100% {
+    clip-path: inset(58% 0 43% 0);
+    transform: translate(2px, -3px);
+  }
+}
+
+@keyframes glitch-anim-2 {
+  0% {
+    clip-path: inset(65% 0 13% 0);
+    transform: translate(3px, -1px);
+  }
+  20% {
+    clip-path: inset(10% 0 85% 0);
+    transform: translate(-2px, 2px);
+  }
+  40% {
+    clip-path: inset(70% 0 15% 0);
+    transform: translate(1px, -3px);
+  }
+  60% {
+    clip-path: inset(5% 0 80% 0);
+    transform: translate(-3px, 1px);
+  }
+  80% {
+    clip-path: inset(50% 0 30% 0);
+    transform: translate(2px, 2px);
+  }
+  100% {
+    clip-path: inset(20% 0 65% 0);
+    transform: translate(-1px, -2px);
+  }
+}
+
+@keyframes scanlines {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 0 100%;
+  }
+}
+
+.glitch-container {
+  position: relative;
+  display: inline-block;
+}
+
+.glitch-container img {
+  display: block;
+}
+
+.glitch-container::before,
+.glitch-container::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: inherit;
+  background-size: cover;
+  opacity: 0.8;
+}
+
+.glitch-container::before {
+  animation: glitch-anim 3s infinite linear alternate-reverse;
+  mix-blend-mode: screen;
+  background-color: rgba(37, 99, 235, 0.15);
+}
+
+.glitch-container::after {
+  animation: glitch-anim-2 2.5s infinite linear alternate-reverse;
+  mix-blend-mode: screen;
+  background-color: rgba(34, 211, 238, 0.1);
+}
+
+/* Scanlines overlay */
+.scanlines::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.15) 0px,
+    rgba(0, 0, 0, 0.15) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+  pointer-events: none;
+  animation: scanlines 8s linear infinite;
 }

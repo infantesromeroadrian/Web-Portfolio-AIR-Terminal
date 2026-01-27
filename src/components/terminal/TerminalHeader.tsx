@@ -18,11 +18,11 @@ export default function TerminalHeader() {
   const { soundEnabled, toggleSound } = useKeySound();
 
   return (
-    <div class="bg-black border-b border-violet-600">
+    <div class="bg-black border-b border-blue-600">
       <div class="grid grid-cols-3 items-center px-4 py-2">
         {/* COLUMNA IZQUIERDA — Botones estilo macOS */}
         <div class="flex space-x-2">
-          <div class="w-3 h-3 rounded-full bg-violet-600"></div>
+          <div class="w-3 h-3 rounded-full bg-blue-600"></div>
           <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
           <div class="w-3 h-3 rounded-full bg-green-500"></div>
         </div>
@@ -37,7 +37,7 @@ export default function TerminalHeader() {
           <button
             onClick={() => { toggleSound(); }}
             class="text-xs font-mono transition-colors hover:text-[var(--white-soft)]"
-            style={{ color: soundEnabled ? "#8b5cf6" : "#555" }}
+            style={{ color: soundEnabled ? "#3b82f6" : "#555" }}
             title={soundEnabled ? "Sonido: ON" : "Sonido: OFF"}
           >
             {soundEnabled ? "♪ ON" : "♪ OFF"}

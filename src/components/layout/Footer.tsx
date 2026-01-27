@@ -22,11 +22,11 @@ export default function Footer() {
      *
      * Decisiones de diseño:
      *  - bg-black/80 → fondo oscuro semitransparente
-     *  - border-t border-violet-600 → coherencia con el resto de la UI
+     *  - border-t border-blue-600 → coherencia con el resto de la UI
      *  - backdrop-blur-sm → efecto de cristal oscuro
      *  - mt-10 → separación visual respecto al contenido superior
      */
-    <footer class="w-full bg-black/80 border-t border-violet-600 backdrop-blur-sm mt-10 py-4">
+    <footer class="w-full bg-black/80 border-t border-blue-600 backdrop-blur-sm mt-10 py-4">
       <div class="max-w-6xl mx-auto text-center font-mono text-sm text-[var(--white-soft)] space-y-1">
         {/**
          * Línea principal del footer.

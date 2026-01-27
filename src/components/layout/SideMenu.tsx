@@ -59,7 +59,7 @@ export default function SideMenu({
        *  - Se mantiene z-50 para estar por encima del overlay
        */}
       <aside
-        class={`fixed top-0 right-0 h-full w-64 bg-[#0a0a0a] border-l border-violet-600 shadow-xl z-50 transform transition-transform duration-300 ${
+        class={`fixed top-0 right-0 h-full w-64 bg-[#0a0a0a] border-l border-blue-600 shadow-xl z-50 transform transition-transform duration-300 ${
           open ? "translate-x-0" : "translate-x-full"
         }`}
       >
@@ -78,7 +78,7 @@ export default function SideMenu({
 
             {/* WHOAMI */}
             <button
-              class="w-full text-left px-3 py-2 bg-black border border-gray-600 rounded hover:bg-violet-900/30 transition"
+              class="w-full text-left px-3 py-2 bg-black border border-gray-600 rounded hover:bg-blue-900/30 transition"
               onClick={() => {
                 onClose();
                 void runCommand("whoami");
@@ -89,7 +89,7 @@ export default function SideMenu({
 
             {/* PERFIL */}
             <button
-              class="w-full text-left px-3 py-2 bg-black border border-gray-600 rounded hover:bg-violet-900/30 transition"
+              class="w-full text-left px-3 py-2 bg-black border border-gray-600 rounded hover:bg-blue-900/30 transition"
               onClick={() => {
                 onClose();
                 void runCommand("cat profile.txt");
@@ -100,7 +100,7 @@ export default function SideMenu({
 
             {/* ESTUDIOS */}
             <button
-              class="w-full text-left px-3 py-2 bg-black border border-gray-600 rounded hover:bg-violet-900/30 transition"
+              class="w-full text-left px-3 py-2 bg-black border border-gray-600 rounded hover:bg-blue-900/30 transition"
               onClick={() => {
                 onClose();
                 void runCommand("cat edu.txt");
@@ -111,7 +111,7 @@ export default function SideMenu({
 
             {/* EXPERIENCIA */}
             <button
-              class="w-full text-left px-3 py-2 bg-black border border-gray-600 rounded hover:bg-violet-900/30 transition"
+              class="w-full text-left px-3 py-2 bg-black border border-gray-600 rounded hover:bg-blue-900/30 transition"
               onClick={() => {
                 onClose();
                 void runCommand("cat exp.txt");
@@ -122,7 +122,7 @@ export default function SideMenu({
 
             {/* HABILIDADES */}
             <button
-              class="w-full text-left px-3 py-2 bg-black border border-gray-600 rounded hover:bg-violet-900/30 transition"
+              class="w-full text-left px-3 py-2 bg-black border border-gray-600 rounded hover:bg-blue-900/30 transition"
               onClick={() => {
                 onClose();
                 void runCommand("cat skills.txt");
@@ -133,7 +133,7 @@ export default function SideMenu({
 
             {/* CERTIFICACIONES */}
             <button
-              class="w-full text-left px-3 py-2 bg-black border border-gray-600 rounded hover:bg-violet-900/30 transition"
+              class="w-full text-left px-3 py-2 bg-black border border-gray-600 rounded hover:bg-blue-900/30 transition"
               onClick={() => {
                 onClose();
                 void runCommand("cat certs.txt");
@@ -144,7 +144,7 @@ export default function SideMenu({
 
             {/* PROYECTOS */}
             <button
-              class="w-full text-left px-3 py-2 bg-black border border-gray-600 rounded hover:bg-violet-900/30 transition"
+              class="w-full text-left px-3 py-2 bg-black border border-gray-600 rounded hover:bg-blue-900/30 transition"
               onClick={() => {
                 onClose();
                 void runCommand("ls projects/");
@@ -155,7 +155,7 @@ export default function SideMenu({
 
             {/* CONTACTO */}
             <button
-              class="w-full text-left px-3 py-2 bg-black border border-gray-600 rounded hover:bg-violet-900/30 transition"
+              class="w-full text-left px-3 py-2 bg-black border border-gray-600 rounded hover:bg-blue-900/30 transition"
               onClick={() => {
                 onClose();
                 void runCommand("cat contact.txt");

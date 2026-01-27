@@ -121,11 +121,11 @@ export default function MatrixBackground() {
           // Neurona "activada" - brillo cian
           ctx.fillStyle = "#22d3ee";
         } else if (rand > 0.7) {
-          // Púrpura brillante
-          ctx.fillStyle = "#a78bfa";
+          // Azul brillante
+          ctx.fillStyle = "#60a5fa";
         } else {
-          // Púrpura base apagado
-          ctx.fillStyle = "#7c3aed";
+          // Azul base
+          ctx.fillStyle = "#2563eb";
         }
 
         ctx.fillText(text, i * fontSize, y * fontSize);

@@ -493,31 +493,31 @@ ${lines.join("\n")}
 export function formatNeofetch(): string {
   // ASCII art del logo (AI/Security themed)
   const logo = [
-    `<span style="color:#7c3aed">     █████╗ ██╗██████╗ </span>`,
-    `<span style="color:#7c3aed">    ██╔══██╗██║██╔══██╗</span>`,
-    `<span style="color:#8b5cf6">    ███████║██║██████╔╝</span>`,
-    `<span style="color:#8b5cf6">    ██╔══██║██║██╔══██╗</span>`,
-    `<span style="color:#a78bfa">    ██║  ██║██║██║  ██║</span>`,
-    `<span style="color:#a78bfa">    ╚═╝  ╚═╝╚═╝╚═╝  ╚═╝</span>`,
+    `<span style="color:#2563eb">     █████╗ ██╗██████╗ </span>`,
+    `<span style="color:#2563eb">    ██╔══██╗██║██╔══██╗</span>`,
+    `<span style="color:#3b82f6">    ███████║██║██████╔╝</span>`,
+    `<span style="color:#3b82f6">    ██╔══██║██║██╔══██╗</span>`,
+    `<span style="color:#60a5fa">    ██║  ██║██║██║  ██║</span>`,
+    `<span style="color:#60a5fa">    ╚═╝  ╚═╝╚═╝╚═╝  ╚═╝</span>`,
   ];
 
   // Info del "sistema"
   const info = [
-    `<span style="color:#7c3aed">air</span><span style="color:#888888">@</span><span style="color:#7c3aed">portfolio</span>`,
+    `<span style="color:#2563eb">air</span><span style="color:#888888">@</span><span style="color:#2563eb">portfolio</span>`,
     `<span style="color:#888888">─────────────────────</span>`,
-    `<span style="color:#7c3aed">OS:</span>      AI Security Arch v2.0`,
-    `<span style="color:#7c3aed">Host:</span>    Adrian Infantes`,
-    `<span style="color:#7c3aed">Kernel:</span>  Purple Team Engine`,
-    `<span style="color:#7c3aed">Shell:</span>   portfolio-terminal 1.0`,
-    `<span style="color:#7c3aed">Role:</span>    AI Security Architect`,
-    `<span style="color:#7c3aed">DE:</span>      Neural Rain + Preact`,
-    `<span style="color:#7c3aed">Theme:</span>   Purple Team [dark]`,
-    `<span style="color:#7c3aed">Stack:</span>   Python, TypeScript, Docker`,
-    `<span style="color:#7c3aed">ML:</span>      LangGraph, PyTorch, scikit`,
-    `<span style="color:#7c3aed">Cloud:</span>   AWS, GCP, Kubernetes`,
-    `<span style="color:#7c3aed">Uptime:</span>  5+ years in AI/Security`,
+    `<span style="color:#2563eb">OS:</span>      AI Security Arch v2.0`,
+    `<span style="color:#2563eb">Host:</span>    Adrian Infantes`,
+    `<span style="color:#2563eb">Kernel:</span>  Purple Team Engine`,
+    `<span style="color:#2563eb">Shell:</span>   portfolio-terminal 1.0`,
+    `<span style="color:#2563eb">Role:</span>    AI Security Architect`,
+    `<span style="color:#2563eb">DE:</span>      Neural Rain + Preact`,
+    `<span style="color:#2563eb">Theme:</span>   Purple Team [dark]`,
+    `<span style="color:#2563eb">Stack:</span>   Python, TypeScript, Docker`,
+    `<span style="color:#2563eb">ML:</span>      LangGraph, PyTorch, scikit`,
+    `<span style="color:#2563eb">Cloud:</span>   AWS, GCP, Kubernetes`,
+    `<span style="color:#2563eb">Uptime:</span>  5+ years in AI/Security`,
     ``,
-    `<span style="color:#7c3aed">██</span><span style="color:#8b5cf6">██</span><span style="color:#a78bfa">██</span><span style="color:#c4b5fd">██</span><span style="color:#00ff00">██</span><span style="color:#3399ff">██</span><span style="color:#ff9900">██</span><span style="color:#ff3333">██</span>`,
+    `<span style="color:#2563eb">██</span><span style="color:#3b82f6">██</span><span style="color:#60a5fa">██</span><span style="color:#93c5fd">██</span><span style="color:#00ff00">██</span><span style="color:#3399ff">██</span><span style="color:#ff9900">██</span><span style="color:#ff3333">██</span>`,
   ];
 
   // Combinar logo e info lado a lado
@@ -585,7 +585,7 @@ export function formatSudoRm(): string {
 <span style="color:#888888">Fun fact: This portfolio runs on an immutable filesystem.</span>
 <span style="color:#888888">Even if you were root, there's nothing to delete.</span>
 
-<span style="color:#7c3aed">— "The best defense is making the attacker waste their time." — Adrian Infantes</span>
+<span style="color:#2563eb">— "The best defense is making the attacker waste their time." — Adrian Infantes</span>
 `;
 }
 
@@ -610,7 +610,7 @@ export function formatHack(): string {
 <span style="color:#00ff00">  RESULT: 0 vulnerabilities found. System hardened.</span>
 <span style="color:#00ff00">═══════════════════════════════════════════════════</span>
 
-<span style="color:#7c3aed">[CTF FLAG] AIR{y0u_c4nt_h4ck_wh4t_y0u_c4nt_br34k}</span>
+<span style="color:#2563eb">[CTF FLAG] AIR{y0u_c4nt_h4ck_wh4t_y0u_c4nt_br34k}</span>
 
 <span style="color:#888888">This portfolio was built with security-first principles:</span>
 <span style="color:#888888">  • HTML sanitized with DOMPurify</span>
@@ -642,8 +642,8 @@ export function formatExploit(): string {
 <span style="color:#888888">  3. Provide clear reproduction steps</span>
 <span style="color:#888888">  4. Allow 90 days for remediation</span>
 
-<span style="color:#7c3aed">I believe in building a safer digital world.</span>
-<span style="color:#7c3aed">Security researchers are allies, not adversaries.</span>
+<span style="color:#2563eb">I believe in building a safer digital world.</span>
+<span style="color:#2563eb">Security researchers are allies, not adversaries.</span>
 
 <span style="color:#888888">— Adrian Infantes, AI Security Architect</span>
 `;
@@ -659,7 +659,7 @@ export function formatCurl(): string {
 <span style="color:#ffff66">HTTP/2 200 OK</span>
 <span style="color:#888888">server:</span>              GitHub.com (Fastly CDN)
 <span style="color:#888888">content-type:</span>         text/html; charset=utf-8
-<span style="color:#888888">x-powered-by:</span>         <span style="color:#7c3aed">AIR Neural Engine v2.0</span>
+<span style="color:#888888">x-powered-by:</span>         <span style="color:#2563eb">AIR Neural Engine v2.0</span>
 <span style="color:#888888">x-frame-options:</span>      DENY
 <span style="color:#888888">x-content-type:</span>       nosniff
 <span style="color:#888888">x-xss-protection:</span>    1; mode=block
@@ -711,14 +711,14 @@ export function formatThreatMap(): string {
 <span style="color:#888888">│</span>  <span style="color:#00ff00">[INFO]</span>     Recon/Scanning               <span style="color:#00ff00">██</span>         89
 <span style="color:#3399ff">└──────────────────────────────────────────────────────────┘</span>
 
-<span style="color:#7c3aed">┌─── GEO DISTRIBUTION ─────────────────────────────────────┐</span>
+<span style="color:#2563eb">┌─── GEO DISTRIBUTION ─────────────────────────────────────┐</span>
 <span style="color:#888888">│</span>  🇨🇳 China ........... 34%  <span style="color:#ff3333">████████████████</span>
 <span style="color:#888888">│</span>  🇷🇺 Russia .......... 22%  <span style="color:#ff3333">███████████</span>
 <span style="color:#888888">│</span>  🇰🇵 North Korea ..... 15%  <span style="color:#ffff66">████████</span>
 <span style="color:#888888">│</span>  🇮🇷 Iran ............ 12%  <span style="color:#ffff66">██████</span>
 <span style="color:#888888">│</span>  🇺🇸 USA (bots) ......  9%  <span style="color:#00ff00">████</span>
 <span style="color:#888888">│</span>  🌍 Others ..........  8%  <span style="color:#00ff00">████</span>
-<span style="color:#7c3aed">└──────────────────────────────────────────────────────────┘</span>
+<span style="color:#2563eb">└──────────────────────────────────────────────────────────┘</span>
 
 <span style="color:#00ff00">┌─── ACTIVE DEFENSES ──────────────────────────────────────┐</span>
 <span style="color:#888888">│</span>  <span style="color:#00ff00">[✓]</span> WAF Rules ............... 247 active
@@ -774,7 +774,7 @@ export function formatCve(): string {
   CVSS: 7.2 | Exposed Ray dashboard allows job submission
   Affects: Ray &lt; 2.8.1 | Fix: Enable auth + network isolation
 
-<span style="color:#7c3aed">┌─── MITRE ATLAS — AI ATTACK TECHNIQUES ───────────────────┐</span>
+<span style="color:#2563eb">┌─── MITRE ATLAS — AI ATTACK TECHNIQUES ───────────────────┐</span>
 
 <span style="color:#888888">│</span>  <span style="color:#ff3333">AML.T0043</span>  Adversarial ML Attack — Model Evasion
 <span style="color:#888888">│</span>  <span style="color:#ff3333">AML.T0040</span>  Model Inference Attack — Data Extraction
@@ -782,7 +782,7 @@ export function formatCve(): string {
 <span style="color:#888888">│</span>  <span style="color:#ffff66">AML.T0051</span>  LLM Jailbreak — Guardrail Bypass
 <span style="color:#888888">│</span>  <span style="color:#00ff00">AML.T0020</span>  Data Poisoning — Training Set Manipulation
 <span style="color:#888888">│</span>  <span style="color:#00ff00">AML.T0044</span>  Model Supply Chain Attack — Backdoored Models
-<span style="color:#7c3aed">└──────────────────────────────────────────────────────────┘</span>
+<span style="color:#2563eb">└──────────────────────────────────────────────────────────┘</span>
 
 <span style="color:#888888">Source: MITRE ATLAS, NVD, OWASP LLM Top 10</span>
 <span style="color:#888888">Curated by: Adrian Infantes — AI Security Architect</span>
@@ -817,10 +817,10 @@ export function formatDemo(): string {
   const randomScore = () => (Math.random() * 0.4 + 0.6).toFixed(3);
 
   return `
-<span style="color:#7c3aed">╔══════════════════════════════════════════════════════════════╗</span>
-<span style="color:#7c3aed">║          AIR THREAT DETECTION — LIVE DEMO                   ║</span>
-<span style="color:#7c3aed">║          ML Pipeline: Isolation Forest + DBSCAN             ║</span>
-<span style="color:#7c3aed">╚══════════════════════════════════════════════════════════════╝</span>
+<span style="color:#2563eb">╔══════════════════════════════════════════════════════════════╗</span>
+<span style="color:#2563eb">║          AIR THREAT DETECTION — LIVE DEMO                   ║</span>
+<span style="color:#2563eb">║          ML Pipeline: Isolation Forest + DBSCAN             ║</span>
+<span style="color:#2563eb">╚══════════════════════════════════════════════════════════════╝</span>
 
 <span style="color:#3399ff">[PIPELINE]</span> Ingesting logs from: syslog, nginx, auth, firewall
 <span style="color:#3399ff">[PIPELINE]</span> Feature extraction: 15 behavioral features

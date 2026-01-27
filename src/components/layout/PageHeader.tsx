@@ -29,10 +29,10 @@ export default function PageHeader({
      * Header fijo en la parte superior.
      *
      * - bg-black/80 + backdrop-blur-sm → efecto de cristal oscuro
-     * - border-violet-600 → coherencia con estética Purple Team / AI Security
+     * - border-blue-600 → coherencia con estética Purple Team / AI Security
      * - fixed + z-50 → siempre visible por encima del contenido
      */
-    <header class="w-full bg-black/80 border-b border-violet-600 backdrop-blur-sm fixed top-0 left-0 z-50">
+    <header class="w-full bg-black/80 border-b border-blue-600 backdrop-blur-sm fixed top-0 left-0 z-50">
       <nav class="max-w-7xl mx-auto px-6 py-4 flex items-center">
         {/**
          * LOGO (columna izquierda)

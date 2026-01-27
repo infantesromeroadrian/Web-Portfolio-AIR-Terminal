@@ -359,17 +359,17 @@ O simplemente escribe \`help\` en la terminal.`;
         fixed bottom-24 right-6 z-50
         w-96 h-[520px]
         bg-[#0a0a0a]/95 backdrop-blur-sm
-        border border-violet-600 rounded-lg
-        shadow-2xl shadow-violet-600/20
+        border border-blue-600 rounded-lg
+        shadow-2xl shadow-blue-600/20
         flex flex-col
         font-mono
       "
     >
       {/* Header */}
-      <div class="flex items-center justify-between px-4 py-3 border-b border-violet-600/50 bg-black/50">
+      <div class="flex items-center justify-between px-4 py-3 border-b border-blue-600/50 bg-black/50">
         <div class="flex items-center space-x-2">
           <div class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
-          <span class="text-violet-400 text-sm font-bold">AIR Assistant</span>
+          <span class="text-blue-400 text-sm font-bold">AIR Assistant</span>
           <span class="text-gray-500 text-xs">// ask me anything</span>
         </div>
         <button onClick={onClose} class="text-gray-400 hover:text-white transition-colors">
@@ -393,7 +393,7 @@ O simplemente escribe \`help\` en la terminal.`;
                 max-w-[85%] px-3 py-2 rounded-lg text-sm whitespace-pre-wrap
                 ${
                   msg.role === "user"
-                    ? "bg-violet-600 text-white"
+                    ? "bg-blue-600 text-white"
                     : "bg-gray-800 text-gray-200 border border-gray-700"
                 }
               `}
@@ -412,7 +412,7 @@ O simplemente escribe \`help\` en la terminal.`;
       </div>
 
       {/* Input */}
-      <form onSubmit={handleSubmit} class="p-3 border-t border-violet-600/50 bg-black/50">
+      <form onSubmit={handleSubmit} class="p-3 border-t border-blue-600/50 bg-black/50">
         <div class="flex space-x-2">
           <input
             type="text"
@@ -424,7 +424,7 @@ O simplemente escribe \`help\` en la terminal.`;
             class="
               flex-1 bg-gray-900 border border-gray-700 rounded-lg
               px-3 py-2 text-sm text-white
-              focus:outline-none focus:border-violet-500
+              focus:outline-none focus:border-blue-500
               placeholder-gray-500
             "
           />
@@ -432,7 +432,7 @@ O simplemente escribe \`help\` en la terminal.`;
             type="submit"
             disabled={isLoading}
             class="
-              bg-violet-600 hover:bg-violet-500
+              bg-blue-600 hover:bg-blue-500
               disabled:opacity-50 disabled:cursor-not-allowed
               px-4 py-2 rounded-lg
               text-white text-sm font-bold

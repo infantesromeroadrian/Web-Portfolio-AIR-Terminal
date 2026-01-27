@@ -100,9 +100,9 @@ export default function LoginPanel({ onLogin }: { onLogin: () => void }) {
        *  - Prompt root@portfolio
        *  - Bordes púrpura para mantener coherencia con el tema AI Security
        */}
-      <div class="bg-black border-2 border-violet-600 rounded-t-lg p-3 flex items-center space-x-2 border-top-red">
+      <div class="bg-black border-2 border-blue-600 rounded-t-lg p-3 flex items-center space-x-2 border-top-red">
         <div class="flex space-x-2">
-          <div class="w-3 h-3 rounded-full bg-violet-600"></div>
+          <div class="w-3 h-3 rounded-full bg-blue-600"></div>
           <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
           <div class="w-3 h-3 rounded-full bg-green-500"></div>
         </div>
@@ -124,11 +124,23 @@ export default function LoginPanel({ onLogin }: { onLogin: () => void }) {
        *  - Los inputs son readOnly porque la animación es automática
        *  - El botón permite a usuarios impacientes avanzar rápido
        */}
-      <div class="panel-bg border-2 border-t-0 border-violet-600 rounded-b-lg p-8 shadow-xl shadow-violet-600/20 backdrop-blur-sm">
+      <div class="panel-bg border-2 border-t-0 border-blue-600 rounded-b-lg p-8 shadow-xl shadow-blue-600/20 backdrop-blur-sm">
+        {/* Logo con efecto glitch */}
+        <div class="flex justify-center mb-6">
+          <div class="relative glitch-container scanlines w-32 h-32">
+            <img
+              src={`${import.meta.env.BASE_URL}favicon.png`}
+              alt="AIR Security Logo"
+              class="w-32 h-32 rounded-lg border border-blue-600/30"
+              style="filter: drop-shadow(0 0 20px rgba(37, 99, 235, 0.4));"
+            />
+          </div>
+        </div>
+
         {/* Título y subtítulo */}
-        <div class="mb-8">
-          <h1 class="text-3xl font-mono font-bold text-[var(--red-accent)] mb-2 flex items-center">
-            <span class="text-[var(--red-soft)] mr-2">&gt;</span>AI SECURITY ARCHITECT
+        <div class="mb-8 text-center">
+          <h1 class="text-3xl font-mono font-bold text-[var(--red-accent)] mb-2">
+            AI SECURITY ARCHITECT
           </h1>
 
           <p class="text-[var(--gray-terminal)] font-mono text-sm">

@@ -28,11 +28,11 @@ export default function ChatBubble() {
         class={`
           fixed bottom-6 right-6 z-50
           w-14 h-14 rounded-full
-          bg-gradient-to-br from-violet-600 to-cyan-500
-          shadow-lg shadow-violet-600/30
+          bg-gradient-to-br from-blue-600 to-cyan-500
+          shadow-lg shadow-blue-600/30
           flex items-center justify-center
           transition-all duration-300
-          hover:scale-110 hover:shadow-violet-500/50
+          hover:scale-110 hover:shadow-blue-500/50
           ${isOpen ? "rotate-0" : "animate-pulse"}
         `}
         aria-label={isOpen ? "Cerrar chat" : "Abrir chat AI"}
@@ -73,7 +73,7 @@ export default function ChatBubble() {
             fixed bottom-7 right-24 z-50
             bg-black/90 text-white text-sm font-mono
             px-3 py-2 rounded-lg
-            border border-violet-600/50
+            border border-blue-600/50
             opacity-0 hover:opacity-100
             pointer-events-none
             transition-opacity duration-300

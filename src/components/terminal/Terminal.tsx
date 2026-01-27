@@ -29,10 +29,10 @@ export default function Terminal({ terminal }: { terminal: TerminalState }) {
      * Decisiones de diseño:
      *  - max-w-6xl → ancho óptimo para lectura
      *  - rounded-lg + shadow → estética de ventana real
-     *  - border-violet-600 → coherencia con el tema Purple Team / AI Security
+     *  - border-blue-600 → coherencia con el tema Purple Team / AI Security
      *  - backdrop-blur-sm → efecto de cristal oscuro
      */
-    <div class="w-full max-w-6xl mx-auto mt-10 rounded-lg overflow-hidden shadow-lg shadow-black/40 border border-violet-600 bg-[#0d0d0d]/95 backdrop-blur-sm">
+    <div class="w-full max-w-6xl mx-auto mt-10 rounded-lg overflow-hidden shadow-lg shadow-black/40 border border-blue-600 bg-[#0d0d0d]/95 backdrop-blur-sm">
       {/* Barra superior estilo terminal */}
       <TerminalHeader />
 
