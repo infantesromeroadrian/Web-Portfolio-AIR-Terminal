@@ -1,17 +1,18 @@
 /**
  * Panel del chatbot AI.
  *
- * Este componente muestra la interfaz de conversación con el chatbot.
- * Por ahora es un placeholder que se conectará con un backend LLM.
+ * Asistente conversacional que explica:
+ *  - Qué es este portfolio y cómo funciona
+ *  - Todos los comandos disponibles (incluyendo easter eggs)
+ *  - Info sobre Adrian: proyectos, experiencia, skills, contacto
  *
  * Diseño:
  *  - Estilo terminal para coherencia con el resto del portfolio
- *  - Header con título y botón de cerrar
- *  - Área de mensajes con scroll
- *  - Input para escribir mensajes
+ *  - Pattern matching por keywords para respuestas predefinidas
+ *  - Quick replies para guiar al usuario
  */
 
-import { useState } from "preact/hooks";
+import { useState, useRef, useEffect } from "preact/hooks";
 
 interface Message {
   role: "user" | "assistant";
@@ -22,86 +23,318 @@ export default function ChatPanel({ onClose }: { onClose: () => void }) {
   const [messages, setMessages] = useState<Message[]>([
     {
       role: "assistant",
-      content:
-        "¡Hola! Soy el asistente AI de Adrian. Puedo responder preguntas sobre su experiencia, proyectos y habilidades en AI Security. ¿En qué puedo ayudarte?",
+      content: `👋 ¡Hey! Soy el asistente de Adrian.
+
+Esta web es un portfolio interactivo estilo terminal — puedes escribir comandos reales con el teclado.
+
+Pregúntame sobre:
+• Qué comandos hay disponibles
+• Los proyectos de Adrian
+• Su experiencia y skills
+• Easter eggs ocultos 👀
+• Cómo contactar con él
+
+¿Qué quieres saber?`,
     },
   ]);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
+    }
+  }, [messages]);
 
   /**
-   * Respuestas predefinidas mientras no hay backend.
-   * TODO: Conectar con API de LLM (OpenAI, Ollama, etc.)
+   * Sistema de respuestas por keyword matching.
+   * Prioridad: más específico primero.
    */
   const getResponse = (question: string): string => {
     const q = question.toLowerCase();
 
-    if (q.includes("proyecto") || q.includes("project")) {
-      return `Adrian tiene 4 proyectos principales de AI Security:
+    // ── Comandos y ayuda ──────────────────────────────────────
+    if (
+      q.includes("comando") ||
+      q.includes("command") ||
+      q.includes("ayuda") ||
+      q.includes("help") ||
+      q.includes("qué puedo hacer") ||
+      q.includes("que puedo hacer") ||
+      q.includes("cómo funciona") ||
+      q.includes("como funciona")
+    ) {
+      return `📟 Esta terminal tiene comandos reales. Escríbelos abajo en el prompt:
 
-🎯 **WatchDogs OSINT** - Sistema multi-agente con GPT-4 Vision para análisis de video (Score: 95/100)
+**Básicos:**
+• \`help\` — Lista todos los comandos
+• \`whoami\` — Quién es Adrian
+• \`neofetch\` — Info del sistema estilo Linux
+• \`clear\` — Limpia la terminal
 
-🛡️ **Threat Intelligence Aggregator** - Plataforma con NER, BERT y LDA para threat intel (35 endpoints)
+**Perfil:**
+• \`cat profile.txt\` — Perfil profesional
+• \`cat edu.txt\` — Formación académica
+• \`cat exp.txt\` — Experiencia laboral
+• \`cat skills.txt\` — Habilidades técnicas
+• \`cat certs.txt\` — Certificaciones
+• \`cat contact.txt\` — Contacto
 
-🔍 **SIEM Anomaly Detector** - SIEM con ML ensemble (Isolation Forest + DBSCAN + GMM)
+**Proyectos:**
+• \`ls projects/\` — Lista de proyectos
+• \`cat projects/watchdogs.txt\` — WatchDogs OSINT
+• \`cat projects/threatintel.txt\` — Threat Intel
+• \`cat projects/siem.txt\` — SIEM Anomaly
+• \`cat projects/emailthreat.txt\` — Email Threat
 
-📧 **Email Threat Platform** - Detector dual SPAM + Phishing con 95% accuracy
+**🔒 Security (los que molan):**
+• \`nmap localhost\` — Escaneo de puertos
+• \`hack\` — Auditoría de seguridad
+• \`threat-map\` — Dashboard SIEM en vivo
+• \`cve\` — Vulnerabilidades AI/ML
+• \`demo\` — Pipeline de detección live
+• \`exploit\` — Responsible disclosure
+• \`curl\` — Headers HTTP
+• \`sudo rm -rf /\` — Pruébalo 😏
 
-¿Te interesa saber más sobre alguno en particular?`;
+**Tips:** TAB autocompleta, ↑↓ navega historial, Ctrl+L limpia.`;
     }
 
-    if (q.includes("experiencia") || q.includes("trabajo") || q.includes("bbva")) {
-      return `Adrian trabaja actualmente en **BBVA** como AI Security Architect, donde:
+    // ── Easter eggs ───────────────────────────────────────────
+    if (
+      q.includes("easter") ||
+      q.includes("secreto") ||
+      q.includes("oculto") ||
+      q.includes("hidden") ||
+      q.includes("truco")
+    ) {
+      return `👀 ¡Te gustan los secretos! Hay varios easter eggs:
 
-• Diseña arquitecturas de seguridad para sistemas de IA
-• Implementa detección de fraude con ML
-• Desarrolla pipelines de MLOps seguros
-• Realiza red teaming de modelos LLM
+• \`nmap localhost\` — Simula un escaneo de puertos. Los servicios que muestra son ficticios pero representan el stack real de Adrian.
 
-Anteriormente trabajó en Ecoembes y Capgemini en roles de Data Science y desarrollo.`;
+• \`hack\` — Hace una "auditoría de seguridad" del portfolio. Comprueba XSS, CSRF, Prompt Injection... y al final hay un CTF flag 🏁
+
+• \`sudo rm -rf /\` — Pruébalo y verás qué pasa 😂
+
+• \`threat-map\` — Un dashboard SIEM completo con mapa de amenazas geográfico, vectores de ataque, y defensas activas.
+
+• \`demo\` — Simula logs de un pipeline ML detectando anomalías en tiempo real. Muy visual.
+
+• \`curl\` — Muestra headers HTTP ficticios con \`x-security-level: PURPLE TEAM HARDENED\`
+
+Cada uno demuestra que Adrian piensa como atacante Y como defensor.`;
     }
 
-    if (q.includes("skill") || q.includes("tecnolog") || q.includes("stack")) {
-      return `El stack principal de Adrian incluye:
+    // ── Proyectos ─────────────────────────────────────────────
+    if (
+      q.includes("proyecto") ||
+      q.includes("project") ||
+      q.includes("watchdog") ||
+      q.includes("siem") ||
+      q.includes("threat") ||
+      q.includes("email")
+    ) {
+      return `🎯 Adrian tiene 4 proyectos de AI Security. Escribe estos comandos:
 
-**AI/ML**: PyTorch, TensorFlow, Scikit-learn, LangChain, LangGraph
-**Security**: Adversarial ML, LLM Red Teaming, Threat Modeling
-**Backend**: Python, FastAPI, Docker, Kubernetes
-**MLOps**: MLflow, W&B, Dagster, vLLM
+**WatchDogs OSINT** (Score: 95/100)
+→ \`cat projects/watchdogs.txt\`
+Sistema multi-agente con GPT-4 Vision para análisis de video. 4 agentes simultáneos con LangGraph.
 
-Especializado en la intersección de IA y Ciberseguridad.`;
+**Threat Intelligence Aggregator** (35 endpoints)
+→ \`cat projects/threatintel.txt\`
+NER con spaCy, clasificación con BERT, topic modeling con LDA.
+
+**SIEM Anomaly Detector** (ROI $310k/año)
+→ \`cat projects/siem.txt\`
+ML ensemble: Isolation Forest + DBSCAN + GMM. Reducción 80% false positives.
+
+**Email Threat Platform** (95% accuracy)
+→ \`cat projects/emailthreat.txt\`
+Dual SPAM + Phishing detector con dashboard SOC.
+
+O escribe \`ls projects/\` para ver la lista rápida.`;
     }
 
-    if (q.includes("contacto") || q.includes("email") || q.includes("linkedin")) {
-      return `Puedes contactar a Adrian a través de:
+    // ── Experiencia ───────────────────────────────────────────
+    if (
+      q.includes("experiencia") ||
+      q.includes("trabajo") ||
+      q.includes("bbva") ||
+      q.includes("empleo") ||
+      q.includes("carrera") ||
+      q.includes("cv")
+    ) {
+      return `💼 Escribe \`cat exp.txt\` para ver el detalle completo. Resumen:
 
-📧 Email: adrianinrom@proton.me
-💼 LinkedIn: linkedin.com/in/inteligencia-artificial-adrian
-🐙 GitHub: github.com/infantesromeroadrian
+**[Actual] BBVA Technology** — AI Security Architect
+Unidad de Inteligencia Financiera. Arquitecturas IA híbridas, seguridad GenAI/LLMs, procesamiento SIGINT de +10M interacciones/año.
 
-¡Está abierto a oportunidades en AI Security!`;
+**[2024-2026] BBVA Technology** — AI/ML Engineer
+RAG Híbrido, NLP, modelos de riesgo (Fraud Scoring), +22% AUC-ROC.
+
+**[2020-2024] Ecoembes** — ML Engineer
+Computer Vision Edge AI para reciclaje. 45k imágenes/hora, <100ms latencia.
+
+**[2017-2020] Capgemini** — Data Scientist Junior
+Data Lakes en AWS, modelado predictivo, automatización serverless.
+
+7+ años de evolución: Data → ML → AI → AI Security.`;
     }
 
-    if (q.includes("estudi") || q.includes("formacion") || q.includes("master")) {
-      return `Formación de Adrian:
+    // ── Skills ────────────────────────────────────────────────
+    if (
+      q.includes("skill") ||
+      q.includes("tecnolog") ||
+      q.includes("stack") ||
+      q.includes("sabe") ||
+      q.includes("lenguaje")
+    ) {
+      return `⚡ Escribe \`cat skills.txt\` para el detalle. Stack principal:
 
-🎓 **Máster en Generative AI** - MIOTI (2024-2025)
-🎓 **Máster en Big Data** - MIOTI (2023-2024)
-🎓 **Grado en Ingeniería del Software** - U-tad
-📜 **ASIR** - Administración de Sistemas
+**🔒 AI Security:**
+OWASP LLM Top 10, MITRE ATLAS, Adversarial Robustness Toolbox, Red Teaming de LLMs, Prompt Injection Defense
 
-Además tiene múltiples certificaciones en ML Engineering y AI.`;
+**🤖 AI/ML Engineering:**
+LLMs (Llama, Mistral, GPT), RAG Systems, PyTorch, LangChain, LangGraph, vLLM, Fine-tuning (LoRA/QLoRA)
+
+**☁️ Cloud:**
+AWS (SageMaker, Bedrock, EKS), Azure (AKS, ExpressRoute), Kubernetes, Docker, Helm
+
+**💻 Programación:**
+Python, SQL, Bash, TypeScript, Spark, Kafka, PostgreSQL
+
+**🌍 Idiomas:**
+Español (nativo), Inglés (profesional), Italiano (profesional), Chino (básico)`;
     }
 
-    return `Interesante pregunta. Puedo ayudarte con información sobre:
+    // ── Contacto ──────────────────────────────────────────────
+    if (
+      q.includes("contacto") ||
+      q.includes("email") ||
+      q.includes("linkedin") ||
+      q.includes("github") ||
+      q.includes("contratar") ||
+      q.includes("hablar")
+    ) {
+      return `📬 Escribe \`cat contact.txt\` para ver todo. Vías de contacto:
 
-• **Proyectos** - Los 4 proyectos de AI Security de Adrian
-• **Experiencia** - Su trabajo actual en BBVA
-• **Skills** - Stack tecnológico y especialidades
-• **Formación** - Estudios y certificaciones
-• **Contacto** - Cómo contactar con Adrian
+📧 **Email:** infantesromeroadrian@proton.me
+💼 **LinkedIn:** linkedin.com/in/adrianinfantes
+🐙 **GitHub:** github.com/infantesromeroadrian
 
-¿Sobre qué te gustaría saber más?`;
+📍 Madrid, España | CET (UTC+1)
+🟢 Abierto a oportunidades estratégicas en AI Security.`;
+    }
+
+    // ── Estudios ──────────────────────────────────────────────
+    if (
+      q.includes("estudi") ||
+      q.includes("formacion") ||
+      q.includes("master") ||
+      q.includes("universidad") ||
+      q.includes("grado")
+    ) {
+      return `🎓 Escribe \`cat edu.txt\` para el detalle. Formación:
+
+• **Máster en Generative AI** — MIOTI (2024-2025)
+• **Máster en Big Data** — MIOTI (2023-2024)
+• **Grado en Ingeniería del Software** — U-tad
+• **ASIR** — Administración de Sistemas
+
+Certificaciones: ML Engineer Track, AI Engineer Track, LangChain for LLMs, Cybersecurity.
+
+Escribe \`cat certs.txt\` para verlas todas.`;
+    }
+
+    // ── Security específico ───────────────────────────────────
+    if (
+      q.includes("seguridad") ||
+      q.includes("security") ||
+      q.includes("cyber") ||
+      q.includes("ciber") ||
+      q.includes("hacking") ||
+      q.includes("pentest")
+    ) {
+      return `🔒 Adrian es AI Security Architect. Su enfoque:
+
+**Ofensivo (Red Team):**
+• Red Teaming de LLMs — Prompt Injection, Jailbreaks
+• Adversarial ML — Model Evasion, Data Poisoning
+• OWASP LLM Top 10 audits
+
+**Defensivo (Blue Team):**
+• Guardrails para LLMs (Azure AI Content Safety)
+• SIEM con ML para detección de anomalías
+• Secure deployment (air-gapped, GDPR compliant)
+
+**Purple Team (ambos):**
+• Threat modeling para sistemas de IA
+• MITRE ATLAS framework
+• Arquitecturas híbridas seguras (NVIDIA DGX + Cloud)
+
+Prueba estos comandos:
+• \`hack\` — Auditoría de seguridad del portfolio
+• \`threat-map\` — Dashboard SIEM con amenazas
+• \`cve\` — Vulnerabilidades recientes en AI/ML
+• \`nmap localhost\` — Escaneo de puertos`;
+    }
+
+    // ── Sobre el portfolio ────────────────────────────────────
+    if (
+      q.includes("portfolio") ||
+      q.includes("web") ||
+      q.includes("página") ||
+      q.includes("pagina") ||
+      q.includes("terminal")
+    ) {
+      return `💻 Este portfolio es una terminal interactiva real:
+
+**Tech Stack:** Preact + TypeScript + Vite + Tailwind CSS
+**Background:** Neural Rain (símbolos ML cayendo: λ∑∂θσ∇)
+**Colores:** Tema Purple Team (seguridad ofensiva + defensiva)
+**Sonido:** Click de teclado mecánico (toggle ♪ ON/OFF arriba)
+
+**Features:**
+• Input de teclado real con cursor
+• TAB autocomplete para todos los comandos
+• Historial de comandos con ↑↓
+• 24 comandos incluyendo easter eggs de seguridad
+• Este chatbot que estás usando
+
+El código es open source: github.com/infantesromeroadrian/Web-Portfolio-AIR-Terminal`;
+    }
+
+    // ── Quién es / sobre Adrian ───────────────────────────────
+    if (
+      q.includes("quién") ||
+      q.includes("quien") ||
+      q.includes("adrian") ||
+      q.includes("sobre") ||
+      q.includes("presentat")
+    ) {
+      return `Escribe \`whoami\` en la terminal para la presentación completa.
+
+En resumen: **Adrian Infantes** es AI Security Architect en BBVA Technology (Unidad de Inteligencia Financiera). 7+ años de experiencia en AI/ML, especializado en seguridad de sistemas de IA.
+
+Su filosofía: "Defensa en Profundidad aplicada a la IA. Un agente autónomo sin blindaje es un riesgo inaceptable."
+
+Prueba \`neofetch\` para ver sus "specs" estilo Linux 😎`;
+    }
+
+    // ── Fallback ──────────────────────────────────────────────
+    return `No estoy seguro de lo que buscas. Puedo ayudarte con:
+
+• **"qué comandos hay"** — Lista completa de lo que puedes hacer
+• **"proyectos"** — Los 4 proyectos de AI Security
+• **"experiencia"** — Carrera profesional de Adrian
+• **"skills"** — Stack tecnológico
+• **"contacto"** — Cómo hablar con Adrian
+• **"easter eggs"** — Secretos ocultos 👀
+• **"seguridad"** — Enfoque de AI Security
+• **"portfolio"** — Sobre esta web
+
+O simplemente escribe \`help\` en la terminal.`;
   };
 
   const handleSubmit = (e: Event) => {
@@ -113,19 +346,18 @@ Además tiene múltiples certificaciones en ML Engineering y AI.`;
     setMessages((prev) => [...prev, { role: "user", content: userMessage }]);
     setIsLoading(true);
 
-    // Simular delay de respuesta
     setTimeout(() => {
       const response = getResponse(userMessage);
       setMessages((prev) => [...prev, { role: "assistant", content: response }]);
       setIsLoading(false);
-    }, 500);
+    }, 400);
   };
 
   return (
     <div
       class="
         fixed bottom-24 right-6 z-50
-        w-96 h-[500px]
+        w-96 h-[520px]
         bg-[#0a0a0a]/95 backdrop-blur-sm
         border border-violet-600 rounded-lg
         shadow-2xl shadow-violet-600/20
@@ -137,12 +369,10 @@ Además tiene múltiples certificaciones en ML Engineering y AI.`;
       <div class="flex items-center justify-between px-4 py-3 border-b border-violet-600/50 bg-black/50">
         <div class="flex items-center space-x-2">
           <div class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
-          <span class="text-violet-400 text-sm font-bold">AI Assistant</span>
+          <span class="text-violet-400 text-sm font-bold">AIR Assistant</span>
+          <span class="text-gray-500 text-xs">// ask me anything</span>
         </div>
-        <button
-          onClick={onClose}
-          class="text-gray-400 hover:text-white transition-colors"
-        >
+        <button onClick={onClose} class="text-gray-400 hover:text-white transition-colors">
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path
               stroke-linecap="round"
@@ -155,12 +385,9 @@ Además tiene múltiples certificaciones en ML Engineering y AI.`;
       </div>
 
       {/* Messages */}
-      <div class="flex-1 overflow-y-auto p-4 space-y-4 terminal-scroll">
+      <div ref={scrollRef} class="flex-1 overflow-y-auto p-4 space-y-4 terminal-scroll">
         {messages.map((msg, i) => (
-          <div
-            key={i}
-            class={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}
-          >
+          <div key={i} class={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}>
             <div
               class={`
                 max-w-[85%] px-3 py-2 rounded-lg text-sm whitespace-pre-wrap
@@ -178,7 +405,7 @@ Además tiene múltiples certificaciones en ML Engineering y AI.`;
         {isLoading && (
           <div class="flex justify-start">
             <div class="bg-gray-800 text-gray-400 px-3 py-2 rounded-lg text-sm border border-gray-700">
-              <span class="animate-pulse">Pensando...</span>
+              <span class="animate-pulse">Procesando...</span>
             </div>
           </div>
         )}
@@ -190,8 +417,10 @@ Además tiene múltiples certificaciones en ML Engineering y AI.`;
           <input
             type="text"
             value={input}
-            onInput={(e) => { setInput((e.target as HTMLInputElement).value); }}
-            placeholder="Escribe tu pregunta..."
+            onInput={(e) => {
+              setInput((e.target as HTMLInputElement).value);
+            }}
+            placeholder="Pregunta sobre Adrian..."
             class="
               flex-1 bg-gray-900 border border-gray-700 rounded-lg
               px-3 py-2 text-sm text-white
