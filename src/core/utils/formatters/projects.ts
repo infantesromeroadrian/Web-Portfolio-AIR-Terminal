@@ -18,14 +18,16 @@ export function formatLsProjects(data: ProyectosData): string {
   const entries = Object.entries(data);
 
   const lines = entries.map(([, proyecto]: [string, ProyectoItem]) => {
-    const fileName = `<span style="color:#00ff00">${proyecto.archivo}</span>`;
+    // padEnd sobre texto plano ANTES de colorear, para alineación correcta
+    const paddedName = proyecto.archivo.padEnd(25);
+    const fileName = `<span style="color:#00ff00">${paddedName}</span>`;
     const score = `<span style="color:#ffff66">${proyecto.score}</span>`;
     const desc =
       proyecto.descripcion.length > 45
         ? proyecto.descripcion.slice(0, 42) + "..."
         : proyecto.descripcion;
 
-    return `drwxr-xr-x  ${fileName.padEnd(35)}  ${desc} [${score}]`;
+    return `drwxr-xr-x  ${fileName}  ${desc} [${score}]`;
   });
 
   return `

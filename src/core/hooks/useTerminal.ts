@@ -7,113 +7,19 @@
  *  - Lista de comandos disponibles (para TAB autocomplete)
  *  - Animación de escritura del comando (para botones del header)
  *  - Ejecución directa de comandos (para input de teclado)
- *  - Router de comandos (help, neofetch, clear, etc.)
  *
+ * El routing de comandos está delegado a commandRouter.ts (SRP).
  * La UI (TerminalBody, etc.) nunca conoce la lógica interna.
- * Esto sigue el principio de separación de responsabilidades (SRP - SOLID).
  */
 import { useState, useEffect, useRef } from "preact/hooks";
 
-// Importación de tipos centralizados
-import type {
-  OutputItem,
-  OutputItemType,
-  WhoamiData,
-  PerfilData,
-  EstudiosData,
-  ExperienciaData,
-  SkillsData,
-  CertificacionesData,
-  ContactoData,
-  AsciiData,
-  ProyectosData,
-} from "../../types/data";
-
-// Importación del hook de tamaño de ventana
+import type { OutputItem, OutputItemType, AsciiData } from "../../types/data";
 import { useWindowSize, getDeviceType } from "./useWindowSize";
+import { resolveCommand, AVAILABLE_COMMANDS } from "../commandRouter";
 
-// Importación de datos estáticos (contenido mostrado en la terminal)
-import whoamiJson from "../../data/whoami.json";
-import perfilJson from "../../data/perfil.json";
-import estudiosJson from "../../data/estudios.json";
-import experienciaJson from "../../data/experiencia.json";
-import skillsJson from "../../data/skills.json";
-import certificacionesJson from "../../data/certificaciones.json";
-import contactoJson from "../../data/contacto.json";
 import asciiJson from "../../data/ascii.json";
-import proyectosJson from "../../data/proyectos.json";
 
-// Type assertions para los JSON importados
-const whoami = whoamiJson as WhoamiData;
-const perfil = perfilJson as PerfilData;
-const estudios = estudiosJson as EstudiosData;
-const experiencia = experienciaJson as ExperienciaData;
-const skills = skillsJson as SkillsData;
-const certificaciones = certificacionesJson as CertificacionesData;
-const contacto = contactoJson as ContactoData;
 const ascii = asciiJson as AsciiData;
-const proyectos = proyectosJson as ProyectosData;
-
-// Importación de formateadores (responsables de convertir JSON → HTML)
-import {
-  formatWhoami,
-  formatPerfil,
-  formatEstudios,
-  formatExperiencia,
-  formatSkills,
-  formatCertificaciones,
-  formatContacto,
-  formatLsProjects,
-  formatProjectDetail,
-  formatProjectNotFound,
-  formatHelp,
-  formatNeofetch,
-  formatNmap,
-  formatSudoRm,
-  formatHack,
-  formatExploit,
-  formatCurl,
-  formatThreatMap,
-  formatCve,
-  formatDemo,
-  sectionSeparator,
-  textToHtml,
-} from "../utils/formatters";
-
-/**
- * Lista completa de comandos disponibles.
- * Se usa para:
- *  - TAB autocomplete en el input
- *  - Comando help
- *  - Validación de comandos
- */
-const AVAILABLE_COMMANDS: string[] = [
-  "whoami",
-  "help",
-  "clear",
-  "neofetch",
-  "cat profile.txt",
-  "cat edu.txt",
-  "cat exp.txt",
-  "cat skills.txt",
-  "cat certs.txt",
-  "cat contact.txt",
-  "cat projects/watchdogs.txt",
-  "cat projects/threatintel.txt",
-  "cat projects/siem.txt",
-  "cat projects/emailthreat.txt",
-  "ls projects/",
-  "whoami && cat *.txt",
-  // Easter eggs & Security commands
-  "nmap localhost",
-  "sudo rm -rf /",
-  "hack",
-  "exploit",
-  "curl",
-  "threat-map",
-  "cve",
-  "demo",
-];
 
 /**
  * Selecciona el banner ASCII apropiado según el tipo de dispositivo.
@@ -232,125 +138,15 @@ export function useTerminal() {
   }
 
   /**
-   * Composición del comando "ALL INFO".
+   * Ejecuta el router de comandos con los callbacks de esta terminal.
    */
-  function generateAllInfo(): string {
-    return `
-${formatWhoami(whoami)}
-${sectionSeparator()}
-
-${formatPerfil(perfil)}
-${sectionSeparator()}
-
-${formatEstudios(estudios)}
-${sectionSeparator()}
-
-${formatExperiencia(experiencia)}
-${sectionSeparator()}
-
-${formatSkills(skills)}
-${sectionSeparator()}
-
-${formatCertificaciones(certificaciones)}
-${sectionSeparator()}
-
-${formatContacto(contacto)}
-`;
-  }
-
-  /**
-   * Lógica central del router de comandos.
-   * Ejecuta el comando y produce output, pero NO maneja la presentación
-   * (clear/typing) — eso lo hacen runCommand y executeUserCommand.
-   */
-  function resolveCommand(cmd: string): void {
-    const trimmedCmd = cmd.trim();
-
-    if (trimmedCmd === "") {
-      return;
-    }
-
-    // Manejar comandos cat projects/X.txt
-    if (trimmedCmd.startsWith("cat projects/") && trimmedCmd.endsWith(".txt")) {
-      const archivo = trimmedCmd.replace("cat projects/", "");
-      const slug = archivo.replace(".txt", "");
-
-      if (slug in proyectos) {
-        print(formatProjectDetail(proyectos[slug]), "html");
-      } else {
-        print(formatProjectNotFound(archivo), "html");
-      }
-      return;
-    }
-
-    switch (trimmedCmd) {
-      case "whoami":
-        print(formatWhoami(whoami), "html");
-        break;
-      case "help":
-        print(formatHelp(AVAILABLE_COMMANDS), "html");
-        break;
-      case "clear":
-        clear();
-        break;
-      case "neofetch":
-        print(formatNeofetch(), "html");
-        break;
-      case "cat profile.txt":
-        print(formatPerfil(perfil), "html");
-        break;
-      case "cat edu.txt":
-        print(formatEstudios(estudios), "html");
-        break;
-      case "cat exp.txt":
-        print(formatExperiencia(experiencia), "html");
-        break;
-      case "cat skills.txt":
-        print(formatSkills(skills), "html");
-        break;
-      case "cat certs.txt":
-        print(formatCertificaciones(certificaciones), "html");
-        break;
-      case "cat contact.txt":
-        print(formatContacto(contacto), "html");
-        break;
-      case "whoami && cat *.txt":
-        print(generateAllInfo(), "html");
-        break;
-      case "ls projects/":
-        print(formatLsProjects(proyectos), "html");
-        break;
-      // Easter eggs & Security commands
-      case "nmap localhost":
-        print(formatNmap(), "html");
-        break;
-      case "sudo rm -rf /":
-        print(formatSudoRm(), "html");
-        break;
-      case "hack":
-        print(formatHack(), "html");
-        break;
-      case "exploit":
-        print(formatExploit(), "html");
-        break;
-      case "curl":
-        print(formatCurl(), "html");
-        break;
-      case "threat-map":
-        print(formatThreatMap(), "html");
-        break;
-      case "cve":
-        print(formatCve(), "html");
-        break;
-      case "demo":
-        print(formatDemo(), "html");
-        break;
-      default:
-        print(
-          textToHtml(`Command not found: ${trimmedCmd}\nType 'help' to see available commands.`),
-          "html"
-        );
-    }
+  function runResolve(cmd: string): void {
+    resolveCommand(cmd, {
+      print: (text: string) => {
+        print(text);
+      },
+      clear,
+    });
   }
 
   /**
@@ -368,7 +164,7 @@ ${formatContacto(contacto)}
 
     clear();
     await typeCommand(cmd);
-    resolveCommand(cmd);
+    runResolve(cmd);
   }
 
   /**
@@ -397,7 +193,7 @@ ${formatContacto(contacto)}
     }
 
     // Ejecutar el comando
-    resolveCommand(trimmedCmd);
+    runResolve(trimmedCmd);
   }
 
   // API pública del hook

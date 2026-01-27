@@ -71,17 +71,19 @@ export function App() {
         />
       )}
 
-      {/* Menú lateral (mobile-first) */}
-      <SideMenu
-        open={menuOpen}
-        onClose={() => {
-          setMenuOpen(false);
-        }}
-        runCommand={(cmd) => {
-          setMenuOpen(false); // Cierra el menú antes de ejecutar
-          return terminal.runCommand(cmd);
-        }}
-      />
+      {/* Menú lateral (mobile-first) — solo se monta en modo terminal */}
+      {stage === "terminal" && (
+        <SideMenu
+          open={menuOpen}
+          onClose={() => {
+            setMenuOpen(false);
+          }}
+          runCommand={(cmd) => {
+            setMenuOpen(false); // Cierra el menú antes de ejecutar
+            return terminal.runCommand(cmd);
+          }}
+        />
+      )}
 
       {/* Contenedor principal de contenido */}
       <div class="relative z-10 flex flex-col flex-grow pt-20">
