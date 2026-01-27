@@ -139,7 +139,7 @@ export default function MatrixBackground() {
     <canvas
       ref={canvasRef}
       class="fixed inset-0 pointer-events-none blur-[1.3px]"
-      style="z-index:1; opacity:0.5"
+      style="z-index:1; opacity:0.25"
     />
   );
 }

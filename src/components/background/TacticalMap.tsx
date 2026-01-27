@@ -301,7 +301,7 @@ export default function TacticalMap() {
     });
 
     function drawGrid() {
-      ctx.strokeStyle = "rgba(37, 99, 235, 0.04)";
+      ctx.strokeStyle = "rgba(37, 99, 235, 0.08)";
       ctx.lineWidth = 0.5;
 
       // Horizontal lines
@@ -322,8 +322,8 @@ export default function TacticalMap() {
     }
 
     function drawWorldOutline() {
-      ctx.strokeStyle = "rgba(37, 99, 235, 0.12)";
-      ctx.lineWidth = 0.8;
+      ctx.strokeStyle = "rgba(37, 99, 235, 0.25)";
+      ctx.lineWidth = 1;
 
       for (const outline of WORLD_OUTLINE) {
         ctx.beginPath();
@@ -346,32 +346,32 @@ export default function TacticalMap() {
           const radius = 4 + pulse * 3;
           ctx.beginPath();
           ctx.arc(x, y, radius, 0, Math.PI * 2);
-          ctx.fillStyle = `rgba(34, 211, 238, ${0.6 + pulse * 0.4})`;
+          ctx.fillStyle = `rgba(34, 211, 238, ${0.8 + pulse * 0.2})`;
           ctx.fill();
 
           // Outer ring
           ctx.beginPath();
           ctx.arc(x, y, radius + 6, 0, Math.PI * 2);
-          ctx.strokeStyle = `rgba(34, 211, 238, ${0.2 + pulse * 0.3})`;
+          ctx.strokeStyle = `rgba(34, 211, 238, ${0.4 + pulse * 0.3})`;
           ctx.lineWidth = 1;
           ctx.stroke();
 
           // Label
-          ctx.fillStyle = "rgba(34, 211, 238, 0.8)";
+          ctx.fillStyle = "rgba(34, 211, 238, 0.9)";
           ctx.font = "9px monospace";
           ctx.fillText("HQ " + node.name.toUpperCase(), x + 12, y + 3);
         } else if (node.type === "ally") {
           const radius = 2 + pulse * 1.5;
           ctx.beginPath();
           ctx.arc(x, y, radius, 0, Math.PI * 2);
-          ctx.fillStyle = `rgba(37, 99, 235, ${0.5 + pulse * 0.3})`;
+          ctx.fillStyle = `rgba(37, 99, 235, ${0.7 + pulse * 0.3})`;
           ctx.fill();
         } else {
           // Threat node — red
           const radius = 2.5 + pulse * 2;
           ctx.beginPath();
           ctx.arc(x, y, radius, 0, Math.PI * 2);
-          ctx.fillStyle = `rgba(255, 51, 51, ${0.4 + pulse * 0.4})`;
+          ctx.fillStyle = `rgba(255, 51, 51, ${0.6 + pulse * 0.4})`;
           ctx.fill();
         }
       }
@@ -405,7 +405,7 @@ export default function TacticalMap() {
           .replace("#2563eb", "rgba(37,99,235,0.06)")
           .replace("#22d3ee", "rgba(34,211,238,0.06)");
         // Simplified: just use low opacity
-        ctx.strokeStyle = `${arc.color}15`;
+        ctx.strokeStyle = `${arc.color}30`;
         ctx.lineWidth = 1;
         ctx.stroke();
 
@@ -451,45 +451,45 @@ export default function TacticalMap() {
       ctx.beginPath();
       ctx.moveTo(cx, cy);
       ctx.lineTo(endX, endY);
-      ctx.strokeStyle = "rgba(34, 211, 238, 0.3)";
+      ctx.strokeStyle = "rgba(34, 211, 238, 0.5)";
       ctx.lineWidth = 1;
       ctx.stroke();
 
       // Fading trail (arc)
       ctx.beginPath();
       ctx.arc(cx, cy, radius, radarAngle - 0.5, radarAngle);
-      ctx.strokeStyle = "rgba(34, 211, 238, 0.1)";
+      ctx.strokeStyle = "rgba(34, 211, 238, 0.2)";
       ctx.lineWidth = 1;
       ctx.stroke();
 
       // Outer circle
       ctx.beginPath();
       ctx.arc(cx, cy, radius, 0, Math.PI * 2);
-      ctx.strokeStyle = "rgba(34, 211, 238, 0.08)";
+      ctx.strokeStyle = "rgba(34, 211, 238, 0.15)";
       ctx.lineWidth = 0.5;
       ctx.stroke();
 
       // Inner circle
       ctx.beginPath();
       ctx.arc(cx, cy, radius / 2, 0, Math.PI * 2);
-      ctx.strokeStyle = "rgba(34, 211, 238, 0.05)";
+      ctx.strokeStyle = "rgba(34, 211, 238, 0.1)";
       ctx.lineWidth = 0.5;
       ctx.stroke();
     }
 
     function drawHUD(time: number) {
       // Top-left status text
-      ctx.fillStyle = "rgba(37, 99, 235, 0.15)";
+      ctx.fillStyle = "rgba(37, 99, 235, 0.3)";
       ctx.font = "10px monospace";
       ctx.fillText("TACTICAL OVERVIEW // BLUE CYBER AI", 20, 30);
       ctx.fillText(`NODES: ${NODES.length} | ARCS: ${ARCS.length} | STATUS: ACTIVE`, 20, 44);
 
       // Blinking indicator
       if (Math.floor(time / 800) % 2 === 0) {
-        ctx.fillStyle = "rgba(34, 211, 238, 0.3)";
+        ctx.fillStyle = "rgba(34, 211, 238, 0.5)";
         ctx.fillRect(20, 52, 6, 6);
       }
-      ctx.fillStyle = "rgba(37, 99, 235, 0.12)";
+      ctx.fillStyle = "rgba(37, 99, 235, 0.25)";
       ctx.fillText("SIGINT PROCESSING", 32, 58);
     }
 

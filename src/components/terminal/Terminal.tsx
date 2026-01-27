@@ -32,7 +32,7 @@ export default function Terminal({ terminal }: { terminal: TerminalState }) {
      *  - border-blue-600 → coherencia con el tema Blue Cyber / AI Security
      *  - backdrop-blur-sm → efecto de cristal oscuro
      */
-    <div class="w-full max-w-6xl mx-auto mt-10 rounded-lg overflow-hidden shadow-lg shadow-black/40 border border-blue-600 bg-[#0d0d0d]/95 backdrop-blur-sm">
+    <div class="w-full max-w-6xl mx-auto mt-10 rounded-lg overflow-hidden shadow-lg shadow-black/40 border border-blue-600 bg-[#0d0d0d]/85 backdrop-blur-sm">
       {/* Barra superior estilo terminal */}
       <TerminalHeader />
 
