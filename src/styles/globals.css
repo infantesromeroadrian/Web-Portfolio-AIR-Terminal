@@ -15,11 +15,9 @@
   --gray-terminal: #cfcfcf; /* Gris terminal */
   --white-soft: #f2f2f2; /* Blanco suave */
 
-  /* Aliases para compatibilidad con código existente */
-  --red-accent: var(--blue-accent);
-  --red-soft: var(--blue-soft);
-  --purple-accent: var(--blue-accent);
-  --purple-soft: var(--blue-soft);
+  /* Aliases semánticos */
+  --accent: var(--blue-accent);
+  --accent-soft: var(--blue-soft);
 }
 
 /**
@@ -32,14 +30,14 @@
 /**
  * Efecto glow azul para elementos interactivos.
  */
-.glow-red:hover {
+.glow-accent:hover {
   box-shadow: 0 0 12px rgba(37, 99, 235, 0.5);
 }
 
 /**
  * Borde superior azul para paneles estilo terminal.
  */
-.border-top-red {
+.border-top-accent {
   border-top: 2px solid var(--blue-accent);
 }
 

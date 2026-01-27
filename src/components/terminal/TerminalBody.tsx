@@ -158,8 +158,7 @@ export default function TerminalBody({ terminal }: { terminal: TerminalState }) 
           setSavedInput(inputValue);
         }
 
-        const newIndex =
-          historyIndex === -1 ? history.length - 1 : Math.max(0, historyIndex - 1);
+        const newIndex = historyIndex === -1 ? history.length - 1 : Math.max(0, historyIndex - 1);
         setHistoryIndex(newIndex);
         setInputValue(history[newIndex]);
         break;
@@ -230,17 +229,17 @@ export default function TerminalBody({ terminal }: { terminal: TerminalState }) 
       {!terminal.isTypingCommand && (
         <div class="mt-2 font-mono text-sm leading-tight">
           {/* Línea 1 del prompt */}
-          <div class="text-[var(--red-accent)]">
+          <div class="text-[var(--accent)]">
             ┌──(
             <span class="text-[var(--white-soft)]">air</span>
-            <span class="text-[var(--red-soft)]">㉿</span>
+            <span class="text-[var(--accent-soft)]">㉿</span>
             <span class="text-[var(--white-soft)]">portfolio</span>
             )-[<span class="text-[var(--white-soft)]">~</span>]
           </div>
 
           {/* Línea 2 del prompt con input real */}
           <div class="flex items-center">
-            <span class="text-[var(--red-accent)]">└─$</span>
+            <span class="text-[var(--accent)]">└─$</span>
 
             {/* Mensaje de bienvenida (solo primera vez, sin input) */}
             {welcomeMessage && !terminal.hasInteracted && (
@@ -255,7 +254,7 @@ export default function TerminalBody({ terminal }: { terminal: TerminalState }) 
               spellcheck={false}
               autocomplete="off"
               autocapitalize="off"
-              class="ml-2 flex-1 bg-transparent border-none outline-none text-[var(--white-soft)] font-mono text-sm caret-[var(--purple-soft)]"
+              class="ml-2 flex-1 bg-transparent border-none outline-none text-[var(--white-soft)] font-mono text-sm caret-[var(--accent-soft)]"
               onInput={(e) => {
                 setInputValue((e.target as HTMLInputElement).value);
                 setHistoryIndex(-1);
@@ -270,5 +269,3 @@ export default function TerminalBody({ terminal }: { terminal: TerminalState }) 
     </div>
   );
 }
-
-

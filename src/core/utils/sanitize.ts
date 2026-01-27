@@ -50,20 +50,3 @@ export function sanitizeHtml(dirty: string): string {
     ALLOW_DATA_ATTR: false,
   });
 }
-
-/**
- * Verifica si un string contiene HTML potencialmente peligroso.
- *
- * Útil para logging o alertas en desarrollo.
- *
- * @param html - String a verificar
- * @returns true si el HTML fue modificado por la sanitización
- */
-export function containsDangerousHtml(html: string): boolean {
-  const sanitized = DOMPurify.sanitize(html, {
-    ALLOWED_TAGS,
-    ALLOWED_ATTR,
-    ALLOW_DATA_ATTR: false,
-  });
-  return html !== sanitized;
-}

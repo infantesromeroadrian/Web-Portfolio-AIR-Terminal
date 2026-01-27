@@ -4,7 +4,7 @@
  * Este componente cumple una función estética y contextual:
  *  - Cierra visualmente la página
  *  - Refuerza la identidad profesional del autor
- *  - Mantiene coherencia con el tema Purple Team (bordes violeta, fondo oscuro)
+ *  - Mantiene coherencia con el tema Blue Cyber (bordes azules, fondo oscuro)
  *
  * Responsabilidad:
  *  - Es puramente visual
@@ -38,7 +38,7 @@ export default function Footer() {
          *
          * Esto refuerza la identidad del portfolio y da contexto al visitante.
          */}
-        <div>© 2026 Adrián Infantes Romero | AI Security Architect | Purple Team AI</div>
+        <div>© 2026 Adrián Infantes Romero | AI Security Architect | Blue Cyber AI</div>
 
         {/**
          * Línea secundaria estilo terminal.
@@ -50,7 +50,7 @@ export default function Footer() {
          *  - Refuerza la temática hacker del portfolio
          *  - Añade un toque final elegante y temático
          */}
-        <div class="text-[var(--red-accent)]">
+        <div class="text-[var(--accent)]">
           root@portfolio~# <span class="text-[var(--white-soft)]">exit</span>
         </div>
       </div>

@@ -9,7 +9,7 @@
  *  - Ejecución directa de comandos (para input de teclado)
  *  - Router de comandos (help, neofetch, clear, etc.)
  *
- * La UI (TerminalBody, TerminalPrompt, etc.) nunca conoce la lógica interna.
+ * La UI (TerminalBody, etc.) nunca conoce la lógica interna.
  * Esto sigue el principio de separación de responsabilidades (SRP - SOLID).
  */
 import { useState, useEffect, useRef } from "preact/hooks";
@@ -188,13 +188,13 @@ export function useTerminal() {
   function buildPromptHtml(cmd: string): string {
     return (
       `<div class="font-mono text-sm leading-tight">` +
-      `<div class="text-[var(--red-accent)]">` +
+      `<div class="text-[var(--accent)]">` +
       `┌──(<span class="text-[var(--white-soft)]">air</span>` +
-      `<span class="text-[var(--red-soft)]">㉿</span>` +
+      `<span class="text-[var(--accent-soft)]">㉿</span>` +
       `<span class="text-[var(--white-soft)]">portfolio</span>)-[` +
       `<span class="text-[var(--white-soft)]">~</span>]</div>` +
       `<div class="flex items-center">` +
-      `<span class="text-[var(--red-accent)]">└─$</span>` +
+      `<span class="text-[var(--accent)]">└─$</span>` +
       `<span class="ml-2 text-[var(--white-soft)]">${cmd}</span>` +
       `</div></div>`
     );
@@ -210,13 +210,13 @@ export function useTerminal() {
     let typed = "";
     const promptStart =
       `<div class="font-mono text-sm leading-tight">` +
-      `<div class="text-[var(--red-accent)]">` +
+      `<div class="text-[var(--accent)]">` +
       `┌──(<span class="text-[var(--white-soft)]">air</span>` +
-      `<span class="text-[var(--red-soft)]">㉿</span>` +
+      `<span class="text-[var(--accent-soft)]">㉿</span>` +
       `<span class="text-[var(--white-soft)]">portfolio</span>)-[` +
       `<span class="text-[var(--white-soft)]">~</span>]</div>` +
       `<div class="flex items-center">` +
-      `<span class="text-[var(--red-accent)]">└─$</span>` +
+      `<span class="text-[var(--accent)]">└─$</span>` +
       `<span class="ml-2 text-[var(--white-soft)]">`;
     const promptEnd = `</span></div></div>`;
 

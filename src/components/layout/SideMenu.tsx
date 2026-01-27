@@ -52,7 +52,7 @@ export default function SideMenu({
        *
        * - Posicionado a la derecha
        * - Se desplaza con transform: translate-x-full → translate-x-0
-       *  - Mantiene estética Purple Team con bordes violeta y fondo oscuro
+       *  - Mantiene estética Blue Cyber con bordes azules y fondo oscuro
        *
        * Decisión de diseño:
        *  - Se usa transform en lugar de left/right para animaciones más fluidas
@@ -163,15 +163,13 @@ export default function SideMenu({
             >
               CONTACTO
             </button>
-
-
           </div>
 
           {/**
            * SECCIÓN FUTURA
            *
            * Espacio reservado para futuras funcionalidades:
-           *  - Cambio de tema (Hacker/Red Team/Blue Team)
+           *  - Cambio de tema (Blue Cyber/Dark/Light)
            *  - Ajustes de idioma
            *  - ...
            *

@@ -113,8 +113,8 @@ export default function MatrixBackground() {
         /**
          * Efecto de "activación neuronal":
          * - 10% de probabilidad: brillo cian intenso (neurona activada)
-         * - 20% de probabilidad: púrpura brillante
-         * - 70%: púrpura base apagado
+         * - 20% de probabilidad: azul brillante
+         * - 70%: azul base
          */
         const rand = Math.random();
         if (rand > 0.9) {

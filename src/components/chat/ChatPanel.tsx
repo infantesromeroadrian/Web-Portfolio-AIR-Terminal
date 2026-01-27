@@ -121,7 +121,7 @@ Pregúntame sobre:
 
 • \`demo\` — Simula logs de un pipeline ML detectando anomalías en tiempo real. Muy visual.
 
-• \`curl\` — Muestra headers HTTP ficticios con \`x-security-level: PURPLE TEAM HARDENED\`
+• \`curl\` — Muestra headers HTTP ficticios con \`x-security-level: BLUE CYBER HARDENED\`
 
 Cada uno demuestra que Adrian piensa como atacante Y como defensor.`;
     }
@@ -292,7 +292,7 @@ Prueba estos comandos:
 
 **Tech Stack:** Preact + TypeScript + Vite + Tailwind CSS
 **Background:** Neural Rain (símbolos ML cayendo: λ∑∂θσ∇)
-**Colores:** Tema Purple Team (seguridad ofensiva + defensiva)
+**Colores:** Tema Blue Cyber (seguridad ofensiva + defensiva)
 **Sonido:** Click de teclado mecánico (toggle ♪ ON/OFF arriba)
 
 **Features:**

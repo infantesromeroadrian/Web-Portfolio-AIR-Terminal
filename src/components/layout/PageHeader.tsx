@@ -29,7 +29,7 @@ export default function PageHeader({
      * Header fijo en la parte superior.
      *
      * - bg-black/80 + backdrop-blur-sm → efecto de cristal oscuro
-     * - border-blue-600 → coherencia con estética Purple Team / AI Security
+     * - border-blue-600 → coherencia con estética Blue Cyber / AI Security
      * - fixed + z-50 → siempre visible por encima del contenido
      */
     <header class="w-full bg-black/80 border-b border-blue-600 backdrop-blur-sm fixed top-0 left-0 z-50">
@@ -38,12 +38,12 @@ export default function PageHeader({
          * LOGO (columna izquierda)
          *
          * Representa la identidad del portfolio.
-         * Se usa tipografía monoespaciada y colores rojos para mantener
+         * Se usa tipografía monoespaciada y colores azules para mantener
          * coherencia visual con el resto de la interfaz.
          */}
         <div class="flex-shrink-0">
-          <div class="text-[var(--red-accent)] font-mono font-bold text-lg">
-            <span class="text-[var(--red-soft)] mr-2">&gt;</span>AIR_SECURITY
+          <div class="text-[var(--accent)] font-mono font-bold text-lg">
+            <span class="text-[var(--accent-soft)] mr-2">&gt;</span>AIR_SECURITY
           </div>
         </div>
 
@@ -82,8 +82,6 @@ export default function PageHeader({
           <button class="nav-btn" onClick={() => void runCommand("cat contact.txt")}>
             CONTACTO
           </button>
-
-
         </div>
 
         {/**
@@ -98,9 +96,9 @@ export default function PageHeader({
          */}
         <div class="flex items-center space-x-4 ml-auto flex-shrink-0">
           <button class="flex flex-col space-y-1" onClick={onMenuToggle}>
-            <span class="block w-6 h-[2px] bg-[var(--red-soft)]"></span>
-            <span class="block w-6 h-[2px] bg-[var(--red-soft)]"></span>
-            <span class="block w-6 h-[2px] bg-[var(--red-soft)]"></span>
+            <span class="block w-6 h-[2px] bg-[var(--accent-soft)]"></span>
+            <span class="block w-6 h-[2px] bg-[var(--accent-soft)]"></span>
+            <span class="block w-6 h-[2px] bg-[var(--accent-soft)]"></span>
           </button>
         </div>
       </nav>

@@ -17,7 +17,7 @@
 
 import { useState, useEffect } from "preact/hooks";
 
-export interface WindowSize {
+interface WindowSize {
   width: number;
   height: number;
 }
@@ -26,7 +26,7 @@ export interface WindowSize {
  * Breakpoints estándar para responsive design.
  * Coinciden con los valores usados en Tailwind CSS.
  */
-export const BREAKPOINTS = {
+const BREAKPOINTS = {
   mobile: 640, // < 640px
   tablet: 1024, // 640px - 1024px
   desktop: 1024, // >= 1024px

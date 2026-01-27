@@ -98,16 +98,16 @@ export default function LoginPanel({ onLogin }: { onLogin: () => void }) {
        * Replica la estética de una ventana de terminal:
        *  - Botones estilo macOS
        *  - Prompt root@portfolio
-       *  - Bordes púrpura para mantener coherencia con el tema AI Security
+       *  - Bordes azules para mantener coherencia con el tema Blue Cyber / AI Security
        */}
-      <div class="bg-black border-2 border-blue-600 rounded-t-lg p-3 flex items-center space-x-2 border-top-red">
+      <div class="bg-black border-2 border-blue-600 rounded-t-lg p-3 flex items-center space-x-2 border-top-accent">
         <div class="flex space-x-2">
           <div class="w-3 h-3 rounded-full bg-blue-600"></div>
           <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
           <div class="w-3 h-3 rounded-full bg-green-500"></div>
         </div>
 
-        <span class="text-[var(--red-accent)] font-mono text-sm flex-1 text-center">
+        <span class="text-[var(--accent)] font-mono text-sm flex-1 text-center">
           root@portfolio:~$
         </span>
       </div>
@@ -139,12 +139,12 @@ export default function LoginPanel({ onLogin }: { onLogin: () => void }) {
 
         {/* Título y subtítulo */}
         <div class="mb-8 text-center">
-          <h1 class="text-3xl font-mono font-bold text-[var(--red-accent)] mb-2">
+          <h1 class="text-3xl font-mono font-bold text-[var(--accent)] mb-2">
             AI SECURITY ARCHITECT
           </h1>
 
           <p class="text-[var(--gray-terminal)] font-mono text-sm">
-            <span class="text-[var(--red-soft)]">[-]</span> Acceso restringido - Autenticación
+            <span class="text-[var(--accent-soft)]">[-]</span> Acceso restringido - Autenticación
             requerida
           </p>
         </div>
@@ -154,12 +154,12 @@ export default function LoginPanel({ onLogin }: { onLogin: () => void }) {
           {/* Usuario */}
           <div>
             <label class="block text-[var(--gray-terminal)] font-mono text-sm mb-2">
-              <span class="text-[var(--red-soft)]">&gt;</span> Usuario:
+              <span class="text-[var(--accent-soft)]">&gt;</span> Usuario:
             </label>
 
             <input
               type="text"
-              class="w-full bg-[#0a0a0a] border border-gray-700 rounded px-4 py-3 text-[var(--white-soft)] font-mono focus:outline-none focus:border-[var(--red-accent)] transition-all"
+              class="w-full bg-[#0a0a0a] border border-gray-700 rounded px-4 py-3 text-[var(--white-soft)] font-mono focus:outline-none focus:border-[var(--accent)] transition-all"
               value={userText}
               readOnly
             />
@@ -168,12 +168,12 @@ export default function LoginPanel({ onLogin }: { onLogin: () => void }) {
           {/* Contraseña */}
           <div>
             <label class="block text-[var(--gray-terminal)] font-mono text-sm mb-2">
-              <span class="text-[var(--red-soft)]">&gt;</span> Contraseña:
+              <span class="text-[var(--accent-soft)]">&gt;</span> Contraseña:
             </label>
 
             <input
               type="password"
-              class="w-full bg-[#0a0a0a] border border-gray-700 rounded px-4 py-3 text-[var(--white-soft)] font-mono focus:outline-none focus:border-[var(--red-accent)] transition-all"
+              class="w-full bg-[#0a0a0a] border border-gray-700 rounded px-4 py-3 text-[var(--white-soft)] font-mono focus:outline-none focus:border-[var(--accent)] transition-all"
               value={passText}
               readOnly
             />
@@ -183,7 +183,7 @@ export default function LoginPanel({ onLogin }: { onLogin: () => void }) {
           <button
             type="button"
             onClick={onLogin}
-            class="w-full bg-[var(--red-accent)] hover:bg-[var(--red-soft)] text-black font-mono font-bold py-3 px-4 rounded border border-[var(--red-accent)] transition-all duration-200 glow-red"
+            class="w-full bg-[var(--accent)] hover:bg-[var(--accent-soft)] text-black font-mono font-bold py-3 px-4 rounded border border-[var(--accent)] transition-all duration-200 glow-accent"
           >
             [INICIAR SESIÓN]
           </button>

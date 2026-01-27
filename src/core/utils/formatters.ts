@@ -220,13 +220,13 @@ export function formatCertificaciones(data: CertificacionesData): string {
   // --- OBTENIDAS ---
   const obtenidas = data.obtenidas.length
     ? data.obtenidas
-        .map(
-          (c: CertificacionObtenida) => `${colorIcon(c.icon, c.color)} ${c.nombre} (${c.anio})
-     - ID Credencial: ${c.id}
-     - URL: ${linkify(c.url)}
-${c.detalles.map((d: string) => `     - ${d}`).join("\n")}
-`
-        )
+        .map((c: CertificacionObtenida) => {
+          let entry = `${colorIcon(c.icon, c.color)} ${c.nombre} (${c.anio})`;
+          if (c.id) entry += `\n     - ID Credencial: ${c.id}`;
+          if (c.url) entry += `\n     - URL: ${linkify(c.url)}`;
+          entry += `\n${c.detalles.map((d: string) => `     - ${d}`).join("\n")}\n`;
+          return entry;
+        })
         .join("\n")
     : "";
 
@@ -507,11 +507,11 @@ export function formatNeofetch(): string {
     `<span style="color:#888888">─────────────────────</span>`,
     `<span style="color:#2563eb">OS:</span>      AI Security Arch v2.0`,
     `<span style="color:#2563eb">Host:</span>    Adrian Infantes`,
-    `<span style="color:#2563eb">Kernel:</span>  Purple Team Engine`,
+    `<span style="color:#2563eb">Kernel:</span>  Blue Cyber Engine`,
     `<span style="color:#2563eb">Shell:</span>   portfolio-terminal 1.0`,
     `<span style="color:#2563eb">Role:</span>    AI Security Architect`,
     `<span style="color:#2563eb">DE:</span>      Neural Rain + Preact`,
-    `<span style="color:#2563eb">Theme:</span>   Purple Team [dark]`,
+    `<span style="color:#2563eb">Theme:</span>   Blue Cyber [dark]`,
     `<span style="color:#2563eb">Stack:</span>   Python, TypeScript, Docker`,
     `<span style="color:#2563eb">ML:</span>      LangGraph, PyTorch, scikit`,
     `<span style="color:#2563eb">Cloud:</span>   AWS, GCP, Kubernetes`,
@@ -556,7 +556,7 @@ export function formatNmap(): string {
 <span style="color:#ff3333">9090/tcp  open     ml-inference     vLLM Serving Engine</span>
 <span style="color:#00ff00">27017/tcp filtered mongodb          Vector DB (Qdrant)</span>
 
-<span style="color:#888888">OS detection: Linux 6.x (Purple Team Hardened)</span>
+<span style="color:#888888">OS detection: Linux 6.x (Blue Cyber Hardened)</span>
 <span style="color:#888888">Network Distance: 0 hops</span>
 
 <span style="color:#ffff66">Nmap done: 1 IP address (1 host up) scanned in 2.34 seconds</span>
@@ -669,7 +669,7 @@ export function formatCurl(): string {
 <span style="color:#888888">permissions-policy:</span>   camera=(), microphone=(), geolocation=()
 <span style="color:#888888">x-architect:</span>          <span style="color:#00ff00">Adrian Infantes — AI Security Architect</span>
 <span style="color:#888888">x-built-with:</span>         Preact, TypeScript, Vite, TailwindCSS
-<span style="color:#888888">x-security-level:</span>     <span style="color:#ff3333">PURPLE TEAM HARDENED</span>
+<span style="color:#888888">x-security-level:</span>     <span style="color:#ff3333">BLUE CYBER HARDENED</span>
 <span style="color:#888888">x-hiring:</span>             <span style="color:#ffff66">Open to strategic opportunities</span>
 <span style="color:#888888">cache-control:</span>        public, max-age=3600
 <span style="color:#888888">date:</span>                 ${new Date().toUTCString()}
