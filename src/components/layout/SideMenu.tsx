@@ -164,16 +164,7 @@ export default function SideMenu({
               CONTACTO
             </button>
 
-            {/* ALL INFO */}
-            <button
-              class="w-full text-left px-3 py-2 bg-black border border-violet-600 rounded hover:bg-violet-900/30 transition text-[var(--red-accent)]"
-              onClick={() => {
-                onClose();
-                void runCommand("whoami && cat *.txt");
-              }}
-            >
-              ALL INFO
-            </button>
+
           </div>
 
           {/**

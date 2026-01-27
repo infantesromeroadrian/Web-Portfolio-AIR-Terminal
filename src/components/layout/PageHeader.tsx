@@ -83,17 +83,7 @@ export default function PageHeader({
             CONTACTO
           </button>
 
-          {/**
-           * ALL INFO:
-           * Ejecuta un comando compuesto que concatena todas las secciones.
-           * Útil para reclutadores que quieren una visión completa.
-           */}
-          <button
-            class="nav-btn text-[var(--red-accent)]"
-            onClick={() => void runCommand("whoami && cat *.txt")}
-          >
-            ALL INFO
-          </button>
+
         </div>
 
         {/**
