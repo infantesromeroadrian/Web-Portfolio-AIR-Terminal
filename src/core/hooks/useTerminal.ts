@@ -182,22 +182,27 @@ export function useTerminal() {
   }
 
   /**
+   * Partes del prompt HTML (DRY).
+   * Se separan para reutilizar en buildPromptHtml y typeCommand.
+   */
+  const PROMPT_START =
+    `<div class="font-mono text-sm leading-tight">` +
+    `<div class="text-[var(--accent)]">` +
+    `┌──(<span class="text-[var(--white-soft)]">air</span>` +
+    `<span class="text-[var(--accent-soft)]">㉿</span>` +
+    `<span class="text-[var(--white-soft)]">portfolio</span>)-[` +
+    `<span class="text-[var(--white-soft)]">~</span>]</div>` +
+    `<div class="flex items-center">` +
+    `<span class="text-[var(--accent)]">└─$</span>` +
+    `<span class="ml-2 text-[var(--white-soft)]">`;
+  const PROMPT_END = `</span></div></div>`;
+
+  /**
    * Genera el HTML del prompt con un comando escrito.
    * Se usa para mostrar lo que el usuario escribió antes del output.
    */
   function buildPromptHtml(cmd: string): string {
-    return (
-      `<div class="font-mono text-sm leading-tight">` +
-      `<div class="text-[var(--accent)]">` +
-      `┌──(<span class="text-[var(--white-soft)]">air</span>` +
-      `<span class="text-[var(--accent-soft)]">㉿</span>` +
-      `<span class="text-[var(--white-soft)]">portfolio</span>)-[` +
-      `<span class="text-[var(--white-soft)]">~</span>]</div>` +
-      `<div class="flex items-center">` +
-      `<span class="text-[var(--accent)]">└─$</span>` +
-      `<span class="ml-2 text-[var(--white-soft)]">${cmd}</span>` +
-      `</div></div>`
-    );
+    return PROMPT_START + cmd + PROMPT_END;
   }
 
   /**
@@ -207,28 +212,16 @@ export function useTerminal() {
   async function typeCommand(cmd: string): Promise<void> {
     setIsTyping(true);
     setIsTypingCommand(true);
-    let typed = "";
-    const promptStart =
-      `<div class="font-mono text-sm leading-tight">` +
-      `<div class="text-[var(--accent)]">` +
-      `┌──(<span class="text-[var(--white-soft)]">air</span>` +
-      `<span class="text-[var(--accent-soft)]">㉿</span>` +
-      `<span class="text-[var(--white-soft)]">portfolio</span>)-[` +
-      `<span class="text-[var(--white-soft)]">~</span>]</div>` +
-      `<div class="flex items-center">` +
-      `<span class="text-[var(--accent)]">└─$</span>` +
-      `<span class="ml-2 text-[var(--white-soft)]">`;
-    const promptEnd = `</span></div></div>`;
 
-    setOutput((prev) => [...prev, { type: "html", content: promptStart + promptEnd }]);
+    setOutput((prev) => [...prev, { type: "html", content: PROMPT_START + PROMPT_END }]);
 
     for (let i = 0; i < cmd.length; i++) {
-      typed = cmd.slice(0, i + 1);
+      const typed = cmd.slice(0, i + 1);
       setOutput((prev) => {
         const updated = [...prev];
         updated[updated.length - 1] = {
           type: "html",
-          content: promptStart + typed + promptEnd,
+          content: PROMPT_START + typed + PROMPT_END,
         };
         return updated;
       });

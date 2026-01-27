@@ -3,135 +3,111 @@
  *
  * Este componente:
  *  - Renderiza un efecto de caída de caracteres ML/AI en bucle
- *  - Símbolos: λ (lambda), ∑ (suma), ∂ (derivada), θ (theta), σ (sigma), etc.
+ *  - Símbolos: λ, ∑, ∂, θ, σ, ∇, ⊗, ∫, π, 01, α, β, γ, δ, ε, η
  *  - Se ejecuta completamente fuera del árbol de renderizado de Preact
  *  - No provoca re-renders (usa canvas imperativo)
- *  - Está optimizado para rendimiento en pantallas grandes
+ *  - Responde a resize de ventana (recalcula columnas y drops)
  *
  * Decisiones de diseño:
- *  - Se usa <canvas> porque permite animaciones fluidas sin afectar la UI
- *  - La animación se ejecuta dentro de useEffect para evitar recreaciones
- *  - pointer-events-none evita interferencias con la interacción del usuario
- *  - blur ligero para un efecto más elegante y menos distractor
- *  - Algunos caracteres "brillan" más para simular activación neuronal
- *
- * Este componente es completamente autónomo y no depende del estado global.
+ *  - Canvas imperativo para máximo rendimiento
+ *  - Resize con debounce de 200ms para evitar thrashing
+ *  - pointer-events-none evita interferencias con la UI
+ *  - blur ligero para elegancia sin distracción
+ *  - Variación de color simula "activación neuronal"
  */
 
 import { useEffect, useRef } from "preact/hooks";
 
+const LETTERS = "λ∑∂θσ∇⊗∫π01αβγδεη";
+const FONT_SIZE = 14;
+const FRAME_INTERVAL = 50; // ~20 FPS
+const RESIZE_DEBOUNCE = 200;
+
 export default function MatrixBackground() {
-  /**
-   * Referencia al elemento <canvas>.
-   * Se usa useRef porque el canvas se manipula de forma imperativa.
-   */
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
-    /**
-     * Inicialización del canvas y contexto 2D.
-     * Se verifica que existan antes de proceder.
-     */
-    const canvasElement = canvasRef.current;
-    if (!canvasElement) return;
+    const canvasEl = canvasRef.current;
+    if (!canvasEl) return;
 
-    const context = canvasElement.getContext("2d");
-    if (!context) return;
+    const ctxEl = canvasEl.getContext("2d");
+    if (!ctxEl) return;
 
-    // Variables locales para uso en el closure de draw()
-    const canvas = canvasElement;
-    const ctx = context;
+    // Non-null aliases for use inside closures (early return guarantees non-null)
+    const cvs = canvasEl;
+    const ctx = ctxEl;
 
     /**
-     * Ajuste del tamaño del canvas al tamaño de la ventana.
-     * Esto garantiza que el fondo cubra toda la pantalla.
+     * Estado mutable de la animación.
+     * Se recalcula en cada resize.
      */
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+    let columns = 0;
+    let drops: number[] = [];
+
+    function resize() {
+      cvs.width = window.innerWidth;
+      cvs.height = window.innerHeight;
+
+      const newColumns = Math.floor(cvs.width / FONT_SIZE);
+
+      if (newColumns !== columns) {
+        // Preservar posiciones existentes, añadir nuevas si crece
+        const newDrops = Array(newColumns)
+          .fill(0)
+          .map((_, i) =>
+            i < drops.length ? drops[i] : Math.floor((Math.random() * cvs.height) / FONT_SIZE)
+          );
+        drops = newDrops;
+        columns = newColumns;
+      }
+    }
+
+    // Inicializar
+    resize();
 
     /**
-     * Caracteres usados en la animación.
-     * Mezcla de símbolos matemáticos/ML con binario para estética AI Security:
-     *  - λ (lambda) - funciones, ML
-     *  - ∑ (sigma) - sumatorias, agregación
-     *  - ∂ (derivada parcial) - gradientes
-     *  - θ (theta) - parámetros de modelos
-     *  - σ (sigma minúscula) - activación sigmoid
-     *  - ∇ (nabla) - gradiente
-     *  - ⊗ (producto tensorial)
-     *  - ∫ (integral)
-     *  - π (pi)
-     *  - 01 - binario clásico
+     * Resize con debounce para evitar recalcular en cada pixel.
      */
-    const letters = "λ∑∂θσ∇⊗∫π01αβγδεη";
-    const fontSize = 14;
+    let resizeTimeout: number | undefined;
+    function handleResize() {
+      if (resizeTimeout) window.clearTimeout(resizeTimeout);
+      resizeTimeout = window.setTimeout(resize, RESIZE_DEBOUNCE);
+    }
 
-    /**
-     * Número de columnas basado en el ancho del canvas.
-     * Cada columna representa una "línea" de caracteres cayendo.
-     */
-    const columns = Math.floor(canvas.width / fontSize);
-
-    /**
-     * Array que almacena la posición vertical de cada columna.
-     * Cada valor representa la fila actual donde se dibuja el carácter.
-     */
-    const drops = Array(columns)
-      .fill(0)
-      .map(() => Math.floor((Math.random() * canvas.height) / fontSize));
+    window.addEventListener("resize", handleResize);
 
     /**
      * Función principal de dibujo.
-     * Se ejecuta en intervalos regulares para animar el efecto.
      */
     function draw() {
-      /**
-       * Fondo semitransparente:
-       * - Crea el efecto de "rastro" característico del Matrix rain
-       * - El alpha bajo (0.05) suaviza la animación
-       */
+      // Fondo semitransparente → efecto de "rastro" Matrix
       ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.fillRect(0, 0, cvs.width, cvs.height);
 
-      /**
-       * Fuente monoespaciada para alineación perfecta.
-       */
-      ctx.font = `${fontSize}px monospace`;
+      ctx.font = `${FONT_SIZE}px monospace`;
 
-      /**
-       * Dibujo de cada columna.
-       * Cada iteración:
-       *  - Selecciona un carácter aleatorio
-       *  - Aplica color con variación (simula "activación neuronal")
-       *  - Lo dibuja en la posición correspondiente
-       *  - Incrementa la posición vertical
-       *  - Reinicia la columna aleatoriamente al llegar al final
-       */
       drops.forEach((y, i) => {
-        const text = letters[Math.floor(Math.random() * letters.length)];
+        const text = LETTERS[Math.floor(Math.random() * LETTERS.length)];
 
         /**
          * Efecto de "activación neuronal":
-         * - 10% de probabilidad: brillo cian intenso (neurona activada)
-         * - 20% de probabilidad: azul brillante
-         * - 70%: azul base
+         *  - 10%: brillo cian intenso (neurona activada)
+         *  - 20%: azul brillante
+         *  - 70%: azul base
          */
         const rand = Math.random();
         if (rand > 0.9) {
-          // Neurona "activada" - brillo cian
           ctx.fillStyle = "#22d3ee";
         } else if (rand > 0.7) {
-          // Azul brillante
           ctx.fillStyle = "#60a5fa";
         } else {
-          // Azul base
           ctx.fillStyle = "#2563eb";
         }
 
-        ctx.fillText(text, i * fontSize, y * fontSize);
+        ctx.fillText(text, i * FONT_SIZE, y * FONT_SIZE);
 
-        // Reinicio aleatorio cuando la columna sale de pantalla
-        if (y * fontSize > canvas.height && Math.random() > 0.975) {
+        // Reinicio aleatorio cuando sale de pantalla
+        if (y * FONT_SIZE > cvs.height && Math.random() > 0.975) {
           drops[i] = 0;
         }
 
@@ -139,29 +115,16 @@ export default function MatrixBackground() {
       });
     }
 
-    /**
-     * Intervalo de animación.
-     * 50ms ≈ 20 FPS → suficiente para un efecto suave sin consumir demasiados recursos.
-     */
-    const interval = setInterval(draw, 50);
+    const interval = setInterval(draw, FRAME_INTERVAL);
 
-    /**
-     * Limpieza del intervalo al desmontar el componente.
-     * Evita fugas de memoria y animaciones huérfanas.
-     */
     return () => {
       clearInterval(interval);
+      window.removeEventListener("resize", handleResize);
+      if (resizeTimeout) window.clearTimeout(resizeTimeout);
     };
   }, []);
 
   return (
-    /**
-     * El canvas cubre toda la pantalla:
-     *  - fixed + inset-0 → ocupa todo el viewport
-     *  - pointer-events-none → no bloquea clics ni scroll
-     *  - blur → suaviza el efecto para no distraer del contenido principal
-     *  - z-index:0 → siempre detrás del resto de la UI
-     */
     <canvas
       ref={canvasRef}
       class="fixed inset-0 pointer-events-none blur-[1.3px]"
