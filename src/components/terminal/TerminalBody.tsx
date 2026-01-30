@@ -210,7 +210,7 @@ export default function TerminalBody({ terminal }: { terminal: TerminalState }) 
   return (
     <div
       ref={scrollRef}
-      class="terminal-scroll p-4 font-mono text-[var(--white-soft)] text-sm h-[60vh] overflow-y-auto overflow-x-hidden cursor-text"
+      class="terminal-scroll p-4 font-mono text-[var(--white-soft)] text-sm h-[60vh] overflow-y-auto overflow-x-auto cursor-text"
       onClick={handleContainerClick}
       role="log"
       aria-live="polite"
@@ -252,7 +252,7 @@ export default function TerminalBody({ terminal }: { terminal: TerminalState }) 
               <span class="ml-2 text-[var(--white-soft)]">{welcomeMessage}</span>
             )}
 
-            {/* Input real del usuario */}
+            {/* Input real del usuario con cursor blink */}
             <input
               ref={inputRef}
               type="text"
@@ -261,7 +261,8 @@ export default function TerminalBody({ terminal }: { terminal: TerminalState }) 
               autocomplete="off"
               autocapitalize="off"
               aria-label="Comando de terminal"
-              class="ml-2 flex-1 bg-transparent border-none outline-none text-[var(--white-soft)] font-mono text-sm caret-[var(--accent-soft)]"
+              class="ml-2 flex-1 bg-transparent border-none outline-none text-[var(--white-soft)] font-mono text-sm caret-transparent"
+              style="caret-color: transparent"
               onInput={(e) => {
                 setInputValue((e.target as HTMLInputElement).value);
                 setHistoryIndex(-1);
@@ -270,6 +271,8 @@ export default function TerminalBody({ terminal }: { terminal: TerminalState }) 
                 handleKeyDown(e as unknown as KeyboardEvent);
               }}
             />
+            {/* Cursor parpadeante real */}
+            <span class="terminal-cursor" aria-hidden="true"></span>
           </div>
         </div>
       )}

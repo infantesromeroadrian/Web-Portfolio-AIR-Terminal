@@ -63,7 +63,7 @@ export default function PageHeader({
           {NAV_ITEMS.map((item) => (
             <button
               key={item.command}
-              class="nav-btn"
+              class="nav-btn focus-ring rounded px-2 py-1"
               onClick={() => void runCommand(item.command)}
             >
               {item.label}
@@ -83,13 +83,13 @@ export default function PageHeader({
          */}
         <div class="flex items-center space-x-4 ml-auto flex-shrink-0">
           <button
-            class="flex flex-col space-y-1"
+            class="flex flex-col space-y-1.5 p-2 rounded focus-ring group transition-all"
             onClick={onMenuToggle}
             aria-label="Abrir menú de navegación"
           >
-            <span class="block w-6 h-[2px] bg-[var(--accent-soft)]"></span>
-            <span class="block w-6 h-[2px] bg-[var(--accent-soft)]"></span>
-            <span class="block w-6 h-[2px] bg-[var(--accent-soft)]"></span>
+            <span class="block w-6 h-[2px] bg-[var(--accent-soft)] transition-all group-hover:bg-[var(--white-soft)] group-hover:w-7"></span>
+            <span class="block w-6 h-[2px] bg-[var(--accent-soft)] transition-all group-hover:bg-[var(--white-soft)]"></span>
+            <span class="block w-6 h-[2px] bg-[var(--accent-soft)] transition-all group-hover:bg-[var(--white-soft)] group-hover:w-5"></span>
           </button>
         </div>
       </nav>

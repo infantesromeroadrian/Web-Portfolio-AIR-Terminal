@@ -61,11 +61,11 @@ export default function SideMenu({
        *  - Se mantiene z-50 para estar por encima del overlay
        */}
       <aside
-        class={`fixed top-0 right-0 h-full w-64 bg-[#0a0a0a] border-l border-blue-600 shadow-xl z-50 transform transition-transform duration-300 ${
+        class={`fixed top-0 right-0 h-full w-64 glass-panel border-l border-blue-600/70 shadow-2xl shadow-black/50 z-50 transform transition-transform duration-300 ease-out ${
           open ? "translate-x-0" : "translate-x-full"
         }`}
       >
-        <div class="p-6 font-mono text-[var(--white-soft)] space-y-8">
+        <div class="p-4 sm:p-6 font-mono text-[var(--white-soft)] space-y-6">
           {/**
            * NAVEGACIÓN PRINCIPAL (solo visible en móvil)
            *
@@ -76,14 +76,17 @@ export default function SideMenu({
            * Esto permite navegar sin escribir manualmente.
            */}
           <div class="space-y-2 lg:hidden">
-            <p class="text-sm text-[var(--gray-terminal)]">Navegación</p>
+            <p class="text-xs uppercase tracking-wider text-[var(--gray-terminal)] mb-3">
+              Navegación
+            </p>
 
             {NAV_ITEMS.map((item) => (
               <button
                 key={item.command}
-                class="w-full text-left px-3 py-2 bg-black border border-gray-600 rounded hover:bg-blue-900/30 transition"
+                class="w-full text-left px-3 py-2.5 bg-black/50 border border-gray-700 rounded hover:bg-blue-900/40 hover:border-blue-600/50 transition-all focus-ring text-sm"
                 onClick={() => void runCommand(item.command)}
               >
+                <span class="text-[var(--accent-soft)] mr-2">&gt;</span>
                 {item.label}
               </button>
             ))}

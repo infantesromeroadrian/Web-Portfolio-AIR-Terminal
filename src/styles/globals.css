@@ -7,6 +7,7 @@
  *  - Fondo negro carbón para estética terminal
  */
 :root {
+  /* Colores principales */
   --blue-accent: #2563eb; /* Azul eléctrico principal */
   --blue-soft: #3b82f6; /* Azul suave para detalles */
   --blue-dark: #1d4ed8; /* Azul oscuro para bordes */
@@ -15,9 +16,24 @@
   --gray-terminal: #cfcfcf; /* Gris terminal */
   --white-soft: #f2f2f2; /* Blanco suave */
 
+  /* Colores botones macOS */
+  --macos-red: #ff5f57;
+  --macos-yellow: #febc2e;
+  --macos-green: #28c840;
+
+  /* Colores de estado */
+  --success: #00ff00;
+  --warning: #ff9900;
+  --error: #ff3333;
+  --info: #3399ff;
+
   /* Aliases semánticos */
   --accent: var(--blue-accent);
   --accent-soft: var(--blue-soft);
+
+  /* Timing functions */
+  --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 
 /**
@@ -30,8 +46,20 @@
 /**
  * Efecto glow azul para elementos interactivos.
  */
+.glow-accent {
+  transition:
+    box-shadow 0.2s var(--ease-smooth),
+    transform 0.1s var(--ease-smooth);
+}
+
 .glow-accent:hover {
-  box-shadow: 0 0 12px rgba(37, 99, 235, 0.5);
+  box-shadow:
+    0 0 20px rgba(37, 99, 235, 0.5),
+    0 0 40px rgba(37, 99, 235, 0.2);
+}
+
+.glow-accent:active {
+  transform: scale(0.98);
 }
 
 /**
@@ -50,43 +78,148 @@
 
 /**
  * Scrollbar personalizado estilo Blue Cyber.
+ * Más slim y moderna (6px).
  */
 .terminal-scroll::-webkit-scrollbar {
-  width: 10px;
+  width: 6px;
 }
 
 .terminal-scroll::-webkit-scrollbar-track {
-  background: #000;
-  border: 1px solid #1d4ed8;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 3px;
 }
 
 .terminal-scroll::-webkit-scrollbar-thumb {
-  background: #1d4ed8;
-  border: 1px solid #3b82f6;
-  border-radius: 0;
+  background: var(--blue-dark);
+  border-radius: 3px;
+  transition: background 0.2s var(--ease-smooth);
 }
 
 .terminal-scroll::-webkit-scrollbar-thumb:hover {
-  background: #2563eb;
+  background: var(--blue-accent);
+}
+
+/* Firefox scrollbar */
+.terminal-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: var(--blue-dark) rgba(0, 0, 0, 0.3);
 }
 
 /**
  * Animación del cursor parpadeante estilo terminal.
  */
 @keyframes cursor-blink {
-  0% {
+  0%,
+  100% {
     opacity: 1;
   }
   50% {
     opacity: 0;
   }
-  100% {
-    opacity: 1;
-  }
 }
 
 .cursor-blink {
-  animation: cursor-blink 0.8s steps(1) infinite;
+  animation: cursor-blink 1s steps(1) infinite;
+}
+
+/**
+ * Cursor block real para terminal input.
+ */
+.terminal-cursor {
+  display: inline-block;
+  width: 0.6em;
+  height: 1.1em;
+  background-color: var(--accent-soft);
+  animation: cursor-blink 1s steps(1) infinite;
+  vertical-align: text-bottom;
+  margin-left: 2px;
+}
+
+/**
+ * Focus ring accesible para botones.
+ */
+.focus-ring:focus-visible {
+  outline: 2px solid var(--cyan-glow);
+  outline-offset: 2px;
+}
+
+/**
+ * Animación de entrada slide-up para panels.
+ */
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-slide-up {
+  animation: slide-up 0.3s var(--ease-smooth) forwards;
+}
+
+/**
+ * Animación de loading dots "..."
+ */
+@keyframes loading-dots {
+  0%,
+  20% {
+    content: ".";
+  }
+  40% {
+    content: "..";
+  }
+  60%,
+  100% {
+    content: "...";
+  }
+}
+
+.loading-dots::after {
+  content: "";
+  animation: loading-dots 1.5s infinite;
+}
+
+/**
+ * Efecto flash sutil al ejecutar comando.
+ */
+@keyframes command-flash {
+  0% {
+    background-color: rgba(37, 99, 235, 0.15);
+  }
+  100% {
+    background-color: transparent;
+  }
+}
+
+.command-flash {
+  animation: command-flash 0.3s var(--ease-smooth);
+}
+
+/**
+ * Botón con efecto de presionar.
+ */
+.btn-press {
+  transition:
+    transform 0.1s var(--ease-smooth),
+    box-shadow 0.2s var(--ease-smooth);
+}
+
+.btn-press:active {
+  transform: scale(0.97);
+}
+
+/**
+ * Glassmorphism panel.
+ */
+.glass-panel {
+  background: rgba(10, 10, 10, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(37, 99, 235, 0.3);
 }
 
 /**
@@ -192,7 +325,7 @@
   background-color: rgba(34, 211, 238, 0.1);
 }
 
-/* Scanlines overlay */
+/* Scanlines overlay — ralentizado para efecto más sutil */
 .scanlines::after {
   content: "";
   position: absolute;
@@ -202,11 +335,21 @@
   height: 100%;
   background: repeating-linear-gradient(
     0deg,
-    rgba(0, 0, 0, 0.15) 0px,
-    rgba(0, 0, 0, 0.15) 1px,
+    rgba(0, 0, 0, 0.12) 0px,
+    rgba(0, 0, 0, 0.12) 1px,
     transparent 1px,
     transparent 3px
   );
   pointer-events: none;
-  animation: scanlines 8s linear infinite;
+  animation: scanlines 15s linear infinite;
+}
+
+/**
+ * Responsive utilities.
+ */
+@media (max-width: 640px) {
+  .mobile-padding {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
 }

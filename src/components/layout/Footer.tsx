@@ -26,35 +26,29 @@ export default function Footer() {
      *  - backdrop-blur-sm → efecto de cristal oscuro
      *  - mt-10 → separación visual respecto al contenido superior
      */
-    <footer class="w-full bg-black/80 border-t border-blue-600 backdrop-blur-sm mt-10 py-4">
-      <div class="max-w-6xl mx-auto text-center font-mono text-sm text-[var(--white-soft)] space-y-1">
+    <footer class="w-full bg-black/80 border-t border-blue-600/50 backdrop-blur-sm mt-10 py-6">
+      <div class="max-w-6xl mx-auto text-center font-mono space-y-2 px-4">
         {/**
-         * Línea principal del footer.
-         *
-         * Incluye:
-         *  - Año
-         *  - Nombre del autor
-         *  - Rol profesional
-         *
-         * Esto refuerza la identidad del portfolio y da contexto al visitante.
+         * Línea principal del footer — nombre y rol con hierarchy.
          */}
-        <div>
-          © {new Date().getFullYear()} Adrián Infantes Romero | AI Security Architect | Blue Cyber
-          AI
+        <div class="text-[var(--white-soft)]">
+          <span class="text-base font-semibold">
+            © {new Date().getFullYear()} Adrián Infantes Romero
+          </span>
+        </div>
+        <div class="text-sm text-gray-400">
+          <span class="text-[var(--accent)]">AI Security Architect</span>
+          <span class="mx-2 text-gray-600">|</span>
+          <span class="text-[var(--cyan-glow)]">Blue Cyber AI</span>
         </div>
 
         {/**
          * Línea secundaria estilo terminal.
-         *
-         * "root@portfolio~# exit"
-         *
-         * Decisión de diseño:
-         *  - Simula el cierre de una sesión de terminal
-         *  - Refuerza la temática hacker del portfolio
-         *  - Añade un toque final elegante y temático
          */}
-        <div class="text-[var(--accent)]">
-          root@portfolio~# <span class="text-[var(--white-soft)]">exit</span>
+        <div class="text-xs text-gray-500 pt-2">
+          <span class="text-[var(--accent)]">root@portfolio~#</span>{" "}
+          <span class="text-gray-400">exit</span>
+          <span class="terminal-cursor ml-1" style="height: 0.9em; width: 0.5em"></span>
         </div>
       </div>
     </footer>

@@ -68,23 +68,28 @@ Pregúntame sobre:
   return (
     <div
       class="
-        fixed bottom-24 right-6 z-50
-        w-96 h-[520px]
-        bg-[#0a0a0a]/95 backdrop-blur-sm
-        border border-blue-600 rounded-lg
-        shadow-2xl shadow-blue-600/20
+        fixed bottom-24 right-4 sm:right-6 z-50
+        w-[calc(100vw-2rem)] sm:w-96 max-w-[384px]
+        h-[min(520px,calc(100vh-8rem))]
+        glass-panel rounded-lg
+        shadow-2xl shadow-blue-600/30
         flex flex-col
         font-mono
+        animate-slide-up
       "
     >
       {/* Header */}
-      <div class="flex items-center justify-between px-4 py-3 border-b border-blue-600/50 bg-black/50">
+      <div class="flex items-center justify-between px-4 py-3 border-b border-blue-600/50 bg-black/60 rounded-t-lg">
         <div class="flex items-center space-x-2">
-          <div class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
+          <div class="w-2 h-2 rounded-full bg-[var(--macos-green)] shadow-[0_0_6px_var(--macos-green)] animate-pulse"></div>
           <span class="text-blue-400 text-sm font-bold">AIR Assistant</span>
-          <span class="text-gray-500 text-xs">// ask me anything</span>
+          <span class="text-gray-500 text-xs hidden sm:inline">// ask me anything</span>
         </div>
-        <button onClick={onClose} class="text-gray-400 hover:text-white transition-colors">
+        <button
+          onClick={onClose}
+          class="text-gray-400 hover:text-white transition-colors p-1 rounded focus-ring"
+          aria-label="Cerrar chat"
+        >
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path
               stroke-linecap="round"
@@ -117,16 +122,23 @@ Pregúntame sobre:
         {isLoading && (
           <div class="flex justify-start">
             <div class="bg-gray-800 text-gray-400 px-3 py-2 rounded-lg text-sm border border-gray-700">
-              <span class="animate-pulse">Procesando...</span>
+              <span class="loading-dots">Procesando</span>
             </div>
           </div>
         )}
       </div>
 
       {/* Input */}
-      <form onSubmit={handleSubmit} class="p-3 border-t border-blue-600/50 bg-black/50">
+      <form
+        onSubmit={handleSubmit}
+        class="p-3 border-t border-blue-600/50 bg-black/60 rounded-b-lg"
+      >
         <div class="flex space-x-2">
+          <label class="sr-only" htmlFor="chat-input">
+            Pregunta sobre Adrian
+          </label>
           <input
+            id="chat-input"
             type="text"
             value={input}
             onInput={(e) => {
@@ -134,10 +146,11 @@ Pregúntame sobre:
             }}
             placeholder="Pregunta sobre Adrian..."
             class="
-              flex-1 bg-gray-900 border border-gray-700 rounded-lg
+              flex-1 bg-gray-900/80 border border-gray-700 rounded-lg
               px-3 py-2 text-sm text-white
-              focus:outline-none focus:border-blue-500
+              focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500/50
               placeholder-gray-500
+              transition-all
             "
           />
           <button
@@ -148,8 +161,9 @@ Pregúntame sobre:
               disabled:opacity-50 disabled:cursor-not-allowed
               px-4 py-2 rounded-lg
               text-white text-sm font-bold
-              transition-colors
+              transition-all btn-press focus-ring
             "
+            aria-label="Enviar mensaje"
           >
             →
           </button>

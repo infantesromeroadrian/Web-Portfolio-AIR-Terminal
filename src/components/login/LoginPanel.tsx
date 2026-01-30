@@ -100,11 +100,11 @@ export default function LoginPanel({ onLogin }: { onLogin: () => void }) {
        *  - Prompt root@portfolio
        *  - Bordes azules para mantener coherencia con el tema Blue Cyber / AI Security
        */}
-      <div class="bg-black border-2 border-blue-600 rounded-t-lg p-3 flex items-center space-x-2 border-top-accent">
+      <div class="bg-black/90 border-2 border-blue-600 rounded-t-lg p-3 flex items-center space-x-2 border-top-accent backdrop-blur-sm">
         <div class="flex space-x-2">
-          <div class="w-3 h-3 rounded-full bg-blue-600"></div>
-          <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
-          <div class="w-3 h-3 rounded-full bg-green-500"></div>
+          <div class="w-3 h-3 rounded-full bg-[var(--macos-red)] shadow-[0_0_4px_var(--macos-red)]"></div>
+          <div class="w-3 h-3 rounded-full bg-[var(--macos-yellow)] shadow-[0_0_4px_var(--macos-yellow)]"></div>
+          <div class="w-3 h-3 rounded-full bg-[var(--macos-green)] shadow-[0_0_4px_var(--macos-green)]"></div>
         </div>
 
         <span class="text-[var(--accent)] font-mono text-sm flex-1 text-center">
@@ -124,7 +124,7 @@ export default function LoginPanel({ onLogin }: { onLogin: () => void }) {
        *  - Los inputs son readOnly porque la animación es automática
        *  - El botón permite a usuarios impacientes avanzar rápido
        */}
-      <div class="panel-bg border-2 border-t-0 border-blue-600 rounded-b-lg p-8 shadow-xl shadow-blue-600/20 backdrop-blur-sm">
+      <div class="glass-panel border-2 border-t-0 border-blue-600 rounded-b-lg p-8 shadow-xl shadow-blue-600/30">
         {/* Logo con efecto glitch */}
         <div class="flex justify-center mb-6">
           <div class="relative glitch-container scanlines w-32 h-32">
@@ -165,7 +165,7 @@ export default function LoginPanel({ onLogin }: { onLogin: () => void }) {
 
             <input
               type="text"
-              class="w-full bg-[#0a0a0a] border border-gray-700 rounded px-4 py-3 text-[var(--white-soft)] font-mono focus:outline-none focus:border-[var(--accent)] transition-all"
+              class="w-full bg-[#0a0a0a]/80 border border-gray-700 rounded px-4 py-3 text-[var(--white-soft)] font-mono focus:outline-none focus:border-[var(--accent)] focus:ring-1 focus:ring-[var(--accent)]/50 transition-all"
               value={userText}
               readOnly
             />
@@ -179,7 +179,7 @@ export default function LoginPanel({ onLogin }: { onLogin: () => void }) {
 
             <input
               type="password"
-              class="w-full bg-[#0a0a0a] border border-gray-700 rounded px-4 py-3 text-[var(--white-soft)] font-mono focus:outline-none focus:border-[var(--accent)] transition-all"
+              class="w-full bg-[#0a0a0a]/80 border border-gray-700 rounded px-4 py-3 text-[var(--white-soft)] font-mono focus:outline-none focus:border-[var(--accent)] focus:ring-1 focus:ring-[var(--accent)]/50 transition-all"
               value={passText}
               readOnly
             />
@@ -189,7 +189,7 @@ export default function LoginPanel({ onLogin }: { onLogin: () => void }) {
           <button
             type="button"
             onClick={onLogin}
-            class="w-full bg-[var(--accent)] hover:bg-[var(--accent-soft)] text-black font-mono font-bold py-3 px-4 rounded border border-[var(--accent)] transition-all duration-200 glow-accent"
+            class="w-full bg-[var(--accent)] hover:bg-[var(--accent-soft)] text-black font-mono font-bold py-3 px-4 rounded border border-[var(--accent)] transition-all duration-200 glow-accent btn-press focus-ring"
           >
             [INICIAR SESIÓN]
           </button>
