@@ -23,6 +23,11 @@ import MatrixBackground from "./components/background/MatrixBackground";
 import TacticalMap from "./components/background/TacticalMap";
 import ChatBubble from "./components/chat/ChatBubble";
 
+// HUD y efectos visuales
+import TacticalHUD from "./components/hud/TacticalHUD";
+import AlertSystem from "./components/hud/AlertSystem";
+import CRTEffect from "./components/effects/CRTEffect";
+
 // Hook que encapsula toda la lógica de la terminal
 import { useTerminal } from "./core/hooks/useTerminal";
 
@@ -59,8 +64,16 @@ export function App() {
     <div class="relative min-h-screen flex flex-col">
       {/* Capa 1: Mapa táctico de fondo */}
       <TacticalMap />
-      {/* Capa 2: Neural Rain encima con opacidad reducida */}
+      {/* Capa 2: Matrix Rain encima */}
       <MatrixBackground />
+      {/* Capa 3: Efecto CRT (scanlines, vignette) */}
+      <CRTEffect />
+
+      {/* HUD Táctico — solo visible en modo terminal */}
+      {stage === "terminal" && <TacticalHUD />}
+
+      {/* Sistema de alertas — solo visible en modo terminal */}
+      {stage === "terminal" && <AlertSystem />}
 
       {/* Chatbot flotante */}
       <ChatBubble />
