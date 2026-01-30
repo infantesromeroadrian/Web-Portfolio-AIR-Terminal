@@ -12,10 +12,10 @@ interface MobileBottomBarProps {
 }
 
 const MOBILE_ACTIONS = [
-  { icon: "👤", label: "Perfil", command: "whoami" },
-  { icon: "📁", label: "Proyectos", command: "ls projects/" },
-  { icon: "⚡", label: "Skills", command: "cat skills.txt" },
-  { icon: "📧", label: "Contacto", command: "cat contact.txt" },
+  { icon: "👤", label: "Perfil", command: "perfil" },
+  { icon: "📁", label: "Proyectos", command: "proyectos" },
+  { icon: "⚡", label: "Skills", command: "skills" },
+  { icon: "📧", label: "Contacto", command: "contacto" },
   { icon: "❓", label: "Ayuda", command: "help" },
 ];
 

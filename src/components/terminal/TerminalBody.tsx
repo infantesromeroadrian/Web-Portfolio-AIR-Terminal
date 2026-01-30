@@ -25,16 +25,12 @@ const asciiData = ascii as AsciiData;
 
 /**
  * Quick actions — comandos rápidos clicables bajo el prompt.
- * Mejora UX para usuarios que no quieren escribir.
- */
-/**
- * Quick actions — comandos rápidos clicables bajo el prompt.
  */
 const QUICK_ACTIONS = [
   { label: "whoami", command: "whoami" },
-  { label: "proyectos", command: "ls projects/" },
-  { label: "skills", command: "cat skills.txt" },
-  { label: "contacto", command: "cat contact.txt" },
+  { label: "proyectos", command: "proyectos" },
+  { label: "skills", command: "skills" },
+  { label: "contacto", command: "contacto" },
   { label: "help", command: "help" },
 ];
 
@@ -44,7 +40,7 @@ const QUICK_ACTIONS = [
 const EASTER_EGG_HINTS = [
   { threshold: 3, hint: "💡 Prueba: hack", command: "hack" },
   { threshold: 5, hint: "🗺️ Prueba: threat-map", command: "threat-map" },
-  { threshold: 7, hint: "🔍 Prueba: nmap localhost", command: "nmap localhost" },
+  { threshold: 7, hint: "🔍 Prueba: nmap", command: "nmap" },
   { threshold: 10, hint: "🎯 Prueba: demo", command: "demo" },
   { threshold: 12, hint: "🔓 Prueba: sudo rm -rf /", command: "sudo rm -rf /" },
 ];

@@ -68,24 +68,27 @@ const proyectos = proyectosJson as ProyectosData;
 // ── Comandos disponibles ────────────────────────────────────
 
 export const AVAILABLE_COMMANDS: string[] = [
+  // Comandos principales (coherentes con labels de navegación)
   "whoami",
+  "perfil",
+  "estudios",
+  "experiencia",
+  "skills",
+  "certificaciones",
+  "proyectos",
+  "contacto",
+  // Utilidades
   "help",
   "clear",
   "neofetch",
-  "cat profile.txt",
-  "cat edu.txt",
-  "cat exp.txt",
-  "cat skills.txt",
-  "cat certs.txt",
-  "cat contact.txt",
-  "cat projects/watchdogs.txt",
-  "cat projects/threatintel.txt",
-  "cat projects/siem.txt",
-  "cat projects/emailthreat.txt",
-  "ls projects/",
-  "whoami && cat *.txt",
+  "all",
+  // Proyectos específicos
+  "proyecto watchdogs",
+  "proyecto threatintel",
+  "proyecto siem",
+  "proyecto emailthreat",
   // Easter eggs & Security commands
-  "nmap localhost",
+  "nmap",
   "sudo rm -rf /",
   "hack",
   "exploit",
@@ -133,9 +136,32 @@ ${formatContacto(contacto)}
 // ── Mapa de comandos (O(1) lookup vs switch O(n)) ───────────
 
 const COMMAND_MAP: Record<string, CommandHandler> = {
+  // Comandos principales (coherentes con labels)
   whoami: ({ print }) => {
     print(formatWhoami(whoami));
   },
+  perfil: ({ print }) => {
+    print(formatPerfil(perfil));
+  },
+  estudios: ({ print }) => {
+    print(formatEstudios(estudios));
+  },
+  experiencia: ({ print }) => {
+    print(formatExperiencia(experiencia));
+  },
+  skills: ({ print }) => {
+    print(formatSkills(skills));
+  },
+  certificaciones: ({ print }) => {
+    print(formatCertificaciones(certificaciones));
+  },
+  proyectos: ({ print }) => {
+    print(formatLsProjects(proyectos));
+  },
+  contacto: ({ print }) => {
+    print(formatContacto(contacto));
+  },
+  // Utilidades
   help: ({ print }) => {
     print(formatHelp(AVAILABLE_COMMANDS));
   },
@@ -145,32 +171,24 @@ const COMMAND_MAP: Record<string, CommandHandler> = {
   neofetch: ({ print }) => {
     print(formatNeofetch());
   },
-  "cat profile.txt": ({ print }) => {
-    print(formatPerfil(perfil));
-  },
-  "cat edu.txt": ({ print }) => {
-    print(formatEstudios(estudios));
-  },
-  "cat exp.txt": ({ print }) => {
-    print(formatExperiencia(experiencia));
-  },
-  "cat skills.txt": ({ print }) => {
-    print(formatSkills(skills));
-  },
-  "cat certs.txt": ({ print }) => {
-    print(formatCertificaciones(certificaciones));
-  },
-  "cat contact.txt": ({ print }) => {
-    print(formatContacto(contacto));
-  },
-  "whoami && cat *.txt": ({ print }) => {
+  all: ({ print }) => {
     print(generateAllInfo());
   },
-  "ls projects/": ({ print }) => {
-    print(formatLsProjects(proyectos));
+  // Proyectos específicos
+  "proyecto watchdogs": ({ print }) => {
+    print(formatProjectDetail(proyectos.watchdogs));
+  },
+  "proyecto threatintel": ({ print }) => {
+    print(formatProjectDetail(proyectos.threatintel));
+  },
+  "proyecto siem": ({ print }) => {
+    print(formatProjectDetail(proyectos.siem));
+  },
+  "proyecto emailthreat": ({ print }) => {
+    print(formatProjectDetail(proyectos.emailthreat));
   },
   // Easter eggs & Security commands
-  "nmap localhost": ({ print }) => {
+  nmap: ({ print }) => {
     print(formatNmap());
   },
   "sudo rm -rf /": ({ print }) => {
@@ -208,15 +226,14 @@ export function resolveCommand(cmd: string, actions: TerminalActions): void {
   const trimmed = cmd.trim();
   if (trimmed === "") return;
 
-  // Comandos dinámicos: cat projects/X.txt
-  if (trimmed.startsWith("cat projects/") && trimmed.endsWith(".txt")) {
-    const archivo = trimmed.replace("cat projects/", "");
-    const slug = archivo.replace(".txt", "");
+  // Comandos dinámicos: proyecto <nombre>
+  if (trimmed.startsWith("proyecto ")) {
+    const slug = trimmed.replace("proyecto ", "").trim();
 
     if (slug in proyectos) {
       actions.print(formatProjectDetail(proyectos[slug]));
     } else {
-      actions.print(formatProjectNotFound(archivo));
+      actions.print(formatProjectNotFound(slug));
     }
     return;
   }

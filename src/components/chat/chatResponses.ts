@@ -37,24 +37,25 @@ const RULES: ChatRule[] = [
 • \`whoami\` — Quién es Adrian
 • \`neofetch\` — Info del sistema estilo Linux
 • \`clear\` — Limpia la terminal
+• \`all\` — Muestra toda la info
 
 **Perfil:**
-• \`cat profile.txt\` — Perfil profesional
-• \`cat edu.txt\` — Formación académica
-• \`cat exp.txt\` — Experiencia laboral
-• \`cat skills.txt\` — Habilidades técnicas
-• \`cat certs.txt\` — Certificaciones
-• \`cat contact.txt\` — Contacto
+• \`perfil\` — Perfil profesional
+• \`estudios\` — Formación académica
+• \`experiencia\` — Experiencia laboral
+• \`skills\` — Habilidades técnicas
+• \`certificaciones\` — Certificaciones
+• \`contacto\` — Contacto
 
 **Proyectos:**
-• \`ls projects/\` — Lista de proyectos
-• \`cat projects/watchdogs.txt\` — WatchDogs OSINT
-• \`cat projects/threatintel.txt\` — Threat Intel
-• \`cat projects/siem.txt\` — SIEM Anomaly
-• \`cat projects/emailthreat.txt\` — Email Threat
+• \`proyectos\` — Lista de proyectos
+• \`proyecto watchdogs\` — WatchDogs OSINT
+• \`proyecto threatintel\` — Threat Intel
+• \`proyecto siem\` — SIEM Anomaly
+• \`proyecto emailthreat\` — Email Threat
 
 **🔒 Security (los que molan):**
-• \`nmap localhost\` — Escaneo de puertos
+• \`nmap\` — Escaneo de puertos
 • \`hack\` — Auditoría de seguridad
 • \`threat-map\` — Dashboard SIEM en vivo
 • \`cve\` — Vulnerabilidades AI/ML
@@ -69,7 +70,7 @@ const RULES: ChatRule[] = [
     keywords: ["easter", "secreto", "oculto", "hidden", "truco"],
     response: `👀 ¡Te gustan los secretos! Hay varios easter eggs:
 
-• \`nmap localhost\` — Simula un escaneo de puertos. Los servicios que muestra son ficticios pero representan el stack real de Adrian.
+• \`nmap\` — Simula un escaneo de puertos. Los servicios que muestra son ficticios pero representan el stack real de Adrian.
 
 • \`hack\` — Hace una "auditoría de seguridad" del portfolio. Comprueba XSS, CSRF, Prompt Injection... y al final hay un CTF flag 🏁
 

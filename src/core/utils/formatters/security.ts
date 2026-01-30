@@ -17,27 +17,39 @@
  */
 export function formatHelp(commands: string[]): string {
   const commandDescriptions: Record<string, string> = {
+    // Comandos principales
     whoami: "Muestra nombre y rol",
+    perfil: "Perfil profesional",
+    estudios: "Formación académica",
+    experiencia: "Experiencia laboral",
+    skills: "Habilidades técnicas",
+    certificaciones: "Certificaciones",
+    proyectos: "Lista de proyectos",
+    contacto: "Datos de contacto",
+    // Utilidades
     help: "Muestra esta ayuda",
     clear: "Limpia la terminal",
-    neofetch: "Info del sistema estilo neofetch",
-    "cat profile.txt": "Perfil profesional",
-    "cat edu.txt": "Formación académica",
-    "cat exp.txt": "Experiencia laboral",
-    "cat skills.txt": "Habilidades técnicas",
-    "cat certs.txt": "Certificaciones",
-    "cat contact.txt": "Datos de contacto",
-    "ls projects/": "Lista de proyectos",
-    "cat projects/watchdogs.txt": "Detalle WatchDogs OSINT",
-    "cat projects/threatintel.txt": "Detalle Threat Intel",
-    "cat projects/siem.txt": "Detalle SIEM Anomaly",
-    "cat projects/emailthreat.txt": "Detalle Email Threat",
-    "whoami && cat *.txt": "Muestra toda la info",
+    neofetch: "Info del sistema estilo Linux",
+    all: "Muestra toda la info",
+    // Proyectos específicos
+    "proyecto watchdogs": "Detalle WatchDogs OSINT",
+    "proyecto threatintel": "Detalle Threat Intel",
+    "proyecto siem": "Detalle SIEM Anomaly",
+    "proyecto emailthreat": "Detalle Email Threat",
+    // Easter eggs
+    nmap: "Escaneo de puertos",
+    hack: "Auditoría de seguridad",
+    "threat-map": "Dashboard SIEM",
+    cve: "Vulnerabilidades AI/ML",
+    demo: "Pipeline ML en vivo",
+    curl: "Headers HTTP",
+    exploit: "Responsible disclosure",
+    "sudo rm -rf /": "Nice try 😏",
   };
 
   const lines = commands.map((cmd) => {
     const desc = commandDescriptions[cmd] ?? "";
-    const paddedCmd = cmd.padEnd(35);
+    const paddedCmd = cmd.padEnd(25);
     return `  <span style="color:#00ff00">${paddedCmd}</span> <span style="color:#888888">${desc}</span>`;
   });
 

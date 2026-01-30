@@ -1,33 +1,27 @@
 /**
  * Formateadores para el sistema de proyectos.
  *
- * Comandos: ls projects/, cat projects/X.txt
+ * Comandos: proyectos, proyecto <nombre>
  */
 
 import type { ProyectosData, ProyectoItem } from "../../../types/data";
 
 /**
- * Formateador para listar proyectos (comando: ls projects/)
- *
- * Simula un listado de directorio estilo Unix con:
- *  - Permisos ficticios (drwxr-xr-x)
- *  - Nombre del archivo
- *  - Descripción corta y score/métrica destacada
+ * Formateador para listar proyectos (comando: proyectos)
  */
 export function formatLsProjects(data: ProyectosData): string {
   const entries = Object.entries(data);
 
-  const lines = entries.map(([, proyecto]: [string, ProyectoItem]) => {
-    // padEnd sobre texto plano ANTES de colorear, para alineación correcta
-    const paddedName = proyecto.archivo.padEnd(25);
-    const fileName = `<span style="color:#00ff00">${paddedName}</span>`;
+  const lines = entries.map(([slug, proyecto]: [string, ProyectoItem]) => {
+    const paddedSlug = slug.padEnd(15);
+    const slugName = `<span style="color:#00ff00">${paddedSlug}</span>`;
     const score = `<span style="color:#ffff66">${proyecto.score}</span>`;
     const desc =
-      proyecto.descripcion.length > 45
-        ? proyecto.descripcion.slice(0, 42) + "..."
+      proyecto.descripcion.length > 40
+        ? proyecto.descripcion.slice(0, 37) + "..."
         : proyecto.descripcion;
 
-    return `drwxr-xr-x  ${fileName}  ${desc} [${score}]`;
+    return `  ${slugName}  ${desc} [${score}]`;
   });
 
   return `
@@ -35,7 +29,7 @@ export function formatLsProjects(data: ProyectosData): string {
 
 ${lines.join("\n")}
 
-<span style="color:#888888">Usa 'cat projects/&lt;archivo&gt;' para ver detalles</span>
+<span style="color:#888888">Usa 'proyecto &lt;nombre&gt;' para ver detalles (ej: proyecto watchdogs)</span>
 `;
 }
 
@@ -71,15 +65,15 @@ ${github}
 /**
  * Mensaje de error cuando no se encuentra un proyecto.
  */
-export function formatProjectNotFound(archivo: string): string {
-  return `<span style="color:#ff3333">Error:</span> No se encontró el archivo '${archivo}'
+export function formatProjectNotFound(slug: string): string {
+  return `<span style="color:#ff3333">Error:</span> No se encontró el proyecto '${slug}'
 
 Proyectos disponibles:
-  - watchdogs.txt
-  - threatintel.txt
-  - siem.txt
-  - emailthreat.txt
+  - <span style="color:#00ff00">watchdogs</span>
+  - <span style="color:#00ff00">threatintel</span>
+  - <span style="color:#00ff00">siem</span>
+  - <span style="color:#00ff00">emailthreat</span>
 
-Usa 'ls projects/' para ver la lista completa.
+Usa '<span style="color:#3399ff">proyectos</span>' para ver la lista completa.
 `;
 }
