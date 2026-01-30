@@ -7,15 +7,46 @@
  * Decisiones de diseño:
  *  - Posición fija (fixed) para estar siempre visible
  *  - Animación de pulso para llamar la atención
- *  - Icono de cerebro/AI para reforzar la temática
+ *  - Mensaje proactivo después de inactividad
  *  - Z-index alto para estar por encima de todo
  */
 
-import { useState } from "preact/hooks";
+import { useState, useEffect } from "preact/hooks";
 import ChatPanel from "./ChatPanel";
+
+const PROACTIVE_DELAY_MS = 15000; // 15 segundos de inactividad
+const PROACTIVE_STORAGE_KEY = "chat-proactive-shown";
 
 export default function ChatBubble() {
   const [isOpen, setIsOpen] = useState(false);
+  const [showProactiveHint, setShowProactiveHint] = useState(false);
+
+  /**
+   * Mensaje proactivo — aparece después de X segundos si el usuario
+   * no ha interactuado con el chat (solo una vez por sesión).
+   */
+  useEffect(() => {
+    // No mostrar si ya se mostró en esta sesión
+    if (sessionStorage.getItem(PROACTIVE_STORAGE_KEY)) return;
+
+    const timer = setTimeout(() => {
+      if (!isOpen) {
+        setShowProactiveHint(true);
+        sessionStorage.setItem(PROACTIVE_STORAGE_KEY, "true");
+      }
+    }, PROACTIVE_DELAY_MS);
+
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [isOpen]);
+
+  // Ocultar hint proactivo cuando se abre el chat
+  useEffect(() => {
+    if (isOpen) {
+      setShowProactiveHint(false);
+    }
+  }, [isOpen]);
 
   return (
     <>
@@ -28,8 +59,8 @@ export default function ChatBubble() {
         />
       )}
 
-      {/* Burbuja flotante + tooltip */}
-      <div class="fixed bottom-6 right-4 sm:right-6 z-50 group">
+      {/* Burbuja flotante + tooltip — más arriba en móvil para no tapar bottom bar */}
+      <div class="fixed bottom-20 sm:bottom-6 right-4 sm:right-6 z-50 group">
         <button
           onClick={() => {
             setIsOpen(!isOpen);
@@ -73,8 +104,32 @@ export default function ChatBubble() {
           )}
         </button>
 
+        {/* Mensaje proactivo — aparece después de inactividad */}
+        {showProactiveHint && !isOpen && (
+          <div
+            class="
+              absolute bottom-16 right-0
+              bg-blue-600 text-white text-xs sm:text-sm font-mono
+              px-3 py-2 rounded-lg whitespace-nowrap
+              shadow-lg shadow-blue-600/40
+              animate-slide-up
+              cursor-pointer
+            "
+            onClick={() => {
+              setIsOpen(true);
+              setShowProactiveHint(false);
+            }}
+          >
+            <div class="flex items-center gap-2">
+              <span>💬</span>
+              <span>¿Necesitas ayuda?</span>
+            </div>
+            <div class="text-[10px] text-blue-200 mt-0.5">Click para chatear</div>
+          </div>
+        )}
+
         {/* Tooltip — visible al hacer hover en el grupo, oculto en mobile */}
-        {!isOpen && (
+        {!isOpen && !showProactiveHint && (
           <div
             class="
               absolute bottom-2 right-[60px] sm:right-[72px]

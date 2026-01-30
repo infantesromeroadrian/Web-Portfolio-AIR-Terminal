@@ -22,6 +22,7 @@ export default function LoginPanel({ onLogin }: { onLogin: () => void }) {
    */
   const [userText, setUserText] = useState("");
   const [passText, setPassText] = useState("");
+  const [isAnimating, setIsAnimating] = useState(true);
 
   /**
    * Animación automática de escritura.
@@ -67,6 +68,7 @@ export default function LoginPanel({ onLogin }: { onLogin: () => void }) {
               clearInterval(passInterval);
 
               // Pequeña pausa antes de entrar a la terminal
+              setIsAnimating(false);
               setTimeout(() => {
                 onLogin();
               }, 400);
@@ -185,14 +187,21 @@ export default function LoginPanel({ onLogin }: { onLogin: () => void }) {
             />
           </div>
 
-          {/* Botón para iniciar sesión manualmente */}
+          {/* Botón para iniciar sesión / saltar animación */}
           <button
             type="button"
             onClick={onLogin}
             class="w-full bg-[var(--accent)] hover:bg-[var(--accent-soft)] text-black font-mono font-bold py-3 px-4 rounded border border-[var(--accent)] transition-all duration-200 glow-accent btn-press focus-ring"
           >
-            [INICIAR SESIÓN]
+            {isAnimating ? "[SKIP →]" : "[INICIAR SESIÓN]"}
           </button>
+
+          {/* Indicador de skip durante la animación */}
+          {isAnimating && (
+            <p class="text-center text-gray-500 text-xs font-mono mt-3 animate-pulse">
+              Pulsa el botón o espera a que termine...
+            </p>
+          )}
         </form>
       </div>
     </div>

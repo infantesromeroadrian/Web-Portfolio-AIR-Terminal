@@ -68,7 +68,7 @@ Pregúntame sobre:
   return (
     <div
       class="
-        fixed bottom-24 right-4 sm:right-6 z-50
+        fixed bottom-36 sm:bottom-24 right-4 sm:right-6 z-50
         w-[calc(100vw-2rem)] sm:w-96 max-w-[384px]
         h-[min(520px,calc(100vh-8rem))]
         glass-panel rounded-lg

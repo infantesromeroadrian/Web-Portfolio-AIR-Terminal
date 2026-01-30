@@ -26,7 +26,7 @@ export default function Footer() {
      *  - backdrop-blur-sm → efecto de cristal oscuro
      *  - mt-10 → separación visual respecto al contenido superior
      */
-    <footer class="w-full bg-black/80 border-t border-blue-600/50 backdrop-blur-sm mt-10 py-6">
+    <footer class="w-full bg-black/80 border-t border-blue-600/50 backdrop-blur-sm mt-10 py-6 pb-20 sm:pb-6">
       <div class="max-w-6xl mx-auto text-center font-mono space-y-2 px-4">
         {/**
          * Línea principal del footer — nombre y rol con hierarchy.

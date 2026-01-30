@@ -23,6 +23,32 @@ import { useKeySound } from "../../core/hooks/useKeySound";
 // Type assertion para el JSON de ASCII
 const asciiData = ascii as AsciiData;
 
+/**
+ * Quick actions — comandos rápidos clicables bajo el prompt.
+ * Mejora UX para usuarios que no quieren escribir.
+ */
+/**
+ * Quick actions — comandos rápidos clicables bajo el prompt.
+ */
+const QUICK_ACTIONS = [
+  { label: "whoami", command: "whoami" },
+  { label: "proyectos", command: "ls projects/" },
+  { label: "skills", command: "cat skills.txt" },
+  { label: "contacto", command: "cat contact.txt" },
+  { label: "help", command: "help" },
+];
+
+/**
+ * Easter egg hints — se muestran después de X comandos ejecutados.
+ */
+const EASTER_EGG_HINTS = [
+  { threshold: 3, hint: "💡 Prueba: hack", command: "hack" },
+  { threshold: 5, hint: "🗺️ Prueba: threat-map", command: "threat-map" },
+  { threshold: 7, hint: "🔍 Prueba: nmap localhost", command: "nmap localhost" },
+  { threshold: 10, hint: "🎯 Prueba: demo", command: "demo" },
+  { threshold: 12, hint: "🔓 Prueba: sudo rm -rf /", command: "sudo rm -rf /" },
+];
+
 export default function TerminalBody({ terminal }: { terminal: TerminalState }) {
   /**
    * Hook reactivo para tamaño de ventana.
@@ -261,7 +287,8 @@ export default function TerminalBody({ terminal }: { terminal: TerminalState }) 
               autocomplete="off"
               autocapitalize="off"
               aria-label="Comando de terminal"
-              class="ml-2 flex-1 bg-transparent border-none outline-none text-[var(--white-soft)] font-mono text-sm caret-transparent"
+              placeholder={!terminal.hasInteracted ? "" : "Escribe un comando..."}
+              class="ml-2 flex-1 bg-transparent border-none outline-none text-[var(--white-soft)] font-mono text-sm caret-transparent placeholder-gray-600"
               style="caret-color: transparent"
               onInput={(e) => {
                 setInputValue((e.target as HTMLInputElement).value);
@@ -274,6 +301,42 @@ export default function TerminalBody({ terminal }: { terminal: TerminalState }) 
             {/* Cursor parpadeante real */}
             <span class="terminal-cursor" aria-hidden="true"></span>
           </div>
+
+          {/* Quick Actions — chips clicables para comandos rápidos */}
+          <div class="mt-3 flex flex-wrap gap-2">
+            <span class="text-gray-500 text-xs mr-1">Quick:</span>
+            {QUICK_ACTIONS.map((action) => (
+              <button
+                key={action.command}
+                onClick={() => {
+                  terminal.executeUserCommand(action.command);
+                }}
+                class="px-2 py-1 text-xs bg-gray-800/50 border border-gray-700 rounded hover:bg-blue-900/40 hover:border-blue-600/50 text-[var(--accent-soft)] transition-all focus-ring"
+              >
+                {action.label}
+              </button>
+            ))}
+          </div>
+
+          {/* Easter Egg Hint — aparece después de X comandos */}
+          {(() => {
+            const cmdCount = terminal.commandHistory.length;
+            const hint = EASTER_EGG_HINTS.find((h) => cmdCount === h.threshold);
+            if (!hint) return null;
+            return (
+              <div class="mt-3 flex items-center gap-2 animate-slide-up">
+                <span class="text-xs text-yellow-500/80">{hint.hint}</span>
+                <button
+                  onClick={() => {
+                    terminal.executeUserCommand(hint.command);
+                  }}
+                  class="px-2 py-0.5 text-xs bg-yellow-900/30 border border-yellow-600/50 rounded hover:bg-yellow-800/40 text-yellow-400 transition-all focus-ring"
+                >
+                  Ejecutar
+                </button>
+              </div>
+            );
+          })()}
         </div>
       )}
     </div>

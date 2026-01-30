@@ -16,6 +16,7 @@ import { useState } from "preact/hooks";
 import PageHeader from "./components/layout/PageHeader";
 import SideMenu from "./components/layout/SideMenu";
 import Footer from "./components/layout/Footer";
+import MobileBottomBar from "./components/layout/MobileBottomBar";
 import Terminal from "./components/terminal/Terminal";
 import LoginPanel from "./components/login/LoginPanel";
 import MatrixBackground from "./components/background/MatrixBackground";
@@ -112,6 +113,9 @@ export function App() {
         {/* Footer fijo al final en modo terminal */}
         {stage === "terminal" && <Footer />}
       </div>
+
+      {/* Barra inferior móvil — solo visible en modo terminal y pantallas pequeñas */}
+      {stage === "terminal" && <MobileBottomBar runCommand={terminal.runCommand} />}
     </div>
   );
 }
