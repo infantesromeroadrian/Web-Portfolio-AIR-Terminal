@@ -1,4 +1,36 @@
 {
+  "hospital": {
+    "nombre": "LangGraph Medical Center",
+    "archivo": "hospital.txt",
+    "descripcion": "Sistema de agentes médicos especializados con orquestación paralela",
+    "score": "8 agentes",
+    "estado": "Production-Ready",
+    "github": "https://github.com/infantesromeroadrian/LangGraph-Agents-HospitalCenter",
+    "detalles": [
+      "8 especialistas médicos evaluando en paralelo (Cardiología, Neurología, etc.)",
+      "Triaje automático + consenso para selección de especialista",
+      "Memoria persistente con PostgreSQL + checkpointing LangGraph",
+      "WebSocket streaming en tiempo real + visualización D3.js",
+      "Tiempos: triaje <2s, evaluación paralela <3s, respuesta <2s"
+    ],
+    "stack": ["LangGraph", "GPT-4", "PostgreSQL", "Flask", "WebSocket", "Docker"]
+  },
+  "bankfraud": {
+    "nombre": "Bank Fraud Detector",
+    "archivo": "bankfraud.txt",
+    "descripcion": "Herramienta de predicción de fraude bancario con Regresión Logística",
+    "score": "Umbral 0.91",
+    "estado": "Production-Ready",
+    "github": "https://github.com/infantesromeroadrian/AI-Security-Bank-Fraud",
+    "detalles": [
+      "Flujo completo: preprocesamiento → predicción → umbral óptimo",
+      "StandardScaler + Logistic Regression con umbral calibrado (0.9154)",
+      "Visualizaciones: matriz confusión, curva ROC, importancia features",
+      "API REST + Dashboard web interactivo paso a paso",
+      "Métricas: accuracy, precision, recall, F1, ROC-AUC"
+    ],
+    "stack": ["Scikit-learn", "Pandas", "Flask", "Matplotlib", "Gunicorn", "Docker"]
+  },
   "watchdogs": {
     "nombre": "WatchDogs OSINT",
     "archivo": "watchdogs.txt",

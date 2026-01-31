@@ -91,6 +91,8 @@ export const AVAILABLE_COMMANDS: string[] = [
   "all",
   // Proyectos específicos
   "ls proyectos",
+  "cat proyectos/hospital.txt",
+  "cat proyectos/bankfraud.txt",
   "cat proyectos/watchdogs.txt",
   "cat proyectos/threatintel.txt",
   "cat proyectos/siem.txt",
@@ -204,6 +206,12 @@ const COMMAND_MAP: Record<string, CommandHandler> = {
   // Proyectos
   "ls proyectos": ({ print }) => {
     print(formatLsProjects(proyectos));
+  },
+  "cat proyectos/hospital.txt": ({ print }) => {
+    print(formatProjectDetail(proyectos.hospital));
+  },
+  "cat proyectos/bankfraud.txt": ({ print }) => {
+    print(formatProjectDetail(proyectos.bankfraud));
   },
   "cat proyectos/watchdogs.txt": ({ print }) => {
     print(formatProjectDetail(proyectos.watchdogs));
