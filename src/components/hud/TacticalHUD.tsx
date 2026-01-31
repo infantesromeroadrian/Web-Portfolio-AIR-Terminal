@@ -340,28 +340,28 @@ export default function TacticalHUD() {
       <TargetingCorner position="bl" />
       <TargetingCorner position="br" />
 
-      {/* Top-left: Radar */}
-      <div class="absolute top-4 left-4 hidden lg:block">
+      {/* Top-left: Radar — debajo del header (top-20 = 80px) */}
+      <div class="absolute top-20 left-4 hidden lg:block">
         <RadarScanner />
       </div>
 
-      {/* Top-right: Contadores */}
-      <div class="absolute top-4 right-4 hidden lg:block">
+      {/* Top-right: Contadores — debajo del header */}
+      <div class="absolute top-20 right-4 hidden lg:block">
         <LiveCounters />
       </div>
 
-      {/* Bottom-left: Coordenadas */}
-      <div class="absolute bottom-28 left-4 hidden lg:block">
+      {/* Bottom-left: Coordenadas — encima del footer */}
+      <div class="absolute bottom-36 left-4 hidden lg:block">
         <CoordinatesDisplay />
       </div>
 
-      {/* Bottom-right: Status bars */}
-      <div class="absolute bottom-28 right-4 hidden lg:block">
+      {/* Bottom-right: Status bars — encima del footer */}
+      <div class="absolute bottom-36 right-4 hidden lg:block">
         <StatusBars />
       </div>
 
-      {/* Mobile: Mini status en top */}
-      <div class="lg:hidden absolute top-2 right-2 flex items-center gap-3 text-[10px] font-mono">
+      {/* Mobile: Mini status en top — debajo del header */}
+      <div class="lg:hidden absolute top-16 right-2 flex items-center gap-3 text-[10px] font-mono">
         <span class="text-green-400">● SYS OK</span>
         <span class="text-cyan-400/70 tabular-nums">
           {new Date().toLocaleTimeString("en-US", { hour12: false })}
