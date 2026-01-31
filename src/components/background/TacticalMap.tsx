@@ -285,9 +285,6 @@ export default function TacticalMap() {
     // Arc animation progress (0→1, loops)
     const arcProgress = ARCS.map(() => Math.random());
 
-    // Radar angle
-    let radarAngle = 0;
-
     function resize() {
       w = cvs.width = window.innerWidth;
       h = cvs.height = window.innerHeight;
@@ -434,47 +431,22 @@ export default function TacticalMap() {
       }
     }
 
-    function drawRadar(time: number) {
+    function drawMadridPulse(time: number) {
       const [cx, cy] = project(-3.7, 40.4, w, h); // Madrid
-      const radius = 60;
+      const pulse = Math.sin(time / 400) * 0.5 + 0.5;
 
-      radarAngle = (time / 2000) * Math.PI * 2;
-
-      // Sweep
-      // Conical gradient not widely supported — use line + arc sweep instead
-      void 0;
-
-      // Fallback: draw a sweeping line
-      const endX = cx + Math.cos(radarAngle) * radius;
-      const endY = cy + Math.sin(radarAngle) * radius;
-
-      ctx.beginPath();
-      ctx.moveTo(cx, cy);
-      ctx.lineTo(endX, endY);
-      ctx.strokeStyle = "rgba(34, 211, 238, 0.5)";
-      ctx.lineWidth = 1;
-      ctx.stroke();
-
-      // Fading trail (arc)
-      ctx.beginPath();
-      ctx.arc(cx, cy, radius, radarAngle - 0.5, radarAngle);
-      ctx.strokeStyle = "rgba(34, 211, 238, 0.2)";
-      ctx.lineWidth = 1;
-      ctx.stroke();
-
-      // Outer circle
+      // Punto pulsante celeste
+      const radius = 4 + pulse * 3;
       ctx.beginPath();
       ctx.arc(cx, cy, radius, 0, Math.PI * 2);
-      ctx.strokeStyle = "rgba(34, 211, 238, 0.15)";
-      ctx.lineWidth = 0.5;
-      ctx.stroke();
+      ctx.fillStyle = `rgba(34, 211, 238, ${0.6 + pulse * 0.4})`;
+      ctx.fill();
 
-      // Inner circle
+      // Glow exterior
       ctx.beginPath();
-      ctx.arc(cx, cy, radius / 2, 0, Math.PI * 2);
-      ctx.strokeStyle = "rgba(34, 211, 238, 0.1)";
-      ctx.lineWidth = 0.5;
-      ctx.stroke();
+      ctx.arc(cx, cy, radius + 8, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(34, 211, 238, ${0.1 + pulse * 0.1})`;
+      ctx.fill();
     }
 
     function drawHUD(time: number) {
@@ -510,7 +482,7 @@ export default function TacticalMap() {
       drawWorldOutline();
       drawArcs(timestamp, dt);
       drawNodes(timestamp);
-      drawRadar(timestamp);
+      drawMadridPulse(timestamp);
       drawHUD(timestamp);
     }
 
