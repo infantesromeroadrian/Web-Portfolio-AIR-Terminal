@@ -2,7 +2,7 @@
  * Panel de login inicial - Con personaje animado caminando.
  *
  * Este componente muestra:
- *  - Personaje caminando (GIF animado)
+ *  - Personaje caminando (video WebM/MP4 - optimizado de 5.7MB GIF a ~300KB)
  *  - Nombre y rol
  *  - Botón para entrar a la terminal
  *
@@ -46,15 +46,20 @@ export default function LoginPanel({ onLogin }: { onLogin: () => void }) {
           }}
         />
 
-        {/* GIF del personaje */}
-        <img
-          src={`${import.meta.env.BASE_URL}character-walk.gif`}
-          alt="Adrian Infantes - AI Security Architect"
+        {/* Video del personaje (WebM + MP4 fallback) */}
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
           class="relative w-64 h-auto sm:w-80 md:w-96 max-w-full"
           style={{
             filter: "drop-shadow(0 0 40px rgba(255, 77, 77, 0.3))",
           }}
-        />
+        >
+          <source src={`${import.meta.env.BASE_URL}character-walk.webm`} type="video/webm" />
+          <source src={`${import.meta.env.BASE_URL}character-walk.mp4`} type="video/mp4" />
+        </video>
       </div>
 
       {/* Contenido que aparece */}
