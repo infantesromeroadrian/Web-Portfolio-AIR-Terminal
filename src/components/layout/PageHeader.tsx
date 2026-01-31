@@ -1,69 +1,89 @@
 /**
- * Header principal de la aplicación en modo terminal.
+ * Header principal - Rediseño con logo y estilo premium.
  *
- * Este componente cumple varias funciones clave:
- *  - Mostrar la identidad visual del portfolio (logo estilo hacker)
- *  - Ofrecer navegación rápida mediante comandos predefinidos
- *  - Gestionar el menú lateral en dispositivos móviles
+ * Este componente:
+ *  - Muestra identidad visual con logo SVG distintivo
+ *  - Ofrece navegación rápida mediante comandos
+ *  - Gestiona el menú lateral en móviles
  *
- * Importante:
- *  - Este componente NO ejecuta lógica de negocio.
- *  - Solo delega en runCommand(), que proviene de useTerminal().
- *  - Mantiene la UI desacoplada de la lógica interna (SRP - SOLID).
- *
- * Diseño:
- *  - Mobile-first: en pantallas pequeñas se oculta el menú central
- *  - Desktop: se muestra navegación completa
- *  - Botón hamburguesa siempre visible para UX consistente
+ * Diseño: Glassmorphism, tipografía display, transiciones suaves.
  */
 
 import { NAV_ITEMS } from "../../core/navItems";
+
+/**
+ * Logo SVG distintivo - Shield con AI
+ */
+function LogoIcon() {
+  return (
+    <svg
+      viewBox="0 0 40 40"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      class="w-8 h-8 sm:w-9 sm:h-9"
+    >
+      {/* Shield base */}
+      <path
+        d="M20 2L4 8v12c0 10 16 18 16 18s16-8 16-18V8L20 2z"
+        fill="url(#shield-gradient)"
+        stroke="var(--coral-bright)"
+        stroke-width="1.5"
+      />
+      {/* AI text */}
+      <text
+        x="20"
+        y="24"
+        text-anchor="middle"
+        fill="white"
+        font-family="var(--font-display)"
+        font-size="12"
+        font-weight="700"
+      >
+        AI
+      </text>
+      {/* Glow effect */}
+      <defs>
+        <linearGradient id="shield-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="var(--coral-bright)" stop-opacity="0.9" />
+          <stop offset="100%" stop-color="var(--coral-dark)" stop-opacity="0.9" />
+        </linearGradient>
+      </defs>
+    </svg>
+  );
+}
 
 export default function PageHeader({
   onMenuToggle,
   runCommand,
 }: {
-  onMenuToggle: () => void; // Abre el menú lateral (solo UI)
-  runCommand: (cmd: string) => Promise<void>; // Ejecuta comandos en la terminal
+  onMenuToggle: () => void;
+  runCommand: (cmd: string) => Promise<void>;
 }) {
   return (
-    /**
-     * Header fijo en la parte superior.
-     *
-     * - bg-black/80 + backdrop-blur-sm → efecto de cristal oscuro
-     * - border-blue-600 → coherencia con estética Blue Cyber / AI Security
-     * - fixed + z-50 → siempre visible por encima del contenido
-     */
-    <header class="w-full bg-black/80 border-b border-blue-600 backdrop-blur-sm fixed top-0 left-0 z-50">
-      <nav class="max-w-7xl mx-auto px-6 py-4 flex items-center" aria-label="Navegación principal">
-        {/**
-         * LOGO (columna izquierda)
-         *
-         * Representa la identidad del portfolio.
-         * Se usa tipografía monoespaciada y colores azules para mantener
-         * coherencia visual con el resto de la interfaz.
-         */}
-        <div class="flex-shrink-0">
-          <div class="text-[var(--accent)] font-mono font-bold text-lg">
-            <span class="text-[var(--accent-soft)] mr-2">&gt;</span>AIR_SECURITY
+    <header class="w-full glass-panel border-b border-[var(--border-subtle)] fixed top-0 left-0 z-50">
+      <nav
+        class="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex items-center"
+        aria-label="Navegación principal"
+      >
+        {/* Logo y nombre */}
+        <div class="flex items-center gap-3 flex-shrink-0">
+          <LogoIcon />
+          <div class="hidden sm:block">
+            <span class="font-display font-semibold text-lg text-[var(--text-primary)]">
+              Adrian
+            </span>
+            <span class="font-display font-semibold text-lg text-[var(--coral-bright)] ml-1">
+              Infantes
+            </span>
           </div>
         </div>
 
-        {/**
-         * MENÚ CENTRAL (solo visible en pantallas grandes)
-         *
-         * Cada botón ejecuta un comando en la terminal.
-         * Esto permite navegar por el portfolio sin escribir manualmente.
-         *
-         * Decisión de diseño:
-         *  - Se usa runCommand() directamente para mantener la UI simple.
-         *  - No se usa router ni lógica adicional.
-         */}
-        <div class="hidden lg:flex flex-1 justify-center space-x-6 font-mono text-sm">
+        {/* Menú central (desktop) */}
+        <div class="hidden lg:flex flex-1 justify-center gap-1">
           {NAV_ITEMS.map((item) => (
             <button
               key={item.command}
-              class="nav-btn focus-ring rounded px-2 py-1"
+              class="px-4 py-2 rounded-lg font-mono text-sm text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--coral-bright)]/10 transition-all duration-300 focus-ring"
               onClick={() => void runCommand(item.command)}
             >
               {item.label}
@@ -71,25 +91,23 @@ export default function PageHeader({
           ))}
         </div>
 
-        {/**
-         * COLUMNA DERECHA
-         *
-         * Contiene:
-         *  - Botón hamburguesa (siempre visible)
-         *
-         * Decisión de diseño:
-         *  - El botón hamburguesa se mantiene visible incluso en desktop
-         *    para mantener consistencia visual y accesibilidad.
-         */}
-        <div class="flex items-center space-x-4 ml-auto flex-shrink-0">
+        {/* Columna derecha */}
+        <div class="flex items-center gap-3 ml-auto flex-shrink-0">
+          {/* Badge de status */}
+          <div class="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-full bg-[var(--bg-elevated)] border border-[var(--border-subtle)]">
+            <span class="w-2 h-2 rounded-full bg-[var(--cyan-bright)] animate-pulse"></span>
+            <span class="text-xs font-mono text-[var(--text-muted)]">Online</span>
+          </div>
+
+          {/* Botón hamburguesa */}
           <button
-            class="flex flex-col space-y-1.5 p-2 rounded focus-ring group transition-all"
+            class="flex flex-col gap-1.5 p-2.5 rounded-lg hover:bg-[var(--coral-bright)]/10 focus-ring group transition-all duration-300"
             onClick={onMenuToggle}
             aria-label="Abrir menú de navegación"
           >
-            <span class="block w-6 h-[2px] bg-[var(--accent-soft)] transition-all group-hover:bg-[var(--white-soft)] group-hover:w-7"></span>
-            <span class="block w-6 h-[2px] bg-[var(--accent-soft)] transition-all group-hover:bg-[var(--white-soft)]"></span>
-            <span class="block w-6 h-[2px] bg-[var(--accent-soft)] transition-all group-hover:bg-[var(--white-soft)] group-hover:w-5"></span>
+            <span class="block w-5 h-0.5 bg-[var(--text-secondary)] transition-all duration-300 group-hover:bg-[var(--coral-bright)] group-hover:w-6"></span>
+            <span class="block w-5 h-0.5 bg-[var(--text-secondary)] transition-all duration-300 group-hover:bg-[var(--coral-bright)]"></span>
+            <span class="block w-5 h-0.5 bg-[var(--text-secondary)] transition-all duration-300 group-hover:bg-[var(--coral-bright)] group-hover:w-4"></span>
           </button>
         </div>
       </nav>

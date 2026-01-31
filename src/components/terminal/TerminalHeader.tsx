@@ -1,15 +1,10 @@
 /**
- * Barra superior de la terminal.
+ * Barra superior de la terminal - Estilo premium.
  *
- * Este componente replica la estética clásica de una ventana de terminal:
- *  - Botones estilo macOS (cerrar, minimizar, maximizar)
- *  - Título centrado con el prompt root@portfolio
- *  - Toggle de sonido de teclado
- *  - Versión de la terminal alineada a la derecha
- *
- * Responsabilidad:
- *  - Es puramente visual + toggle de sonido
- *  - No contiene lógica de negocio
+ * Este componente replica la estética de una ventana moderna:
+ *  - Botones estilo macOS con hover effects
+ *  - Título centrado con estilo coral
+ *  - Toggle de sonido
  */
 
 import { useKeySound } from "../../core/hooks/useKeySound";
@@ -18,18 +13,21 @@ export default function TerminalHeader() {
   const { soundEnabled, toggleSound } = useKeySound();
 
   return (
-    <div class="bg-black border-b border-blue-600">
-      <div class="grid grid-cols-3 items-center px-4 py-2">
-        {/* COLUMNA IZQUIERDA — Botones estilo macOS (rojo-amarillo-verde) */}
+    <div class="bg-[var(--bg-elevated)]/50 border-b border-[var(--border-subtle)]">
+      <div class="grid grid-cols-3 items-center px-4 py-3">
+        {/* COLUMNA IZQUIERDA — Botones macOS */}
         <div class="flex space-x-2" aria-hidden="true">
-          <div class="w-3 h-3 rounded-full bg-[var(--macos-red)] shadow-[0_0_4px_var(--macos-red)]"></div>
-          <div class="w-3 h-3 rounded-full bg-[var(--macos-yellow)] shadow-[0_0_4px_var(--macos-yellow)]"></div>
-          <div class="w-3 h-3 rounded-full bg-[var(--macos-green)] shadow-[0_0_4px_var(--macos-green)]"></div>
+          <div class="w-3 h-3 rounded-full bg-[var(--macos-red)] shadow-[0_0_6px_var(--macos-red)] hover:scale-110 transition-transform cursor-pointer"></div>
+          <div class="w-3 h-3 rounded-full bg-[var(--macos-yellow)] shadow-[0_0_6px_var(--macos-yellow)] hover:scale-110 transition-transform cursor-pointer"></div>
+          <div class="w-3 h-3 rounded-full bg-[var(--macos-green)] shadow-[0_0_6px_var(--macos-green)] hover:scale-110 transition-transform cursor-pointer"></div>
         </div>
 
-        {/* COLUMNA CENTRAL — Título de la terminal */}
-        <div class="flex justify-center">
-          <span class="text-[var(--accent)] font-mono text-sm">root@portfolio:~#</span>
+        {/* COLUMNA CENTRAL — Título */}
+        <div class="flex justify-center items-center gap-2">
+          <span class="w-2 h-2 rounded-full bg-[var(--coral-bright)] animate-pulse"></span>
+          <span class="text-[var(--text-secondary)] font-mono text-sm">
+            air<span class="text-[var(--coral-bright)]">@</span>security
+          </span>
         </div>
 
         {/* COLUMNA DERECHA — Toggle sonido + Versión */}
@@ -38,16 +36,14 @@ export default function TerminalHeader() {
             onClick={() => {
               toggleSound();
             }}
-            class="text-xs font-mono transition-all duration-200 hover:text-[var(--white-soft)] focus-ring rounded px-1"
-            style={{ color: soundEnabled ? "#3b82f6" : "#555" }}
+            class="text-xs font-mono transition-all duration-300 hover:text-[var(--coral-bright)] focus-ring rounded px-2 py-1"
+            style={{ color: soundEnabled ? "var(--cyan-bright)" : "var(--text-muted)" }}
             title={soundEnabled ? "Sonido: ON" : "Sonido: OFF"}
             aria-label={soundEnabled ? "Desactivar sonido" : "Activar sonido"}
           >
             {soundEnabled ? "♪ ON" : "♪ OFF"}
           </button>
-          <span class="text-gray-500 font-mono text-xs sm:text-sm hidden sm:inline">
-            Terminal V2.0
-          </span>
+          <span class="text-[var(--text-muted)] font-mono text-xs hidden sm:inline">v2.1</span>
         </div>
       </div>
     </div>

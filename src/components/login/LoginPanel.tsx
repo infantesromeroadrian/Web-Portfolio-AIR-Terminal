@@ -1,43 +1,20 @@
 /**
- * Panel de login inicial.
+ * Panel de login inicial - Rediseño estilo OpenClaw.
  *
  * Este componente simula un proceso de autenticación estilo terminal:
  *  - Escribe automáticamente un usuario y contraseña ficticios
  *  - Tras completar la animación, llama a onLogin() para entrar en la terminal
  *
- * Importante:
- *  - No valida credenciales reales (no es un login funcional)
- *  - No contiene lógica de negocio
- *  - Su única responsabilidad es la animación y la transición visual
- *
- * Esto sigue el principio SRP (Single Responsibility Principle - SOLID).
+ * Diseño: Tipografía premium, gradientes coral/cyan, glassmorphism moderno.
  */
 
 import { useEffect, useState } from "preact/hooks";
 
 export default function LoginPanel({ onLogin }: { onLogin: () => void }) {
-  /**
-   * Estados locales que almacenan el texto animado.
-   * Se actualizan carácter por carácter para simular escritura humana.
-   */
   const [userText, setUserText] = useState("");
   const [passText, setPassText] = useState("");
   const [isAnimating, setIsAnimating] = useState(true);
 
-  /**
-   * Animación automática de escritura.
-   *
-   * Flujo:
-   *  1. Espera inicial para dar sensación de carga
-   *  2. Escribe "air" carácter por carácter
-   *  3. Escribe "**************" como contraseña
-   *  4. Tras terminar, ejecuta onLogin() con un pequeño delay
-   *
-   * Decisiones de diseño:
-   *  - La animación crea una experiencia inmersiva estilo hacker
-   *  - Los intervalos se limpian correctamente para evitar fugas de memoria
-   *  - Los inputs son readOnly para reforzar que no es un login real
-   */
   useEffect(() => {
     const user = "air";
     const pass = "**************";
@@ -45,11 +22,9 @@ export default function LoginPanel({ onLogin }: { onLogin: () => void }) {
     let userInterval: number | undefined;
     let passInterval: number | undefined;
 
-    // Pequeña pausa inicial para mejorar la experiencia visual
     const timeout = setTimeout(() => {
       let i = 0;
 
-      // Animación del usuario
       userInterval = setInterval(() => {
         setUserText(user.slice(0, i));
         i++;
@@ -59,15 +34,12 @@ export default function LoginPanel({ onLogin }: { onLogin: () => void }) {
 
           let j = 0;
 
-          // Animación de la contraseña
           passInterval = setInterval(() => {
             setPassText(pass.slice(0, j));
             j++;
 
             if (j > pass.length) {
               clearInterval(passInterval);
-
-              // Pequeña pausa antes de entrar a la terminal
               setIsAnimating(false);
               setTimeout(() => {
                 onLogin();
@@ -78,131 +50,139 @@ export default function LoginPanel({ onLogin }: { onLogin: () => void }) {
       }, 80);
     }, 500);
 
-    /**
-     * Limpieza de timers.
-     * Esto evita fugas de memoria si el componente se desmonta
-     * antes de que la animación termine.
-     */
     return () => {
       clearTimeout(timeout);
       clearInterval(userInterval);
       clearInterval(passInterval);
     };
-    // onLogin es estable (viene del padre), no necesita incluirse
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
-    <div class="w-full max-w-md relative z-10">
-      {/**
-       * HEADER DEL PANEL
-       *
-       * Replica la estética de una ventana de terminal:
-       *  - Botones estilo macOS
-       *  - Prompt root@portfolio
-       *  - Bordes azules para mantener coherencia con el tema Blue Cyber / AI Security
-       */}
-      <div class="bg-black/90 border-2 border-blue-600 rounded-t-lg p-3 flex items-center space-x-2 border-top-accent backdrop-blur-sm">
-        <div class="flex space-x-2">
-          <div class="w-3 h-3 rounded-full bg-[var(--macos-red)] shadow-[0_0_4px_var(--macos-red)]"></div>
-          <div class="w-3 h-3 rounded-full bg-[var(--macos-yellow)] shadow-[0_0_4px_var(--macos-yellow)]"></div>
-          <div class="w-3 h-3 rounded-full bg-[var(--macos-green)] shadow-[0_0_4px_var(--macos-green)]"></div>
-        </div>
-
-        <span class="text-[var(--accent)] font-mono text-sm flex-1 text-center">
-          root@portfolio:~$
-        </span>
-      </div>
-
-      {/**
-       * CUERPO DEL PANEL
-       *
-       * Contiene:
-       *  - Título del portfolio
-       *  - Inputs animados de usuario y contraseña
-       *  - Botón para saltar la animación manualmente
-       *
-       * Decisión de diseño:
-       *  - Los inputs son readOnly porque la animación es automática
-       *  - El botón permite a usuarios impacientes avanzar rápido
-       */}
-      <div class="glass-panel border-2 border-t-0 border-blue-600 rounded-b-lg p-8 shadow-xl shadow-blue-600/30">
-        {/* Logo con efecto glitch */}
-        <div class="flex justify-center mb-6">
-          <div class="relative glitch-container scanlines w-32 h-32">
-            <img
-              src={`${import.meta.env.BASE_URL}favicon.png`}
-              alt="AIR Security Logo"
-              class="w-32 h-32 rounded-lg border border-blue-600/30"
-              style="filter: drop-shadow(0 0 20px rgba(37, 99, 235, 0.4));"
-            />
+    <div class="w-full max-w-lg px-4 relative z-10 animate-slide-up">
+      {/* Card principal con glassmorphism */}
+      <div class="glass-panel rounded-2xl overflow-hidden border-top-gradient">
+        {/* Header con botones macOS */}
+        <div class="bg-[var(--bg-elevated)]/50 px-6 py-4 flex items-center border-b border-[var(--border-subtle)]">
+          <div class="flex space-x-2">
+            <div class="w-3 h-3 rounded-full bg-[var(--macos-red)] shadow-[0_0_6px_var(--macos-red)] transition-transform hover:scale-110"></div>
+            <div class="w-3 h-3 rounded-full bg-[var(--macos-yellow)] shadow-[0_0_6px_var(--macos-yellow)] transition-transform hover:scale-110"></div>
+            <div class="w-3 h-3 rounded-full bg-[var(--macos-green)] shadow-[0_0_6px_var(--macos-green)] transition-transform hover:scale-110"></div>
           </div>
+          <span class="flex-1 text-center text-[var(--text-muted)] font-mono text-sm">
+            secure_access.sh
+          </span>
         </div>
 
-        {/* Título y subtítulo */}
-        <div class="mb-8 text-center">
-          <h1 class="text-3xl font-mono font-bold text-[var(--accent)] mb-2">
-            AI SECURITY ARCHITECT
-          </h1>
+        {/* Contenido principal */}
+        <div class="p-8 sm:p-10">
+          {/* Logo con efecto glow */}
+          <div class="flex justify-center mb-8">
+            <div class="relative">
+              <div class="absolute inset-0 bg-gradient-to-r from-[var(--coral-bright)] to-[var(--cyan-bright)] rounded-2xl blur-xl opacity-30 animate-pulse-soft"></div>
+              <img
+                src={`${import.meta.env.BASE_URL}favicon.png`}
+                alt="AIR Security Logo"
+                class="relative w-24 h-24 sm:w-28 sm:h-28 rounded-2xl border border-[var(--border-subtle)]"
+                style="filter: drop-shadow(0 0 30px rgba(255, 77, 77, 0.3));"
+              />
+            </div>
+          </div>
 
-          <p class="text-[var(--gray-terminal)] font-mono text-sm">
-            <span class="text-[var(--accent-soft)]">[-]</span> Acceso restringido - Autenticación
-            requerida
+          {/* Título con tipografía display */}
+          <div class="mb-8 text-center">
+            <h1 class="font-display text-3xl sm:text-4xl font-bold mb-3">
+              <span class="text-gradient">Adrian Infantes</span>
+            </h1>
+            <p class="text-[var(--text-secondary)] text-base sm:text-lg">AI Security Architect</p>
+            <div class="flex items-center justify-center gap-2 mt-4">
+              <span class="badge badge-coral">LLM Security</span>
+              <span class="badge badge-cyan">Blue Team</span>
+            </div>
+          </div>
+
+          {/* Tagline estilo OpenClaw */}
+          <p class="text-center text-[var(--text-muted)] mb-8 font-mono text-sm">
+            <span class="text-[var(--coral-bright)]">→</span> Protecting AI systems from emerging
+            threats
+          </p>
+
+          {/* Formulario visual */}
+          <form
+            class="space-y-5"
+            onSubmit={(e) => {
+              e.preventDefault();
+              onLogin();
+            }}
+          >
+            {/* Usuario */}
+            <div class="space-y-2">
+              <label class="block text-[var(--text-secondary)] font-mono text-sm">
+                <span class="text-[var(--coral-bright)]">$</span> user
+              </label>
+              <input
+                type="text"
+                class="w-full bg-[var(--bg-deep)] border border-[var(--border-subtle)] rounded-lg px-4 py-3.5 text-[var(--text-primary)] font-mono focus:outline-none focus:border-[var(--coral-bright)] focus:ring-2 focus:ring-[var(--coral-bright)]/20 transition-all duration-300"
+                value={userText}
+                readOnly
+                placeholder="authenticating..."
+              />
+            </div>
+
+            {/* Contraseña */}
+            <div class="space-y-2">
+              <label class="block text-[var(--text-secondary)] font-mono text-sm">
+                <span class="text-[var(--coral-bright)]">$</span> password
+              </label>
+              <input
+                type="password"
+                class="w-full bg-[var(--bg-deep)] border border-[var(--border-subtle)] rounded-lg px-4 py-3.5 text-[var(--text-primary)] font-mono focus:outline-none focus:border-[var(--coral-bright)] focus:ring-2 focus:ring-[var(--coral-bright)]/20 transition-all duration-300"
+                value={passText}
+                readOnly
+                placeholder="••••••••••••"
+              />
+            </div>
+
+            {/* Botón principal con gradiente */}
+            <button
+              type="button"
+              onClick={onLogin}
+              class="w-full mt-6 py-4 px-6 rounded-xl font-display font-semibold text-base transition-all duration-300 btn-press focus-ring"
+              style={{
+                background:
+                  "linear-gradient(135deg, var(--coral-bright) 0%, var(--coral-mid) 100%)",
+                color: "white",
+                boxShadow: "0 4px 20px rgba(255, 77, 77, 0.3)",
+              }}
+              onMouseEnter={(e) => {
+                (e.target as HTMLButtonElement).style.boxShadow =
+                  "0 6px 30px rgba(255, 77, 77, 0.5)";
+                (e.target as HTMLButtonElement).style.transform = "translateY(-2px)";
+              }}
+              onMouseLeave={(e) => {
+                (e.target as HTMLButtonElement).style.boxShadow =
+                  "0 4px 20px rgba(255, 77, 77, 0.3)";
+                (e.target as HTMLButtonElement).style.transform = "translateY(0)";
+              }}
+            >
+              {isAnimating ? "Skip Intro →" : "Enter Terminal →"}
+            </button>
+
+            {/* Indicador durante animación */}
+            {isAnimating && (
+              <p class="text-center text-[var(--text-muted)] text-xs font-mono mt-4 animate-pulse-soft">
+                Authenticating<span class="loading-dots"></span>
+              </p>
+            )}
+          </form>
+        </div>
+
+        {/* Footer del panel */}
+        <div class="px-8 py-4 bg-[var(--bg-elevated)]/30 border-t border-[var(--border-subtle)]">
+          <p class="text-center text-[var(--text-muted)] text-xs font-mono">
+            <span class="text-[var(--cyan-bright)]">●</span> Secure connection established
           </p>
         </div>
-
-        {/* Formulario visual (no funcional) */}
-        <form
-          class="space-y-6"
-          onSubmit={(e) => {
-            e.preventDefault();
-            onLogin();
-          }}
-        >
-          {/* Usuario */}
-          <div>
-            <label class="block text-[var(--gray-terminal)] font-mono text-sm mb-2">
-              <span class="text-[var(--accent-soft)]">&gt;</span> Usuario:
-            </label>
-
-            <input
-              type="text"
-              class="w-full bg-[#0a0a0a]/80 border border-gray-700 rounded px-4 py-3 text-[var(--white-soft)] font-mono focus:outline-none focus:border-[var(--accent)] focus:ring-1 focus:ring-[var(--accent)]/50 transition-all"
-              value={userText}
-              readOnly
-            />
-          </div>
-
-          {/* Contraseña */}
-          <div>
-            <label class="block text-[var(--gray-terminal)] font-mono text-sm mb-2">
-              <span class="text-[var(--accent-soft)]">&gt;</span> Contraseña:
-            </label>
-
-            <input
-              type="password"
-              class="w-full bg-[#0a0a0a]/80 border border-gray-700 rounded px-4 py-3 text-[var(--white-soft)] font-mono focus:outline-none focus:border-[var(--accent)] focus:ring-1 focus:ring-[var(--accent)]/50 transition-all"
-              value={passText}
-              readOnly
-            />
-          </div>
-
-          {/* Botón para iniciar sesión / saltar animación */}
-          <button
-            type="button"
-            onClick={onLogin}
-            class="w-full bg-[var(--accent)] hover:bg-[var(--accent-soft)] text-black font-mono font-bold py-3 px-4 rounded border border-[var(--accent)] transition-all duration-200 glow-accent btn-press focus-ring"
-          >
-            {isAnimating ? "[SKIP →]" : "[INICIAR SESIÓN]"}
-          </button>
-
-          {/* Indicador de skip durante la animación */}
-          {isAnimating && (
-            <p class="text-center text-gray-500 text-xs font-mono mt-3 animate-pulse">
-              Pulsa el botón o espera a que termine...
-            </p>
-          )}
-        </form>
       </div>
     </div>
   );

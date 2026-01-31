@@ -1,20 +1,37 @@
 /**
- * Variables globales de color.
+ * Variables globales - Paleta Blue Cyber + Coral Accent
  *
- * Paleta Blue Cyber / AI Security:
- *  - Azul eléctrico como acento principal
- *  - Cian para detalles y highlights
- *  - Fondo negro carbón para estética terminal
+ * Inspiración: OpenClaw.ai + Terminal táctico
+ * Tipografía: Clash Display (headings) + JetBrains Mono (terminal)
  */
 :root {
-  /* Colores principales */
-  --blue-accent: #2563eb; /* Azul eléctrico principal */
-  --blue-soft: #3b82f6; /* Azul suave para detalles */
-  --blue-dark: #1d4ed8; /* Azul oscuro para bordes */
-  --cyan-glow: #22d3ee; /* Cian para highlights/glitch */
-  --black-carbon: #0d0d0d; /* Negro carbón */
-  --gray-terminal: #cfcfcf; /* Gris terminal */
-  --white-soft: #f2f2f2; /* Blanco suave */
+  /* Fondos */
+  --bg-deep: #050810;
+  --bg-surface: #0a0f1a;
+  --bg-elevated: #111827;
+  --black-carbon: #0d0d0d;
+
+  /* Azules */
+  --blue-accent: #2563eb;
+  --blue-soft: #3b82f6;
+  --blue-dark: #1d4ed8;
+
+  /* Cyan */
+  --cyan-bright: #00e5cc;
+  --cyan-glow: #22d3ee;
+
+  /* Coral/Naranja - NUEVO acento cálido */
+  --coral-bright: #ff4d4d;
+  --coral-mid: #e63946;
+  --coral-dark: #991b1b;
+  --orange-accent: #ff6b35;
+
+  /* Textos */
+  --text-primary: #f0f4ff;
+  --text-secondary: #8892b0;
+  --text-muted: #5a6480;
+  --white-soft: #f2f2f2;
+  --gray-terminal: #cfcfcf;
 
   /* Colores botones macOS */
   --macos-red: #ff5f57;
@@ -30,17 +47,60 @@
   /* Aliases semánticos */
   --accent: var(--blue-accent);
   --accent-soft: var(--blue-soft);
+  --accent-warm: var(--coral-bright);
+
+  /* Tipografías */
+  --font-display: "Clash Display", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", "SF Mono", "Fira Code", monospace;
+  --font-body: "JetBrains Mono", system-ui, sans-serif;
 
   /* Timing functions */
   --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
   --ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+  /* Borders */
+  --border-subtle: rgba(136, 146, 176, 0.15);
+  --border-accent: rgba(255, 77, 77, 0.3);
 }
 
 /**
- * Fondo degradado para paneles importantes (ej: LoginPanel).
+ * Base styles
+ */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--bg-deep);
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background: var(--coral-bright);
+  color: var(--bg-deep);
+}
+
+/**
+ * Tipografía display para headings
+ */
+.font-display {
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.font-mono {
+  font-family: var(--font-mono);
+}
+
+/**
+ * Fondo degradado para paneles importantes.
  */
 .panel-bg {
-  background: linear-gradient(to bottom, #0d0d0d, #000000);
+  background: linear-gradient(135deg, var(--bg-surface) 0%, var(--bg-deep) 100%);
 }
 
 /**
@@ -48,14 +108,15 @@
  */
 .glow-accent {
   transition:
-    box-shadow 0.2s var(--ease-smooth),
-    transform 0.1s var(--ease-smooth);
+    box-shadow 0.3s var(--ease-smooth),
+    transform 0.2s var(--ease-smooth),
+    border-color 0.3s var(--ease-smooth);
 }
 
 .glow-accent:hover {
   box-shadow:
-    0 0 20px rgba(37, 99, 235, 0.5),
-    0 0 40px rgba(37, 99, 235, 0.2);
+    0 0 20px rgba(37, 99, 235, 0.4),
+    0 0 40px rgba(37, 99, 235, 0.15);
 }
 
 .glow-accent:active {
@@ -63,22 +124,54 @@
 }
 
 /**
- * Borde superior azul para paneles estilo terminal.
+ * Glow coral para elementos destacados
+ */
+.glow-coral {
+  transition:
+    box-shadow 0.3s var(--ease-smooth),
+    transform 0.2s var(--ease-smooth);
+}
+
+.glow-coral:hover {
+  box-shadow:
+    0 0 20px rgba(255, 77, 77, 0.4),
+    0 0 40px rgba(255, 77, 77, 0.15);
+}
+
+/**
+ * Borde superior con gradiente
  */
 .border-top-accent {
   border-top: 2px solid var(--blue-accent);
+}
+
+.border-top-gradient {
+  position: relative;
+}
+
+.border-top-gradient::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--coral-bright), var(--blue-accent), var(--cyan-bright));
 }
 
 /**
  * Estilo base para botones del menú superior.
  */
 .nav-btn {
-  @apply text-[var(--blue-soft)] hover:text-[var(--white-soft)] transition-colors duration-200;
+  @apply text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-all duration-300;
+}
+
+.nav-btn:hover {
+  text-shadow: 0 0 10px rgba(255, 77, 77, 0.5);
 }
 
 /**
- * Scrollbar personalizado estilo Blue Cyber.
- * Más slim y moderna (6px).
+ * Scrollbar personalizado
  */
 .terminal-scroll::-webkit-scrollbar {
   width: 6px;
@@ -92,11 +185,11 @@
 .terminal-scroll::-webkit-scrollbar-thumb {
   background: var(--blue-dark);
   border-radius: 3px;
-  transition: background 0.2s var(--ease-smooth);
+  transition: background 0.3s var(--ease-smooth);
 }
 
 .terminal-scroll::-webkit-scrollbar-thumb:hover {
-  background: var(--blue-accent);
+  background: var(--coral-mid);
 }
 
 /* Firefox scrollbar */
@@ -106,7 +199,7 @@
 }
 
 /**
- * Animación del cursor parpadeante estilo terminal.
+ * Animación del cursor parpadeante
  */
 @keyframes cursor-blink {
   0%,
@@ -123,28 +216,28 @@
 }
 
 /**
- * Cursor block real para terminal input.
+ * Cursor block para terminal
  */
 .terminal-cursor {
   display: inline-block;
   width: 0.6em;
   height: 1.1em;
-  background-color: var(--accent-soft);
+  background-color: var(--coral-bright);
   animation: cursor-blink 1s steps(1) infinite;
   vertical-align: text-bottom;
   margin-left: 2px;
 }
 
 /**
- * Focus ring accesible para botones.
+ * Focus ring accesible
  */
 .focus-ring:focus-visible {
-  outline: 2px solid var(--cyan-glow);
+  outline: 2px solid var(--cyan-bright);
   outline-offset: 2px;
 }
 
 /**
- * Animación de entrada slide-up para panels.
+ * Animación slide-up
  */
 @keyframes slide-up {
   from {
@@ -158,11 +251,44 @@
 }
 
 .animate-slide-up {
-  animation: slide-up 0.3s var(--ease-smooth) forwards;
+  animation: slide-up 0.4s var(--ease-smooth) forwards;
 }
 
 /**
- * Animación de loading dots "..."
+ * Animación fade-in
+ */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.6s var(--ease-smooth) forwards;
+}
+
+/**
+ * Animación pulse suave
+ */
+@keyframes pulse-soft {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+.animate-pulse-soft {
+  animation: pulse-soft 2s ease-in-out infinite;
+}
+
+/**
+ * Loading dots
  */
 @keyframes loading-dots {
   0%,
@@ -184,11 +310,11 @@
 }
 
 /**
- * Efecto flash sutil al ejecutar comando.
+ * Command flash
  */
 @keyframes command-flash {
   0% {
-    background-color: rgba(37, 99, 235, 0.15);
+    background-color: rgba(255, 77, 77, 0.1);
   }
   100% {
     background-color: transparent;
@@ -200,12 +326,12 @@
 }
 
 /**
- * Botón con efecto de presionar.
+ * Botón con efecto press
  */
 .btn-press {
   transition:
-    transform 0.1s var(--ease-smooth),
-    box-shadow 0.2s var(--ease-smooth);
+    transform 0.15s var(--ease-smooth),
+    box-shadow 0.3s var(--ease-smooth);
 }
 
 .btn-press:active {
@@ -213,20 +339,81 @@
 }
 
 /**
- * Glassmorphism panel.
+ * Glassmorphism panel
  */
 .glass-panel {
-  background: rgba(10, 10, 10, 0.85);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background: rgba(10, 15, 26, 0.8);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border-subtle);
+}
+
+/**
+ * Card con hover effect
+ */
+.card-hover {
+  transition:
+    transform 0.3s var(--ease-smooth),
+    box-shadow 0.3s var(--ease-smooth),
+    border-color 0.3s var(--ease-smooth);
+}
+
+.card-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+  border-color: var(--coral-bright);
+}
+
+/**
+ * Gradient text
+ */
+.text-gradient {
+  background: linear-gradient(135deg, var(--coral-bright) 0%, var(--cyan-bright) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gradient-blue {
+  background: linear-gradient(135deg, var(--blue-accent) 0%, var(--cyan-bright) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/**
+ * Badge/Chip styles
+ */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  border-radius: 9999px;
+  transition: all 0.3s var(--ease-smooth);
+}
+
+.badge-coral {
+  background: rgba(255, 77, 77, 0.15);
+  color: var(--coral-bright);
+  border: 1px solid rgba(255, 77, 77, 0.3);
+}
+
+.badge-cyan {
+  background: rgba(0, 229, 204, 0.15);
+  color: var(--cyan-bright);
+  border: 1px solid rgba(0, 229, 204, 0.3);
+}
+
+.badge-blue {
+  background: rgba(37, 99, 235, 0.15);
+  color: var(--blue-soft);
   border: 1px solid rgba(37, 99, 235, 0.3);
 }
 
 /**
- * Efecto glitch / interferencia para el logo.
- *
- * Crea un efecto de líneas de escaneo + desplazamiento RGB
- * estilo pantalla CRT con interferencia de señal.
+ * Efecto glitch
  */
 @keyframes glitch-anim {
   0% {
@@ -282,15 +469,6 @@
   }
 }
 
-@keyframes scanlines {
-  0% {
-    background-position: 0 0;
-  }
-  100% {
-    background-position: 0 100%;
-  }
-}
-
 .glitch-container {
   position: relative;
   display: inline-block;
@@ -316,16 +494,27 @@
 .glitch-container::before {
   animation: glitch-anim 3s infinite linear alternate-reverse;
   mix-blend-mode: screen;
-  background-color: rgba(37, 99, 235, 0.15);
+  background-color: rgba(255, 77, 77, 0.1);
 }
 
 .glitch-container::after {
   animation: glitch-anim-2 2.5s infinite linear alternate-reverse;
   mix-blend-mode: screen;
-  background-color: rgba(34, 211, 238, 0.1);
+  background-color: rgba(0, 229, 204, 0.08);
 }
 
-/* Scanlines overlay — ralentizado para efecto más sutil */
+/**
+ * Scanlines overlay
+ */
+@keyframes scanlines {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 0 100%;
+  }
+}
+
 .scanlines::after {
   content: "";
   position: absolute;
@@ -335,17 +524,48 @@
   height: 100%;
   background: repeating-linear-gradient(
     0deg,
-    rgba(0, 0, 0, 0.12) 0px,
-    rgba(0, 0, 0, 0.12) 1px,
+    rgba(0, 0, 0, 0.08) 0px,
+    rgba(0, 0, 0, 0.08) 1px,
     transparent 1px,
     transparent 3px
   );
   pointer-events: none;
-  animation: scanlines 15s linear infinite;
+  animation: scanlines 20s linear infinite;
 }
 
 /**
- * Responsive utilities.
+ * Stars background (CSS only)
+ */
+@keyframes twinkle {
+  0%,
+  100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.stars-bg {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    radial-gradient(2px 2px at 20px 30px, var(--text-muted), transparent),
+    radial-gradient(2px 2px at 40px 70px, var(--text-secondary), transparent),
+    radial-gradient(1px 1px at 90px 40px, var(--text-muted), transparent),
+    radial-gradient(2px 2px at 160px 120px, var(--cyan-bright), transparent),
+    radial-gradient(1px 1px at 230px 80px, var(--text-muted), transparent),
+    radial-gradient(2px 2px at 300px 150px, var(--coral-bright), transparent),
+    radial-gradient(1px 1px at 370px 50px, var(--text-secondary), transparent),
+    radial-gradient(2px 2px at 450px 180px, var(--text-muted), transparent);
+  background-size: 500px 200px;
+  animation: twinkle 4s ease-in-out infinite;
+  opacity: 0.4;
+}
+
+/**
+ * Responsive utilities
  */
 @media (max-width: 640px) {
   .mobile-padding {
