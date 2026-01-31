@@ -66,15 +66,24 @@ function link(url: string, label: string): string {
 // =============================================================================
 
 export function formatWhoami(data: WhoamiData): string {
-  // Highlight keywords in the text
+  // Primero reemplazar la cita final (entre comillas dobles)
+  // Luego los keywords para evitar conflictos
   const text = data.text
-    .replace(/AI Security Architect/g, accent("AI Security Architect"))
+    // Cita al final del texto (frase entre comillas)
+    .replace(
+      /"El verdadero desafío no es la inteligencia del modelo, sino su robustez y control\."/g,
+      `<span style="color:#2563eb">»</span> <i>"El verdadero desafío no es la inteligencia del modelo, sino su robustez y control."</i>`
+    )
+    // Keywords destacados
+    .replace(/AI Security Architect/g, `<span style="color:#2563eb">AI Security Architect</span>`)
     .replace(
       /Ingeniería de IA Ofensiva y Defensiva/g,
-      accent("Ingeniería de IA Ofensiva y Defensiva")
+      `<span style="color:#2563eb">Ingeniería de IA Ofensiva y Defensiva</span>`
     )
-    .replace(/Defensa en Profundidad/g, accent("Defensa en Profundidad"))
-    .replace(/"([^"]+)"/g, `<span style="color:#2563eb">»</span> <i>"$1"</i>`);
+    .replace(
+      /Defensa en Profundidad/g,
+      `<span style="color:#2563eb">Defensa en Profundidad</span>`
+    );
 
   return `
 Nombre: ${green(data.name)}
