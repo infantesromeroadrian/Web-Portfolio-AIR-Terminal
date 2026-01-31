@@ -4,7 +4,6 @@
  * Este componente:
  *  - Muestra identidad visual con logo SVG distintivo
  *  - Ofrece navegación rápida mediante comandos
- *  - Gestiona el menú lateral en móviles
  *
  * Diseño: Glassmorphism, tipografía display, transiciones suaves.
  */
@@ -52,13 +51,7 @@ function LogoIcon() {
   );
 }
 
-export default function PageHeader({
-  onMenuToggle,
-  runCommand,
-}: {
-  onMenuToggle: () => void;
-  runCommand: (cmd: string) => Promise<void>;
-}) {
+export default function PageHeader({ runCommand }: { runCommand: (cmd: string) => Promise<void> }) {
   return (
     <header class="w-full glass-panel border-b border-[var(--border-subtle)] fixed top-0 left-0 z-50">
       <nav
@@ -91,24 +84,12 @@ export default function PageHeader({
           ))}
         </div>
 
-        {/* Columna derecha */}
+        {/* Columna derecha - Status badge */}
         <div class="flex items-center gap-3 ml-auto flex-shrink-0">
-          {/* Badge de status */}
-          <div class="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-full bg-[var(--bg-elevated)] border border-[var(--border-subtle)]">
+          <div class="flex items-center gap-2 px-3 py-1.5 rounded-full bg-[var(--bg-elevated)] border border-[var(--border-subtle)]">
             <span class="w-2 h-2 rounded-full bg-[var(--cyan-bright)] animate-pulse"></span>
             <span class="text-xs font-mono text-[var(--text-muted)]">Online</span>
           </div>
-
-          {/* Botón hamburguesa */}
-          <button
-            class="flex flex-col gap-1.5 p-2.5 rounded-lg hover:bg-[var(--coral-bright)]/10 focus-ring group transition-all duration-300"
-            onClick={onMenuToggle}
-            aria-label="Abrir menú de navegación"
-          >
-            <span class="block w-5 h-0.5 bg-[var(--text-secondary)] transition-all duration-300 group-hover:bg-[var(--coral-bright)] group-hover:w-6"></span>
-            <span class="block w-5 h-0.5 bg-[var(--text-secondary)] transition-all duration-300 group-hover:bg-[var(--coral-bright)]"></span>
-            <span class="block w-5 h-0.5 bg-[var(--text-secondary)] transition-all duration-300 group-hover:bg-[var(--coral-bright)] group-hover:w-4"></span>
-          </button>
         </div>
       </nav>
     </header>

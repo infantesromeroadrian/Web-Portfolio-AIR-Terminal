@@ -2,19 +2,17 @@
  * Componente raíz de la aplicación.
  *
  * Este componente actúa como "root controller" del proyecto:
- *  - Gestiona el estado global mínimo (login → terminal, menú lateral)
- *  - Orquesta los componentes principales (Header, SideMenu, Terminal, LoginPanel)
+ *  - Gestiona el estado global mínimo (login → terminal)
+ *  - Orquesta los componentes principales (Header, Terminal, LoginPanel)
  *  - Mantiene la UI desacoplada de la lógica interna (useTerminal)
  *
  * La lógica de negocio NO vive aquí. Este archivo solo coordina.
- * Esto sigue el principio SRP (Single Responsibility Principle - SOLID).
  */
 
 import { useState } from "preact/hooks";
 
 // Componentes principales de la interfaz
 import PageHeader from "./components/layout/PageHeader";
-import SideMenu from "./components/layout/SideMenu";
 import Footer from "./components/layout/Footer";
 import MobileBottomBar from "./components/layout/MobileBottomBar";
 import Terminal from "./components/terminal/Terminal";
@@ -35,18 +33,10 @@ import "./styles/globals.css";
 export function App() {
   /**
    * Controla la etapa actual:
-   *  - "login": se muestra el panel de autenticación
+   *  - "login": se muestra el personaje caminando + intro
    *  - "terminal": se muestra la terminal interactiva
-   *
-   * Esto permite una transición limpia sin mezclar componentes.
    */
   const [stage, setStage] = useState<"login" | "terminal">("login");
-
-  /**
-   * Controla la visibilidad del menú lateral.
-   * El menú solo aparece en modo terminal.
-   */
-  const [menuOpen, setMenuOpen] = useState(false);
 
   /**
    * Hook que contiene:
@@ -54,8 +44,6 @@ export function App() {
    *  - animación de comandos
    *  - router de comandos
    *  - helpers de impresión
-   *
-   * La UI nunca conoce la lógica interna de la terminal.
    */
   const terminal = useTerminal();
 
@@ -75,35 +63,13 @@ export function App() {
       <ChatBubble />
 
       {/* Header visible solo en modo terminal */}
-      {stage === "terminal" && (
-        <PageHeader
-          onMenuToggle={() => {
-            setMenuOpen(true);
-          }}
-          runCommand={terminal.runCommand}
-        />
-      )}
-
-      {/* Menú lateral (mobile-first) — solo se monta en modo terminal */}
-      {stage === "terminal" && (
-        <SideMenu
-          open={menuOpen}
-          onClose={() => {
-            setMenuOpen(false);
-          }}
-          runCommand={(cmd) => {
-            setMenuOpen(false); // Cierra el menú antes de ejecutar
-            return terminal.runCommand(cmd);
-          }}
-        />
-      )}
+      {stage === "terminal" && <PageHeader runCommand={terminal.runCommand} />}
 
       {/* Contenedor principal de contenido */}
       <div class="relative z-10 flex flex-col flex-grow pt-20">
-        {/* LOGIN */}
+        {/* LOGIN / INTRO */}
         {stage === "login" && (
           <div class="flex-grow flex items-center justify-center">
-            {/* LoginPanel controla su propia animación y llama a onLogin */}
             <LoginPanel
               onLogin={() => {
                 setStage("terminal");

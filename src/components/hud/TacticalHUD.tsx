@@ -2,7 +2,6 @@
  * HUD Táctico - Elementos estilo centro de operaciones de ciberseguridad.
  *
  * Incluye:
- *  - Radar scanner giratorio
  *  - Contadores en tiempo real (uptime, threats, packets)
  *  - Indicadores de status del sistema
  *  - Coordenadas y timestamp
@@ -10,131 +9,7 @@
  * Diseño: Esquinas de pantalla, no interfiere con contenido central.
  */
 
-import { useEffect, useState, useRef } from "preact/hooks";
-
-// ============================================================================
-// RADAR SCANNER
-// ============================================================================
-
-function RadarScanner() {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-
-    const ctxRaw = canvas.getContext("2d");
-    if (!ctxRaw) return;
-
-    // Non-null alias para uso en closures
-    const ctx = ctxRaw;
-    const size = canvas.width;
-    const center = size / 2;
-    const radius = size / 2 - 10;
-
-    let angle = 0;
-    let animId: number;
-
-    // Puntos de "amenazas" detectadas (posiciones aleatorias)
-    const threats = Array.from({ length: 5 }, () => ({
-      x: center + (Math.random() - 0.5) * radius * 1.6,
-      y: center + (Math.random() - 0.5) * radius * 1.6,
-      pulse: Math.random() * Math.PI * 2,
-      active: Math.random() > 0.3,
-    }));
-
-    function draw(): void {
-      ctx.clearRect(0, 0, size, size);
-
-      // Círculos concéntricos
-      ctx.strokeStyle = "rgba(37, 99, 235, 0.3)";
-      ctx.lineWidth = 1;
-      for (let i = 1; i <= 3; i++) {
-        ctx.beginPath();
-        ctx.arc(center, center, (radius / 3) * i, 0, Math.PI * 2);
-        ctx.stroke();
-      }
-
-      // Cruz central
-      ctx.strokeStyle = "rgba(37, 99, 235, 0.2)";
-      ctx.beginPath();
-      ctx.moveTo(center, center - radius);
-      ctx.lineTo(center, center + radius);
-      ctx.moveTo(center - radius, center);
-      ctx.lineTo(center + radius, center);
-      ctx.stroke();
-
-      // Línea de escaneo con gradiente cónico
-      const gradient = ctx.createConicGradient(angle, center, center);
-      gradient.addColorStop(0, "rgba(34, 211, 238, 0.8)");
-      gradient.addColorStop(0.1, "rgba(34, 211, 238, 0.3)");
-      gradient.addColorStop(0.2, "rgba(34, 211, 238, 0)");
-      gradient.addColorStop(1, "rgba(34, 211, 238, 0)");
-
-      ctx.fillStyle = gradient;
-      ctx.beginPath();
-      ctx.moveTo(center, center);
-      ctx.arc(center, center, radius, angle - 0.5, angle);
-      ctx.closePath();
-      ctx.fill();
-
-      // Línea principal del scanner
-      ctx.strokeStyle = "rgba(34, 211, 238, 0.9)";
-      ctx.lineWidth = 2;
-      ctx.beginPath();
-      ctx.moveTo(center, center);
-      ctx.lineTo(center + Math.cos(angle) * radius, center + Math.sin(angle) * radius);
-      ctx.stroke();
-
-      // Puntos de amenazas
-      threats.forEach((threat) => {
-        if (!threat.active) return;
-
-        const dist = Math.sqrt(Math.pow(threat.x - center, 2) + Math.pow(threat.y - center, 2));
-        if (dist > radius) return;
-
-        threat.pulse += 0.1;
-        const pulseSize = 3 + Math.sin(threat.pulse) * 2;
-
-        // Glow
-        ctx.fillStyle = "rgba(239, 68, 68, 0.3)";
-        ctx.beginPath();
-        ctx.arc(threat.x, threat.y, pulseSize + 4, 0, Math.PI * 2);
-        ctx.fill();
-
-        // Punto central
-        ctx.fillStyle = "rgba(239, 68, 68, 0.9)";
-        ctx.beginPath();
-        ctx.arc(threat.x, threat.y, pulseSize, 0, Math.PI * 2);
-        ctx.fill();
-      });
-
-      // Centro del radar
-      ctx.fillStyle = "rgba(34, 211, 238, 0.8)";
-      ctx.beginPath();
-      ctx.arc(center, center, 4, 0, Math.PI * 2);
-      ctx.fill();
-
-      angle += 0.03;
-      animId = requestAnimationFrame(draw);
-    }
-
-    draw();
-
-    return () => {
-      cancelAnimationFrame(animId);
-    };
-  }, []);
-
-  return (
-    <div class="relative">
-      <canvas ref={canvasRef} width={120} height={120} class="opacity-80" />
-      <div class="absolute -bottom-1 left-0 right-0 text-center text-[10px] text-cyan-400/70 font-mono">
-        RADAR SCAN
-      </div>
-    </div>
-  );
-}
+import { useEffect, useState } from "preact/hooks";
 
 // ============================================================================
 // CONTADORES EN TIEMPO REAL
@@ -339,11 +214,6 @@ export default function TacticalHUD() {
       <TargetingCorner position="tr" />
       <TargetingCorner position="bl" />
       <TargetingCorner position="br" />
-
-      {/* Top-left: Radar — debajo del header (top-20 = 80px) */}
-      <div class="absolute top-20 left-4 hidden lg:block">
-        <RadarScanner />
-      </div>
 
       {/* Top-right: Contadores — debajo del header */}
       <div class="absolute top-20 right-4 hidden lg:block">
