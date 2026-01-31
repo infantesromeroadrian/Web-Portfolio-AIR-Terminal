@@ -80,72 +80,6 @@ function LiveCounters() {
 }
 
 // ============================================================================
-// STATUS BARS
-// ============================================================================
-
-function StatusBars() {
-  const [cpu, setCpu] = useState(23);
-  const [mem, setMem] = useState(45);
-  const [net, setNet] = useState(67);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCpu(20 + Math.random() * 30);
-      setMem(40 + Math.random() * 20);
-      setNet(50 + Math.random() * 40);
-    }, 2000);
-
-    return () => {
-      clearInterval(interval);
-    };
-  }, []);
-
-  return (
-    <div class="space-y-2 w-24">
-      {/* CPU */}
-      <div class="space-y-1">
-        <div class="flex justify-between text-[10px] font-mono">
-          <span class="text-gray-500">CPU</span>
-          <span class="text-green-400">{cpu.toFixed(0)}%</span>
-        </div>
-        <div class="h-1.5 bg-gray-800 rounded-full overflow-hidden">
-          <div
-            class="h-full transition-all duration-500 bg-green-400"
-            style={{ width: `${cpu}%` }}
-          />
-        </div>
-      </div>
-      {/* MEM */}
-      <div class="space-y-1">
-        <div class="flex justify-between text-[10px] font-mono">
-          <span class="text-gray-500">MEM</span>
-          <span class="text-blue-400">{mem.toFixed(0)}%</span>
-        </div>
-        <div class="h-1.5 bg-gray-800 rounded-full overflow-hidden">
-          <div
-            class="h-full transition-all duration-500 bg-blue-400"
-            style={{ width: `${mem}%` }}
-          />
-        </div>
-      </div>
-      {/* NET */}
-      <div class="space-y-1">
-        <div class="flex justify-between text-[10px] font-mono">
-          <span class="text-gray-500">NET</span>
-          <span class="text-cyan-400">{net.toFixed(0)}%</span>
-        </div>
-        <div class="h-1.5 bg-gray-800 rounded-full overflow-hidden">
-          <div
-            class="h-full transition-all duration-500 bg-cyan-400"
-            style={{ width: `${net}%` }}
-          />
-        </div>
-      </div>
-    </div>
-  );
-}
-
-// ============================================================================
 // COORDENADAS Y TIMESTAMP
 // ============================================================================
 
@@ -223,11 +157,6 @@ export default function TacticalHUD() {
       {/* Bottom-left: Coordenadas — encima del footer */}
       <div class="absolute bottom-36 left-4 hidden lg:block">
         <CoordinatesDisplay />
-      </div>
-
-      {/* Bottom-right: Status bars — encima del footer */}
-      <div class="absolute bottom-36 right-4 hidden lg:block">
-        <StatusBars />
       </div>
 
       {/* Mobile: Mini status en top — debajo del header */}
