@@ -77,8 +77,8 @@ export default function LoginPanel({ onLogin }: { onLogin: () => void }) {
         {/* Badges */}
         <div class="flex items-center justify-center gap-3 mb-8 flex-wrap">
           <span class="badge badge-coral">LLM Security</span>
-          <span class="badge badge-cyan">Blue Team</span>
-          <span class="badge badge-blue">ML Engineering</span>
+          <span class="badge badge-blue">Blue Team</span>
+          <span class="badge badge-cyan">ML Engineering</span>
         </div>
 
         {/* Tagline */}
