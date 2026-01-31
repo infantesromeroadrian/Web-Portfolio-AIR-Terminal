@@ -351,12 +351,12 @@ export default function TacticalHUD() {
       </div>
 
       {/* Bottom-left: Coordenadas */}
-      <div class="absolute bottom-20 left-4 hidden lg:block">
+      <div class="absolute bottom-28 left-4 hidden lg:block">
         <CoordinatesDisplay />
       </div>
 
       {/* Bottom-right: Status bars */}
-      <div class="absolute bottom-20 right-4 hidden lg:block">
+      <div class="absolute bottom-28 right-4 hidden lg:block">
         <StatusBars />
       </div>
 
