@@ -73,6 +73,10 @@ export function App() {
             <LoginPanel
               onLogin={() => {
                 setStage("terminal");
+                // Ejecutar whoami automáticamente después de un breve delay
+                setTimeout(() => {
+                  void terminal.runCommand("whoami");
+                }, 300);
               }}
             />
           </div>

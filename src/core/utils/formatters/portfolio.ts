@@ -74,7 +74,7 @@ export function formatWhoami(data: WhoamiData): string {
       accent("Ingeniería de IA Ofensiva y Defensiva")
     )
     .replace(/Defensa en Profundidad/g, accent("Defensa en Profundidad"))
-    .replace(/"([^"]+)"/g, `${accent("»")} <i>"$1"</i>`);
+    .replace(/"([^"]+)"/g, `<span style="color:#2563eb">»</span> <i>"$1"</i>`);
 
   return `
 Nombre: ${green(data.name)}
