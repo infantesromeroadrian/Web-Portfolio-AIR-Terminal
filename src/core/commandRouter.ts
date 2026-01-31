@@ -77,16 +77,24 @@ export const AVAILABLE_COMMANDS: string[] = [
   "certificaciones",
   "proyectos",
   "contacto",
+  // Alias estilo terminal (cat archivo.txt)
+  "cat perfil.txt",
+  "cat estudios.txt",
+  "cat experiencia.txt",
+  "cat skills.txt",
+  "cat certificaciones.txt",
+  "cat contacto.txt",
   // Utilidades
   "help",
   "clear",
   "neofetch",
   "all",
   // Proyectos específicos
-  "proyecto watchdogs",
-  "proyecto threatintel",
-  "proyecto siem",
-  "proyecto emailthreat",
+  "ls proyectos",
+  "cat proyectos/watchdogs.txt",
+  "cat proyectos/threatintel.txt",
+  "cat proyectos/siem.txt",
+  "cat proyectos/emailthreat.txt",
   // Easter eggs & Security commands
   "nmap",
   "sudo rm -rf /",
@@ -161,6 +169,25 @@ const COMMAND_MAP: Record<string, CommandHandler> = {
   contacto: ({ print }) => {
     print(formatContacto(contacto));
   },
+  // Alias estilo terminal (cat archivo.txt)
+  "cat perfil.txt": ({ print }) => {
+    print(formatPerfil(perfil));
+  },
+  "cat estudios.txt": ({ print }) => {
+    print(formatEstudios(estudios));
+  },
+  "cat experiencia.txt": ({ print }) => {
+    print(formatExperiencia(experiencia));
+  },
+  "cat skills.txt": ({ print }) => {
+    print(formatSkills(skills));
+  },
+  "cat certificaciones.txt": ({ print }) => {
+    print(formatCertificaciones(certificaciones));
+  },
+  "cat contacto.txt": ({ print }) => {
+    print(formatContacto(contacto));
+  },
   // Utilidades
   help: ({ print }) => {
     print(formatHelp(AVAILABLE_COMMANDS));
@@ -174,17 +201,20 @@ const COMMAND_MAP: Record<string, CommandHandler> = {
   all: ({ print }) => {
     print(generateAllInfo());
   },
-  // Proyectos específicos
-  "proyecto watchdogs": ({ print }) => {
+  // Proyectos
+  "ls proyectos": ({ print }) => {
+    print(formatLsProjects(proyectos));
+  },
+  "cat proyectos/watchdogs.txt": ({ print }) => {
     print(formatProjectDetail(proyectos.watchdogs));
   },
-  "proyecto threatintel": ({ print }) => {
+  "cat proyectos/threatintel.txt": ({ print }) => {
     print(formatProjectDetail(proyectos.threatintel));
   },
-  "proyecto siem": ({ print }) => {
+  "cat proyectos/siem.txt": ({ print }) => {
     print(formatProjectDetail(proyectos.siem));
   },
-  "proyecto emailthreat": ({ print }) => {
+  "cat proyectos/emailthreat.txt": ({ print }) => {
     print(formatProjectDetail(proyectos.emailthreat));
   },
   // Easter eggs & Security commands
@@ -226,9 +256,9 @@ export function resolveCommand(cmd: string, actions: TerminalActions): void {
   const trimmed = cmd.trim();
   if (trimmed === "") return;
 
-  // Comandos dinámicos: proyecto <nombre>
-  if (trimmed.startsWith("proyecto ")) {
-    const slug = trimmed.replace("proyecto ", "").trim();
+  // Comandos dinámicos: cat proyectos/<nombre>.txt
+  if (trimmed.startsWith("cat proyectos/") && trimmed.endsWith(".txt")) {
+    const slug = trimmed.replace("cat proyectos/", "").replace(".txt", "").trim();
 
     if (slug in proyectos) {
       actions.print(formatProjectDetail(proyectos[slug]));
