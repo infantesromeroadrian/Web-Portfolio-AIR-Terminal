@@ -225,26 +225,47 @@ function StatusBars() {
     };
   }, []);
 
-  const StatusBar = ({ label, value, color }: { label: string; value: number; color: string }) => (
-    <div class="space-y-1">
-      <div class="flex justify-between text-[10px] font-mono">
-        <span class="text-gray-500">{label}</span>
-        <span class={color}>{value.toFixed(0)}%</span>
-      </div>
-      <div class="h-1.5 bg-gray-800 rounded-full overflow-hidden">
-        <div
-          class={`h-full transition-all duration-500 ${color.replace("text-", "bg-")}`}
-          style={{ width: `${value}%` }}
-        />
-      </div>
-    </div>
-  );
-
   return (
     <div class="space-y-2 w-24">
-      <StatusBar label="CPU" value={cpu} color="text-green-400" />
-      <StatusBar label="MEM" value={mem} color="text-blue-400" />
-      <StatusBar label="NET" value={net} color="text-cyan-400" />
+      {/* CPU */}
+      <div class="space-y-1">
+        <div class="flex justify-between text-[10px] font-mono">
+          <span class="text-gray-500">CPU</span>
+          <span class="text-green-400">{cpu.toFixed(0)}%</span>
+        </div>
+        <div class="h-1.5 bg-gray-800 rounded-full overflow-hidden">
+          <div
+            class="h-full transition-all duration-500 bg-green-400"
+            style={{ width: `${cpu}%` }}
+          />
+        </div>
+      </div>
+      {/* MEM */}
+      <div class="space-y-1">
+        <div class="flex justify-between text-[10px] font-mono">
+          <span class="text-gray-500">MEM</span>
+          <span class="text-blue-400">{mem.toFixed(0)}%</span>
+        </div>
+        <div class="h-1.5 bg-gray-800 rounded-full overflow-hidden">
+          <div
+            class="h-full transition-all duration-500 bg-blue-400"
+            style={{ width: `${mem}%` }}
+          />
+        </div>
+      </div>
+      {/* NET */}
+      <div class="space-y-1">
+        <div class="flex justify-between text-[10px] font-mono">
+          <span class="text-gray-500">NET</span>
+          <span class="text-cyan-400">{net.toFixed(0)}%</span>
+        </div>
+        <div class="h-1.5 bg-gray-800 rounded-full overflow-hidden">
+          <div
+            class="h-full transition-all duration-500 bg-cyan-400"
+            style={{ width: `${net}%` }}
+          />
+        </div>
+      </div>
     </div>
   );
 }

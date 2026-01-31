@@ -25,7 +25,6 @@ import ChatBubble from "./components/chat/ChatBubble";
 
 // HUD y efectos visuales
 import TacticalHUD from "./components/hud/TacticalHUD";
-import AlertSystem from "./components/hud/AlertSystem";
 import CRTEffect from "./components/effects/CRTEffect";
 
 // Hook que encapsula toda la lógica de la terminal
@@ -71,9 +70,6 @@ export function App() {
 
       {/* HUD Táctico — solo visible en modo terminal */}
       {stage === "terminal" && <TacticalHUD />}
-
-      {/* Sistema de alertas — solo visible en modo terminal */}
-      {stage === "terminal" && <AlertSystem />}
 
       {/* Chatbot flotante */}
       <ChatBubble />
