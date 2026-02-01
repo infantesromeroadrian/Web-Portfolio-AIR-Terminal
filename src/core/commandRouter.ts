@@ -42,6 +42,7 @@ import {
   formatThreatMap,
   formatCve,
   formatDemo,
+  formatDockerInspect,
   sectionSeparator,
   textToHtml,
 } from "./utils/formatters";
@@ -106,6 +107,7 @@ export const AVAILABLE_COMMANDS: string[] = [
   "threat-map",
   "cve",
   "demo",
+  "docker inspect air",
 ];
 
 // ── Tipo del mapa de comandos ───────────────────────────────
@@ -249,6 +251,9 @@ const COMMAND_MAP: Record<string, CommandHandler> = {
   },
   demo: ({ print }) => {
     print(formatDemo());
+  },
+  "docker inspect air": ({ print }) => {
+    print(formatDockerInspect());
   },
 };
 

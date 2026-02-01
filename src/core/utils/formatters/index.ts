@@ -30,4 +30,5 @@ export {
   formatThreatMap,
   formatCve,
   formatDemo,
+  formatDockerInspect,
 } from "./security";

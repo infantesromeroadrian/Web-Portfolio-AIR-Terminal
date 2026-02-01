@@ -45,6 +45,7 @@ export function formatHelp(commands: string[]): string {
     curl: "Headers HTTP",
     exploit: "Responsible disclosure",
     "sudo rm -rf /": "Nice try 😏",
+    "docker inspect air": "🐳 Docker expertise",
   };
 
   const lines = commands.map((cmd) => {
@@ -90,12 +91,13 @@ export function formatNeofetch(): string {
     `<span style="color:#2563eb">Role:</span>    AI Security Architect`,
     `<span style="color:#2563eb">DE:</span>      Neural Rain + Preact`,
     `<span style="color:#2563eb">Theme:</span>   Blue Cyber [dark]`,
-    `<span style="color:#2563eb">Stack:</span>   Python, TypeScript, Docker`,
+    `<span style="color:#0db7ed">Docker:</span>  <span style="color:#0db7ed">Expert</span> — Multi-stage, Rootless, GPU`,
+    `<span style="color:#2563eb">Stack:</span>   Python, TypeScript, K8s`,
     `<span style="color:#2563eb">ML:</span>      LangGraph, PyTorch, scikit`,
     `<span style="color:#2563eb">Cloud:</span>   AWS, Azure, Kubernetes`,
     `<span style="color:#2563eb">Uptime:</span>  8+ years in AI/Security`,
     ``,
-    `<span style="color:#2563eb">██</span><span style="color:#3b82f6">██</span><span style="color:#60a5fa">██</span><span style="color:#93c5fd">██</span><span style="color:#00ff00">██</span><span style="color:#3399ff">██</span><span style="color:#ff9900">██</span><span style="color:#ff3333">██</span>`,
+    `<span style="color:#2563eb">██</span><span style="color:#3b82f6">██</span><span style="color:#60a5fa">██</span><span style="color:#93c5fd">██</span><span style="color:#00ff00">██</span><span style="color:#0db7ed">██</span><span style="color:#ff9900">██</span><span style="color:#ff3333">██</span>`,
   ];
 
   const maxLines = Math.max(logo.length, info.length);
@@ -430,5 +432,77 @@ export function formatDemo(): string {
 <span style="color:#00ff00">Pipeline status: OPERATIONAL</span>
 <span style="color:#888888">Built by Adrian Infantes — SIEM Anomaly Detector project</span>
 <span style="color:#888888">See: <a href="https://github.com/infantesromeroadrian/SIEM-Anomaly-Detector-ML" target="_blank" style="color:#3399ff">github.com/infantesromeroadrian/SIEM-Anomaly-Detector-ML</a></span>
+`;
+}
+
+// =============================================================================
+// DOCKER INSPECT — Easter Egg Docker Expertise
+// =============================================================================
+
+/**
+ * Muestra expertise Docker en formato JSON estilo docker inspect.
+ */
+export function formatDockerInspect(): string {
+  return `
+<span style="color:#0db7ed">$ docker inspect air</span>
+
+<span style="color:#888888">[</span>
+  <span style="color:#888888">{</span>
+    <span style="color:#0db7ed">"Id"</span>: <span style="color:#98c379">"sha256:a1r5ecur1ty...dockerexpert"</span>,
+    <span style="color:#0db7ed">"RepoTags"</span>: [<span style="color:#98c379">"adrianinfantes/ai-security:latest"</span>],
+    <span style="color:#0db7ed">"Created"</span>: <span style="color:#98c379">"8+ years of container experience"</span>,
+    
+    <span style="color:#0db7ed">"DockerPhilosophy"</span>: <span style="color:#888888">{</span>
+      <span style="color:#61afef">"BuildStrategy"</span>: <span style="color:#98c379">"Multi-stage builds (builder → runtime)"</span>,
+      <span style="color:#61afef">"ImageSize"</span>: <span style="color:#98c379">"&lt;100MB production images"</span>,
+      <span style="color:#61afef">"BaseImages"</span>: [<span style="color:#98c379">"distroless"</span>, <span style="color:#98c379">"alpine"</span>, <span style="color:#98c379">"python:slim"</span>],
+      <span style="color:#61afef">"LayerOptimization"</span>: <span style="color:#d19a66">true</span>,
+      <span style="color:#61afef">"CacheStrategy"</span>: <span style="color:#98c379">"Dependencies first, code last"</span>
+    <span style="color:#888888">}</span>,
+
+    <span style="color:#0db7ed">"SecurityConfig"</span>: <span style="color:#888888">{</span>
+      <span style="color:#ff6b6b">"RootlessContainers"</span>: <span style="color:#d19a66">true</span>,
+      <span style="color:#ff6b6b">"NonRootUser"</span>: <span style="color:#98c379">"USER 1000:1000"</span>,
+      <span style="color:#ff6b6b">"ReadOnlyRootfs"</span>: <span style="color:#d19a66">true</span>,
+      <span style="color:#ff6b6b">"NoNewPrivileges"</span>: <span style="color:#d19a66">true</span>,
+      <span style="color:#ff6b6b">"SecretManagement"</span>: <span style="color:#98c379">"BuildKit --mount=type=secret"</span>,
+      <span style="color:#ff6b6b">"VulnerabilityScanning"</span>: [<span style="color:#98c379">"Trivy"</span>, <span style="color:#98c379">"Snyk"</span>, <span style="color:#98c379">"Grype"</span>],
+      <span style="color:#ff6b6b">"SeccompProfile"</span>: <span style="color:#98c379">"runtime/default"</span>,
+      <span style="color:#ff6b6b">"AppArmorProfile"</span>: <span style="color:#98c379">"docker-default"</span>,
+      <span style="color:#ff6b6b">"CapDrop"</span>: [<span style="color:#98c379">"ALL"</span>],
+      <span style="color:#ff6b6b">"CapAdd"</span>: <span style="color:#98c379">"Only what's needed"</span>
+    <span style="color:#888888">}</span>,
+
+    <span style="color:#0db7ed">"MLSpecific"</span>: <span style="color:#888888">{</span>
+      <span style="color:#00ff00">"GPUSupport"</span>: <span style="color:#98c379">"NVIDIA Container Toolkit"</span>,
+      <span style="color:#00ff00">"CUDABaseImages"</span>: <span style="color:#98c379">"nvidia/cuda:*-runtime"</span>,
+      <span style="color:#00ff00">"ModelCaching"</span>: <span style="color:#98c379">"Named volumes for /models"</span>,
+      <span style="color:#00ff00">"HealthChecks"</span>: <span style="color:#98c379">"HEALTHCHECK --interval=30s /health"</span>,
+      <span style="color:#00ff00">"ResourceLimits"</span>: <span style="color:#98c379">"--memory, --cpus, --gpus"</span>,
+      <span style="color:#00ff00">"InferenceOptimization"</span>: <span style="color:#98c379">"vLLM, ONNX Runtime, TensorRT"</span>
+    <span style="color:#888888">}</span>,
+
+    <span style="color:#0db7ed">"Orchestration"</span>: <span style="color:#888888">{</span>
+      <span style="color:#ffff66">"Development"</span>: <span style="color:#98c379">"Docker Compose"</span>,
+      <span style="color:#ffff66">"Production"</span>: <span style="color:#98c379">"Kubernetes + Helm"</span>,
+      <span style="color:#ffff66">"GitOps"</span>: <span style="color:#98c379">"ArgoCD, Flux"</span>,
+      <span style="color:#ffff66">"Registry"</span>: [<span style="color:#98c379">"ECR"</span>, <span style="color:#98c379">"ACR"</span>, <span style="color:#98c379">"Harbor"</span>],
+      <span style="color:#ffff66">"CI/CD"</span>: <span style="color:#98c379">"GitHub Actions, GitLab CI"</span>
+    <span style="color:#888888">}</span>,
+
+    <span style="color:#0db7ed">"BestPractices"</span>: [
+      <span style="color:#98c379">"✓ One process per container"</span>,
+      <span style="color:#98c379">"✓ Immutable infrastructure"</span>,
+      <span style="color:#98c379">"✓ 12-factor app compliance"</span>,
+      <span style="color:#98c379">"✓ Explicit versioning (no :latest in prod)"</span>,
+      <span style="color:#98c379">"✓ .dockerignore optimization"</span>,
+      <span style="color:#98c379">"✓ Multi-platform builds (amd64/arm64)"</span>,
+      <span style="color:#98c379">"✓ Graceful shutdown (SIGTERM handling)"</span>
+    ]
+  <span style="color:#888888">}</span>
+<span style="color:#888888">]</span>
+
+<span style="color:#0db7ed">🐳 Docker expertise: Production-grade containerization for ML/AI workloads</span>
+<span style="color:#888888">— Adrian Infantes, AI Security Architect</span>
 `;
 }

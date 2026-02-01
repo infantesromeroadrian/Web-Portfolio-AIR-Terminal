@@ -39,7 +39,29 @@
       ]
     },
     {
-      "nombre": "• Cloud & Secure Architecture",
+      "nombre": "• Docker & Containerization",
+      "items": [
+        { "icon": "[+]", "color": "cyan", "text": "Multi-stage builds: <100MB production images" },
+        {
+          "icon": "[+]",
+          "color": "cyan",
+          "text": "Security: Rootless, Distroless, Trivy scanning"
+        },
+        {
+          "icon": "[+]",
+          "color": "cyan",
+          "text": "ML/GPU: NVIDIA runtime, model caching, health checks"
+        },
+        { "icon": "[+]", "color": "cyan", "text": "Compose → Kubernetes migration patterns" },
+        {
+          "icon": "[+]",
+          "color": "cyan",
+          "text": "BuildKit secrets, layer optimization, CI/CD integration"
+        }
+      ]
+    },
+    {
+      "nombre": "• Cloud & Orchestration",
       "items": [
         { "icon": "[+]", "color": "orange", "text": "AWS: SageMaker, Bedrock, EKS, Lambda, IoT" },
         {
@@ -47,12 +69,12 @@
           "color": "orange",
           "text": "Azure: Azure ML, AKS, ExpressRoute, Key Vault"
         },
+        { "icon": "[+]", "color": "orange", "text": "Kubernetes: Helm, GitOps, ArgoCD, Kustomize" },
         {
           "icon": "[+]",
           "color": "orange",
           "text": "Hybrid Cloud: NVIDIA DGX + Cloud orchestration"
         },
-        { "icon": "[+]", "color": "orange", "text": "Kubernetes, Docker, Helm, GitOps" },
         { "icon": "[+]", "color": "orange", "text": "Air-gapped deployments & Data Sovereignty" }
       ]
     },
