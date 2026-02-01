@@ -13,23 +13,22 @@ export function formatLsProjects(data: ProyectosData): string {
   const entries = Object.entries(data);
 
   const lines = entries.map(([slug, proyecto]: [string, ProyectoItem]) => {
-    const paddedSlug = slug.padEnd(15);
-    const slugName = `<span style="color:#00ff00">${paddedSlug}</span>`;
+    const slugName = `<span style="color:#00ff00">${slug}</span>`;
     const score = `<span style="color:#ffff66">${proyecto.score}</span>`;
-    const desc =
-      proyecto.descripcion.length > 40
-        ? proyecto.descripcion.slice(0, 37) + "..."
-        : proyecto.descripcion;
+    const githubShort = proyecto.github.replace("https://github.com/", "");
+    const githubLink = `<a href="${proyecto.github}" target="_blank" rel="noopener noreferrer" style="color:#3399ff">${githubShort}</a>`;
 
-    return `  ${slugName}  ${desc} [${score}]`;
+    return `  ${slugName} [${score}]
+     ${proyecto.descripcion}
+     → ${githubLink}
+`;
   });
 
   return `
 <span style="color:#3399ff">=== PROYECTOS ===</span>
 
 ${lines.join("\n")}
-
-<span style="color:#888888">Usa 'proyecto &lt;nombre&gt;' para ver detalles (ej: proyecto watchdogs)</span>
+<span style="color:#888888">Usa 'cat proyectos/&lt;nombre&gt;.txt' para ver detalles (ej: cat proyectos/watchdogs.txt)</span>
 `;
 }
 
