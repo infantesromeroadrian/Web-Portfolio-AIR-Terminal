@@ -2,87 +2,87 @@
   "hospital": {
     "nombre": "LangGraph Medical Center",
     "archivo": "hospital.txt",
-    "descripcion": "Sistema de agentes médicos especializados con orquestación paralela",
-    "score": "8 agentes",
+    "descripcion": "Multi-agent medical system with parallel orchestration",
+    "score": "8 agents",
     "estado": "Production-Ready",
     "github": "https://github.com/infantesromeroadrian/LangGraph-Agents-HospitalCenter",
     "detalles": [
-      "8 especialistas médicos evaluando en paralelo (Cardiología, Neurología, etc.)",
-      "Triaje automático + consenso para selección de especialista",
-      "Memoria persistente con PostgreSQL + checkpointing LangGraph",
-      "WebSocket streaming en tiempo real + visualización D3.js",
-      "Tiempos: triaje <2s, evaluación paralela <3s, respuesta <2s"
+      "8 medical specialists evaluating in parallel (Cardiology, Neurology, etc.)",
+      "Automatic triage + consensus for specialist selection",
+      "Persistent memory with PostgreSQL + LangGraph checkpointing",
+      "Real-time WebSocket streaming + D3.js visualization",
+      "Timing: triage <2s, parallel evaluation <3s, response <2s"
     ],
     "stack": ["LangGraph", "GPT-4", "PostgreSQL", "Flask", "WebSocket", "Docker"]
   },
   "bankfraud": {
     "nombre": "Bank Fraud Detector",
     "archivo": "bankfraud.txt",
-    "descripcion": "Herramienta de predicción de fraude bancario con Regresión Logística",
-    "score": "Umbral 0.91",
+    "descripcion": "Bank fraud prediction tool with Logistic Regression",
+    "score": "Threshold 0.91",
     "estado": "Production-Ready",
     "github": "https://github.com/infantesromeroadrian/AI-Security-Bank-Fraud",
     "detalles": [
-      "Flujo completo: preprocesamiento → predicción → umbral óptimo",
-      "StandardScaler + Logistic Regression con umbral calibrado (0.9154)",
-      "Visualizaciones: matriz confusión, curva ROC, importancia features",
-      "API REST + Dashboard web interactivo paso a paso",
-      "Métricas: accuracy, precision, recall, F1, ROC-AUC"
+      "Complete flow: preprocessing → prediction → optimal threshold",
+      "StandardScaler + Logistic Regression with calibrated threshold (0.9154)",
+      "Visualizations: confusion matrix, ROC curve, feature importance",
+      "REST API + step-by-step interactive web dashboard",
+      "Metrics: accuracy, precision, recall, F1, ROC-AUC"
     ],
     "stack": ["Scikit-learn", "Pandas", "Flask", "Matplotlib", "Gunicorn", "Docker"]
   },
   "watchdogs": {
     "nombre": "WatchDogs OSINT",
     "archivo": "watchdogs.txt",
-    "descripcion": "Sistema multi-agente para análisis de video con GPT-4 Vision",
+    "descripcion": "Multi-agent system for video analysis with GPT-4 Vision",
     "score": "95/100",
     "estado": "Production-Ready",
     "github": "https://github.com/infantesromeroadrian/WatchDogs-Security-City",
     "detalles": [
-      "LangGraph Native Parallelism - 4 agentes simultáneos",
+      "LangGraph Native Parallelism - 4 simultaneous agents",
       "Vision Agent + OCR Agent + Detection Agent + Geolocation Agent",
-      "Retry Logic con Exponential Backoff + Circuit Breaker",
-      "Rate Limiting (30 req/min) + CORS restrictivo",
-      "Dashboard de monitoreo en tiempo real"
+      "Retry Logic with Exponential Backoff + Circuit Breaker",
+      "Rate Limiting (30 req/min) + restrictive CORS",
+      "Real-time monitoring dashboard"
     ],
     "stack": ["LangGraph", "GPT-4 Vision", "Flask", "Pydantic", "Docker"]
   },
   "threatintel": {
     "nombre": "Threat Intelligence Aggregator",
     "archivo": "threatintel.txt",
-    "descripcion": "Plataforma enterprise de threat intel con NER, BERT y LDA",
+    "descripcion": "Enterprise threat intel platform with NER, BERT and LDA",
     "score": "35 endpoints",
     "estado": "Production-Ready",
     "github": "https://github.com/infantesromeroadrian/Threat-Intelligence-ML-Detector",
     "detalles": [
-      "NER con spaCy para extracción de IPs, dominios, hashes",
-      "Clasificación de severidad con BERT (5 niveles)",
-      "Topic Modeling con LDA + coherence scoring",
-      "Integración AlienVault OTX",
-      "Workflow de alertas: NEW → ACKNOWLEDGED → RESOLVED"
+      "NER with spaCy for IP, domain, hash extraction",
+      "Severity classification with BERT (5 levels)",
+      "Topic Modeling with LDA + coherence scoring",
+      "AlienVault OTX integration",
+      "Alert workflow: NEW → ACKNOWLEDGED → RESOLVED"
     ],
     "stack": ["spaCy", "BERT", "LDA", "FastAPI", "SQLAlchemy", "Docker"]
   },
   "siem": {
     "nombre": "SIEM Anomaly Detector",
     "archivo": "siem.txt",
-    "descripcion": "SIEM con ML no supervisado para detectar ataques 0-day",
-    "score": "ROI $310k/año",
+    "descripcion": "SIEM with unsupervised ML for 0-day attack detection",
+    "score": "ROI $310k/year",
     "estado": "Production-Ready",
     "github": "https://github.com/infantesromeroadrian/SIEM-Anomaly-Detector-ML",
     "detalles": [
       "Ensemble: Isolation Forest (50%) + DBSCAN (30%) + GMM (20%)",
       "Multi-parser: Syslog, Nginx, Auth logs, Firewall",
-      "Feature Engineering: 15+ features de comportamiento",
-      "Online Learning con feedback loop",
-      "Reducción 80% false positives vs SIEM tradicional"
+      "Feature Engineering: 15+ behavioral features",
+      "Online Learning with feedback loop",
+      "80% false positive reduction vs traditional SIEM"
     ],
     "stack": ["Scikit-learn", "Isolation Forest", "DBSCAN", "FastAPI", "PostgreSQL", "Docker"]
   },
   "emailthreat": {
     "nombre": "Email Threat Platform",
     "archivo": "emailthreat.txt",
-    "descripcion": "Detector dual SPAM + Phishing con dashboard SOC profesional",
+    "descripcion": "Dual SPAM + Phishing detector with professional SOC dashboard",
     "score": "95% accuracy",
     "estado": "Production-Ready",
     "github": "https://github.com/infantesromeroadrian/ML-Spam-Phising-Detector",
@@ -90,8 +90,8 @@
       "Dual Analysis: SPAM (~95%) + Phishing (~92%)",
       "Threat Report: IOCs, trigger words, risk score",
       "TF-IDF vectorization (5000 features)",
-      "Dashboard SOC dark theme profesional",
-      "Inferencia <10ms por email"
+      "Professional dark theme SOC dashboard",
+      "Inference <10ms per email"
     ],
     "stack": ["Scikit-learn", "NLTK", "TF-IDF", "FastAPI", "Docker"]
   }

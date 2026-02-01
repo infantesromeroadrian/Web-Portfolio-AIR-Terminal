@@ -1,5 +1,5 @@
 {
-  "title": "Certificaciones & Reconocimientos",
+  "title": "Certifications & Achievements",
   "obtenidas": [
     {
       "icon": "[+]",
@@ -7,7 +7,7 @@
       "nombre": "Azure AI Engineer Associate (AI-102)",
       "url": "https://learn.microsoft.com/es-es/users/adrianinfantes/achievements/dgdn25gj",
       "detalles": [
-        "Diseño e implementación de soluciones Azure AI",
+        "Design and implementation of Azure AI solutions",
         "Cognitive Services, Bot Service, Azure OpenAI"
       ]
     },
@@ -17,8 +17,8 @@
       "nombre": "Azure AI Fundamentals (AI-900)",
       "url": "https://www.udemy.com/certificate/UC-cb2df733-6447-4800-9c61-f854e983c07a/",
       "detalles": [
-        "Fundamentos de IA y Machine Learning en Azure",
-        "Computer Vision, NLP, AI responsable"
+        "AI and Machine Learning fundamentals on Azure",
+        "Computer Vision, NLP, Responsible AI"
       ]
     },
     {
@@ -26,41 +26,35 @@
       "color": "green",
       "nombre": "IT Specialist - Python",
       "url": "https://www.credly.com/badges/7e634511-9301-402f-80ba-19a687a855a1/linked_in_profile",
-      "detalles": ["Competencia profesional en Python", "Estructuras de datos, OOP, scripting"]
+      "detalles": ["Professional Python competency", "Data structures, OOP, scripting"]
     },
     {
       "icon": "[+]",
       "color": "green",
       "nombre": "Machine Learning Specialist - IBM",
       "url": "https://www.coursera.org/account/accomplishments/verify/1LFRUUF9SWIM",
-      "detalles": [
-        "Especialización en ingeniería de ML end-to-end",
-        "Pipelines de producción y MLOps"
-      ]
+      "detalles": ["End-to-end ML engineering specialization", "Production pipelines and MLOps"]
     },
     {
       "icon": "[+]",
       "color": "green",
       "nombre": "OSINT Specialist",
       "url": "https://academy.tcm-sec.com/courses/1214089/certificate?certificate_first_issued=true",
-      "detalles": [
-        "Open Source Intelligence gathering",
-        "Reconocimiento y análisis de fuentes abiertas"
-      ]
+      "detalles": ["Open Source Intelligence gathering", "Reconnaissance and open source analysis"]
     },
     {
       "icon": "[+]",
       "color": "green",
       "nombre": "Linux 101",
       "url": "https://academy.tcm-sec.com/courses/2631779/certificate",
-      "detalles": ["Administración de sistemas Linux", "Terminal, permisos, redes, scripting"]
+      "detalles": ["Linux systems administration", "Terminal, permissions, networking, scripting"]
     },
     {
       "icon": "[+]",
       "color": "green",
       "nombre": "LangChain for LLM Application Development",
       "url": "https://learn.deeplearning.ai/accomplishments/1638ab2c-0398-4d56-8404-176d2e1ffc9d?usp=sharing",
-      "detalles": ["Desarrollo de aplicaciones con LLMs", "RAG, Agents y Chains"]
+      "detalles": ["LLM application development", "RAG, Agents and Chains"]
     },
     {
       "icon": "[+]",
@@ -68,7 +62,7 @@
       "nombre": "LangChain: Chat with Your Data",
       "url": "https://learn.deeplearning.ai/accomplishments/f6528659-91e7-468d-a4ff-0cc32ea170f9?usp=sharing",
       "detalles": [
-        "Retrieval Augmented Generation avanzado",
+        "Advanced Retrieval Augmented Generation",
         "Document loaders, splitters, vectorstores"
       ]
     },
@@ -77,37 +71,31 @@
       "color": "green",
       "nombre": "EU AI Act - AI Security Regulation",
       "url": "https://www.datacamp.com/completed/statement-of-accomplishment/track/9f24806ec900af63f2aec96daa6a5e2133a35035",
-      "detalles": [
-        "Regulación europea de inteligencia artificial",
-        "Clasificación de riesgos, compliance y gobernanza AI"
-      ]
+      "detalles": ["European AI regulation", "Risk classification, compliance and AI governance"]
     },
     {
       "icon": "[+]",
       "color": "green",
       "nombre": "Machine Learning Engineer Track",
-      "detalles": [
-        "Especialización en ingeniería de ML end-to-end",
-        "Pipelines de producción y MLOps"
-      ]
+      "detalles": ["End-to-end ML engineering specialization", "Production pipelines and MLOps"]
     },
     {
       "icon": "[+]",
       "color": "green",
       "nombre": "AI Engineer Track",
-      "detalles": ["Arquitectura de sistemas de IA", "Despliegue y escalabilidad"]
+      "detalles": ["AI systems architecture", "Deployment and scalability"]
     },
     {
       "icon": "[+]",
       "color": "green",
       "nombre": "Introduction to Cybersecurity",
-      "detalles": ["Fundamentos de ciberseguridad", "Threat landscape y defensa"]
+      "detalles": ["Cybersecurity fundamentals", "Threat landscape and defense"]
     },
     {
       "icon": "[+]",
       "color": "green",
       "nombre": "Data Literacy Fundamentals",
-      "detalles": ["Alfabetización en datos", "Análisis y visualización"]
+      "detalles": ["Data literacy", "Analysis and visualization"]
     }
   ],
   "enPreparacion": [],

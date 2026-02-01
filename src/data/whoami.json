@@ -1,26 +1,26 @@
 {
   "name": "Adrián Infantes Romero",
   "role": "AI Security Architect | AI/ML Engineer | Blue Cyber AI",
-  "text": "Opero en la línea de fuego donde la IA se convierte en activo estratégico o vulnerabilidad crítica.\n\nCon más de 7 años de experiencia, he evolucionado desde Data Scientist hasta AI Security Architect en la Unidad de Inteligencia Financiera de BBVA. Mi especialidad: diseñar, auditar y fortificar sistemas de IA para que sobrevivan en entornos hostiles, regulados y de alto riesgo.\n\nMi enfoque trasciende el MLOps tradicional. Me dedico a la Ingeniería de IA Ofensiva y Defensiva: garantizo que las capacidades de GenAI, LLMs y sistemas predictivos sean resistentes a ataques adversarios, manipulaciones y exfiltración de datos antes de su despliegue operativo.\n\nFilosofía: Defensa en Profundidad aplicada a la IA. Un agente autónomo sin blindaje es un riesgo inaceptable.",
-  "quote": "El verdadero desafío no es la inteligencia del modelo, sino su robustez y control.",
+  "text": "I operate on the front line where AI becomes either a strategic asset or a critical vulnerability.\n\nWith over 7 years of experience, I've evolved from Data Scientist to AI Security Architect at BBVA's Financial Intelligence Unit. My specialty: designing, auditing, and fortifying AI systems to survive in hostile, regulated, and high-risk environments.\n\nMy approach transcends traditional MLOps. I focus on Offensive and Defensive AI Engineering: ensuring that GenAI capabilities, LLMs, and predictive systems are resistant to adversarial attacks, manipulation, and data exfiltration before operational deployment.\n\nPhilosophy: Defense in Depth applied to AI. An autonomous agent without hardening is an unacceptable risk.",
+  "quote": "The real challenge isn't the model's intelligence, but its robustness and control.",
   "specialization": [
-    { "icon": "[+]", "color": "red", "text": "Adversarial ML & Red Teaming de modelos" },
+    { "icon": "[+]", "color": "red", "text": "Adversarial ML & Model Red Teaming" },
     { "icon": "[+]", "color": "red", "text": "Secure GenAI (LLMs, RAG, Guardrails)" },
-    { "icon": "[+]", "color": "red", "text": "Arquitecturas Híbridas Seguras (On-Prem + Cloud)" },
+    { "icon": "[+]", "color": "red", "text": "Secure Hybrid Architectures (On-Prem + Cloud)" },
     { "icon": "[+]", "color": "red", "text": "Financial Crime & Threat Intelligence" },
-    { "icon": "[+]", "color": "red", "text": "MLOps Securizado & Model Governance" }
+    { "icon": "[+]", "color": "red", "text": "Secured MLOps & Model Governance" }
   ],
   "goals": [
     {
       "icon": "[→]",
       "color": "orange",
-      "text": "Liderar equipos de AI Security en entornos críticos"
+      "text": "Lead AI Security teams in critical environments"
     },
-    { "icon": "[→]", "color": "orange", "text": "Evangelizar la seguridad en IA desde el diseño" },
+    { "icon": "[→]", "color": "orange", "text": "Evangelize security-by-design in AI systems" },
     {
       "icon": "[→]",
       "color": "orange",
-      "text": "Contribuir a estándares de seguridad en IA (OWASP, MITRE ATLAS)"
+      "text": "Contribute to AI security standards (OWASP, MITRE ATLAS)"
     }
   ]
 }

@@ -1,5 +1,5 @@
 {
-  "title": "Formación Académica",
+  "title": "Education",
   "items": [
     {
       "id": "[01]",
@@ -7,12 +7,12 @@
       "inicio": "2024",
       "fin": "2025",
       "centro": "MIOTI | Tech & Business School",
-      "ubicacion": "Madrid, España",
+      "ubicacion": "Madrid, Spain",
       "temas": [
-        { "icon": "[+]", "color": "green", "text": "Arquitecturas de Deep Learning avanzadas" },
-        { "icon": "[+]", "color": "green", "text": "Large Language Models (LLMs) y Fine-tuning" },
-        { "icon": "[+]", "color": "green", "text": "Sistemas RAG y Vector Databases" },
-        { "icon": "[+]", "color": "green", "text": "Prompt Engineering y AI Agents" }
+        { "icon": "[+]", "color": "green", "text": "Advanced Deep Learning architectures" },
+        { "icon": "[+]", "color": "green", "text": "Large Language Models (LLMs) and Fine-tuning" },
+        { "icon": "[+]", "color": "green", "text": "RAG Systems and Vector Databases" },
+        { "icon": "[+]", "color": "green", "text": "Prompt Engineering and AI Agents" }
       ]
     },
     {
@@ -21,43 +21,43 @@
       "inicio": "2022",
       "fin": "2023",
       "centro": "MIOTI | Tech & Business School",
-      "ubicacion": "Madrid, España",
+      "ubicacion": "Madrid, Spain",
       "temas": [
         {
           "icon": "[+]",
           "color": "green",
-          "text": "Procesamiento de datos a escala (Spark, Kafka)"
+          "text": "Large-scale data processing (Spark, Kafka)"
         },
-        { "icon": "[+]", "color": "green", "text": "Machine Learning y estadística avanzada" },
+        { "icon": "[+]", "color": "green", "text": "Machine Learning and advanced statistics" },
         { "icon": "[+]", "color": "green", "text": "Cloud Computing (AWS, Azure)" },
-        { "icon": "[+]", "color": "green", "text": "Data Engineering y ETL pipelines" }
+        { "icon": "[+]", "color": "green", "text": "Data Engineering and ETL pipelines" }
       ]
     },
     {
       "id": "[03]",
-      "titulo": "Grado en Ingeniería de Software - Especialización IA",
+      "titulo": "Bachelor's Degree in Software Engineering - AI Specialization",
       "inicio": "2017",
       "fin": "2021",
       "centro": "U-tad",
-      "ubicacion": "Las Rozas, Madrid, España",
+      "ubicacion": "Las Rozas, Madrid, Spain",
       "temas": [
-        { "icon": "[+]", "color": "green", "text": "Fundamentos de Inteligencia Artificial" },
-        { "icon": "[+]", "color": "green", "text": "Desarrollo de Software y Arquitectura" },
-        { "icon": "[+]", "color": "green", "text": "Algoritmos y Estructuras de Datos" },
-        { "icon": "[+]", "color": "green", "text": "Bases de Datos y Sistemas Distribuidos" }
+        { "icon": "[+]", "color": "green", "text": "Artificial Intelligence fundamentals" },
+        { "icon": "[+]", "color": "green", "text": "Software Development and Architecture" },
+        { "icon": "[+]", "color": "green", "text": "Algorithms and Data Structures" },
+        { "icon": "[+]", "color": "green", "text": "Databases and Distributed Systems" }
       ]
     },
     {
       "id": "[04]",
-      "titulo": "Ciclo Formativo de Grado Superior, Administración de Sistemas Informáticos en Red (ASIR)",
+      "titulo": "Higher Vocational Training in Network Systems Administration",
       "inicio": "2015",
       "fin": "2017",
       "centro": "U-tad",
-      "ubicacion": "Las Rozas, Madrid, España",
+      "ubicacion": "Las Rozas, Madrid, Spain",
       "temas": [
-        { "icon": "[+]", "color": "green", "text": "Administración de sistemas Windows/Linux" },
-        { "icon": "[+]", "color": "green", "text": "Seguridad de redes y sistemas" },
-        { "icon": "[+]", "color": "green", "text": "Virtualización y Cloud basics" }
+        { "icon": "[+]", "color": "green", "text": "Windows/Linux systems administration" },
+        { "icon": "[+]", "color": "green", "text": "Network and systems security" },
+        { "icon": "[+]", "color": "green", "text": "Virtualization and Cloud basics" }
       ]
     }
   ]

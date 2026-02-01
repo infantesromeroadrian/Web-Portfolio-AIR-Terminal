@@ -1,12 +1,12 @@
 {
-  "title": "Habilidades Técnicas",
+  "title": "Technical Skills",
   "categorias": [
     {
       "nombre": "• AI Security & Adversarial ML",
       "items": [
         { "icon": "[+]", "color": "red", "text": "OWASP LLM Top 10 & MITRE ATLAS" },
         { "icon": "[+]", "color": "red", "text": "Adversarial Robustness Toolbox (ART)" },
-        { "icon": "[+]", "color": "red", "text": "Red Teaming de modelos LLM" },
+        { "icon": "[+]", "color": "red", "text": "LLM Red Teaming" },
         { "icon": "[+]", "color": "red", "text": "Prompt Injection & Data Exfiltration Defense" },
         { "icon": "[+]", "color": "red", "text": "Azure AI Content Safety & Bedrock Guardrails" }
       ]
@@ -79,7 +79,7 @@
       ]
     },
     {
-      "nombre": "• Programación & Data",
+      "nombre": "• Programming & Data",
       "items": [
         { "icon": "[+]", "color": "yellow", "text": "Python, SQL, Bash, TypeScript" },
         { "icon": "[+]", "color": "yellow", "text": "Spark, Kafka, ETL Pipelines" },
@@ -88,12 +88,12 @@
       ]
     },
     {
-      "nombre": "• Idiomas",
+      "nombre": "• Languages",
       "items": [
-        { "icon": "[+]", "color": "blue", "text": "Español: Nativo" },
-        { "icon": "[+]", "color": "blue", "text": "Inglés: Profesional completo" },
-        { "icon": "[+]", "color": "blue", "text": "Italiano: Profesional completo" },
-        { "icon": "[+]", "color": "blue", "text": "Chino: Básico laboral" }
+        { "icon": "[+]", "color": "blue", "text": "Spanish: Native" },
+        { "icon": "[+]", "color": "blue", "text": "English: Full Professional" },
+        { "icon": "[+]", "color": "blue", "text": "Italian: Full Professional" },
+        { "icon": "[+]", "color": "blue", "text": "Chinese: Basic Working" }
       ]
     }
   ]

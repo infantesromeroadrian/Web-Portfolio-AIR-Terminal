@@ -32,7 +32,7 @@ export function formatBlogList(data: BlogData): string {
 
   const footer = `
 <span style="color:#888888">─────────────────────────────────────────────────────────────────</span>
-<span style="color:#888888">Usa </span><span style="color:#00ff00">cat blog/&lt;slug&gt;.md</span><span style="color:#888888"> para leer un post completo.</span>
+<span style="color:#888888">Use </span><span style="color:#00ff00">cat blog/&lt;slug&gt;.md</span><span style="color:#888888"> to read a full post.</span>
 `;
 
   return header + postsFormatted + footer;
@@ -49,7 +49,7 @@ export function formatBlogPost(post: BlogPost): string {
 <span style="color:#ffff66; font-weight:bold">  ${post.titulo}</span>
 <span style="color:#3399ff">╚══════════════════════════════════════════════════════════════╝</span>
 
-<span style="color:#888888">Fecha:</span> ${post.fecha}  ${tags}
+<span style="color:#888888">Date:</span> ${post.fecha}  ${tags}
 `;
 
   // Renderizar imagen si existe
@@ -95,7 +95,7 @@ export function formatBlogPost(post: BlogPost): string {
   const footer = `
 
 <span style="color:#888888">─────────────────────────────────────────────────────────────────</span>
-<span style="color:#888888">Escribe </span><span style="color:#00ff00">blog</span><span style="color:#888888"> para volver a la lista de posts.</span>
+<span style="color:#888888">Type </span><span style="color:#00ff00">blog</span><span style="color:#888888"> to return to posts list.</span>
 `;
 
   return header + imagen + contenido + footer;
@@ -106,9 +106,9 @@ export function formatBlogPost(post: BlogPost): string {
  */
 export function formatBlogPostNotFound(slug: string): string {
   return `
-<span style="color:#ff3333">[ERROR]</span> Post no encontrado: <span style="color:#ffff66">${slug}</span>
+<span style="color:#ff3333">[ERROR]</span> Post not found: <span style="color:#ffff66">${slug}</span>
 
-<span style="color:#888888">Posts disponibles:</span>
-<span style="color:#888888">  → Usa el comando </span><span style="color:#00ff00">blog</span><span style="color:#888888"> para ver la lista completa.</span>
+<span style="color:#888888">Available posts:</span>
+<span style="color:#888888">  → Use the </span><span style="color:#00ff00">blog</span><span style="color:#888888"> command to see the full list.</span>
 `;
 }

@@ -25,10 +25,10 @@ export function formatLsProjects(data: ProyectosData): string {
   });
 
   return `
-<span style="color:#3399ff">=== PROYECTOS ===</span>
+<span style="color:#3399ff">=== PROJECTS ===</span>
 
 ${lines.join("\n")}
-<span style="color:#888888">Usa 'cat proyectos/&lt;nombre&gt;.txt' para ver detalles (ej: cat proyectos/watchdogs.txt)</span>
+<span style="color:#888888">Use 'cat proyectos/&lt;name&gt;.txt' for details (e.g.: cat proyectos/watchdogs.txt)</span>
 `;
 }
 
@@ -37,7 +37,7 @@ ${lines.join("\n")}
  */
 export function formatProjectDetail(proyecto: ProyectoItem): string {
   const header = `<span style="color:#3399ff">=== ${proyecto.nombre.toUpperCase()} ===</span>`;
-  const estado = `<span style="color:#00ff00">Estado:</span> ${proyecto.estado} | <span style="color:#ffff66">Score:</span> ${proyecto.score}`;
+  const estado = `<span style="color:#00ff00">Status:</span> ${proyecto.estado} | <span style="color:#ffff66">Score:</span> ${proyecto.score}`;
 
   const detalles = proyecto.detalles
     .map((d) => `<span style="color:#00ff00">[+]</span> ${d}`)
@@ -65,14 +65,16 @@ ${github}
  * Mensaje de error cuando no se encuentra un proyecto.
  */
 export function formatProjectNotFound(slug: string): string {
-  return `<span style="color:#ff3333">Error:</span> No se encontró el proyecto '${slug}'
+  return `<span style="color:#ff3333">Error:</span> Project '${slug}' not found
 
-Proyectos disponibles:
+Available projects:
+  - <span style="color:#00ff00">hospital</span>
+  - <span style="color:#00ff00">bankfraud</span>
   - <span style="color:#00ff00">watchdogs</span>
   - <span style="color:#00ff00">threatintel</span>
   - <span style="color:#00ff00">siem</span>
   - <span style="color:#00ff00">emailthreat</span>
 
-Usa '<span style="color:#3399ff">proyectos</span>' para ver la lista completa.
+Use '<span style="color:#3399ff">proyectos</span>' to see the full list.
 `;
 }

@@ -79,17 +79,17 @@ export function formatWhoami(data: WhoamiData): string {
     .join("\n");
 
   return `
-Nombre: ${green(data.name)}
-Rol: ${accent(data.role)}
+Name: ${green(data.name)}
+Role: ${accent(data.role)}
 
 ${text}
 
 <span style="color:#2563eb">»</span> <i>"${data.quote}"</i>
 
-${sectionTitle("ESPECIALIZACIÓN")}
+${sectionTitle("SPECIALIZATION")}
 ${specialization}
 
-${sectionTitle("OBJETIVOS")}
+${sectionTitle("GOALS")}
 ${goals}
 `;
 }
@@ -105,8 +105,8 @@ ${data.items
   .map(
     (item: EstudioItem) => `
 ${blueId(item.id)} ${item.titulo} (${item.inicio} - ${item.fin})
-     • Centro: ${item.centro}
-     • Ubicación: ${item.ubicacion}
+     • Institution: ${item.centro}
+     • Location: ${item.ubicacion}
 ${item.temas
   .map((t: IconItem) => `     ${t.icon ? colorIcon(t.icon, t.color) : "-"} ${t.text}`)
   .join("\n")}
@@ -127,15 +127,15 @@ ${data.items
   .map((item: ExperienciaItem) => {
     return `
 ${blueId(item.id)} ${item.puesto} (${item.inicio} - ${item.fin})
-     • Empresa: ${red(item.empresa)}
-     • Ubicación: ${item.ubicacion}
+     • Company: ${red(item.empresa)}
+     • Location: ${item.ubicacion}
 
-     • Responsabilidades:
+     • Responsibilities:
 ${item.responsabilidades
   .map((r: IconItem) => `     ${r.icon ? colorIcon(r.icon, r.color) : "-"} ${r.text}`)
   .join("\n")}
 
-     • Logros:
+     • Achievements:
 ${item.logros.map((l: IconItem) => `     ${colorIcon(l.icon, l.color)} ${l.text}`).join("\n")}
 
      • Stack:
@@ -176,13 +176,13 @@ ${cat.items
 // =============================================================================
 
 export function formatCertificaciones(data: CertificacionesData): string {
-  // --- OBTENIDAS ---
+  // --- OBTAINED ---
   const obtenidas = data.obtenidas.length
     ? data.obtenidas
         .map((c: CertificacionObtenida) => {
           let entry = `${colorIcon(c.icon, c.color)} ${c.nombre}`;
           if (c.anio) entry += ` (${c.anio})`;
-          if (c.id) entry += `\n     - ID Credencial: ${c.id}`;
+          if (c.id) entry += `\n     - Credential ID: ${c.id}`;
           if (c.url) entry += `\n     - URL: ${linkify(c.url)}`;
           entry += `\n${c.detalles.map((d: string) => `     - ${d}`).join("\n")}\n`;
           return entry;
@@ -190,19 +190,19 @@ export function formatCertificaciones(data: CertificacionesData): string {
         .join("\n")
     : "";
 
-  // --- EN PREPARACIÓN ---
+  // --- IN PROGRESS ---
   const enPrep = data.enPreparacion.length
     ? data.enPreparacion
         .map(
           (c: CertificacionEnPreparacion) => `${colorIcon(c.icon, c.color)} ${c.nombre}
-     - Progreso: ${c.progreso}
+     - Progress: ${c.progreso}
 ${c.detalles.map((d: string) => `     - ${d}`).join("\n")}
 `
         )
         .join("\n")
     : "";
 
-  // --- OBJETIVOS FUTUROS ---
+  // --- FUTURE GOALS ---
   const objetivos = data.objetivos.length
     ? data.objetivos
         .map(
@@ -212,28 +212,28 @@ ${c.detalles.map((d: string) => `     - ${d}`).join("\n")}
         .join("\n")
     : "";
 
-  // --- CONSTRUCCIÓN FINAL DINÁMICA ---
+  // --- DYNAMIC OUTPUT BUILD ---
   let output = `
 ${sectionTitle(data.title)}
 `;
 
   if (obtenidas) {
     output += `
-• Obtenidas:
+• Obtained:
 ${obtenidas}
 `;
   }
 
   if (enPrep) {
     output += `
-• En preparación:
+• In Progress:
 ${enPrep}
 `;
   }
 
   if (objetivos) {
     output += `
-• Objetivos futuros:
+• Future Goals:
 ${objetivos}
 `;
   }

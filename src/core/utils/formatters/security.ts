@@ -17,32 +17,32 @@
  */
 export function formatHelp(commands: string[]): string {
   const commandDescriptions: Record<string, string> = {
-    // Comandos principales
-    whoami: "Perfil profesional completo",
-    estudios: "Formación académica",
-    experiencia: "Experiencia laboral",
-    skills: "Habilidades técnicas",
-    certificaciones: "Certificaciones",
-    proyectos: "Lista de proyectos",
-    // Utilidades
-    help: "Muestra esta ayuda",
-    clear: "Limpia la terminal",
-    neofetch: "Info del sistema estilo Linux",
-    all: "Muestra toda la info",
-    // Proyectos específicos
-    "proyecto watchdogs": "Detalle WatchDogs OSINT",
-    "proyecto threatintel": "Detalle Threat Intel",
-    "proyecto siem": "Detalle SIEM Anomaly",
-    "proyecto emailthreat": "Detalle Email Threat",
+    // Main commands
+    whoami: "Full professional profile",
+    estudios: "Education background",
+    experiencia: "Work experience",
+    skills: "Technical skills",
+    certificaciones: "Certifications",
+    proyectos: "Projects list",
+    // Utilities
+    help: "Show this help",
+    clear: "Clear terminal",
+    neofetch: "Linux-style system info",
+    all: "Show all info",
+    // Specific projects
+    "proyecto watchdogs": "WatchDogs OSINT details",
+    "proyecto threatintel": "Threat Intel details",
+    "proyecto siem": "SIEM Anomaly details",
+    "proyecto emailthreat": "Email Threat details",
     // Blog
-    blog: "Lista de posts del blog",
+    blog: "Blog posts list",
     // Easter eggs
-    nmap: "Escaneo de puertos",
-    hack: "Auditoría de seguridad",
-    "threat-map": "Dashboard SIEM",
-    cve: "Vulnerabilidades AI/ML",
-    demo: "Pipeline ML en vivo",
-    curl: "Headers HTTP",
+    nmap: "Port scanning",
+    hack: "Security audit",
+    "threat-map": "SIEM Dashboard",
+    cve: "AI/ML Vulnerabilities",
+    demo: "Live ML Pipeline",
+    curl: "HTTP Headers",
     exploit: "Responsible disclosure",
     "sudo rm -rf /": "Nice try 😏",
     "docker inspect air": "🐳 Docker expertise",
@@ -55,11 +55,11 @@ export function formatHelp(commands: string[]): string {
   });
 
   return `
-<span style="color:#3399ff">=== COMANDOS DISPONIBLES ===</span>
+<span style="color:#3399ff">=== AVAILABLE COMMANDS ===</span>
 
 ${lines.join("\n")}
 
-<span style="color:#888888">Usa TAB para autocompletar, ↑↓ para historial</span>
+<span style="color:#888888">Use TAB to autocomplete, ↑↓ for history</span>
 `;
 }
 
