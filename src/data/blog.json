@@ -6,7 +6,7 @@
       "titulo": "Docker: The AI Red Teamer's Secret Weapon",
       "fecha": "2026-02-01",
       "tags": ["Docker", "Red Teaming", "AI Security", "MLOps", "DevSecOps"],
-      "imagen": "https://images.unsplash.com/photo-1605745341112-85968b19335b?w=800",
+      "imagen": "",
       "resumen": "Why Docker is not optional in AI Security — from isolated attack sandboxes to portable Red Team toolkits and GPU beast taming.",
       "contenido": [
         "## The Problem",
@@ -161,7 +161,7 @@
       "titulo": "Defending Against Prompt Injection in Production LLMs",
       "fecha": "2026-01-15",
       "tags": ["LLM Security", "Prompt Injection", "Blue Team"],
-      "imagen": "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=800",
+      "imagen": "",
       "resumen": "Estrategias prácticas para detectar y mitigar ataques de prompt injection en sistemas LLM en producción.",
       "contenido": [
         "## El Problema",
@@ -210,7 +210,7 @@
       "titulo": "Hardening Docker Containers for ML Workloads",
       "fecha": "2026-01-10",
       "tags": ["Docker", "MLOps", "Security"],
-      "imagen": "https://images.unsplash.com/photo-1605745341112-85968b19335b?w=800",
+      "imagen": "",
       "resumen": "Best practices para securizar contenedores Docker en entornos de Machine Learning con GPU.",
       "contenido": [
         "## Por Qué ML Necesita Atención Especial",
@@ -286,7 +286,7 @@
       "titulo": "Building Production-Ready AI Agents with LangGraph",
       "fecha": "2026-01-05",
       "tags": ["LangGraph", "AI Agents", "Architecture"],
-      "imagen": "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800",
+      "imagen": "",
       "resumen": "Patrones de arquitectura para desplegar agentes LangGraph robustos y escalables.",
       "contenido": [
         "## De Demo a Producción",
