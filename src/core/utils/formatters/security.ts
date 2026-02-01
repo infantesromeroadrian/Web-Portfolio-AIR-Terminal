@@ -36,6 +36,8 @@ export function formatHelp(commands: string[]): string {
     "proyecto threatintel": "Detalle Threat Intel",
     "proyecto siem": "Detalle SIEM Anomaly",
     "proyecto emailthreat": "Detalle Email Threat",
+    // Blog
+    blog: "Lista de posts del blog",
     // Easter eggs
     nmap: "Escaneo de puertos",
     hack: "Auditoría de seguridad",

@@ -210,6 +210,31 @@ export interface ProyectoItem {
 export type ProyectosData = Record<string, ProyectoItem>;
 
 // =============================================================================
+// BLOG
+// =============================================================================
+
+/**
+ * Estructura de un post del blog.
+ */
+export interface BlogPost {
+  slug: string;
+  titulo: string;
+  fecha: string;
+  tags: string[];
+  imagen: string;
+  resumen: string;
+  contenido: string[];
+}
+
+/**
+ * Datos del blog completo.
+ */
+export interface BlogData {
+  title: string;
+  posts: BlogPost[];
+}
+
+// =============================================================================
 // TERMINAL (tipos internos del hook)
 // =============================================================================
 

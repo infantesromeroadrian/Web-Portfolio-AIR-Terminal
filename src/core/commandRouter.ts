@@ -19,6 +19,7 @@ import type {
   CertificacionesData,
   ContactoData,
   ProyectosData,
+  BlogData,
 } from "../types/data";
 
 import {
@@ -32,6 +33,9 @@ import {
   formatLsProjects,
   formatProjectDetail,
   formatProjectNotFound,
+  formatBlogList,
+  formatBlogPost,
+  formatBlogPostNotFound,
   formatHelp,
   formatNeofetch,
   formatNmap,
@@ -56,6 +60,7 @@ import skillsJson from "../data/skills.json";
 import certificacionesJson from "../data/certificaciones.json";
 import contactoJson from "../data/contacto.json";
 import proyectosJson from "../data/proyectos.json";
+import blogJson from "../data/blog.json";
 
 const whoami = whoamiJson as WhoamiData;
 const perfil = perfilJson as PerfilData;
@@ -65,6 +70,7 @@ const skills = skillsJson as SkillsData;
 const certificaciones = certificacionesJson as CertificacionesData;
 const contacto = contactoJson as ContactoData;
 const proyectos = proyectosJson as ProyectosData;
+const blog = blogJson as BlogData;
 
 // ── Comandos disponibles ────────────────────────────────────
 
@@ -98,6 +104,11 @@ export const AVAILABLE_COMMANDS: string[] = [
   "cat proyectos/threatintel.txt",
   "cat proyectos/siem.txt",
   "cat proyectos/emailthreat.txt",
+  // Blog
+  "blog",
+  "cat blog/prompt-injection-defense.md",
+  "cat blog/docker-ml-security.md",
+  "cat blog/langgraph-agents-production.md",
   // Easter eggs & Security commands
   "nmap",
   "sudo rm -rf /",
@@ -227,6 +238,25 @@ const COMMAND_MAP: Record<string, CommandHandler> = {
   "cat proyectos/emailthreat.txt": ({ print }) => {
     print(formatProjectDetail(proyectos.emailthreat));
   },
+  // Blog
+  blog: ({ print }) => {
+    print(formatBlogList(blog));
+  },
+  "cat blog/prompt-injection-defense.md": ({ print }) => {
+    const post = blog.posts.find((p) => p.slug === "prompt-injection-defense");
+    if (post) print(formatBlogPost(post));
+    else print(formatBlogPostNotFound("prompt-injection-defense"));
+  },
+  "cat blog/docker-ml-security.md": ({ print }) => {
+    const post = blog.posts.find((p) => p.slug === "docker-ml-security");
+    if (post) print(formatBlogPost(post));
+    else print(formatBlogPostNotFound("docker-ml-security"));
+  },
+  "cat blog/langgraph-agents-production.md": ({ print }) => {
+    const post = blog.posts.find((p) => p.slug === "langgraph-agents-production");
+    if (post) print(formatBlogPost(post));
+    else print(formatBlogPostNotFound("langgraph-agents-production"));
+  },
   // Easter eggs & Security commands
   nmap: ({ print }) => {
     print(formatNmap());
@@ -277,6 +307,19 @@ export function resolveCommand(cmd: string, actions: TerminalActions): void {
       actions.print(formatProjectDetail(proyectos[slug]));
     } else {
       actions.print(formatProjectNotFound(slug));
+    }
+    return;
+  }
+
+  // Comandos dinámicos: cat blog/<slug>.md
+  if (trimmed.startsWith("cat blog/") && trimmed.endsWith(".md")) {
+    const slug = trimmed.replace("cat blog/", "").replace(".md", "").trim();
+    const post = blog.posts.find((p) => p.slug === slug);
+
+    if (post) {
+      actions.print(formatBlogPost(post));
+    } else {
+      actions.print(formatBlogPostNotFound(slug));
     }
     return;
   }

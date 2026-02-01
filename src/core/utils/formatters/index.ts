@@ -19,6 +19,8 @@ export {
 
 export { formatLsProjects, formatProjectDetail, formatProjectNotFound } from "./projects";
 
+export { formatBlogList, formatBlogPost, formatBlogPostNotFound } from "./blog";
+
 export {
   formatHelp,
   formatNeofetch,
