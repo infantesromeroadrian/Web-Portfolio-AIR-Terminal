@@ -12,11 +12,11 @@ interface MobileBottomBarProps {
 }
 
 const MOBILE_ACTIONS = [
-  { icon: "👤", label: "Perfil", command: "perfil" },
+  { icon: "👤", label: "Whoami", command: "whoami" },
+  { icon: "💼", label: "Exp", command: "experiencia" },
   { icon: "📁", label: "Proyectos", command: "proyectos" },
-  { icon: "⚡", label: "Skills", command: "skills" },
-  { icon: "📧", label: "Contacto", command: "contacto" },
-  { icon: "❓", label: "Ayuda", command: "help" },
+  { icon: "📝", label: "Blog", command: "blog" },
+  { icon: "❓", label: "Help", command: "help" },
 ];
 
 export default function MobileBottomBar({ runCommand }: MobileBottomBarProps) {

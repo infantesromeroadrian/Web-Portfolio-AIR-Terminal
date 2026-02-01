@@ -71,12 +71,12 @@ export default function PageHeader({ runCommand }: { runCommand: (cmd: string) =
           </div>
         </div>
 
-        {/* Menú central (desktop) */}
-        <div class="hidden lg:flex flex-1 justify-center gap-1">
+        {/* Menú central (tablet y desktop) */}
+        <div class="hidden md:flex flex-1 justify-center gap-0.5 lg:gap-1 overflow-x-auto scrollbar-hide">
           {NAV_ITEMS.map((item) => (
             <button
               key={item.command}
-              class="px-4 py-2 rounded-lg font-mono text-sm text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--coral-bright)]/10 transition-all duration-300 focus-ring"
+              class="px-2 lg:px-4 py-2 rounded-lg font-mono text-xs lg:text-sm text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--coral-bright)]/10 transition-all duration-300 focus-ring whitespace-nowrap flex-shrink-0"
               onClick={() => void runCommand(item.command)}
             >
               {item.label}
