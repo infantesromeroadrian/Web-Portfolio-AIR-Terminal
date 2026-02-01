@@ -94,6 +94,7 @@ export const AVAILABLE_COMMANDS: string[] = [
   "cat proyectos/emailthreat.txt",
   // Blog
   "blog",
+  "cat blog/docker-ai-redteam-arsenal.md",
   "cat blog/prompt-injection-defense.md",
   "cat blog/docker-ml-security.md",
   "cat blog/langgraph-agents-production.md",
@@ -211,6 +212,11 @@ const COMMAND_MAP: Record<string, CommandHandler> = {
   // Blog
   blog: ({ print }) => {
     print(formatBlogList(blog));
+  },
+  "cat blog/docker-ai-redteam-arsenal.md": ({ print }) => {
+    const post = blog.posts.find((p) => p.slug === "docker-ai-redteam-arsenal");
+    if (post) print(formatBlogPost(post));
+    else print(formatBlogPostNotFound("docker-ai-redteam-arsenal"));
   },
   "cat blog/prompt-injection-defense.md": ({ print }) => {
     const post = blog.posts.find((p) => p.slug === "prompt-injection-defense");
