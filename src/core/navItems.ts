@@ -12,7 +12,6 @@ export interface NavItem {
 
 export const NAV_ITEMS: NavItem[] = [
   { label: "WHOAMI", command: "whoami" },
-  { label: "PERFIL", command: "perfil" },
   { label: "ESTUDIOS", command: "estudios" },
   { label: "EXPERIENCIA", command: "experiencia" },
   { label: "SKILLS", command: "skills" },

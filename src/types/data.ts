@@ -51,15 +51,7 @@ export interface WhoamiData {
   name: string;
   role: string;
   text: string;
-}
-
-// =============================================================================
-// PERFIL
-// =============================================================================
-
-export interface PerfilData {
-  title: string;
-  description: string;
+  quote: string;
   specialization: IconItem[];
   goals: IconItem[];
 }

@@ -12,7 +12,6 @@
 
 import type {
   WhoamiData,
-  PerfilData,
   EstudiosData,
   ExperienciaData,
   SkillsData,
@@ -24,7 +23,6 @@ import type {
 
 import {
   formatWhoami,
-  formatPerfil,
   formatEstudios,
   formatExperiencia,
   formatSkills,
@@ -53,7 +51,6 @@ import {
 
 // ── Datos estáticos ─────────────────────────────────────────
 import whoamiJson from "../data/whoami.json";
-import perfilJson from "../data/perfil.json";
 import estudiosJson from "../data/estudios.json";
 import experienciaJson from "../data/experiencia.json";
 import skillsJson from "../data/skills.json";
@@ -63,7 +60,6 @@ import proyectosJson from "../data/proyectos.json";
 import blogJson from "../data/blog.json";
 
 const whoami = whoamiJson as WhoamiData;
-const perfil = perfilJson as PerfilData;
 const estudios = estudiosJson as EstudiosData;
 const experiencia = experienciaJson as ExperienciaData;
 const skills = skillsJson as SkillsData;
@@ -77,7 +73,6 @@ const blog = blogJson as BlogData;
 export const AVAILABLE_COMMANDS: string[] = [
   // Comandos principales (coherentes con labels de navegación)
   "whoami",
-  "perfil",
   "estudios",
   "experiencia",
   "skills",
@@ -85,7 +80,6 @@ export const AVAILABLE_COMMANDS: string[] = [
   "proyectos",
   "contacto",
   // Alias estilo terminal (cat archivo.txt)
-  "cat perfil.txt",
   "cat estudios.txt",
   "cat experiencia.txt",
   "cat skills.txt",
@@ -137,9 +131,6 @@ function generateAllInfo(): string {
 ${formatWhoami(whoami)}
 ${sectionSeparator()}
 
-${formatPerfil(perfil)}
-${sectionSeparator()}
-
 ${formatEstudios(estudios)}
 ${sectionSeparator()}
 
@@ -163,9 +154,6 @@ const COMMAND_MAP: Record<string, CommandHandler> = {
   whoami: ({ print }) => {
     print(formatWhoami(whoami));
   },
-  perfil: ({ print }) => {
-    print(formatPerfil(perfil));
-  },
   estudios: ({ print }) => {
     print(formatEstudios(estudios));
   },
@@ -185,9 +173,6 @@ const COMMAND_MAP: Record<string, CommandHandler> = {
     print(formatContacto(contacto));
   },
   // Alias estilo terminal (cat archivo.txt)
-  "cat perfil.txt": ({ print }) => {
-    print(formatPerfil(perfil));
-  },
   "cat estudios.txt": ({ print }) => {
     print(formatEstudios(estudios));
   },

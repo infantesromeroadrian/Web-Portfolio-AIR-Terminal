@@ -9,7 +9,6 @@ export { colorIcon, sectionSeparator, textToHtml, linkify } from "./helpers";
 
 export {
   formatWhoami,
-  formatPerfil,
   formatEstudios,
   formatExperiencia,
   formatSkills,

@@ -12,7 +12,6 @@ import type {
   IconItem,
   ContactItem,
   WhoamiData,
-  PerfilData,
   EstudiosData,
   EstudioItem,
   ExperienciaData,
@@ -66,15 +65,8 @@ function link(url: string, label: string): string {
 // =============================================================================
 
 export function formatWhoami(data: WhoamiData): string {
-  // Primero reemplazar la cita final (entre comillas dobles)
-  // Luego los keywords para evitar conflictos
+  // Keywords destacados
   const text = data.text
-    // Cita al final del texto (frase entre comillas)
-    .replace(
-      /"El verdadero desafío no es la inteligencia del modelo, sino su robustez y control\."/g,
-      `<span style="color:#2563eb">»</span> <i>"El verdadero desafío no es la inteligencia del modelo, sino su robustez y control."</i>`
-    )
-    // Keywords destacados
     .replace(/AI Security Architect/g, `<span style="color:#2563eb">AI Security Architect</span>`)
     .replace(
       /Ingeniería de IA Ofensiva y Defensiva/g,
@@ -85,25 +77,6 @@ export function formatWhoami(data: WhoamiData): string {
       `<span style="color:#2563eb">Defensa en Profundidad</span>`
     );
 
-  return `
-Nombre: ${green(data.name)}
-Rol: ${accent(data.role)}
-
-${text}
-`;
-}
-
-// =============================================================================
-// PERFIL
-// =============================================================================
-
-export function formatPerfil(data: PerfilData): string {
-  // Highlight role in description
-  const description = data.description.replace(
-    /AI Security Architect/g,
-    accent("AI Security Architect")
-  );
-
   const specialization = data.specialization
     .map((item: IconItem) => `${colorIcon(item.icon, item.color)} ${item.text}`)
     .join("\n");
@@ -113,14 +86,17 @@ export function formatPerfil(data: PerfilData): string {
     .join("\n");
 
   return `
-${sectionTitle(data.title)}
+Nombre: ${green(data.name)}
+Rol: ${accent(data.role)}
 
-${description}
+${text}
 
-=== ESPECIALIZACIÓN ===
+<span style="color:#2563eb">»</span> <i>"${data.quote}"</i>
+
+${sectionTitle("ESPECIALIZACIÓN")}
 ${specialization}
 
-=== OBJETIVOS ===
+${sectionTitle("OBJETIVOS")}
 ${goals}
 `;
 }

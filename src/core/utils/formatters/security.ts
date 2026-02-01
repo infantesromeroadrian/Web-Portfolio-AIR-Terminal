@@ -18,8 +18,7 @@
 export function formatHelp(commands: string[]): string {
   const commandDescriptions: Record<string, string> = {
     // Comandos principales
-    whoami: "Muestra nombre y rol",
-    perfil: "Perfil profesional",
+    whoami: "Perfil profesional completo",
     estudios: "Formación académica",
     experiencia: "Experiencia laboral",
     skills: "Habilidades técnicas",
