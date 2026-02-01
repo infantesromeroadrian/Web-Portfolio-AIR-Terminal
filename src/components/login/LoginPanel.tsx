@@ -79,7 +79,7 @@ export default function LoginPanel({ onLogin }: { onLogin: () => void }) {
           <span class="badge badge-coral">LLM Security</span>
           <span class="badge badge-blue">Blue Team</span>
           <span class="badge badge-cyan">ML Engineering</span>
-          <span class="badge badge-docker">Docker Expert</span>
+          <span class="badge badge-red">AI Red Teaming</span>
         </div>
 
         {/* Tagline */}
