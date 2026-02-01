@@ -24,7 +24,6 @@ export function formatHelp(commands: string[]): string {
     skills: "Habilidades técnicas",
     certificaciones: "Certificaciones",
     proyectos: "Lista de proyectos",
-    contacto: "Datos de contacto",
     // Utilidades
     help: "Muestra esta ayuda",
     clear: "Limpia la terminal",

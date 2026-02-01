@@ -13,7 +13,6 @@ export {
   formatExperiencia,
   formatSkills,
   formatCertificaciones,
-  formatContacto,
 } from "./portfolio";
 
 export { formatLsProjects, formatProjectDetail, formatProjectNotFound } from "./projects";

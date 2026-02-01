@@ -10,7 +10,6 @@
 
 import type {
   IconItem,
-  ContactItem,
   WhoamiData,
   EstudiosData,
   EstudioItem,
@@ -23,7 +22,6 @@ import type {
   CertificacionObtenida,
   CertificacionEnPreparacion,
   CertificacionObjetivo,
-  ContactoData,
 } from "../../../types/data";
 
 import { colorIcon, linkify } from "./helpers";
@@ -53,11 +51,6 @@ function red(text: string): string {
 /** Colorea un ID de sección en azul (e.g. [01]) */
 function blueId(id: string): string {
   return `<span style="color:#3399ff">${id}</span>`;
-}
-
-/** Genera un enlace HTML clicable */
-function link(url: string, label: string): string {
-  return `<a href="${url}" target="_blank" rel="noopener noreferrer" style="color:#3399ff">${label}</a>`;
 }
 
 // =============================================================================
@@ -246,37 +239,4 @@ ${objetivos}
   }
 
   return output;
-}
-
-// =============================================================================
-// CONTACTO
-// =============================================================================
-
-export function formatContacto(data: ContactoData): string {
-  const contacto = data.items
-    .map((i: ContactItem) => {
-      const icon = i.icon ? colorIcon(i.icon, i.color) + " " : "- ";
-      const value = i.href ? link(i.href, i.value) : i.value;
-      return `${icon}${i.label}: ${value}`;
-    })
-    .join("\n");
-
-  const disponibilidad = data.disponibilidad
-    .map((d: IconItem) => `${colorIcon(d.icon, d.color)} ${d.text}`)
-    .join("\n");
-
-  const idiomas = data.idiomas
-    .map((i: IconItem) => `${colorIcon(i.icon, i.color)} ${i.text}`)
-    .join("\n");
-
-  return `
-${sectionTitle(data.title)}
-${contacto}
-
-=== DISPONIBILIDAD ===
-${disponibilidad}
-
-=== IDIOMAS ===
-${idiomas}
-`;
 }

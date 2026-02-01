@@ -31,18 +31,6 @@ export interface IconItem {
   text: string;
 }
 
-/**
- * Item de contacto con label y valor.
- */
-export interface ContactItem {
-  icon: string;
-  color: IconColor;
-  label: string;
-  value: string;
-  /** Optional link URL. If present, value is rendered as a clickable link. */
-  href?: string;
-}
-
 // =============================================================================
 // WHOAMI
 // =============================================================================
@@ -150,17 +138,6 @@ export interface CertificacionesData {
   obtenidas: CertificacionObtenida[];
   enPreparacion: CertificacionEnPreparacion[];
   objetivos: CertificacionObjetivo[];
-}
-
-// =============================================================================
-// CONTACTO
-// =============================================================================
-
-export interface ContactoData {
-  title: string;
-  items: ContactItem[];
-  disponibilidad: IconItem[];
-  idiomas: IconItem[];
 }
 
 // =============================================================================

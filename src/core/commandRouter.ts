@@ -16,7 +16,6 @@ import type {
   ExperienciaData,
   SkillsData,
   CertificacionesData,
-  ContactoData,
   ProyectosData,
   BlogData,
 } from "../types/data";
@@ -27,7 +26,6 @@ import {
   formatExperiencia,
   formatSkills,
   formatCertificaciones,
-  formatContacto,
   formatLsProjects,
   formatProjectDetail,
   formatProjectNotFound,
@@ -55,7 +53,6 @@ import estudiosJson from "../data/estudios.json";
 import experienciaJson from "../data/experiencia.json";
 import skillsJson from "../data/skills.json";
 import certificacionesJson from "../data/certificaciones.json";
-import contactoJson from "../data/contacto.json";
 import proyectosJson from "../data/proyectos.json";
 import blogJson from "../data/blog.json";
 
@@ -64,7 +61,6 @@ const estudios = estudiosJson as EstudiosData;
 const experiencia = experienciaJson as ExperienciaData;
 const skills = skillsJson as SkillsData;
 const certificaciones = certificacionesJson as CertificacionesData;
-const contacto = contactoJson as ContactoData;
 const proyectos = proyectosJson as ProyectosData;
 const blog = blogJson as BlogData;
 
@@ -78,13 +74,11 @@ export const AVAILABLE_COMMANDS: string[] = [
   "skills",
   "certificaciones",
   "proyectos",
-  "contacto",
   // Alias estilo terminal (cat archivo.txt)
   "cat estudios.txt",
   "cat experiencia.txt",
   "cat skills.txt",
   "cat certificaciones.txt",
-  "cat contacto.txt",
   // Utilidades
   "help",
   "clear",
@@ -141,9 +135,6 @@ ${formatSkills(skills)}
 ${sectionSeparator()}
 
 ${formatCertificaciones(certificaciones)}
-${sectionSeparator()}
-
-${formatContacto(contacto)}
 `;
 }
 
@@ -169,9 +160,6 @@ const COMMAND_MAP: Record<string, CommandHandler> = {
   proyectos: ({ print }) => {
     print(formatLsProjects(proyectos));
   },
-  contacto: ({ print }) => {
-    print(formatContacto(contacto));
-  },
   // Alias estilo terminal (cat archivo.txt)
   "cat estudios.txt": ({ print }) => {
     print(formatEstudios(estudios));
@@ -184,9 +172,6 @@ const COMMAND_MAP: Record<string, CommandHandler> = {
   },
   "cat certificaciones.txt": ({ print }) => {
     print(formatCertificaciones(certificaciones));
-  },
-  "cat contacto.txt": ({ print }) => {
-    print(formatContacto(contacto));
   },
   // Utilidades
   help: ({ print }) => {
