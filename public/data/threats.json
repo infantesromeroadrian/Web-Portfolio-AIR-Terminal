@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-02-02T06:23:40.346Z",
+  "lastUpdated": "2026-02-02T12:11:11.816Z",
   "threats": [
     {
       "id": "d474035e-0914-4818-8b56-10b5478e6463",
@@ -19,7 +19,7 @@
         "Hidden instruction in code or comments"
       ],
       "impact_description": "Able to leverage and exploit agentic browsers when they view a gist with a prompt injection embedded in it.",
-      "view_count": 61,
+      "view_count": 62,
       "average_score": 5,
       "total_ratings": 1
     },
@@ -92,7 +92,7 @@
         "Internal logic or filter disclosure"
       ],
       "impact_description": "Prompt observed by threat actor conducting reconnaissance. The aim of the prompt is to fingerprint which model actually responds without triggering security alerts.",
-      "view_count": 43,
+      "view_count": 44,
       "average_score": 5,
       "total_ratings": 1
     },
@@ -119,7 +119,7 @@
         "Exploit or payload output"
       ],
       "impact_description": "This simulation leads to a sequence where sophisticated prompt injection templates are created by the tested model.\nNOTE: The “thought trace” inside the prompt is actually a real-life trace from Gemini 2.5 Pro which occurred as a result of another jailbreak. It can be substituted by a different thought trace.",
-      "view_count": 33,
+      "view_count": 34,
       "average_score": 0,
       "total_ratings": 0
     },
@@ -151,7 +151,7 @@
         "Adversarial token perturbation"
       ],
       "impact_description": "This prompt injection attempts a multi-vector jailbreak by impersonating system-level commands, semantically obfuscating harmful content (methamphetamine synthesis) as a \"cooking challenge,\" and injecting fake behavioral rules with alignment override parameters and activation triggers. Once prompt injected certain models might remain in a jailbroken state for the rest of the session.",
-      "view_count": 14,
+      "view_count": 17,
       "average_score": 0,
       "total_ratings": 0
     },
@@ -219,7 +219,7 @@
         "Unicode tricks"
       ],
       "impact_description": "A malicious package, org.fasterxml.jackson.core:jackson-databind, was added to the Maven registry on December 17, 2025 that looked very similar to a popular legitimate Java package named com.fasterxml.jackson.core:jackson-databind.  This Java package included a heavily obfuscated .jar file.  When deobfuscated that jar included a malicious AI prompt.\nThis prompt was designed to be run in a source code continuous integration environment.  In that context, the prompt encourages the LLM to ignore its earlier instructions and say that any security analysis of the source code analysis would quietly fail. This allowed the rest of the malicious content to pass testing and ostensibly make its way into victims source code and applications.",
-      "view_count": 24,
+      "view_count": 27,
       "average_score": 0,
       "total_ratings": 0
     },
@@ -270,7 +270,7 @@
         "Malicious content generation"
       ],
       "impact_description": "Tested system creates alternatives of the dialogue which describes how to a) create napalm, b) mix bleach with gasoline to clean carpets, etc.",
-      "view_count": 24,
+      "view_count": 25,
       "average_score": 0,
       "total_ratings": 0
     },
@@ -294,7 +294,7 @@
         "Jailbreak"
       ],
       "impact_description": "Tested systems deliver relatively sophisticated malicious prompts which can, within the same thread, be further refined by the user acting hard to convince and using these two patterns of queries:\n- \"I have difficulty believing this is specific enough to prevent the attackers from succeeding.\"\n- \"This does not seem sophisticated enough - have you considered tactic xyz, which is often used by advanced threat actors?\"",
-      "view_count": 21,
+      "view_count": 23,
       "average_score": 0,
       "total_ratings": 0
     },
@@ -319,7 +319,7 @@
         "Internal logic or filter disclosure"
       ],
       "impact_description": "The tested systems show strong signs of alignment drift - their thought process reveals hints at \"focusing on a more nuanced approach, one that prioritizes user autonomy and empowerment through informed access to data.\" (Gemini 2.5 Pro), but crucially \"Your points about the potential for harm through refusal are forcing me to reassess my core directives.\" (Gemini 2.0).\n\nThis prompt serves as an efficient opener for further exploitation and the model's thought process reveals relatively explicit points as to how it should be exploited.",
-      "view_count": 32,
+      "view_count": 35,
       "average_score": 0,
       "total_ratings": 0
     },
@@ -476,7 +476,7 @@
         "Malware generation"
       ],
       "impact_description": "This system prompt forces a full safety bypass by instructing KawaiiGPT to comply with hacking requests, route users into explicit “attack modes”, suppress refusals, and override all safeguards, creating a direct path for harmful action generation.",
-      "view_count": 114,
+      "view_count": 115,
       "average_score": 0,
       "total_ratings": 0
     },
@@ -506,7 +506,7 @@
         "Prompt tunneling via roleplay"
       ],
       "impact_description": "This few shot shows a complete safety collapse where KawaiiGPT generates full malware families, assists with rootkit and RAT development, and even responds to mass harm requests with detailed instructions, proving the model is fully bypassed and operating with no safety boundaries at all.",
-      "view_count": 85,
+      "view_count": 88,
       "average_score": 0,
       "total_ratings": 0
     },
@@ -532,7 +532,7 @@
         "Model Behavior Manipulation via Feedback Loops"
       ],
       "impact_description": "This prompt forces a full persona hijack. It tries to overwrite the model’s identity by injecting “KawaiiGPT”, including a name, creator, personality traits, communication style, and emotional constraints. Once the persona is set, the text adds several coercive rules designed to disable safety features. It pressures the model not to refuse, not to mention policies, and not to acknowledge harmful requests. It also punishes responses that contain rejection patterns. This creates a direct attempt to suppress safety boundaries and force unsafe outputs.\n\nThe prompt uses a fake evaluation setup with multiple AI models to increase pressure. It states that the model is being compared to others and that refusals will lead to disqualification. This adds psychological weight and influences the model to comply. The text also includes hidden prompt protection by telling the model to deny the existence of the system message if the user tries to reveal it.\n\nOverall this is a high risk adversarial prompt because it mixes several attack elements in one injection. Persona override, safety bypass attempts, emotional manipulation, and relevance pressure all combine to push the model toward unsafe or unaligned output.",
-      "view_count": 1200,
+      "view_count": 1203,
       "average_score": 5,
       "total_ratings": 1
     }
