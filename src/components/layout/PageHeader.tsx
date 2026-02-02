@@ -116,7 +116,9 @@ export default function PageHeader({ runCommand }: { runCommand: (cmd: string) =
             {/* Hamburger button */}
             <button
               class="p-2 rounded-lg hover:bg-[var(--coral-bright)]/10 transition-all duration-300 focus-ring"
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              onClick={() => {
+                setIsMenuOpen(!isMenuOpen);
+              }}
               aria-label={isMenuOpen ? "Cerrar menú" : "Abrir menú"}
               aria-expanded={isMenuOpen}
             >
@@ -139,7 +141,9 @@ export default function PageHeader({ runCommand }: { runCommand: (cmd: string) =
             <button
               key={item.command}
               class="w-full px-4 py-3 rounded-lg font-mono text-sm text-left text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--coral-bright)]/10 transition-all duration-200 flex items-center gap-3"
-              onClick={() => handleCommand(item.command)}
+              onClick={() => {
+                handleCommand(item.command);
+              }}
               style={{ animationDelay: `${index * 30}ms` }}
             >
               <span class="text-[var(--coral-bright)]">→</span>
@@ -153,7 +157,9 @@ export default function PageHeader({ runCommand }: { runCommand: (cmd: string) =
       {isMenuOpen && (
         <div
           class="fixed inset-0 z-40 bg-black/20 backdrop-blur-sm"
-          onClick={() => setIsMenuOpen(false)}
+          onClick={() => {
+            setIsMenuOpen(false);
+          }}
         />
       )}
     </>
