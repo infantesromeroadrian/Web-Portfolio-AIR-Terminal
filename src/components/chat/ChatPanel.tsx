@@ -83,6 +83,7 @@ function formatTime(date: Date): string {
 // ── Main Component ──────────────────────────────────────────
 
 export default function ChatPanel({ onClose }: { onClose: () => void }) {
+  const [isExpanded, setIsExpanded] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
     {
       role: "assistant",
@@ -148,18 +149,21 @@ What would you like to know?`,
 
   return (
     <div
-      class="
-        fixed bottom-36 sm:bottom-24 right-4 sm:right-6 z-50
-        w-[calc(100vw-2rem)] sm:w-[420px] max-w-[420px]
-        h-[min(580px,calc(100vh-8rem))]
-        bg-gray-900/95 backdrop-blur-xl rounded-2xl
+      class={`
+        fixed z-50
+        bg-gray-900/95 backdrop-blur-xl
         shadow-2xl shadow-black/50
         border border-gray-700/50
         flex flex-col
         font-mono
-        animate-slide-up
         overflow-hidden
-      "
+        transition-all duration-300 ease-out
+        ${
+          isExpanded
+            ? "inset-4 sm:inset-6 rounded-2xl"
+            : "bottom-36 sm:bottom-24 right-4 sm:right-6 w-[calc(100vw-2rem)] sm:w-[420px] max-w-[420px] h-[min(580px,calc(100vh-8rem))] rounded-2xl animate-slide-up"
+        }
+      `}
     >
       {/* Header */}
       <div class="flex items-center justify-between px-4 py-3 border-b border-gray-700/50 bg-gray-800/50">
@@ -177,20 +181,51 @@ What would you like to know?`,
             <div class="text-gray-400 text-xs">Online • Ask me anything</div>
           </div>
         </div>
-        <button
-          onClick={onClose}
-          class="text-gray-400 hover:text-white hover:bg-gray-700/50 transition-all p-2 rounded-lg focus-ring"
-          aria-label="Close chat"
-        >
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M6 18L18 6M6 6l12 12"
-            />
-          </svg>
-        </button>
+        <div class="flex items-center gap-1">
+          {/* Expand/Collapse button */}
+          <button
+            onClick={() => {
+              setIsExpanded(!isExpanded);
+            }}
+            class="text-gray-400 hover:text-white hover:bg-gray-700/50 transition-all p-2 rounded-lg focus-ring"
+            aria-label={isExpanded ? "Collapse chat" : "Expand chat"}
+          >
+            {isExpanded ? (
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 9L4 4m0 0v5m0-5h5m6 6l5 5m0 0v-5m0 5h-5M9 15l-5 5m0 0h5m-5 0v-5m11-6l5-5m0 0h-5m5 0v5"
+                />
+              </svg>
+            ) : (
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"
+                />
+              </svg>
+            )}
+          </button>
+          {/* Close button */}
+          <button
+            onClick={onClose}
+            class="text-gray-400 hover:text-white hover:bg-gray-700/50 transition-all p-2 rounded-lg focus-ring"
+            aria-label="Close chat"
+          >
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M6 18L18 6M6 6l12 12"
+              />
+            </svg>
+          </button>
+        </div>
       </div>
 
       {/* Messages */}
