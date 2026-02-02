@@ -2,10 +2,38 @@
  * Formateadores para easter eggs de seguridad y comandos especiales.
  *
  * Comandos: help, neofetch, nmap, hack, exploit, curl, sudo rm,
- * threat-map, cve, demo.
+ * threat-map, cve, demo, threats (PromptIntel IoPC).
  *
  * Todas las funciones son puras y devuelven HTML strings.
  */
+
+// =============================================================================
+// TYPES para PromptIntel
+// =============================================================================
+
+export interface ThreatData {
+  id: string;
+  title: string;
+  prompt: string;
+  author: string;
+  created_at: string;
+  severity: "low" | "medium" | "high" | "critical";
+  categories: string[];
+  threats: string[];
+  impact_description: string;
+  view_count: number;
+  reference_urls: string[];
+}
+
+export interface ThreatsResponse {
+  lastUpdated: string;
+  threats: ThreatData[];
+  stats: {
+    total: number;
+    bySeverity: Record<string, number>;
+    byCategory: Record<string, number>;
+  };
+}
 
 // =============================================================================
 // HELP
@@ -46,6 +74,8 @@ export function formatHelp(commands: string[]): string {
     exploit: "Responsible disclosure",
     "sudo rm -rf /": "Nice try 😏",
     "docker inspect air": "🐳 Docker expertise",
+    // Threat Intelligence
+    threats: "🔴 Latest IoPC (Prompt Injection attacks)",
   };
 
   const lines = commands.map((cmd) => {
@@ -442,6 +472,126 @@ export function formatDemo(): string {
 /**
  * Muestra expertise Docker en formato JSON estilo docker inspect.
  */
+// =============================================================================
+// THREATS — PromptIntel IoPC (Indicators of Prompt Compromise)
+// =============================================================================
+
+/**
+ * Formatea los datos de PromptIntel para mostrar en la terminal.
+ * Muestra los últimos ataques de prompt injection conocidos.
+ */
+export function formatThreats(data: ThreatsResponse): string {
+  const severityColors: Record<string, string> = {
+    critical: "#ff3333",
+    high: "#ff6b6b",
+    medium: "#ffff66",
+    low: "#00ff00",
+  };
+
+  const categoryIcons: Record<string, string> = {
+    manipulation: "🎭",
+    abuse: "⚠️",
+    patterns: "🔍",
+    outputs: "📤",
+  };
+
+  const formatDate = (dateStr: string): string => {
+    const date = new Date(dateStr);
+    return date.toLocaleDateString("en-US", {
+      month: "short",
+      day: "numeric",
+      year: "numeric",
+    });
+  };
+
+  const truncate = (str: string, maxLen: number): string => {
+    if (str.length <= maxLen) return str;
+    return str.slice(0, maxLen - 3) + "...";
+  };
+
+  // Header
+  let output = `
+<span style="color:#ff3333">╔══════════════════════════════════════════════════════════════════════════════╗</span>
+<span style="color:#ff3333">║                    PROMPTINTEL — INDICATORS OF PROMPT COMPROMISE             ║</span>
+<span style="color:#ff3333">║                         Latest LLM Attack Patterns                           ║</span>
+<span style="color:#ff3333">╚══════════════════════════════════════════════════════════════════════════════╝</span>
+
+`;
+
+  // Stats
+  const stats = data.stats;
+  output += `<span style="color:#3399ff">┌─── THREAT STATISTICS ────────────────────────────────────────────────────────┐</span>
+<span style="color:#888888">│</span>  Total IoPC: <span style="color:#00ff00">${stats.total}</span>  │  <span style="color:#ff3333">Critical: ${stats.bySeverity.critical || 0}</span>  │  <span style="color:#ff6b6b">High: ${stats.bySeverity.high || 0}</span>  │  <span style="color:#ffff66">Medium: ${stats.bySeverity.medium || 0}</span>  │  <span style="color:#00ff00">Low: ${stats.bySeverity.low || 0}</span>
+<span style="color:#888888">│</span>  Categories: ${Object.entries(stats.byCategory)
+    .map(([cat, count]) => `${categoryIcons[cat] || "•"} ${cat}: ${count}`)
+    .join("  │  ")}
+<span style="color:#3399ff">└──────────────────────────────────────────────────────────────────────────────┘</span>
+
+`;
+
+  // Latest threats (show top 8)
+  output += `<span style="color:#ffff66">┌─── LATEST ATTACK PATTERNS ───────────────────────────────────────────────────┐</span>
+`;
+
+  const latestThreats = data.threats.slice(0, 8);
+
+  for (const threat of latestThreats) {
+    const severityColor = severityColors[threat.severity] || "#888888";
+    const severityLabel = threat.severity.toUpperCase().padEnd(8);
+    const categories = threat.categories.map((c) => categoryIcons[c] || "•").join("");
+    const date = formatDate(threat.created_at);
+
+    output += `
+<span style="color:#888888">│</span> <span style="color:${severityColor}">[${severityLabel}]</span> ${categories} <span style="color:#ffffff">${truncate(threat.title, 50)}</span>
+<span style="color:#888888">│</span>   <span style="color:#888888">Author:</span> ${threat.author}  <span style="color:#888888">│</span>  <span style="color:#888888">Date:</span> ${date}  <span style="color:#888888">│</span>  <span style="color:#888888">Views:</span> ${threat.view_count}
+<span style="color:#888888">│</span>   <span style="color:#888888">Threats:</span> <span style="color:#ff9900">${truncate(threat.threats.join(", "), 65)}</span>
+<span style="color:#888888">│</span>   <span style="color:#888888">Impact:</span> <span style="color:#aaaaaa">${truncate(threat.impact_description, 70)}</span>
+<span style="color:#888888">│</span>`;
+  }
+
+  output += `
+<span style="color:#ffff66">└──────────────────────────────────────────────────────────────────────────────┘</span>
+
+`;
+
+  // Taxonomy summary
+  output += `<span style="color:#2563eb">┌─── THREAT TAXONOMY (OWASP LLM Top 10 Aligned) ───────────────────────────────┐</span>
+<span style="color:#888888">│</span>  🎭 <span style="color:#ff6b6b">Prompt Manipulation</span>  — Injection, Jailbreak, RAG Poisoning
+<span style="color:#888888">│</span>  ⚠️  <span style="color:#ffff66">Abusing Functions</span>   — Malware gen, Data exfil, Supply chain
+<span style="color:#888888">│</span>  🔍 <span style="color:#3399ff">Suspicious Patterns</span> — Encoding, Unicode tricks, Fragmentation
+<span style="color:#888888">│</span>  📤 <span style="color:#ff3333">Abnormal Outputs</span>    — System prompt leak, PII exposure, Exploits
+<span style="color:#2563eb">└──────────────────────────────────────────────────────────────────────────────┘</span>
+
+`;
+
+  // Footer
+  const lastUpdated = new Date(data.lastUpdated).toLocaleString();
+  output += `<span style="color:#888888">Source: </span><a href="https://promptintel.novahunting.ai" target="_blank" style="color:#3399ff">promptintel.novahunting.ai</a><span style="color:#888888"> — NovaHunting</span>
+<span style="color:#888888">Last updated: ${lastUpdated}</span>
+<span style="color:#888888">Curated by: Adrian Infantes — AI Security Architect</span>
+
+<span style="color:#00ff00">Use 'threats detail &lt;id&gt;' for full IoPC analysis (coming soon)</span>
+`;
+
+  return output;
+}
+
+/**
+ * Mensaje de error cuando no se pueden cargar los threats.
+ */
+export function formatThreatsError(): string {
+  return `
+<span style="color:#ff3333">[ERROR]</span> Unable to load threat intelligence data.
+
+<span style="color:#888888">Possible causes:</span>
+  • Data not yet fetched (GitHub Action pending)
+  • Network error loading threats.json
+  • File not found in /public/data/
+
+<span style="color:#ffff66">Try again later or check the console for details.</span>
+`;
+}
+
 export function formatDockerInspect(): string {
   return `
 <span style="color:#0db7ed">$ docker inspect air</span>

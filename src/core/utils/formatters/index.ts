@@ -31,4 +31,8 @@ export {
   formatCve,
   formatDemo,
   formatDockerInspect,
+  formatThreats,
+  formatThreatsError,
 } from "./security";
+
+export type { ThreatData, ThreatsResponse } from "./security";

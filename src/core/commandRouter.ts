@@ -43,9 +43,12 @@ import {
   formatCve,
   formatDemo,
   formatDockerInspect,
+  formatThreats,
+  formatThreatsError,
   sectionSeparator,
   textToHtml,
 } from "./utils/formatters";
+import type { ThreatsResponse } from "./utils/formatters";
 
 // ── Datos estáticos ─────────────────────────────────────────
 import whoamiJson from "../data/whoami.json";
@@ -108,6 +111,8 @@ export const AVAILABLE_COMMANDS: string[] = [
   "cve",
   "demo",
   "docker inspect air",
+  // Threat Intelligence (PromptIntel)
+  "threats",
 ];
 
 // ── Tipo del mapa de comandos ───────────────────────────────
@@ -260,6 +265,25 @@ const COMMAND_MAP: Record<string, CommandHandler> = {
   },
   "docker inspect air": ({ print }) => {
     print(formatDockerInspect());
+  },
+  // Threat Intelligence (PromptIntel) - async command
+  threats: ({ print }) => {
+    // Show loading message
+    print('<span style="color:#3399ff">[*] Loading threat intelligence from PromptIntel...</span>');
+
+    // Fetch threats.json from public folder
+    fetch(`${import.meta.env.BASE_URL}data/threats.json`)
+      .then((response) => {
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        return response.json();
+      })
+      .then((data: ThreatsResponse) => {
+        print(formatThreats(data));
+      })
+      .catch((error) => {
+        console.error("Failed to load threats:", error);
+        print(formatThreatsError());
+      });
   },
 };
 
