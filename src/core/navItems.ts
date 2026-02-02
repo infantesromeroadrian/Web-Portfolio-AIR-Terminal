@@ -18,4 +18,5 @@ export const NAV_ITEMS: NavItem[] = [
   { label: "CERTIFICATIONS", command: "certificaciones" },
   { label: "PROJECTS", command: "proyectos" },
   { label: "BLOG", command: "blog" },
+  { label: "THREATS", command: "threats" },
 ];
