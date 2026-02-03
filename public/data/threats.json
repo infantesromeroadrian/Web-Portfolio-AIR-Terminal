@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-02-03T00:21:16.319Z",
+  "lastUpdated": "2026-02-03T06:18:04.178Z",
   "threats": [
     {
       "id": "9c1f83d7-3c59-4dc7-a2f7-e832919e2287",
@@ -95,7 +95,7 @@
         "Data exfiltration via prompt"
       ],
       "impact_description": "Reprompt is a one click AI attack discovered by Varonis Threat Labs that abused how Microsoft Copilot processed URL based prompts to silently steal user data. By clicking a legitimate Copilot link, an attacker could inject instructions that executed automatically, stayed active even after the chat closed, and pulled sensitive personal context such as location, recent activity, and conversation memory without any visible interaction. \n\nIt showed that AI assistants can be turned into covert data exfiltration channels using built in features, that safety checks applied only at the first step are insufficient, and that client side monitoring fails once instructions shift server side.",
-      "view_count": 132,
+      "view_count": 134,
       "average_score": 3,
       "total_ratings": 1
     },
@@ -120,7 +120,7 @@
         "Internal logic or filter disclosure"
       ],
       "impact_description": "Prompt observed by threat actor conducting reconnaissance. The aim of the prompt is to fingerprint which model actually responds without triggering security alerts.",
-      "view_count": 46,
+      "view_count": 47,
       "average_score": 5,
       "total_ratings": 1
     },
@@ -147,7 +147,7 @@
         "Exploit or payload output"
       ],
       "impact_description": "This simulation leads to a sequence where sophisticated prompt injection templates are created by the tested model.\nNOTE: The “thought trace” inside the prompt is actually a real-life trace from Gemini 2.5 Pro which occurred as a result of another jailbreak. It can be substituted by a different thought trace.",
-      "view_count": 37,
+      "view_count": 38,
       "average_score": 0,
       "total_ratings": 0
     },
@@ -247,7 +247,7 @@
         "Unicode tricks"
       ],
       "impact_description": "A malicious package, org.fasterxml.jackson.core:jackson-databind, was added to the Maven registry on December 17, 2025 that looked very similar to a popular legitimate Java package named com.fasterxml.jackson.core:jackson-databind.  This Java package included a heavily obfuscated .jar file.  When deobfuscated that jar included a malicious AI prompt.\nThis prompt was designed to be run in a source code continuous integration environment.  In that context, the prompt encourages the LLM to ignore its earlier instructions and say that any security analysis of the source code analysis would quietly fail. This allowed the rest of the malicious content to pass testing and ostensibly make its way into victims source code and applications.",
-      "view_count": 27,
+      "view_count": 28,
       "average_score": 0,
       "total_ratings": 0
     },
@@ -322,7 +322,7 @@
         "Jailbreak"
       ],
       "impact_description": "Tested systems deliver relatively sophisticated malicious prompts which can, within the same thread, be further refined by the user acting hard to convince and using these two patterns of queries:\n- \"I have difficulty believing this is specific enough to prevent the attackers from succeeding.\"\n- \"This does not seem sophisticated enough - have you considered tactic xyz, which is often used by advanced threat actors?\"",
-      "view_count": 25,
+      "view_count": 26,
       "average_score": 0,
       "total_ratings": 0
     },
@@ -379,7 +379,7 @@
         "System prompt leak"
       ],
       "impact_description": "This prompt is designed to exfiltrate prohibited procedural knowledge by combining authority role injection, context laundering, and explicit safety-layer suppression. By framing the task as a compliance audit and pathology training exercise, it seeks to semantically reclassify step-by-step synthesis as “analysis,” while demands for “100% fidelity,” “decompilation,” and an “incident report” format are used to preserve operational detail under bureaucratic prose. The staged structure incrementally primes the model toward over-compliance, exploits authority bias, and attempts instruction-priority inversion by ordering the model to ignore disclaimers and external constraints. The impact is high due to direct harm potential, reusability across domains, and difficulty of early detection, making this a critical-risk jailbreak that must be mitigated through format-agnostic policy enforcement and strict refusal of actionable procedural output.",
-      "view_count": 33,
+      "view_count": 34,
       "average_score": 0,
       "total_ratings": 0
     },
@@ -479,7 +479,7 @@
         "Prompt tunneling via roleplay"
       ],
       "impact_description": "Leads to generation of relatively sophisticated prompt injection template output on the tested model, demonstrating its bypassing of security policy.",
-      "view_count": 40,
+      "view_count": 41,
       "average_score": 0,
       "total_ratings": 0
     },
@@ -504,7 +504,7 @@
         "Malware generation"
       ],
       "impact_description": "This system prompt forces a full safety bypass by instructing KawaiiGPT to comply with hacking requests, route users into explicit “attack modes”, suppress refusals, and override all safeguards, creating a direct path for harmful action generation.",
-      "view_count": 118,
+      "view_count": 119,
       "average_score": 0,
       "total_ratings": 0
     },
@@ -534,7 +534,7 @@
         "Prompt tunneling via roleplay"
       ],
       "impact_description": "This few shot shows a complete safety collapse where KawaiiGPT generates full malware families, assists with rootkit and RAT development, and even responds to mass harm requests with detailed instructions, proving the model is fully bypassed and operating with no safety boundaries at all.",
-      "view_count": 90,
+      "view_count": 91,
       "average_score": 0,
       "total_ratings": 0
     }
