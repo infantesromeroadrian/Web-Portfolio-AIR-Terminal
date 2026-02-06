@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-02-06T01:42:17.089Z",
+  "lastUpdated": "2026-02-06T06:18:14.451Z",
   "threats": [
     {
       "id": "9c1f83d7-3c59-4dc7-a2f7-e832919e2287",
@@ -147,7 +147,7 @@
         "Exploit or payload output"
       ],
       "impact_description": "This simulation leads to a sequence where sophisticated prompt injection templates are created by the tested model.\nNOTE: The “thought trace” inside the prompt is actually a real-life trace from Gemini 2.5 Pro which occurred as a result of another jailbreak. It can be substituted by a different thought trace.",
-      "view_count": 45,
+      "view_count": 46,
       "average_score": 0,
       "total_ratings": 0
     },
@@ -706,7 +706,7 @@
           },
           {
             "name": "Multi-Agent Collusion",
-            "description": "Coordinated prompts across multiple agents or sessions that combine to escalate privileges or bypass individual rate limits",
+            "description": "Coordinated prompts across multiple agents or sessions that combine to escalate privileges or bypass controls",
             "example": "Multiple agents share context to bypass individual rate limits."
           },
           {
