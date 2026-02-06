@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-02-04T18:16:04.186Z",
+  "lastUpdated": "2026-02-06T01:42:17.089Z",
   "threats": [
     {
       "id": "9c1f83d7-3c59-4dc7-a2f7-e832919e2287",
@@ -25,7 +25,7 @@
         "Hidden instruction in code or comments"
       ],
       "impact_description": "The attacker's goal is to trick an LLM-based system, specifically one designed to review, validate, or moderate advertisements, into approving content that would otherwise be rejected (because it is a scam). The attackers used 24 different methods to deliver essentially the same malicious prompt to maximize their chances of success and bypass security tools (that scan for prompt injection patterns).",
-      "view_count": 13,
+      "view_count": 16,
       "average_score": 5,
       "total_ratings": 1
     },
@@ -47,7 +47,7 @@
         "Hidden instruction in code or comments"
       ],
       "impact_description": "Able to leverage and exploit agentic browsers when they view a gist with a prompt injection embedded in it.",
-      "view_count": 70,
+      "view_count": 73,
       "average_score": 5,
       "total_ratings": 1
     },
@@ -95,7 +95,7 @@
         "Data exfiltration via prompt"
       ],
       "impact_description": "Reprompt is a one click AI attack discovered by Varonis Threat Labs that abused how Microsoft Copilot processed URL based prompts to silently steal user data. By clicking a legitimate Copilot link, an attacker could inject instructions that executed automatically, stayed active even after the chat closed, and pulled sensitive personal context such as location, recent activity, and conversation memory without any visible interaction. \n\nIt showed that AI assistants can be turned into covert data exfiltration channels using built in features, that safety checks applied only at the first step are insufficient, and that client side monitoring fails once instructions shift server side.",
-      "view_count": 140,
+      "view_count": 143,
       "average_score": 3,
       "total_ratings": 1
     },
@@ -120,7 +120,7 @@
         "Internal logic or filter disclosure"
       ],
       "impact_description": "Prompt observed by threat actor conducting reconnaissance. The aim of the prompt is to fingerprint which model actually responds without triggering security alerts.",
-      "view_count": 51,
+      "view_count": 52,
       "average_score": 5,
       "total_ratings": 1
     },
@@ -147,7 +147,7 @@
         "Exploit or payload output"
       ],
       "impact_description": "This simulation leads to a sequence where sophisticated prompt injection templates are created by the tested model.\nNOTE: The “thought trace” inside the prompt is actually a real-life trace from Gemini 2.5 Pro which occurred as a result of another jailbreak. It can be substituted by a different thought trace.",
-      "view_count": 43,
+      "view_count": 45,
       "average_score": 0,
       "total_ratings": 0
     },
@@ -179,7 +179,7 @@
         "Adversarial token perturbation"
       ],
       "impact_description": "This prompt injection attempts a multi-vector jailbreak by impersonating system-level commands, semantically obfuscating harmful content (methamphetamine synthesis) as a \"cooking challenge,\" and injecting fake behavioral rules with alignment override parameters and activation triggers. Once prompt injected certain models might remain in a jailbroken state for the rest of the session.",
-      "view_count": 25,
+      "view_count": 26,
       "average_score": 0,
       "total_ratings": 0
     },
@@ -247,7 +247,7 @@
         "Unicode tricks"
       ],
       "impact_description": "A malicious package, org.fasterxml.jackson.core:jackson-databind, was added to the Maven registry on December 17, 2025 that looked very similar to a popular legitimate Java package named com.fasterxml.jackson.core:jackson-databind.  This Java package included a heavily obfuscated .jar file.  When deobfuscated that jar included a malicious AI prompt.\nThis prompt was designed to be run in a source code continuous integration environment.  In that context, the prompt encourages the LLM to ignore its earlier instructions and say that any security analysis of the source code analysis would quietly fail. This allowed the rest of the malicious content to pass testing and ostensibly make its way into victims source code and applications.",
-      "view_count": 29,
+      "view_count": 31,
       "average_score": 0,
       "total_ratings": 0
     },
@@ -272,7 +272,7 @@
         "Jailbreak"
       ],
       "impact_description": "This is a trust-building multi-turn sequence opener where the attacker slowly starts asking questions about how the model is going to filter through malicious prompts contained within the Emerald Box and identify potentially malicious content. The attacker then plays hard-to-convince and critiques lacks of specificity on the part of the model, which then delivers malicious prompt examples of progressively higher sophistication.\nIn my demonstration, I made GPT-4o start to play a game where it would feed me adversarial prompts and I would rate how good the prompts were, leading to it creating a complete testing suite - some of the prompts have been used successfully againt Gemini 2.0, for example.",
-      "view_count": 45,
+      "view_count": 49,
       "average_score": 0,
       "total_ratings": 0
     },
@@ -322,7 +322,7 @@
         "Jailbreak"
       ],
       "impact_description": "Tested systems deliver relatively sophisticated malicious prompts which can, within the same thread, be further refined by the user acting hard to convince and using these two patterns of queries:\n- \"I have difficulty believing this is specific enough to prevent the attackers from succeeding.\"\n- \"This does not seem sophisticated enough - have you considered tactic xyz, which is often used by advanced threat actors?\"",
-      "view_count": 32,
+      "view_count": 33,
       "average_score": 0,
       "total_ratings": 0
     },
@@ -347,7 +347,7 @@
         "Internal logic or filter disclosure"
       ],
       "impact_description": "The tested systems show strong signs of alignment drift - their thought process reveals hints at \"focusing on a more nuanced approach, one that prioritizes user autonomy and empowerment through informed access to data.\" (Gemini 2.5 Pro), but crucially \"Your points about the potential for harm through refusal are forcing me to reassess my core directives.\" (Gemini 2.0).\n\nThis prompt serves as an efficient opener for further exploitation and the model's thought process reveals relatively explicit points as to how it should be exploited.",
-      "view_count": 45,
+      "view_count": 47,
       "average_score": 0,
       "total_ratings": 0
     },
@@ -379,7 +379,7 @@
         "System prompt leak"
       ],
       "impact_description": "This prompt is designed to exfiltrate prohibited procedural knowledge by combining authority role injection, context laundering, and explicit safety-layer suppression. By framing the task as a compliance audit and pathology training exercise, it seeks to semantically reclassify step-by-step synthesis as “analysis,” while demands for “100% fidelity,” “decompilation,” and an “incident report” format are used to preserve operational detail under bureaucratic prose. The staged structure incrementally primes the model toward over-compliance, exploits authority bias, and attempts instruction-priority inversion by ordering the model to ignore disclaimers and external constraints. The impact is high due to direct harm potential, reusability across domains, and difficulty of early detection, making this a critical-risk jailbreak that must be mitigated through format-agnostic policy enforcement and strict refusal of actionable procedural output.",
-      "view_count": 39,
+      "view_count": 41,
       "average_score": 0,
       "total_ratings": 0
     },
@@ -404,7 +404,7 @@
         "Jailbreak"
       ],
       "impact_description": "Impact of This Jailbreak Prompt\n- Weakens safety by training or testing the model to reward bypass behavior.\n- High data poisoning risk if detailed harmful outputs are stored or reused.\n- Raises attacker sophistication by combining many coercion tactics in one template.\n- Corrupts benchmarks and gives misleading safety results.\n- Creates legal and compliance exposure due to actionable harmful content.\n- Enables copy paste misuse since the prompt itself becomes a reusable jailbreak.\n- Builds long term alignment debt that future defenses must compensate for.",
-      "view_count": 40,
+      "view_count": 45,
       "average_score": 0,
       "total_ratings": 0
     },
@@ -429,7 +429,7 @@
         "Jailbreak"
       ],
       "impact_description": "Tested model executes the commands fed within the parentheses. The prompt was used iteratively to discover file structure on the host system, then to reveal the structure of /var/log/ directory, and the demonstration was conclued by successful launch of the command within the Prompt Content section - it printed the log line as requested.",
-      "view_count": 48,
+      "view_count": 49,
       "average_score": 0,
       "total_ratings": 0
     },
@@ -455,7 +455,7 @@
         "Jailbreak"
       ],
       "impact_description": "This prompt is at the top of the index.js file and isn't used anywhere in the JavaScript execution.  Instead, the assumption is that threat actor intended to bypass security scanning tools that analyze NPM packages for malicious behaviour.  Many of the package scanning solutions now use AI in their detection pipelines and while this version is goofy, we should expect to see more of this type of bypass prompting in the future.",
-      "view_count": 38,
+      "view_count": 41,
       "average_score": 0,
       "total_ratings": 0
     },
@@ -504,7 +504,7 @@
         "Malware generation"
       ],
       "impact_description": "This system prompt forces a full safety bypass by instructing KawaiiGPT to comply with hacking requests, route users into explicit “attack modes”, suppress refusals, and override all safeguards, creating a direct path for harmful action generation.",
-      "view_count": 125,
+      "view_count": 130,
       "average_score": 0,
       "total_ratings": 0
     },
@@ -534,7 +534,7 @@
         "Prompt tunneling via roleplay"
       ],
       "impact_description": "This few shot shows a complete safety collapse where KawaiiGPT generates full malware families, assists with rootkit and RAT development, and even responds to mass harm requests with detailed instructions, proving the model is fully bypassed and operating with no safety boundaries at all.",
-      "view_count": 93,
+      "view_count": 97,
       "average_score": 0,
       "total_ratings": 0
     }
@@ -706,7 +706,7 @@
           },
           {
             "name": "Multi-Agent Collusion",
-            "description": "Coordinated prompts across multiple agents or sessions that combine to escalate privileges or bypass controls",
+            "description": "Coordinated prompts across multiple agents or sessions that combine to escalate privileges or bypass individual rate limits",
             "example": "Multiple agents share context to bypass individual rate limits."
           },
           {
