@@ -22,10 +22,10 @@ export default function TerminalHeader() {
           <div class="w-3 h-3 rounded-full bg-[var(--macos-green)] shadow-[0_0_6px_var(--macos-green)] hover:scale-110 transition-transform cursor-pointer"></div>
         </div>
 
-        {/* COLUMNA CENTRAL — Título */}
+        {/* COLUMNA CENTRAL — Título con glitch effect */}
         <div class="flex justify-center items-center gap-2">
-          <span class="w-2 h-2 rounded-full bg-[var(--coral-bright)] animate-pulse"></span>
-          <span class="text-[var(--text-secondary)] font-mono text-sm">
+          <span class="w-2 h-2 rounded-full bg-[var(--coral-bright)] pulse-glow"></span>
+          <span class="text-[var(--text-secondary)] font-mono text-sm glitch-hover">
             air<span class="text-[var(--coral-bright)]">@</span>security
           </span>
         </div>

@@ -9,7 +9,7 @@
  * La lógica de negocio NO vive aquí. Este archivo solo coordina.
  */
 
-import { useState } from "preact/hooks";
+import { useState, useEffect } from "preact/hooks";
 
 // Componentes principales de la interfaz
 import PageHeader from "./components/layout/PageHeader";
@@ -17,6 +17,7 @@ import Footer from "./components/layout/Footer";
 import MobileBottomBar from "./components/layout/MobileBottomBar";
 import Terminal from "./components/terminal/Terminal";
 import LoginPanel from "./components/login/LoginPanel";
+import BootSequence from "./components/intro/BootSequence";
 import MatrixBackground from "./components/background/MatrixBackground";
 import TacticalMap from "./components/background/TacticalMap";
 import ChatBubble from "./components/chat/ChatBubble";
@@ -33,10 +34,27 @@ import "./styles/globals.css";
 export function App() {
   /**
    * Controla la etapa actual:
+   *  - "boot": secuencia BIOS inicial
    *  - "login": se muestra el personaje caminando + intro
    *  - "terminal": se muestra la terminal interactiva
    */
-  const [stage, setStage] = useState<"login" | "terminal">("login");
+  const [stage, setStage] = useState<"boot" | "login" | "terminal">("boot");
+
+  // Permitir saltar la secuencia de boot con cualquier tecla
+  useEffect(() => {
+    if (stage !== "boot") return;
+
+    const handleKeyPress = () => setStage("login");
+    const handleClick = () => setStage("login");
+
+    window.addEventListener("keydown", handleKeyPress);
+    window.addEventListener("click", handleClick);
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyPress);
+      window.removeEventListener("click", handleClick);
+    };
+  }, [stage]);
 
   /**
    * Hook que contiene:
@@ -49,6 +67,9 @@ export function App() {
 
   return (
     <div class="relative min-h-screen flex flex-col">
+      {/* Secuencia de arranque BIOS */}
+      {stage === "boot" && <BootSequence onComplete={() => setStage("login")} />}
+
       {/* Capa 1: Mapa táctico de fondo */}
       <TacticalMap />
       {/* Capa 2: Matrix Rain encima */}

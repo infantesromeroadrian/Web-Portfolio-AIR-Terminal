@@ -238,16 +238,21 @@ export default function TerminalBody({ terminal }: { terminal: TerminalState }) 
       aria-live="polite"
       aria-label="Salida de terminal"
     >
-      {/* Renderizado del historial de salida */}
+      {/* Renderizado del historial de salida con animación */}
       {terminal.output.map((item: OutputItem, idx: number) =>
         item.type === "raw" ? (
-          <pre key={idx} class="whitespace-pre mb-2">
+          <pre
+            key={idx}
+            class="whitespace-pre mb-2 animate-fade-slide-up"
+            style={{ animationDelay: `${Math.min(idx * 20, 200)}ms` }}
+          >
             {item.content}
           </pre>
         ) : (
           <div
             key={idx}
-            class="whitespace-pre-wrap break-words mb-2"
+            class="whitespace-pre-wrap break-words mb-2 animate-fade-slide-up"
+            style={{ animationDelay: `${Math.min(idx * 20, 200)}ms` }}
             dangerouslySetInnerHTML={{ __html: sanitizeHtml(item.content) }}
           />
         )
