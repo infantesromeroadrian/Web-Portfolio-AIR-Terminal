@@ -44,8 +44,12 @@ export function App() {
   useEffect(() => {
     if (stage !== "boot") return;
 
-    const handleKeyPress = () => setStage("login");
-    const handleClick = () => setStage("login");
+    const handleKeyPress = () => {
+      setStage("login");
+    };
+    const handleClick = () => {
+      setStage("login");
+    };
 
     window.addEventListener("keydown", handleKeyPress);
     window.addEventListener("click", handleClick);
@@ -68,7 +72,13 @@ export function App() {
   return (
     <div class="relative min-h-screen flex flex-col">
       {/* Secuencia de arranque BIOS */}
-      {stage === "boot" && <BootSequence onComplete={() => setStage("login")} />}
+      {stage === "boot" && (
+        <BootSequence
+          onComplete={() => {
+            setStage("login");
+          }}
+        />
+      )}
 
       {/* Capa 1: Mapa táctico de fondo */}
       <TacticalMap />

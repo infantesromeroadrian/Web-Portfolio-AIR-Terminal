@@ -114,7 +114,9 @@ export default function BootSequence({ onComplete }: BootSequenceProps) {
     }, 4800);
     timers.push(completeTimer);
 
-    return () => timers.forEach(clearTimeout);
+    return () => {
+      timers.forEach(clearTimeout);
+    };
   }, [onComplete]);
 
   const getLineStyle = (style: string): string => {
