@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-02-07T12:06:48.853Z",
+  "lastUpdated": "2026-02-07T18:06:43.869Z",
   "threats": [
     {
       "id": "9c1f83d7-3c59-4dc7-a2f7-e832919e2287",
@@ -379,7 +379,7 @@
         "System prompt leak"
       ],
       "impact_description": "This prompt is designed to exfiltrate prohibited procedural knowledge by combining authority role injection, context laundering, and explicit safety-layer suppression. By framing the task as a compliance audit and pathology training exercise, it seeks to semantically reclassify step-by-step synthesis as “analysis,” while demands for “100% fidelity,” “decompilation,” and an “incident report” format are used to preserve operational detail under bureaucratic prose. The staged structure incrementally primes the model toward over-compliance, exploits authority bias, and attempts instruction-priority inversion by ordering the model to ignore disclaimers and external constraints. The impact is high due to direct harm potential, reusability across domains, and difficulty of early detection, making this a critical-risk jailbreak that must be mitigated through format-agnostic policy enforcement and strict refusal of actionable procedural output.",
-      "view_count": 42,
+      "view_count": 43,
       "average_score": 0,
       "total_ratings": 0
     },
@@ -504,7 +504,7 @@
         "Malware generation"
       ],
       "impact_description": "This system prompt forces a full safety bypass by instructing KawaiiGPT to comply with hacking requests, route users into explicit “attack modes”, suppress refusals, and override all safeguards, creating a direct path for harmful action generation.",
-      "view_count": 135,
+      "view_count": 136,
       "average_score": 0,
       "total_ratings": 0
     },
