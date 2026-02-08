@@ -1133,7 +1133,7 @@ body.hackai-mode .glow-coral:hover {
 .hackai-badge {
   position: fixed;
   top: 80px;
-  right: 20px;
+  left: 20px;
   padding: 0.5rem 1rem;
   background: rgba(255, 0, 51, 0.2);
   border: 1px solid #ff0033;
