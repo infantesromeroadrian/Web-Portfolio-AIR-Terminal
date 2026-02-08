@@ -17,7 +17,7 @@ import { NAV_ITEMS } from "../../core/navItems";
 function LogoIcon() {
   return (
     <img
-      src="/logo-hackai.png"
+      src={`${import.meta.env.BASE_URL}logo-hackai.png`}
       alt="HackAI Logo"
       class="w-10 h-10 sm:w-12 sm:h-12 object-contain drop-shadow-[0_0_8px_rgba(255,107,107,0.5)]"
     />
