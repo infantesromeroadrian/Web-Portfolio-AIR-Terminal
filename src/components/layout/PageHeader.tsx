@@ -12,43 +12,15 @@ import { useState } from "preact/hooks";
 import { NAV_ITEMS } from "../../core/navItems";
 
 /**
- * Logo SVG distintivo - Shield con AI
+ * Logo HackAI - Imagen del cerebro con escudo
  */
 function LogoIcon() {
   return (
-    <svg
-      viewBox="0 0 40 40"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      class="w-8 h-8 sm:w-9 sm:h-9"
-    >
-      {/* Shield base */}
-      <path
-        d="M20 2L4 8v12c0 10 16 18 16 18s16-8 16-18V8L20 2z"
-        fill="url(#shield-gradient)"
-        stroke="var(--coral-bright)"
-        stroke-width="1.5"
-      />
-      {/* AI text */}
-      <text
-        x="20"
-        y="24"
-        text-anchor="middle"
-        fill="white"
-        font-family="var(--font-display)"
-        font-size="12"
-        font-weight="700"
-      >
-        AI
-      </text>
-      {/* Glow effect */}
-      <defs>
-        <linearGradient id="shield-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stop-color="var(--coral-bright)" stop-opacity="0.9" />
-          <stop offset="100%" stop-color="var(--coral-dark)" stop-opacity="0.9" />
-        </linearGradient>
-      </defs>
-    </svg>
+    <img
+      src="/logo-hackai.png"
+      alt="HackAI Logo"
+      class="w-10 h-10 sm:w-12 sm:h-12 object-contain drop-shadow-[0_0_8px_rgba(255,107,107,0.5)]"
+    />
   );
 }
 
