@@ -978,3 +978,186 @@ body {
 .border-glow {
   animation: border-glow 3s ease-in-out infinite;
 }
+
+/* =============================================================================
+   HACKAI MODE - IDENTIDAD SECRETA
+   Tema agresivo rojo/negro para el modo hacker
+   ============================================================================= */
+
+/**
+ * Animación de activación del modo HackAI
+ */
+@keyframes hackai-activate {
+  0% {
+    filter: brightness(1) hue-rotate(0deg);
+  }
+  25% {
+    filter: brightness(2) hue-rotate(-20deg);
+  }
+  50% {
+    filter: brightness(0.5) hue-rotate(10deg);
+  }
+  75% {
+    filter: brightness(1.5) hue-rotate(-10deg);
+  }
+  100% {
+    filter: brightness(1) hue-rotate(0deg);
+  }
+}
+
+/**
+ * Glitch constante para elementos en modo HackAI
+ */
+@keyframes hackai-glitch {
+  0%,
+  90%,
+  100% {
+    transform: translate(0);
+    filter: none;
+  }
+  91% {
+    transform: translate(-2px, 1px);
+    filter: hue-rotate(90deg);
+  }
+  92% {
+    transform: translate(2px, -1px);
+    filter: hue-rotate(-90deg);
+  }
+  93% {
+    transform: translate(-1px, -1px);
+    filter: none;
+  }
+  94% {
+    transform: translate(1px, 2px);
+    filter: hue-rotate(45deg);
+  }
+  95% {
+    transform: translate(0);
+    filter: none;
+  }
+}
+
+/**
+ * Override de variables en modo HackAI
+ */
+body.hackai-mode {
+  /* Fondos más oscuros y rojos */
+  --bg-deep: #0a0000;
+  --bg-surface: #120808;
+  --bg-elevated: #1a0a0a;
+
+  /* Rojos agresivos como color principal */
+  --coral-bright: #ff0033;
+  --coral-mid: #cc0029;
+  --coral-dark: #990020;
+
+  /* Cyan se vuelve rojo también */
+  --cyan-bright: #ff3366;
+  --cyan-glow: #ff1a4d;
+
+  /* Azules se vuelven púrpura oscuro */
+  --blue-accent: #6600cc;
+  --blue-soft: #7733ff;
+  --blue-dark: #4400aa;
+
+  /* Texto con tinte rojizo */
+  --text-primary: #ffcccc;
+  --text-secondary: #aa8888;
+  --text-muted: #775555;
+
+  /* Bordes más visibles */
+  --border-subtle: rgba(255, 0, 51, 0.2);
+  --border-accent: rgba(255, 0, 51, 0.5);
+
+  /* Accent warm más intenso */
+  --accent-warm: #ff0033;
+}
+
+/**
+ * Efectos adicionales en modo HackAI
+ */
+body.hackai-mode::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(ellipse at center, transparent 0%, rgba(255, 0, 0, 0.03) 100%);
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* Scanlines más visibles en modo HackAI */
+body.hackai-mode .scanlines::after {
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(255, 0, 0, 0.03) 0px,
+    rgba(255, 0, 0, 0.03) 1px,
+    transparent 1px,
+    transparent 2px
+  );
+}
+
+/* Logo con glitch constante en modo HackAI */
+body.hackai-mode .hackai-logo-glitch {
+  animation: hackai-glitch 2s infinite;
+}
+
+/* Terminal con borde rojo pulsante */
+body.hackai-mode .glass-panel {
+  border-color: rgba(255, 0, 51, 0.3);
+  box-shadow:
+    0 0 20px rgba(255, 0, 51, 0.1),
+    inset 0 0 30px rgba(255, 0, 51, 0.05);
+}
+
+/* Cursor rojo en modo HackAI */
+body.hackai-mode .terminal-cursor {
+  background-color: #ff0033;
+  box-shadow: 0 0 10px #ff0033;
+}
+
+/* Selection en rojo */
+body.hackai-mode ::selection {
+  background: #ff0033;
+  color: #000;
+}
+
+/* Glow effects en rojo */
+body.hackai-mode .glow-accent:hover,
+body.hackai-mode .glow-coral:hover {
+  box-shadow:
+    0 0 20px rgba(255, 0, 51, 0.6),
+    0 0 40px rgba(255, 0, 51, 0.3);
+}
+
+/* Badge de modo HackAI */
+.hackai-badge {
+  position: fixed;
+  top: 80px;
+  right: 20px;
+  padding: 0.5rem 1rem;
+  background: rgba(255, 0, 51, 0.2);
+  border: 1px solid #ff0033;
+  border-radius: 4px;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: #ff0033;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  animation: pulse-glow 2s ease-in-out infinite;
+  z-index: 100;
+}
+
+/* Texto con efecto de corrupción en modo HackAI */
+body.hackai-mode .text-corrupt {
+  position: relative;
+}
+
+body.hackai-mode .text-corrupt::after {
+  content: attr(data-text);
+  position: absolute;
+  left: 2px;
+  top: 0;
+  color: #ff0033;
+  clip-path: inset(0 0 0 0);
+  animation: hackai-glitch 1s infinite;
+}

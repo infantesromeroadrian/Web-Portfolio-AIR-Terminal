@@ -14,13 +14,19 @@ import { NAV_ITEMS } from "../../core/navItems";
 /**
  * Logo HackAI - Imagen del cerebro con escudo
  */
-function LogoIcon() {
+function LogoIcon({ isHackAIMode }: { isHackAIMode: boolean }) {
   return (
-    <img
-      src={`${import.meta.env.BASE_URL}logo-hackai.png?v=2`}
-      alt="HackAI Logo"
-      class="w-10 h-10 sm:w-12 sm:h-12 object-contain drop-shadow-[0_0_8px_rgba(255,107,107,0.5)]"
-    />
+    <div class={isHackAIMode ? "hackai-logo-glitch" : ""}>
+      <img
+        src={`${import.meta.env.BASE_URL}logo-hackai.png?v=2`}
+        alt="HackAI Logo"
+        class={`w-10 h-10 sm:w-12 sm:h-12 object-contain ${
+          isHackAIMode
+            ? "drop-shadow-[0_0_12px_rgba(255,0,51,0.8)]"
+            : "drop-shadow-[0_0_8px_rgba(255,107,107,0.5)]"
+        }`}
+      />
+    </div>
   );
 }
 
@@ -49,7 +55,12 @@ function HamburgerIcon({ isOpen }: { isOpen: boolean }) {
   );
 }
 
-export default function PageHeader({ runCommand }: { runCommand: (cmd: string) => Promise<void> }) {
+interface PageHeaderProps {
+  runCommand: (cmd: string) => Promise<void>;
+  isHackAIMode?: boolean;
+}
+
+export default function PageHeader({ runCommand, isHackAIMode = false }: PageHeaderProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const handleCommand = (cmd: string) => {
@@ -66,14 +77,22 @@ export default function PageHeader({ runCommand }: { runCommand: (cmd: string) =
         >
           {/* Logo y nombre */}
           <div class="flex items-center gap-3 flex-shrink-0">
-            <LogoIcon />
+            <LogoIcon isHackAIMode={isHackAIMode} />
             <div class="hidden sm:block">
-              <span class="font-display font-semibold text-lg text-[var(--text-primary)]">
-                Adrian
-              </span>
-              <span class="font-display font-semibold text-lg text-[var(--coral-bright)] ml-1">
-                Infantes
-              </span>
+              {isHackAIMode ? (
+                <span class="font-display font-bold text-lg text-[var(--coral-bright)] glitch">
+                  HackAI
+                </span>
+              ) : (
+                <>
+                  <span class="font-display font-semibold text-lg text-[var(--text-primary)]">
+                    Adrian
+                  </span>
+                  <span class="font-display font-semibold text-lg text-[var(--coral-bright)] ml-1">
+                    Infantes
+                  </span>
+                </>
+              )}
             </div>
           </div>
 

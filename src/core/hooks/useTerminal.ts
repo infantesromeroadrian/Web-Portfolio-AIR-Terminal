@@ -35,7 +35,12 @@ function getBannerForDevice(deviceType: "mobile" | "tablet" | "desktop"): string
   }
 }
 
-export function useTerminal() {
+interface UseTerminalOptions {
+  isHackAIMode?: boolean;
+}
+
+export function useTerminal(options: UseTerminalOptions = {}) {
+  const { isHackAIMode = false } = options;
   /**
    * Hook reactivo para tamaño de ventana.
    */
@@ -141,12 +146,16 @@ export function useTerminal() {
    * Ejecuta el router de comandos con los callbacks de esta terminal.
    */
   function runResolve(cmd: string): void {
-    resolveCommand(cmd, {
-      print: (text: string) => {
-        print(text);
+    resolveCommand(
+      cmd,
+      {
+        print: (text: string) => {
+          print(text);
+        },
+        clear,
       },
-      clear,
-    });
+      { isHackAIMode }
+    );
   }
 
   /**

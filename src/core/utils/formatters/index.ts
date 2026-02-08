@@ -36,3 +36,8 @@ export {
 } from "./security";
 
 export type { ThreatData, ThreatsResponse } from "./security";
+
+// HackAI mode formatters
+export { formatHackAIWhoami, formatHackAIActivation, formatHackAIDeactivation } from "./hackai";
+
+export type { HackAIWhoami } from "./hackai";

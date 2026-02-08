@@ -1,0 +1,38 @@
+{
+  "name": "HackAI",
+  "alias": "The AI Breaker",
+  "role": "AI Red Team Operator | LLM Security Researcher",
+  "tagline": "Breaking AI systems so you don't have to.",
+  "mission": "Exposing vulnerabilities in AI/ML systems before malicious actors do.",
+  "specializations": [
+    "Prompt Injection & Jailbreaking",
+    "LLM Security Assessment",
+    "Adversarial Machine Learning",
+    "AI Model Extraction Attacks",
+    "Training Data Poisoning",
+    "AI Supply Chain Security"
+  ],
+  "arsenal": [
+    { "tool": "PromptFuzz", "desc": "Automated prompt injection fuzzer" },
+    { "tool": "JailbreakDB", "desc": "Collection of 500+ jailbreak techniques" },
+    { "tool": "ModelLeaker", "desc": "Model extraction & fingerprinting" },
+    { "tool": "ToxicTokens", "desc": "Adversarial token generator" },
+    { "tool": "GuardBypass", "desc": "Safety filter evasion toolkit" }
+  ],
+  "achievements": [
+    "Discovered critical vulnerabilities in 3 major LLM providers",
+    "Published research on prompt injection defense mechanisms",
+    "Created open-source AI red teaming framework",
+    "Trained 200+ security professionals in AI threats",
+    "Bug bounty: $50K+ from AI security programs"
+  ],
+  "philosophy": "Every AI system has a breaking point. My job is to find it first.",
+  "status": "ACTIVE",
+  "threat_level": "CRITICAL",
+  "contact": {
+    "signal": "[REDACTED]",
+    "pgp": "0xDEADBEEF",
+    "onion": "hackai****************.onion"
+  },
+  "warning": "This identity operates in the shadows. What you see here stays here."
+}

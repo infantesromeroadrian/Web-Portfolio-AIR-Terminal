@@ -5,11 +5,12 @@
  *  - Gestiona el estado global mínimo (login → terminal)
  *  - Orquesta los componentes principales (Header, Terminal, LoginPanel)
  *  - Mantiene la UI desacoplada de la lógica interna (useTerminal)
+ *  - Soporta modo HackAI (identidad secreta via Konami code)
  *
  * La lógica de negocio NO vive aquí. Este archivo solo coordina.
  */
 
-import { useState, useEffect } from "preact/hooks";
+import { useState, useEffect, useCallback } from "preact/hooks";
 
 // Componentes principales de la interfaz
 import PageHeader from "./components/layout/PageHeader";
@@ -29,9 +30,17 @@ import CRTEffect from "./components/effects/CRTEffect";
 // Hook que encapsula toda la lógica de la terminal
 import { useTerminal } from "./core/hooks/useTerminal";
 
+// HackAI mode (identidad secreta)
+import { HackAIProvider, useHackAI } from "./core/context/HackAIContext";
+import { useKonamiCode } from "./core/hooks/useKonamiCode";
+import { formatHackAIActivation, formatHackAIDeactivation } from "./core/utils/formatters";
+
 import "./styles/globals.css";
 
-export function App() {
+/**
+ * Componente interno que tiene acceso al contexto HackAI
+ */
+function AppContent() {
   /**
    * Controla la etapa actual:
    *  - "boot": secuencia BIOS inicial
@@ -39,6 +48,52 @@ export function App() {
    *  - "terminal": se muestra la terminal interactiva
    */
   const [stage, setStage] = useState<"boot" | "login" | "terminal">("boot");
+
+  // HackAI mode context
+  const { isHackAIMode, toggleHackAI } = useHackAI();
+
+  // Estado para mostrar mensaje de activación
+  const [showActivationMessage, setShowActivationMessage] = useState(false);
+
+  /**
+   * Hook que contiene:
+   *  - historial de salida
+   *  - animación de comandos
+   *  - router de comandos
+   *  - helpers de impresión
+   */
+  const terminal = useTerminal({ isHackAIMode });
+
+  // Callback para cuando se activa el Konami code
+  const handleKonamiActivation = useCallback(() => {
+    toggleHackAI();
+    setShowActivationMessage(true);
+
+    // Añadir mensaje a la terminal si está visible
+    if (stage === "terminal") {
+      // Pequeño delay para que el cambio de tema se vea primero
+      setTimeout(() => {
+        const message = !isHackAIMode ? formatHackAIActivation() : formatHackAIDeactivation();
+        void terminal.runCommand("clear").then(() => {
+          // El mensaje se mostrará con el nuevo tema
+          const outputDiv = document.querySelector(".terminal-output");
+          if (outputDiv) {
+            const msgDiv = document.createElement("div");
+            msgDiv.innerHTML = message;
+            outputDiv.appendChild(msgDiv);
+          }
+        });
+      }, 100);
+    }
+
+    // Ocultar mensaje después de 3 segundos
+    setTimeout(() => {
+      setShowActivationMessage(false);
+    }, 3000);
+  }, [toggleHackAI, stage, isHackAIMode, terminal]);
+
+  // Escuchar Konami code
+  useKonamiCode(handleKonamiActivation);
 
   // Permitir saltar la secuencia de boot con cualquier tecla
   useEffect(() => {
@@ -59,15 +114,6 @@ export function App() {
       window.removeEventListener("click", handleClick);
     };
   }, [stage]);
-
-  /**
-   * Hook que contiene:
-   *  - historial de salida
-   *  - animación de comandos
-   *  - router de comandos
-   *  - helpers de impresión
-   */
-  const terminal = useTerminal();
 
   return (
     <div class="relative min-h-screen flex flex-col">
@@ -93,8 +139,18 @@ export function App() {
       {/* Chatbot flotante */}
       <ChatBubble />
 
+      {/* Badge de modo HackAI */}
+      {isHackAIMode && stage === "terminal" && (
+        <div class="hackai-badge">
+          <span class="mr-2">&#9760;</span>
+          HACKAI MODE
+        </div>
+      )}
+
       {/* Header visible solo en modo terminal */}
-      {stage === "terminal" && <PageHeader runCommand={terminal.runCommand} />}
+      {stage === "terminal" && (
+        <PageHeader runCommand={terminal.runCommand} isHackAIMode={isHackAIMode} />
+      )}
 
       {/* Contenedor principal de contenido */}
       <div class="relative z-10 flex flex-col flex-grow pt-20">
@@ -126,6 +182,43 @@ export function App() {
 
       {/* Barra inferior móvil — solo visible en modo terminal y pantallas pequeñas */}
       {stage === "terminal" && <MobileBottomBar runCommand={terminal.runCommand} />}
+
+      {/* Mensaje de activación/desactivación */}
+      {showActivationMessage && (
+        <div class="fixed inset-0 z-[9999] flex items-center justify-center pointer-events-none">
+          <div
+            class="text-center p-8 rounded-lg animate-fade-in"
+            style={{
+              background: isHackAIMode ? "rgba(255,0,51,0.1)" : "rgba(51,153,255,0.1)",
+              border: `2px solid ${isHackAIMode ? "#ff0033" : "#3399ff"}`,
+              backdropFilter: "blur(10px)",
+            }}
+          >
+            <div
+              class="text-4xl font-bold mb-2"
+              style={{ color: isHackAIMode ? "#ff0033" : "#3399ff" }}
+            >
+              {isHackAIMode ? "HACKAI ACTIVATED" : "CIVILIAN MODE"}
+            </div>
+            <div class="text-sm text-gray-400">
+              {isHackAIMode
+                ? "Secret identity unlocked. Type 'whoami' to see your true self."
+                : "Returning to normal operations."}
+            </div>
+          </div>
+        </div>
+      )}
     </div>
+  );
+}
+
+/**
+ * Componente raíz que envuelve todo con el provider de HackAI
+ */
+export function App() {
+  return (
+    <HackAIProvider>
+      <AppContent />
+    </HackAIProvider>
   );
 }

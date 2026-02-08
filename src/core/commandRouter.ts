@@ -47,8 +47,9 @@ import {
   formatThreatsError,
   sectionSeparator,
   textToHtml,
+  formatHackAIWhoami,
 } from "./utils/formatters";
-import type { ThreatsResponse } from "./utils/formatters";
+import type { ThreatsResponse, HackAIWhoami } from "./utils/formatters";
 
 // ── Datos estáticos ─────────────────────────────────────────
 import whoamiJson from "../data/whoami.json";
@@ -58,6 +59,7 @@ import skillsJson from "../data/skills.json";
 import certificacionesJson from "../data/certificaciones.json";
 import proyectosJson from "../data/proyectos.json";
 import blogJson from "../data/blog.json";
+import hackaiWhoamiJson from "../data/hackai-whoami.json";
 
 const whoami = whoamiJson as WhoamiData;
 const estudios = estudiosJson as EstudiosData;
@@ -66,6 +68,7 @@ const skills = skillsJson as SkillsData;
 const certificaciones = certificacionesJson as CertificacionesData;
 const proyectos = proyectosJson as ProyectosData;
 const blog = blogJson as BlogData;
+const hackaiWhoami = hackaiWhoamiJson as HackAIWhoami;
 
 // ── Comandos disponibles ────────────────────────────────────
 
@@ -122,7 +125,12 @@ interface TerminalActions {
   clear: () => void;
 }
 
-type CommandHandler = (actions: TerminalActions) => void;
+interface CommandContext {
+  isHackAIMode: boolean;
+}
+
+// Contexto es opcional para handlers que no lo usan
+type CommandHandler = (actions: TerminalActions, context?: CommandContext) => void;
 
 // ── "All info" compuesto ────────────────────────────────────
 
@@ -148,8 +156,12 @@ ${formatCertificaciones(certificaciones)}
 
 const COMMAND_MAP: Record<string, CommandHandler> = {
   // Comandos principales (coherentes con labels)
-  whoami: ({ print }) => {
-    print(formatWhoami(whoami));
+  whoami: ({ print }, context) => {
+    if (context?.isHackAIMode) {
+      print(formatHackAIWhoami(hackaiWhoami));
+    } else {
+      print(formatWhoami(whoami));
+    }
   },
   estudios: ({ print }) => {
     print(formatEstudios(estudios));
@@ -294,8 +306,13 @@ const COMMAND_MAP: Record<string, CommandHandler> = {
  *
  * @param cmd - Comando tal como lo escribió el usuario (se trimmea internamente)
  * @param actions - Callbacks de la terminal (print, clear)
+ * @param context - Contexto opcional con estado del modo HackAI
  */
-export function resolveCommand(cmd: string, actions: TerminalActions): void {
+export function resolveCommand(
+  cmd: string,
+  actions: TerminalActions,
+  context: CommandContext = { isHackAIMode: false }
+): void {
   const trimmed = cmd.trim();
   if (trimmed === "") return;
 
@@ -326,7 +343,7 @@ export function resolveCommand(cmd: string, actions: TerminalActions): void {
 
   // Comandos estáticos (O(1) lookup)
   if (trimmed in COMMAND_MAP) {
-    COMMAND_MAP[trimmed](actions);
+    COMMAND_MAP[trimmed](actions, context);
     return;
   }
 
