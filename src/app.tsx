@@ -33,7 +33,6 @@ import { useTerminal } from "./core/hooks/useTerminal";
 // HackAI mode (identidad secreta)
 import { HackAIProvider, useHackAI } from "./core/context/HackAIContext";
 import { useKonamiCode } from "./core/hooks/useKonamiCode";
-import { formatHackAIActivation, formatHackAIDeactivation } from "./core/utils/formatters";
 
 import "./styles/globals.css";
 
@@ -62,37 +61,19 @@ function AppContent() {
    *  - router de comandos
    *  - helpers de impresión
    */
-  const terminal = useTerminal({ isHackAIMode });
+  const terminal = useTerminal({ isHackAIMode, toggleHackAI });
 
-  // Callback para cuando se activa el Konami code
+  // Callback para cuando se activa el Konami code (alternativa al comando)
   const handleKonamiActivation = useCallback(() => {
     toggleHackAI();
     setShowActivationMessage(true);
-
-    // Añadir mensaje a la terminal si está visible
-    if (stage === "terminal") {
-      // Pequeño delay para que el cambio de tema se vea primero
-      setTimeout(() => {
-        const message = !isHackAIMode ? formatHackAIActivation() : formatHackAIDeactivation();
-        void terminal.runCommand("clear").then(() => {
-          // El mensaje se mostrará con el nuevo tema
-          const outputDiv = document.querySelector(".terminal-output");
-          if (outputDiv) {
-            const msgDiv = document.createElement("div");
-            msgDiv.innerHTML = message;
-            outputDiv.appendChild(msgDiv);
-          }
-        });
-      }, 100);
-    }
-
     // Ocultar mensaje después de 3 segundos
     setTimeout(() => {
       setShowActivationMessage(false);
     }, 3000);
-  }, [toggleHackAI, stage, isHackAIMode, terminal]);
+  }, [toggleHackAI]);
 
-  // Escuchar Konami code
+  // Escuchar Konami code (alternativa secreta)
   useKonamiCode(handleKonamiActivation);
 
   // Permitir saltar la secuencia de boot con cualquier tecla

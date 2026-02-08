@@ -48,6 +48,8 @@ import {
   sectionSeparator,
   textToHtml,
   formatHackAIWhoami,
+  formatHackAIActivation,
+  formatHackAIDeactivation,
 } from "./utils/formatters";
 import type { ThreatsResponse, HackAIWhoami } from "./utils/formatters";
 
@@ -116,6 +118,8 @@ export const AVAILABLE_COMMANDS: string[] = [
   "docker inspect air",
   // Threat Intelligence (PromptIntel)
   "threats",
+  // Secret identity
+  "hackai",
 ];
 
 // ── Tipo del mapa de comandos ───────────────────────────────
@@ -123,6 +127,7 @@ export const AVAILABLE_COMMANDS: string[] = [
 interface TerminalActions {
   print: (text: string) => void;
   clear: () => void;
+  toggleHackAI?: () => void;
 }
 
 interface CommandContext {
@@ -296,6 +301,21 @@ const COMMAND_MAP: Record<string, CommandHandler> = {
         console.error("Failed to load threats:", error);
         print(formatThreatsError());
       });
+  },
+  // Secret identity toggle
+  hackai: ({ print, toggleHackAI }, context) => {
+    if (toggleHackAI) {
+      toggleHackAI();
+      // Show activation or deactivation message based on CURRENT state
+      // (it will toggle, so if currently NOT in HackAI mode, we're activating)
+      if (!context?.isHackAIMode) {
+        print(formatHackAIActivation());
+      } else {
+        print(formatHackAIDeactivation());
+      }
+    } else {
+      print('<span style="color:#ff3333">[ERROR] HackAI toggle not available</span>');
+    }
   },
 };
 
