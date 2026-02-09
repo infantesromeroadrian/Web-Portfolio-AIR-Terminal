@@ -114,12 +114,12 @@ export default function LoginPanel({ onLogin }: { onLogin: () => void }) {
         <p class="text-[var(--text-muted)] text-xs font-mono mt-6 animate-pulse-soft">
           Click to explore my portfolio
         </p>
-      </div>
 
-      {/* Indicador de conexión */}
-      <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex items-center gap-2">
-        <span class="w-2 h-2 rounded-full bg-[var(--cyan-bright)] animate-pulse"></span>
-        <span class="text-xs font-mono text-[var(--text-muted)]">Secure connection</span>
+        {/* Indicador de conexión - integrado en el flujo */}
+        <div class="flex items-center justify-center gap-2 mt-8">
+          <span class="w-2 h-2 rounded-full bg-[var(--cyan-bright)] animate-pulse"></span>
+          <span class="text-xs font-mono text-[var(--text-muted)]">Secure connection</span>
+        </div>
       </div>
     </div>
   );
