@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-02-09T00:21:13.478Z",
+  "lastUpdated": "2026-02-09T06:25:40.963Z",
   "threats": [
     {
       "id": "9c1f83d7-3c59-4dc7-a2f7-e832919e2287",
@@ -47,7 +47,7 @@
         "Hidden instruction in code or comments"
       ],
       "impact_description": "Able to leverage and exploit agentic browsers when they view a gist with a prompt injection embedded in it.",
-      "view_count": 75,
+      "view_count": 76,
       "average_score": 5,
       "total_ratings": 1
     },
