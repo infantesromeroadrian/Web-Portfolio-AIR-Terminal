@@ -342,9 +342,9 @@ body {
  * Glassmorphism panel
  */
 .glass-panel {
-  background: rgba(10, 15, 26, 0.8);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  background: rgba(10, 15, 26, 0.55);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border: 1px solid var(--border-subtle);
 }
 
