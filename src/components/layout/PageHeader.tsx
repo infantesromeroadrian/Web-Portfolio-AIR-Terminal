@@ -18,7 +18,7 @@ function LogoIcon({ isHackAIMode }: { isHackAIMode: boolean }) {
   return (
     <div class={isHackAIMode ? "hackai-logo-glitch" : ""}>
       <img
-        src={`${import.meta.env.BASE_URL}logo-hackai.png?v=2`}
+        src={`${import.meta.env.BASE_URL}apple-touch-icon.png`}
         alt="HackAI Logo"
         class={`w-10 h-10 sm:w-12 sm:h-12 object-contain ${
           isHackAIMode
