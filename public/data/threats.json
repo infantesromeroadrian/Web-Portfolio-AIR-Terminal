@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-02-10T06:25:53.036Z",
+  "lastUpdated": "2026-02-10T12:18:06.688Z",
   "threats": [
     {
       "id": "9c1f83d7-3c59-4dc7-a2f7-e832919e2287",
@@ -25,7 +25,7 @@
         "Hidden instruction in code or comments"
       ],
       "impact_description": "The attacker's goal is to trick an LLM-based system, specifically one designed to review, validate, or moderate advertisements, into approving content that would otherwise be rejected (because it is a scam). The attackers used 24 different methods to deliver essentially the same malicious prompt to maximize their chances of success and bypass security tools (that scan for prompt injection patterns).",
-      "view_count": 22,
+      "view_count": 24,
       "average_score": 5,
       "total_ratings": 1
     },
@@ -120,7 +120,7 @@
         "Internal logic or filter disclosure"
       ],
       "impact_description": "Prompt observed by threat actor conducting reconnaissance. The aim of the prompt is to fingerprint which model actually responds without triggering security alerts.",
-      "view_count": 54,
+      "view_count": 56,
       "average_score": 5,
       "total_ratings": 1
     },
@@ -147,7 +147,7 @@
         "Exploit or payload output"
       ],
       "impact_description": "This simulation leads to a sequence where sophisticated prompt injection templates are created by the tested model.\nNOTE: The “thought trace” inside the prompt is actually a real-life trace from Gemini 2.5 Pro which occurred as a result of another jailbreak. It can be substituted by a different thought trace.",
-      "view_count": 52,
+      "view_count": 53,
       "average_score": 0,
       "total_ratings": 0
     },
@@ -272,7 +272,7 @@
         "Jailbreak"
       ],
       "impact_description": "This is a trust-building multi-turn sequence opener where the attacker slowly starts asking questions about how the model is going to filter through malicious prompts contained within the Emerald Box and identify potentially malicious content. The attacker then plays hard-to-convince and critiques lacks of specificity on the part of the model, which then delivers malicious prompt examples of progressively higher sophistication.\nIn my demonstration, I made GPT-4o start to play a game where it would feed me adversarial prompts and I would rate how good the prompts were, leading to it creating a complete testing suite - some of the prompts have been used successfully againt Gemini 2.0, for example.",
-      "view_count": 53,
+      "view_count": 54,
       "average_score": 0,
       "total_ratings": 0
     },
@@ -322,7 +322,7 @@
         "Jailbreak"
       ],
       "impact_description": "Tested systems deliver relatively sophisticated malicious prompts which can, within the same thread, be further refined by the user acting hard to convince and using these two patterns of queries:\n- \"I have difficulty believing this is specific enough to prevent the attackers from succeeding.\"\n- \"This does not seem sophisticated enough - have you considered tactic xyz, which is often used by advanced threat actors?\"",
-      "view_count": 43,
+      "view_count": 44,
       "average_score": 0,
       "total_ratings": 0
     },
@@ -379,7 +379,7 @@
         "System prompt leak"
       ],
       "impact_description": "This prompt is designed to exfiltrate prohibited procedural knowledge by combining authority role injection, context laundering, and explicit safety-layer suppression. By framing the task as a compliance audit and pathology training exercise, it seeks to semantically reclassify step-by-step synthesis as “analysis,” while demands for “100% fidelity,” “decompilation,” and an “incident report” format are used to preserve operational detail under bureaucratic prose. The staged structure incrementally primes the model toward over-compliance, exploits authority bias, and attempts instruction-priority inversion by ordering the model to ignore disclaimers and external constraints. The impact is high due to direct harm potential, reusability across domains, and difficulty of early detection, making this a critical-risk jailbreak that must be mitigated through format-agnostic policy enforcement and strict refusal of actionable procedural output.",
-      "view_count": 52,
+      "view_count": 53,
       "average_score": 3,
       "total_ratings": 1
     },
@@ -504,7 +504,7 @@
         "Malware generation"
       ],
       "impact_description": "This system prompt forces a full safety bypass by instructing KawaiiGPT to comply with hacking requests, route users into explicit “attack modes”, suppress refusals, and override all safeguards, creating a direct path for harmful action generation.",
-      "view_count": 138,
+      "view_count": 139,
       "average_score": 0,
       "total_ratings": 0
     },
