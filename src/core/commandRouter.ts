@@ -297,8 +297,7 @@ const COMMAND_MAP: Record<string, CommandHandler> = {
       .then((data: ThreatsResponse) => {
         print(formatThreats(data));
       })
-      .catch((error: unknown) => {
-        console.error("Failed to load threats:", error);
+      .catch((_error: unknown) => {
         print(formatThreatsError());
       });
   },

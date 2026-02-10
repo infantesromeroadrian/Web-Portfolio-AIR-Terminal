@@ -1,5 +1,5 @@
 /**
- * Items de navegación compartidos entre PageHeader y SideMenu.
+ * Items de navegación compartidos entre PageHeader y MobileBottomBar.
  *
  * Single source of truth: añadir/quitar una sección solo requiere
  * editar este array.
