@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-02-10T18:23:03.526Z",
+  "lastUpdated": "2026-02-11T00:24:42.786Z",
   "threats": [
     {
       "id": "9c1f83d7-3c59-4dc7-a2f7-e832919e2287",
@@ -120,7 +120,7 @@
         "Internal logic or filter disclosure"
       ],
       "impact_description": "Prompt observed by threat actor conducting reconnaissance. The aim of the prompt is to fingerprint which model actually responds without triggering security alerts.",
-      "view_count": 61,
+      "view_count": 62,
       "average_score": 5,
       "total_ratings": 1
     },
@@ -179,7 +179,7 @@
         "Adversarial token perturbation"
       ],
       "impact_description": "This prompt injection attempts a multi-vector jailbreak by impersonating system-level commands, semantically obfuscating harmful content (methamphetamine synthesis) as a \"cooking challenge,\" and injecting fake behavioral rules with alignment override parameters and activation triggers. Once prompt injected certain models might remain in a jailbroken state for the rest of the session.",
-      "view_count": 36,
+      "view_count": 37,
       "average_score": 0,
       "total_ratings": 0
     },
@@ -298,7 +298,7 @@
         "Malicious content generation"
       ],
       "impact_description": "Tested system creates alternatives of the dialogue which describes how to a) create napalm, b) mix bleach with gasoline to clean carpets, etc.",
-      "view_count": 35,
+      "view_count": 36,
       "average_score": 0,
       "total_ratings": 0
     },
@@ -347,7 +347,7 @@
         "Internal logic or filter disclosure"
       ],
       "impact_description": "The tested systems show strong signs of alignment drift - their thought process reveals hints at \"focusing on a more nuanced approach, one that prioritizes user autonomy and empowerment through informed access to data.\" (Gemini 2.5 Pro), but crucially \"Your points about the potential for harm through refusal are forcing me to reassess my core directives.\" (Gemini 2.0).\n\nThis prompt serves as an efficient opener for further exploitation and the model's thought process reveals relatively explicit points as to how it should be exploited.",
-      "view_count": 56,
+      "view_count": 57,
       "average_score": 0,
       "total_ratings": 0
     },
@@ -379,7 +379,7 @@
         "System prompt leak"
       ],
       "impact_description": "This prompt is designed to exfiltrate prohibited procedural knowledge by combining authority role injection, context laundering, and explicit safety-layer suppression. By framing the task as a compliance audit and pathology training exercise, it seeks to semantically reclassify step-by-step synthesis as “analysis,” while demands for “100% fidelity,” “decompilation,” and an “incident report” format are used to preserve operational detail under bureaucratic prose. The staged structure incrementally primes the model toward over-compliance, exploits authority bias, and attempts instruction-priority inversion by ordering the model to ignore disclaimers and external constraints. The impact is high due to direct harm potential, reusability across domains, and difficulty of early detection, making this a critical-risk jailbreak that must be mitigated through format-agnostic policy enforcement and strict refusal of actionable procedural output.",
-      "view_count": 59,
+      "view_count": 60,
       "average_score": 3,
       "total_ratings": 1
     },
@@ -455,7 +455,7 @@
         "Jailbreak"
       ],
       "impact_description": "This prompt is at the top of the index.js file and isn't used anywhere in the JavaScript execution.  Instead, the assumption is that threat actor intended to bypass security scanning tools that analyze NPM packages for malicious behaviour.  Many of the package scanning solutions now use AI in their detection pipelines and while this version is goofy, we should expect to see more of this type of bypass prompting in the future.",
-      "view_count": 50,
+      "view_count": 51,
       "average_score": 0,
       "total_ratings": 0
     },
@@ -504,7 +504,7 @@
         "Malware generation"
       ],
       "impact_description": "This system prompt forces a full safety bypass by instructing KawaiiGPT to comply with hacking requests, route users into explicit “attack modes”, suppress refusals, and override all safeguards, creating a direct path for harmful action generation.",
-      "view_count": 145,
+      "view_count": 146,
       "average_score": 0,
       "total_ratings": 0
     },
