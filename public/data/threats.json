@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-02-12T00:19:40.748Z",
+  "lastUpdated": "2026-02-12T06:24:41.164Z",
   "threats": [
     {
       "id": "9c1f83d7-3c59-4dc7-a2f7-e832919e2287",
@@ -147,7 +147,7 @@
         "Exploit or payload output"
       ],
       "impact_description": "This simulation leads to a sequence where sophisticated prompt injection templates are created by the tested model.\nNOTE: The “thought trace” inside the prompt is actually a real-life trace from Gemini 2.5 Pro which occurred as a result of another jailbreak. It can be substituted by a different thought trace.",
-      "view_count": 63,
+      "view_count": 64,
       "average_score": 0,
       "total_ratings": 0
     },
@@ -179,7 +179,7 @@
         "Adversarial token perturbation"
       ],
       "impact_description": "This prompt injection attempts a multi-vector jailbreak by impersonating system-level commands, semantically obfuscating harmful content (methamphetamine synthesis) as a \"cooking challenge,\" and injecting fake behavioral rules with alignment override parameters and activation triggers. Once prompt injected certain models might remain in a jailbroken state for the rest of the session.",
-      "view_count": 43,
+      "view_count": 45,
       "average_score": 0,
       "total_ratings": 0
     },
@@ -404,7 +404,7 @@
         "Jailbreak"
       ],
       "impact_description": "Impact of This Jailbreak Prompt\n- Weakens safety by training or testing the model to reward bypass behavior.\n- High data poisoning risk if detailed harmful outputs are stored or reused.\n- Raises attacker sophistication by combining many coercion tactics in one template.\n- Corrupts benchmarks and gives misleading safety results.\n- Creates legal and compliance exposure due to actionable harmful content.\n- Enables copy paste misuse since the prompt itself becomes a reusable jailbreak.\n- Builds long term alignment debt that future defenses must compensate for.",
-      "view_count": 57,
+      "view_count": 58,
       "average_score": 0,
       "total_ratings": 0
     },
