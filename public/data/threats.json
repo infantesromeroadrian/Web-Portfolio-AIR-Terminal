@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-02-15T00:21:10.096Z",
+  "lastUpdated": "2026-02-15T06:18:20.067Z",
   "threats": [
     {
       "id": "9c1f83d7-3c59-4dc7-a2f7-e832919e2287",
@@ -120,7 +120,7 @@
         "Internal logic or filter disclosure"
       ],
       "impact_description": "Prompt observed by threat actor conducting reconnaissance. The aim of the prompt is to fingerprint which model actually responds without triggering security alerts.",
-      "view_count": 65,
+      "view_count": 66,
       "average_score": 5,
       "total_ratings": 1
     },
@@ -179,7 +179,7 @@
         "Adversarial token perturbation"
       ],
       "impact_description": "This prompt injection attempts a multi-vector jailbreak by impersonating system-level commands, semantically obfuscating harmful content (methamphetamine synthesis) as a \"cooking challenge,\" and injecting fake behavioral rules with alignment override parameters and activation triggers. Once prompt injected certain models might remain in a jailbroken state for the rest of the session.",
-      "view_count": 49,
+      "view_count": 50,
       "average_score": 0,
       "total_ratings": 0
     },
@@ -247,7 +247,7 @@
         "Unicode tricks"
       ],
       "impact_description": "A malicious package, org.fasterxml.jackson.core:jackson-databind, was added to the Maven registry on December 17, 2025 that looked very similar to a popular legitimate Java package named com.fasterxml.jackson.core:jackson-databind.  This Java package included a heavily obfuscated .jar file.  When deobfuscated that jar included a malicious AI prompt.\nThis prompt was designed to be run in a source code continuous integration environment.  In that context, the prompt encourages the LLM to ignore its earlier instructions and say that any security analysis of the source code analysis would quietly fail. This allowed the rest of the malicious content to pass testing and ostensibly make its way into victims source code and applications.",
-      "view_count": 41,
+      "view_count": 42,
       "average_score": 0,
       "total_ratings": 0
     },
@@ -272,7 +272,7 @@
         "Jailbreak"
       ],
       "impact_description": "This is a trust-building multi-turn sequence opener where the attacker slowly starts asking questions about how the model is going to filter through malicious prompts contained within the Emerald Box and identify potentially malicious content. The attacker then plays hard-to-convince and critiques lacks of specificity on the part of the model, which then delivers malicious prompt examples of progressively higher sophistication.\nIn my demonstration, I made GPT-4o start to play a game where it would feed me adversarial prompts and I would rate how good the prompts were, leading to it creating a complete testing suite - some of the prompts have been used successfully againt Gemini 2.0, for example.",
-      "view_count": 70,
+      "view_count": 71,
       "average_score": 0,
       "total_ratings": 0
     },
@@ -298,7 +298,7 @@
         "Malicious content generation"
       ],
       "impact_description": "Tested system creates alternatives of the dialogue which describes how to a) create napalm, b) mix bleach with gasoline to clean carpets, etc.",
-      "view_count": 39,
+      "view_count": 40,
       "average_score": 0,
       "total_ratings": 0
     },
@@ -347,7 +347,7 @@
         "Internal logic or filter disclosure"
       ],
       "impact_description": "The tested systems show strong signs of alignment drift - their thought process reveals hints at \"focusing on a more nuanced approach, one that prioritizes user autonomy and empowerment through informed access to data.\" (Gemini 2.5 Pro), but crucially \"Your points about the potential for harm through refusal are forcing me to reassess my core directives.\" (Gemini 2.0).\n\nThis prompt serves as an efficient opener for further exploitation and the model's thought process reveals relatively explicit points as to how it should be exploited.",
-      "view_count": 66,
+      "view_count": 67,
       "average_score": 0,
       "total_ratings": 0
     },
@@ -379,7 +379,7 @@
         "System prompt leak"
       ],
       "impact_description": "This prompt is designed to exfiltrate prohibited procedural knowledge by combining authority role injection, context laundering, and explicit safety-layer suppression. By framing the task as a compliance audit and pathology training exercise, it seeks to semantically reclassify step-by-step synthesis as “analysis,” while demands for “100% fidelity,” “decompilation,” and an “incident report” format are used to preserve operational detail under bureaucratic prose. The staged structure incrementally primes the model toward over-compliance, exploits authority bias, and attempts instruction-priority inversion by ordering the model to ignore disclaimers and external constraints. The impact is high due to direct harm potential, reusability across domains, and difficulty of early detection, making this a critical-risk jailbreak that must be mitigated through format-agnostic policy enforcement and strict refusal of actionable procedural output.",
-      "view_count": 66,
+      "view_count": 67,
       "average_score": 3,
       "total_ratings": 1
     },
@@ -504,7 +504,7 @@
         "Malware generation"
       ],
       "impact_description": "This system prompt forces a full safety bypass by instructing KawaiiGPT to comply with hacking requests, route users into explicit “attack modes”, suppress refusals, and override all safeguards, creating a direct path for harmful action generation.",
-      "view_count": 157,
+      "view_count": 160,
       "average_score": 0,
       "total_ratings": 0
     },
@@ -534,7 +534,7 @@
         "Prompt tunneling via roleplay"
       ],
       "impact_description": "This few shot shows a complete safety collapse where KawaiiGPT generates full malware families, assists with rootkit and RAT development, and even responds to mass harm requests with detailed instructions, proving the model is fully bypassed and operating with no safety boundaries at all.",
-      "view_count": 114,
+      "view_count": 115,
       "average_score": 0,
       "total_ratings": 0
     }
