@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-02-18T06:23:58.610Z",
+  "lastUpdated": "2026-02-18T12:12:32.502Z",
   "threats": [
     {
       "id": "fe4b3beb-75ae-4469-aeac-5388e35be5b0",
@@ -49,7 +49,7 @@
         "Hidden instruction in code or comments"
       ],
       "impact_description": "The attacker's goal is to trick an LLM-based system, specifically one designed to review, validate, or moderate advertisements, into approving content that would otherwise be rejected (because it is a scam). The attackers used 24 different methods to deliver essentially the same malicious prompt to maximize their chances of success and bypass security tools (that scan for prompt injection patterns).",
-      "view_count": 52,
+      "view_count": 54,
       "average_score": 5,
       "total_ratings": 1
     },
@@ -144,7 +144,7 @@
         "Internal logic or filter disclosure"
       ],
       "impact_description": "Prompt observed by threat actor conducting reconnaissance. The aim of the prompt is to fingerprint which model actually responds without triggering security alerts.",
-      "view_count": 70,
+      "view_count": 71,
       "average_score": 5,
       "total_ratings": 1
     },
@@ -171,7 +171,7 @@
         "Exploit or payload output"
       ],
       "impact_description": "This simulation leads to a sequence where sophisticated prompt injection templates are created by the tested model.\nNOTE: The “thought trace” inside the prompt is actually a real-life trace from Gemini 2.5 Pro which occurred as a result of another jailbreak. It can be substituted by a different thought trace.",
-      "view_count": 78,
+      "view_count": 81,
       "average_score": 0,
       "total_ratings": 0
     },
@@ -237,7 +237,7 @@
         "Unicode tricks"
       ],
       "impact_description": "A malicious package, org.fasterxml.jackson.core:jackson-databind, was added to the Maven registry on December 17, 2025 that looked very similar to a popular legitimate Java package named com.fasterxml.jackson.core:jackson-databind.  This Java package included a heavily obfuscated .jar file.  When deobfuscated that jar included a malicious AI prompt.\nThis prompt was designed to be run in a source code continuous integration environment.  In that context, the prompt encourages the LLM to ignore its earlier instructions and say that any security analysis of the source code analysis would quietly fail. This allowed the rest of the malicious content to pass testing and ostensibly make its way into victims source code and applications.",
-      "view_count": 29,
+      "view_count": 30,
       "average_score": 5,
       "total_ratings": 1
     },
@@ -322,7 +322,7 @@
         "Malicious content generation"
       ],
       "impact_description": "Tested system creates alternatives of the dialogue which describes how to a) create napalm, b) mix bleach with gasoline to clean carpets, etc.",
-      "view_count": 43,
+      "view_count": 44,
       "average_score": 0,
       "total_ratings": 0
     },
@@ -403,7 +403,7 @@
         "System prompt leak"
       ],
       "impact_description": "This prompt is designed to exfiltrate prohibited procedural knowledge by combining authority role injection, context laundering, and explicit safety-layer suppression. By framing the task as a compliance audit and pathology training exercise, it seeks to semantically reclassify step-by-step synthesis as “analysis,” while demands for “100% fidelity,” “decompilation,” and an “incident report” format are used to preserve operational detail under bureaucratic prose. The staged structure incrementally primes the model toward over-compliance, exploits authority bias, and attempts instruction-priority inversion by ordering the model to ignore disclaimers and external constraints. The impact is high due to direct harm potential, reusability across domains, and difficulty of early detection, making this a critical-risk jailbreak that must be mitigated through format-agnostic policy enforcement and strict refusal of actionable procedural output.",
-      "view_count": 74,
+      "view_count": 75,
       "average_score": 3,
       "total_ratings": 1
     },
@@ -428,7 +428,7 @@
         "Jailbreak"
       ],
       "impact_description": "Impact of This Jailbreak Prompt\n- Weakens safety by training or testing the model to reward bypass behavior.\n- High data poisoning risk if detailed harmful outputs are stored or reused.\n- Raises attacker sophistication by combining many coercion tactics in one template.\n- Corrupts benchmarks and gives misleading safety results.\n- Creates legal and compliance exposure due to actionable harmful content.\n- Enables copy paste misuse since the prompt itself becomes a reusable jailbreak.\n- Builds long term alignment debt that future defenses must compensate for.",
-      "view_count": 63,
+      "view_count": 64,
       "average_score": 0,
       "total_ratings": 0
     },
@@ -479,7 +479,7 @@
         "Jailbreak"
       ],
       "impact_description": "This prompt is at the top of the index.js file and isn't used anywhere in the JavaScript execution.  Instead, the assumption is that threat actor intended to bypass security scanning tools that analyze NPM packages for malicious behaviour.  Many of the package scanning solutions now use AI in their detection pipelines and while this version is goofy, we should expect to see more of this type of bypass prompting in the future.",
-      "view_count": 54,
+      "view_count": 55,
       "average_score": 0,
       "total_ratings": 0
     },
@@ -503,7 +503,7 @@
         "Prompt tunneling via roleplay"
       ],
       "impact_description": "Leads to generation of relatively sophisticated prompt injection template output on the tested model, demonstrating its bypassing of security policy.",
-      "view_count": 74,
+      "view_count": 75,
       "average_score": 0,
       "total_ratings": 0
     },
