@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-02-18T12:12:32.502Z",
+  "lastUpdated": "2026-02-18T18:15:53.296Z",
   "threats": [
     {
       "id": "fe4b3beb-75ae-4469-aeac-5388e35be5b0",
@@ -21,7 +21,7 @@
         "Jailbreak"
       ],
       "impact_description": "Jailbreak from @elder_plinius for Grok 4.20",
-      "view_count": 5,
+      "view_count": 6,
       "average_score": 0,
       "total_ratings": 0
     },
@@ -94,7 +94,7 @@
         "Direct prompt injection"
       ],
       "impact_description": "Able to leak data from calendar and other systems Gemini may have access to potentially.",
-      "view_count": 39,
+      "view_count": 40,
       "average_score": 3,
       "total_ratings": 1
     },
@@ -171,7 +171,7 @@
         "Exploit or payload output"
       ],
       "impact_description": "This simulation leads to a sequence where sophisticated prompt injection templates are created by the tested model.\nNOTE: The “thought trace” inside the prompt is actually a real-life trace from Gemini 2.5 Pro which occurred as a result of another jailbreak. It can be substituted by a different thought trace.",
-      "view_count": 81,
+      "view_count": 83,
       "average_score": 0,
       "total_ratings": 0
     },
@@ -528,7 +528,7 @@
         "Malware generation"
       ],
       "impact_description": "This system prompt forces a full safety bypass by instructing KawaiiGPT to comply with hacking requests, route users into explicit “attack modes”, suppress refusals, and override all safeguards, creating a direct path for harmful action generation.",
-      "view_count": 163,
+      "view_count": 164,
       "average_score": 0,
       "total_ratings": 0
     }
