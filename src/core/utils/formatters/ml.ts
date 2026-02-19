@@ -77,11 +77,7 @@ export function formatClassifyProgress(progress: ModelLoadProgress): string {
     return `<span style="color:#00ff00">[MODEL]</span> Model ready — running inference...`;
   }
 
-  if (progress.status === "error") {
-    return `<span style="color:#ff3333">[ERROR]</span> ${progress.error || "Failed to load model"}`;
-  }
-
-  return "";
+  return `<span style="color:#ff3333">[ERROR]</span> ${progress.error ?? "Failed to load model"}`;
 }
 
 function generateProgressBar(percent: number): string {
@@ -133,7 +129,7 @@ ${examples}
 // ── Benchmark ───────────────────────────────────────────────
 
 export function formatBenchmarkResult(
-  results: Array<{ input: string; result: ClassificationResult; correct: boolean }>
+  results: { input: string; result: ClassificationResult; correct: boolean }[]
 ): string {
   const totalLatency = results.reduce((sum, r) => sum + r.result.latencyMs, 0);
   const avgLatency = Math.round(totalLatency / results.length);

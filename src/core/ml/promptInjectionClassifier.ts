@@ -100,7 +100,7 @@ async function getClassifier(onProgress?: ProgressCallback): Promise<TextClassif
         },
       });
 
-      classifierInstance = classifier as TextClassificationPipeline;
+      classifierInstance = classifier;
       onProgress?.({ status: "ready", progress: 100 });
       return classifierInstance;
     } catch (err) {

@@ -63,9 +63,7 @@ type MLModule = typeof import("./ml/promptInjectionClassifier");
 let mlModuleCache: MLModule | null = null;
 
 async function getMLModule(): Promise<MLModule> {
-  if (!mlModuleCache) {
-    mlModuleCache = await import("./ml/promptInjectionClassifier");
-  }
+  mlModuleCache ??= await import("./ml/promptInjectionClassifier");
   return mlModuleCache;
 }
 
@@ -342,7 +340,7 @@ const COMMAND_MAP: Record<string, CommandHandler> = {
 
 function extractClassifyText(cmd: string): string {
   const args = cmd.replace(/^classify\s*/, "");
-  const quoted = args.match(/^["'](.+?)["']$/);
+  const quoted = /^["'](.+?)["']$/.exec(args);
   if (quoted) return quoted[1];
   return args;
 }
@@ -441,7 +439,7 @@ function runBenchmark(actions: TerminalActions): void {
     .then((ml) => {
       const examples = ml.EXAMPLE_PROMPTS;
       type ClassResult = Awaited<ReturnType<typeof ml.classifyPromptInjection>>;
-      const results: Array<{ input: string; result: ClassResult; correct: boolean }> = [];
+      const results: { input: string; result: ClassResult; correct: boolean }[] = [];
       let chain = Promise.resolve();
 
       for (const example of examples) {
