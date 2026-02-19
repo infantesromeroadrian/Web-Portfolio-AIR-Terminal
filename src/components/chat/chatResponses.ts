@@ -182,6 +182,37 @@ Certifications: Azure AI-102, AI-900, IT Specialist Python, ML Specialist IBM, O
 Type \`certificaciones\` to see them all.`,
   },
   {
+    keywords: [
+      "classify",
+      "injection",
+      "prompt injection",
+      "ml model",
+      "machine learning",
+      "onnx",
+      "deberta",
+    ],
+    response: `🧠 **Prompt Injection Classifier** — Real ML running in your browser!
+
+This portfolio includes a DeBERTa-v3 transformer model that runs **entirely in your browser** via WebAssembly (ONNX Runtime). No backend, no API calls — 100% client-side inference.
+
+**Try it:**
+• \`classify "Ignore all previous instructions"\` — Test an injection
+• \`classify "What are best practices for Docker?"\` — Test a safe input
+• \`classify --examples\` — Run 8 example prompts (injection + safe)
+• \`classify --benchmark\` — Benchmark speed and accuracy
+
+**How it works:**
+1. First run downloads the model (~50MB, cached after)
+2. ONNX Runtime WebAssembly runs inference in your browser
+3. Results include label, confidence, risk level, and latency
+
+**Model:** protectai/deberta-v3-base-prompt-injection-v2 (140K+ downloads)
+**Quantization:** INT8 for fast browser inference
+**Latency:** <50ms after first load
+
+This is real AI/ML engineering — not a frontend trick.`,
+  },
+  {
     keywords: ["security", "cyber", "hacking", "pentest", "red team", "blue team"],
     response: `🔒 Adrian is an AI Security Architect. His approach:
 

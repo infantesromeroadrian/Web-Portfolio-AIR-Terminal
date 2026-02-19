@@ -76,6 +76,10 @@ export function formatHelp(commands: string[]): string {
     "docker inspect air": "🐳 Docker expertise",
     // Threat Intelligence
     threats: "🔴 Latest IoPC (Prompt Injection attacks)",
+    // ML Inference (in-browser)
+    classify: "🧠 Prompt Injection Classifier (real ML model)",
+    "classify --examples": "Run all example prompts through the model",
+    "classify --benchmark": "Benchmark inference speed and accuracy",
   };
 
   const lines = commands.map((cmd) => {

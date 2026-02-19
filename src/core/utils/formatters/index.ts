@@ -41,3 +41,12 @@ export type { ThreatData, ThreatsResponse } from "./security";
 export { formatHackAIWhoami, formatHackAIActivation, formatHackAIDeactivation } from "./hackai";
 
 export type { HackAIWhoami } from "./hackai";
+
+// ML inference formatters
+export {
+  formatClassifyResult,
+  formatClassifyProgress,
+  formatClassifyHelp,
+  formatBenchmarkResult,
+  formatClassifyError,
+} from "./ml";

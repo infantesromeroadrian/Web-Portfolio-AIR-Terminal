@@ -30,7 +30,7 @@ const QUICK_ACTIONS = [
   { label: "whoami", command: "whoami" },
   { label: "proyectos", command: "proyectos" },
   { label: "skills", command: "skills" },
-  { label: "contacto", command: "contacto" },
+  { label: "classify", command: "classify" },
   { label: "help", command: "help" },
 ];
 

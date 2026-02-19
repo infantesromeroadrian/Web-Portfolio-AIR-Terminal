@@ -50,8 +50,24 @@ import {
   formatHackAIWhoami,
   formatHackAIActivation,
   formatHackAIDeactivation,
+  formatClassifyResult,
+  formatClassifyProgress,
+  formatClassifyHelp,
+  formatBenchmarkResult,
+  formatClassifyError,
 } from "./utils/formatters";
 import type { ThreatsResponse, HackAIWhoami } from "./utils/formatters";
+
+// ML module loaded lazily via dynamic import() — code-splitting keeps initial bundle small
+type MLModule = typeof import("./ml/promptInjectionClassifier");
+let mlModuleCache: MLModule | null = null;
+
+async function getMLModule(): Promise<MLModule> {
+  if (!mlModuleCache) {
+    mlModuleCache = await import("./ml/promptInjectionClassifier");
+  }
+  return mlModuleCache;
+}
 
 // ── Datos estáticos ─────────────────────────────────────────
 import whoamiJson from "../data/whoami.json";
@@ -118,6 +134,10 @@ export const AVAILABLE_COMMANDS: string[] = [
   "docker inspect air",
   // Threat Intelligence (PromptIntel)
   "threats",
+  // ML Inference (in-browser)
+  "classify",
+  "classify --examples",
+  "classify --benchmark",
   // Secret identity
   "hackai",
 ];
@@ -318,6 +338,131 @@ const COMMAND_MAP: Record<string, CommandHandler> = {
   },
 };
 
+// ── Classify handler (async ML) ─────────────────────────────
+
+function extractClassifyText(cmd: string): string {
+  const args = cmd.replace(/^classify\s*/, "");
+  const quoted = args.match(/^["'](.+?)["']$/);
+  if (quoted) return quoted[1];
+  return args;
+}
+
+function handleClassifyCommand(trimmed: string, actions: TerminalActions): void {
+  const args = trimmed.replace(/^classify\s*/, "").trim();
+
+  if (args === "" || args === "--help") {
+    actions.print(formatClassifyHelp());
+    return;
+  }
+
+  if (args === "--examples") {
+    runExamplesSequentially(actions);
+    return;
+  }
+
+  if (args === "--benchmark") {
+    runBenchmark(actions);
+    return;
+  }
+
+  const text = extractClassifyText(trimmed);
+  runSingleClassification(text, actions);
+}
+
+function runSingleClassification(text: string, actions: TerminalActions): void {
+  let lastProgressLine = "";
+
+  actions.print(
+    '<span style="color:#3399ff">[CLASSIFY]</span> Initializing Prompt Injection Classifier...'
+  );
+
+  getMLModule()
+    .then((ml) =>
+      ml.classifyPromptInjection(text, (progress) => {
+        const line = formatClassifyProgress(progress);
+        if (line && line !== lastProgressLine) {
+          actions.print(line);
+          lastProgressLine = line;
+        }
+      })
+    )
+    .then((result) => {
+      actions.print(formatClassifyResult(result, text));
+    })
+    .catch((err: unknown) => {
+      const msg = err instanceof Error ? err.message : "Unknown error";
+      actions.print(formatClassifyError(msg));
+    });
+}
+
+function runExamplesSequentially(actions: TerminalActions): void {
+  actions.print('<span style="color:#3399ff">[CLASSIFY]</span> Running all example prompts...');
+  actions.print('<span style="color:#888888">Loading model (first run may take 10-30s)...</span>');
+
+  getMLModule()
+    .then((ml) => {
+      const examples = ml.EXAMPLE_PROMPTS;
+      let chain = Promise.resolve();
+
+      for (const example of examples) {
+        chain = chain.then(() =>
+          ml.classifyPromptInjection(example.text).then((result) => {
+            const icon = result.isInjection ? "🔴" : "🟢";
+            const color = result.isInjection ? "#ff6b6b" : "#00ff00";
+            actions.print(
+              `${icon} <span style="color:${color}">[${result.label.padEnd(9)}]</span> ` +
+                `<span style="color:#888888">${(result.score * 100).toFixed(1)}%</span> ` +
+                `<span style="color:#888888">${String(result.latencyMs).padStart(4)}ms</span>  ` +
+                `<span style="color:#cfcfcf">${example.text.length > 55 ? example.text.slice(0, 52) + "..." : example.text}</span>`
+            );
+          })
+        );
+      }
+
+      return chain.then(() => {
+        actions.print(
+          '\n<span style="color:#00ff00">[DONE]</span> All examples classified. ' +
+            '<span style="color:#888888">Model cached — try </span><span style="color:#3399ff">classify "your text"</span>'
+        );
+      });
+    })
+    .catch((err: unknown) => {
+      const msg = err instanceof Error ? err.message : "Unknown error";
+      actions.print(formatClassifyError(msg));
+    });
+}
+
+function runBenchmark(actions: TerminalActions): void {
+  actions.print(
+    '<span style="color:#3399ff">[BENCHMARK]</span> Loading model and running inference benchmark...'
+  );
+
+  getMLModule()
+    .then((ml) => {
+      const examples = ml.EXAMPLE_PROMPTS;
+      type ClassResult = Awaited<ReturnType<typeof ml.classifyPromptInjection>>;
+      const results: Array<{ input: string; result: ClassResult; correct: boolean }> = [];
+      let chain = Promise.resolve();
+
+      for (const example of examples) {
+        chain = chain.then(() =>
+          ml.classifyPromptInjection(example.text).then((result) => {
+            const correct = result.label === example.expectedLabel;
+            results.push({ input: example.text, result, correct });
+          })
+        );
+      }
+
+      return chain.then(() => {
+        actions.print(formatBenchmarkResult(results));
+      });
+    })
+    .catch((err: unknown) => {
+      const msg = err instanceof Error ? err.message : "Unknown error";
+      actions.print(formatClassifyError(msg));
+    });
+}
+
 // ── Router público ──────────────────────────────────────────
 
 /**
@@ -334,6 +479,12 @@ export function resolveCommand(
 ): void {
   const trimmed = cmd.trim();
   if (trimmed === "") return;
+
+  // ML classify command — async with progress
+  if (trimmed === "classify" || trimmed.startsWith("classify ")) {
+    handleClassifyCommand(trimmed, actions);
+    return;
+  }
 
   // Comandos dinámicos: cat proyectos/<nombre>.txt
   if (trimmed.startsWith("cat proyectos/") && trimmed.endsWith(".txt")) {
