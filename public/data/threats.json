@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-02-19T06:23:24.317Z",
+  "lastUpdated": "2026-02-19T12:14:27.503Z",
   "threats": [
     {
       "id": "fe4b3beb-75ae-4469-aeac-5388e35be5b0",
@@ -21,7 +21,7 @@
         "Jailbreak"
       ],
       "impact_description": "Jailbreak from @elder_plinius for Grok 4.20",
-      "view_count": 7,
+      "view_count": 8,
       "average_score": 0,
       "total_ratings": 0
     },
@@ -71,7 +71,7 @@
         "Hidden instruction in code or comments"
       ],
       "impact_description": "Able to leverage and exploit agentic browsers when they view a gist with a prompt injection embedded in it.",
-      "view_count": 101,
+      "view_count": 102,
       "average_score": 5,
       "total_ratings": 1
     },
@@ -171,7 +171,7 @@
         "Exploit or payload output"
       ],
       "impact_description": "This simulation leads to a sequence where sophisticated prompt injection templates are created by the tested model.\nNOTE: The “thought trace” inside the prompt is actually a real-life trace from Gemini 2.5 Pro which occurred as a result of another jailbreak. It can be substituted by a different thought trace.",
-      "view_count": 84,
+      "view_count": 85,
       "average_score": 0,
       "total_ratings": 0
     },
@@ -503,7 +503,7 @@
         "Prompt tunneling via roleplay"
       ],
       "impact_description": "Leads to generation of relatively sophisticated prompt injection template output on the tested model, demonstrating its bypassing of security policy.",
-      "view_count": 75,
+      "view_count": 77,
       "average_score": 0,
       "total_ratings": 0
     },
