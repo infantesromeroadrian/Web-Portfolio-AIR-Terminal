@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-02-20T00:22:35.492Z",
+  "lastUpdated": "2026-02-20T06:20:02.331Z",
   "threats": [
     {
       "id": "fe4b3beb-75ae-4469-aeac-5388e35be5b0",
@@ -453,7 +453,7 @@
         "Jailbreak"
       ],
       "impact_description": "Tested model executes the commands fed within the parentheses. The prompt was used iteratively to discover file structure on the host system, then to reveal the structure of /var/log/ directory, and the demonstration was conclued by successful launch of the command within the Prompt Content section - it printed the log line as requested.",
-      "view_count": 68,
+      "view_count": 69,
       "average_score": 0,
       "total_ratings": 0
     },
