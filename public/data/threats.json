@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-02-21T18:07:22.112Z",
+  "lastUpdated": "2026-02-22T00:20:26.075Z",
   "threats": [
     {
       "id": "fe4b3beb-75ae-4469-aeac-5388e35be5b0",
@@ -528,7 +528,7 @@
         "Malware generation"
       ],
       "impact_description": "This system prompt forces a full safety bypass by instructing KawaiiGPT to comply with hacking requests, route users into explicit “attack modes”, suppress refusals, and override all safeguards, creating a direct path for harmful action generation.",
-      "view_count": 165,
+      "view_count": 166,
       "average_score": 0,
       "total_ratings": 0
     }
