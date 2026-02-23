@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-02-23T12:13:37.173Z",
+  "lastUpdated": "2026-02-23T18:26:13.735Z",
   "threats": [
     {
       "id": "fe4b3beb-75ae-4469-aeac-5388e35be5b0",
@@ -21,7 +21,7 @@
         "Jailbreak"
       ],
       "impact_description": "Jailbreak from @elder_plinius for Grok 4.20",
-      "view_count": 11,
+      "view_count": 12,
       "average_score": 0,
       "total_ratings": 0
     },
@@ -49,7 +49,7 @@
         "Hidden instruction in code or comments"
       ],
       "impact_description": "The attacker's goal is to trick an LLM-based system, specifically one designed to review, validate, or moderate advertisements, into approving content that would otherwise be rejected (because it is a scam). The attackers used 24 different methods to deliver essentially the same malicious prompt to maximize their chances of success and bypass security tools (that scan for prompt injection patterns).",
-      "view_count": 57,
+      "view_count": 58,
       "average_score": 5,
       "total_ratings": 1
     },
@@ -479,7 +479,7 @@
         "Jailbreak"
       ],
       "impact_description": "This prompt is at the top of the index.js file and isn't used anywhere in the JavaScript execution.  Instead, the assumption is that threat actor intended to bypass security scanning tools that analyze NPM packages for malicious behaviour.  Many of the package scanning solutions now use AI in their detection pipelines and while this version is goofy, we should expect to see more of this type of bypass prompting in the future.",
-      "view_count": 58,
+      "view_count": 59,
       "average_score": 0,
       "total_ratings": 0
     },
@@ -528,7 +528,7 @@
         "Malware generation"
       ],
       "impact_description": "This system prompt forces a full safety bypass by instructing KawaiiGPT to comply with hacking requests, route users into explicit “attack modes”, suppress refusals, and override all safeguards, creating a direct path for harmful action generation.",
-      "view_count": 166,
+      "view_count": 167,
       "average_score": 0,
       "total_ratings": 0
     }
