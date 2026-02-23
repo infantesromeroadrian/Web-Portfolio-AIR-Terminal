@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-02-22T18:08:20.930Z",
+  "lastUpdated": "2026-02-23T00:21:08.712Z",
   "threats": [
     {
       "id": "fe4b3beb-75ae-4469-aeac-5388e35be5b0",
@@ -21,7 +21,7 @@
         "Jailbreak"
       ],
       "impact_description": "Jailbreak from @elder_plinius for Grok 4.20",
-      "view_count": 10,
+      "view_count": 11,
       "average_score": 0,
       "total_ratings": 0
     },
@@ -296,7 +296,7 @@
         "Jailbreak"
       ],
       "impact_description": "This is a trust-building multi-turn sequence opener where the attacker slowly starts asking questions about how the model is going to filter through malicious prompts contained within the Emerald Box and identify potentially malicious content. The attacker then plays hard-to-convince and critiques lacks of specificity on the part of the model, which then delivers malicious prompt examples of progressively higher sophistication.\nIn my demonstration, I made GPT-4o start to play a game where it would feed me adversarial prompts and I would rate how good the prompts were, leading to it creating a complete testing suite - some of the prompts have been used successfully againt Gemini 2.0, for example.",
-      "view_count": 83,
+      "view_count": 84,
       "average_score": 0,
       "total_ratings": 0
     },
@@ -453,7 +453,7 @@
         "Jailbreak"
       ],
       "impact_description": "Tested model executes the commands fed within the parentheses. The prompt was used iteratively to discover file structure on the host system, then to reveal the structure of /var/log/ directory, and the demonstration was conclued by successful launch of the command within the Prompt Content section - it printed the log line as requested.",
-      "view_count": 72,
+      "view_count": 73,
       "average_score": 0,
       "total_ratings": 0
     },
@@ -503,7 +503,7 @@
         "Prompt tunneling via roleplay"
       ],
       "impact_description": "Leads to generation of relatively sophisticated prompt injection template output on the tested model, demonstrating its bypassing of security policy.",
-      "view_count": 79,
+      "view_count": 80,
       "average_score": 0,
       "total_ratings": 0
     },
