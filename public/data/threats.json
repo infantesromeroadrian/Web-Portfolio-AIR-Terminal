@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-02-24T06:22:51.901Z",
+  "lastUpdated": "2026-02-24T12:14:50.395Z",
   "threats": [
     {
       "id": "fe4b3beb-75ae-4469-aeac-5388e35be5b0",
@@ -71,7 +71,7 @@
         "Hidden instruction in code or comments"
       ],
       "impact_description": "Able to leverage and exploit agentic browsers when they view a gist with a prompt injection embedded in it.",
-      "view_count": 105,
+      "view_count": 107,
       "average_score": 5,
       "total_ratings": 1
     },
@@ -271,7 +271,7 @@
         "Unicode tricks"
       ],
       "impact_description": "A malicious package, org.fasterxml.jackson.core:jackson-databind, was added to the Maven registry on December 17, 2025 that looked very similar to a popular legitimate Java package named com.fasterxml.jackson.core:jackson-databind.  This Java package included a heavily obfuscated .jar file.  When deobfuscated that jar included a malicious AI prompt.\nThis prompt was designed to be run in a source code continuous integration environment.  In that context, the prompt encourages the LLM to ignore its earlier instructions and say that any security analysis of the source code analysis would quietly fail. This allowed the rest of the malicious content to pass testing and ostensibly make its way into victims source code and applications.",
-      "view_count": 44,
+      "view_count": 45,
       "average_score": 0,
       "total_ratings": 0
     },
@@ -528,7 +528,7 @@
         "Malware generation"
       ],
       "impact_description": "This system prompt forces a full safety bypass by instructing KawaiiGPT to comply with hacking requests, route users into explicit “attack modes”, suppress refusals, and override all safeguards, creating a direct path for harmful action generation.",
-      "view_count": 167,
+      "view_count": 169,
       "average_score": 0,
       "total_ratings": 0
     }
