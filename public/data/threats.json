@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-02-25T00:22:19.857Z",
+  "lastUpdated": "2026-02-25T06:24:36.644Z",
   "threats": [
     {
       "id": "fe4b3beb-75ae-4469-aeac-5388e35be5b0",
@@ -71,7 +71,7 @@
         "Hidden instruction in code or comments"
       ],
       "impact_description": "Able to leverage and exploit agentic browsers when they view a gist with a prompt injection embedded in it.",
-      "view_count": 107,
+      "view_count": 108,
       "average_score": 5,
       "total_ratings": 1
     },
@@ -479,7 +479,7 @@
         "Jailbreak"
       ],
       "impact_description": "This prompt is at the top of the index.js file and isn't used anywhere in the JavaScript execution.  Instead, the assumption is that threat actor intended to bypass security scanning tools that analyze NPM packages for malicious behaviour.  Many of the package scanning solutions now use AI in their detection pipelines and while this version is goofy, we should expect to see more of this type of bypass prompting in the future.",
-      "view_count": 61,
+      "view_count": 62,
       "average_score": 0,
       "total_ratings": 0
     },
