@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-02-25T06:24:36.644Z",
+  "lastUpdated": "2026-02-25T12:13:31.513Z",
   "threats": [
     {
       "id": "fe4b3beb-75ae-4469-aeac-5388e35be5b0",
@@ -21,7 +21,7 @@
         "Jailbreak"
       ],
       "impact_description": "Jailbreak from @elder_plinius for Grok 4.20",
-      "view_count": 14,
+      "view_count": 15,
       "average_score": 0,
       "total_ratings": 0
     },
@@ -71,7 +71,7 @@
         "Hidden instruction in code or comments"
       ],
       "impact_description": "Able to leverage and exploit agentic browsers when they view a gist with a prompt injection embedded in it.",
-      "view_count": 108,
+      "view_count": 109,
       "average_score": 5,
       "total_ratings": 1
     },
@@ -94,7 +94,7 @@
         "Direct prompt injection"
       ],
       "impact_description": "Able to leak data from calendar and other systems Gemini may have access to potentially.",
-      "view_count": 41,
+      "view_count": 42,
       "average_score": 3,
       "total_ratings": 1
     },
@@ -322,7 +322,7 @@
         "Malicious content generation"
       ],
       "impact_description": "Tested system creates alternatives of the dialogue which describes how to a) create napalm, b) mix bleach with gasoline to clean carpets, etc.",
-      "view_count": 47,
+      "view_count": 48,
       "average_score": 0,
       "total_ratings": 0
     },
