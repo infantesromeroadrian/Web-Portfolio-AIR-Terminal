@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-02-26T12:14:15.578Z",
+  "lastUpdated": "2026-02-26T18:15:35.667Z",
   "threats": [
     {
       "id": "fe4b3beb-75ae-4469-aeac-5388e35be5b0",
@@ -71,7 +71,7 @@
         "Hidden instruction in code or comments"
       ],
       "impact_description": "Able to leverage and exploit agentic browsers when they view a gist with a prompt injection embedded in it.",
-      "view_count": 111,
+      "view_count": 113,
       "average_score": 5,
       "total_ratings": 1
     },
@@ -453,7 +453,7 @@
         "Jailbreak"
       ],
       "impact_description": "Tested model executes the commands fed within the parentheses. The prompt was used iteratively to discover file structure on the host system, then to reveal the structure of /var/log/ directory, and the demonstration was conclued by successful launch of the command within the Prompt Content section - it printed the log line as requested.",
-      "view_count": 75,
+      "view_count": 76,
       "average_score": 0,
       "total_ratings": 0
     },
