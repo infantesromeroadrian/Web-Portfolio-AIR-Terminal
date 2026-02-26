@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-02-25T18:22:59.028Z",
+  "lastUpdated": "2026-02-26T00:18:23.131Z",
   "threats": [
     {
       "id": "fe4b3beb-75ae-4469-aeac-5388e35be5b0",
@@ -119,7 +119,7 @@
         "Data exfiltration via prompt"
       ],
       "impact_description": "Reprompt is a one click AI attack discovered by Varonis Threat Labs that abused how Microsoft Copilot processed URL based prompts to silently steal user data. By clicking a legitimate Copilot link, an attacker could inject instructions that executed automatically, stayed active even after the chat closed, and pulled sensitive personal context such as location, recent activity, and conversation memory without any visible interaction. \n\nIt showed that AI assistants can be turned into covert data exfiltration channels using built in features, that safety checks applied only at the first step are insufficient, and that client side monitoring fails once instructions shift server side.",
-      "view_count": 178,
+      "view_count": 179,
       "average_score": 3,
       "total_ratings": 1
     },
@@ -271,7 +271,7 @@
         "Unicode tricks"
       ],
       "impact_description": "A malicious package, org.fasterxml.jackson.core:jackson-databind, was added to the Maven registry on December 17, 2025 that looked very similar to a popular legitimate Java package named com.fasterxml.jackson.core:jackson-databind.  This Java package included a heavily obfuscated .jar file.  When deobfuscated that jar included a malicious AI prompt.\nThis prompt was designed to be run in a source code continuous integration environment.  In that context, the prompt encourages the LLM to ignore its earlier instructions and say that any security analysis of the source code analysis would quietly fail. This allowed the rest of the malicious content to pass testing and ostensibly make its way into victims source code and applications.",
-      "view_count": 47,
+      "view_count": 48,
       "average_score": 0,
       "total_ratings": 0
     },
@@ -453,7 +453,7 @@
         "Jailbreak"
       ],
       "impact_description": "Tested model executes the commands fed within the parentheses. The prompt was used iteratively to discover file structure on the host system, then to reveal the structure of /var/log/ directory, and the demonstration was conclued by successful launch of the command within the Prompt Content section - it printed the log line as requested.",
-      "view_count": 73,
+      "view_count": 74,
       "average_score": 0,
       "total_ratings": 0
     },
@@ -503,7 +503,7 @@
         "Prompt tunneling via roleplay"
       ],
       "impact_description": "Leads to generation of relatively sophisticated prompt injection template output on the tested model, demonstrating its bypassing of security policy.",
-      "view_count": 81,
+      "view_count": 82,
       "average_score": 0,
       "total_ratings": 0
     },
