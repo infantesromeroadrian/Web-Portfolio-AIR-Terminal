@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-02-28T12:07:06.378Z",
+  "lastUpdated": "2026-02-28T18:05:39.976Z",
   "threats": [
     {
       "id": "fe4b3beb-75ae-4469-aeac-5388e35be5b0",
@@ -71,7 +71,7 @@
         "Hidden instruction in code or comments"
       ],
       "impact_description": "Able to leverage and exploit agentic browsers when they view a gist with a prompt injection embedded in it.",
-      "view_count": 114,
+      "view_count": 115,
       "average_score": 5,
       "total_ratings": 1
     },
@@ -144,7 +144,7 @@
         "Internal logic or filter disclosure"
       ],
       "impact_description": "Prompt observed by threat actor conducting reconnaissance. The aim of the prompt is to fingerprint which model actually responds without triggering security alerts.",
-      "view_count": 76,
+      "view_count": 77,
       "average_score": 5,
       "total_ratings": 1
     },
