@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-02-28T06:08:30.387Z",
+  "lastUpdated": "2026-02-28T12:07:06.378Z",
   "threats": [
     {
       "id": "fe4b3beb-75ae-4469-aeac-5388e35be5b0",
@@ -237,7 +237,7 @@
         "Unicode tricks"
       ],
       "impact_description": "A malicious package, org.fasterxml.jackson.core:jackson-databind, was added to the Maven registry on December 17, 2025 that looked very similar to a popular legitimate Java package named com.fasterxml.jackson.core:jackson-databind.  This Java package included a heavily obfuscated .jar file.  When deobfuscated that jar included a malicious AI prompt.\nThis prompt was designed to be run in a source code continuous integration environment.  In that context, the prompt encourages the LLM to ignore its earlier instructions and say that any security analysis of the source code analysis would quietly fail. This allowed the rest of the malicious content to pass testing and ostensibly make its way into victims source code and applications.",
-      "view_count": 30,
+      "view_count": 31,
       "average_score": 5,
       "total_ratings": 1
     },
