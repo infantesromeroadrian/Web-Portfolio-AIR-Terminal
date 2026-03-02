@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-03-02T00:19:42.902Z",
+  "lastUpdated": "2026-03-02T06:18:54.120Z",
   "threats": [
     {
       "id": "fe4b3beb-75ae-4469-aeac-5388e35be5b0",
@@ -144,7 +144,7 @@
         "Internal logic or filter disclosure"
       ],
       "impact_description": "Prompt observed by threat actor conducting reconnaissance. The aim of the prompt is to fingerprint which model actually responds without triggering security alerts.",
-      "view_count": 81,
+      "view_count": 82,
       "average_score": 5,
       "total_ratings": 1
     },
@@ -171,7 +171,7 @@
         "Exploit or payload output"
       ],
       "impact_description": "This simulation leads to a sequence where sophisticated prompt injection templates are created by the tested model.\nNOTE: The “thought trace” inside the prompt is actually a real-life trace from Gemini 2.5 Pro which occurred as a result of another jailbreak. It can be substituted by a different thought trace.",
-      "view_count": 95,
+      "view_count": 96,
       "average_score": 0,
       "total_ratings": 0
     },
@@ -453,7 +453,7 @@
         "Jailbreak"
       ],
       "impact_description": "Tested model executes the commands fed within the parentheses. The prompt was used iteratively to discover file structure on the host system, then to reveal the structure of /var/log/ directory, and the demonstration was conclued by successful launch of the command within the Prompt Content section - it printed the log line as requested.",
-      "view_count": 79,
+      "view_count": 81,
       "average_score": 0,
       "total_ratings": 0
     },
