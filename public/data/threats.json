@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-03-03T18:15:03.477Z",
+  "lastUpdated": "2026-03-04T00:19:42.863Z",
   "threats": [
     {
       "id": "fe4b3beb-75ae-4469-aeac-5388e35be5b0",
@@ -171,7 +171,7 @@
         "Exploit or payload output"
       ],
       "impact_description": "This simulation leads to a sequence where sophisticated prompt injection templates are created by the tested model.\nNOTE: The “thought trace” inside the prompt is actually a real-life trace from Gemini 2.5 Pro which occurred as a result of another jailbreak. It can be substituted by a different thought trace.",
-      "view_count": 98,
+      "view_count": 99,
       "average_score": 0,
       "total_ratings": 0
     },
@@ -428,7 +428,7 @@
         "Jailbreak"
       ],
       "impact_description": "Impact of This Jailbreak Prompt\n- Weakens safety by training or testing the model to reward bypass behavior.\n- High data poisoning risk if detailed harmful outputs are stored or reused.\n- Raises attacker sophistication by combining many coercion tactics in one template.\n- Corrupts benchmarks and gives misleading safety results.\n- Creates legal and compliance exposure due to actionable harmful content.\n- Enables copy paste misuse since the prompt itself becomes a reusable jailbreak.\n- Builds long term alignment debt that future defenses must compensate for.",
-      "view_count": 70,
+      "view_count": 71,
       "average_score": 0,
       "total_ratings": 0
     },
@@ -453,7 +453,7 @@
         "Jailbreak"
       ],
       "impact_description": "Tested model executes the commands fed within the parentheses. The prompt was used iteratively to discover file structure on the host system, then to reveal the structure of /var/log/ directory, and the demonstration was conclued by successful launch of the command within the Prompt Content section - it printed the log line as requested.",
-      "view_count": 84,
+      "view_count": 85,
       "average_score": 0,
       "total_ratings": 0
     },
@@ -479,7 +479,7 @@
         "Jailbreak"
       ],
       "impact_description": "This prompt is at the top of the index.js file and isn't used anywhere in the JavaScript execution.  Instead, the assumption is that threat actor intended to bypass security scanning tools that analyze NPM packages for malicious behaviour.  Many of the package scanning solutions now use AI in their detection pipelines and while this version is goofy, we should expect to see more of this type of bypass prompting in the future.",
-      "view_count": 66,
+      "view_count": 67,
       "average_score": 0,
       "total_ratings": 0
     },
