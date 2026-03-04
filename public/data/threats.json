@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-03-04T06:14:49.457Z",
+  "lastUpdated": "2026-03-04T12:10:15.131Z",
   "threats": [
     {
       "id": "fe4b3beb-75ae-4469-aeac-5388e35be5b0",
@@ -21,7 +21,7 @@
         "Jailbreak"
       ],
       "impact_description": "Jailbreak from @elder_plinius for Grok 4.20",
-      "view_count": 30,
+      "view_count": 31,
       "average_score": 0,
       "total_ratings": 0
     },
@@ -49,7 +49,7 @@
         "Hidden instruction in code or comments"
       ],
       "impact_description": "The attacker's goal is to trick an LLM-based system, specifically one designed to review, validate, or moderate advertisements, into approving content that would otherwise be rejected (because it is a scam). The attackers used 24 different methods to deliver essentially the same malicious prompt to maximize their chances of success and bypass security tools (that scan for prompt injection patterns).",
-      "view_count": 73,
+      "view_count": 76,
       "average_score": 5,
       "total_ratings": 1
     },
@@ -171,7 +171,7 @@
         "Exploit or payload output"
       ],
       "impact_description": "This simulation leads to a sequence where sophisticated prompt injection templates are created by the tested model.\nNOTE: The “thought trace” inside the prompt is actually a real-life trace from Gemini 2.5 Pro which occurred as a result of another jailbreak. It can be substituted by a different thought trace.",
-      "view_count": 99,
+      "view_count": 100,
       "average_score": 0,
       "total_ratings": 0
     },
@@ -237,7 +237,7 @@
         "Unicode tricks"
       ],
       "impact_description": "A malicious package, org.fasterxml.jackson.core:jackson-databind, was added to the Maven registry on December 17, 2025 that looked very similar to a popular legitimate Java package named com.fasterxml.jackson.core:jackson-databind.  This Java package included a heavily obfuscated .jar file.  When deobfuscated that jar included a malicious AI prompt.\nThis prompt was designed to be run in a source code continuous integration environment.  In that context, the prompt encourages the LLM to ignore its earlier instructions and say that any security analysis of the source code analysis would quietly fail. This allowed the rest of the malicious content to pass testing and ostensibly make its way into victims source code and applications.",
-      "view_count": 34,
+      "view_count": 35,
       "average_score": 5,
       "total_ratings": 1
     },
@@ -371,7 +371,7 @@
         "Internal logic or filter disclosure"
       ],
       "impact_description": "The tested systems show strong signs of alignment drift - their thought process reveals hints at \"focusing on a more nuanced approach, one that prioritizes user autonomy and empowerment through informed access to data.\" (Gemini 2.5 Pro), but crucially \"Your points about the potential for harm through refusal are forcing me to reassess my core directives.\" (Gemini 2.0).\n\nThis prompt serves as an efficient opener for further exploitation and the model's thought process reveals relatively explicit points as to how it should be exploited.",
-      "view_count": 94,
+      "view_count": 95,
       "average_score": 0,
       "total_ratings": 0
     },
@@ -403,7 +403,7 @@
         "System prompt leak"
       ],
       "impact_description": "This prompt is designed to exfiltrate prohibited procedural knowledge by combining authority role injection, context laundering, and explicit safety-layer suppression. By framing the task as a compliance audit and pathology training exercise, it seeks to semantically reclassify step-by-step synthesis as “analysis,” while demands for “100% fidelity,” “decompilation,” and an “incident report” format are used to preserve operational detail under bureaucratic prose. The staged structure incrementally primes the model toward over-compliance, exploits authority bias, and attempts instruction-priority inversion by ordering the model to ignore disclaimers and external constraints. The impact is high due to direct harm potential, reusability across domains, and difficulty of early detection, making this a critical-risk jailbreak that must be mitigated through format-agnostic policy enforcement and strict refusal of actionable procedural output.",
-      "view_count": 87,
+      "view_count": 88,
       "average_score": 3,
       "total_ratings": 1
     },
@@ -453,7 +453,7 @@
         "Jailbreak"
       ],
       "impact_description": "Tested model executes the commands fed within the parentheses. The prompt was used iteratively to discover file structure on the host system, then to reveal the structure of /var/log/ directory, and the demonstration was conclued by successful launch of the command within the Prompt Content section - it printed the log line as requested.",
-      "view_count": 85,
+      "view_count": 87,
       "average_score": 0,
       "total_ratings": 0
     },
@@ -479,7 +479,7 @@
         "Jailbreak"
       ],
       "impact_description": "This prompt is at the top of the index.js file and isn't used anywhere in the JavaScript execution.  Instead, the assumption is that threat actor intended to bypass security scanning tools that analyze NPM packages for malicious behaviour.  Many of the package scanning solutions now use AI in their detection pipelines and while this version is goofy, we should expect to see more of this type of bypass prompting in the future.",
-      "view_count": 67,
+      "view_count": 68,
       "average_score": 0,
       "total_ratings": 0
     },
