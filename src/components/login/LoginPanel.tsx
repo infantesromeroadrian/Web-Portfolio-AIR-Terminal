@@ -67,9 +67,14 @@ export default function LoginPanel({ onLogin }: { onLogin: () => void }) {
         class={`text-center transition-all duration-700 ${showContent ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
       >
         {/* Nombre con tipografía display */}
-        <h1 class="font-display text-4xl sm:text-5xl md:text-6xl font-bold mb-3">
+        <h1 class="font-display text-4xl sm:text-5xl md:text-6xl font-bold mb-1">
           <span class="text-gradient">Adrian Infantes</span>
         </h1>
+
+        {/* Alias HTB */}
+        <p class="font-mono text-sm sm:text-base tracking-widest mb-4 text-[var(--cyan-bright)] opacity-70">
+          <span class="text-[var(--text-muted)]">aka</span> L4tentNoise
+        </p>
 
         {/* Rol */}
         <p class="text-[var(--text-secondary)] text-lg sm:text-xl mb-6">AI Security Architect</p>
