@@ -47,16 +47,16 @@ import {
   formatThreatsError,
   sectionSeparator,
   textToHtml,
-  formatHackAIWhoami,
-  formatHackAIActivation,
-  formatHackAIDeactivation,
+  formatL4tentNoiseWhoami,
+  formatL4tentNoiseActivation,
+  formatL4tentNoiseDeactivation,
   formatClassifyResult,
   formatClassifyProgress,
   formatClassifyHelp,
   formatBenchmarkResult,
   formatClassifyError,
 } from "./utils/formatters";
-import type { ThreatsResponse, HackAIWhoami } from "./utils/formatters";
+import type { ThreatsResponse, L4tentNoiseWhoami } from "./utils/formatters";
 
 // ML module loaded lazily via dynamic import() — code-splitting keeps initial bundle small
 type MLModule = typeof import("./ml/promptInjectionClassifier");
@@ -75,7 +75,7 @@ import skillsJson from "../data/skills.json";
 import certificacionesJson from "../data/certificaciones.json";
 import proyectosJson from "../data/proyectos.json";
 import blogJson from "../data/blog.json";
-import hackaiWhoamiJson from "../data/hackai-whoami.json";
+import l4tentnoiseWhoamiJson from "../data/l4tentnoise-whoami.json";
 
 const whoami = whoamiJson as WhoamiData;
 const estudios = estudiosJson as EstudiosData;
@@ -84,7 +84,7 @@ const skills = skillsJson as SkillsData;
 const certificaciones = certificacionesJson as CertificacionesData;
 const proyectos = proyectosJson as ProyectosData;
 const blog = blogJson as BlogData;
-const hackaiWhoami = hackaiWhoamiJson as HackAIWhoami;
+const l4tentnoiseWhoami = l4tentnoiseWhoamiJson as L4tentNoiseWhoami;
 
 // ── Comandos disponibles ────────────────────────────────────
 
@@ -145,11 +145,11 @@ export const AVAILABLE_COMMANDS: string[] = [
 interface TerminalActions {
   print: (text: string) => void;
   clear: () => void;
-  toggleHackAI?: () => void;
+  toggleL4tent?: () => void;
 }
 
 interface CommandContext {
-  isHackAIMode: boolean;
+  isL4tentMode: boolean;
 }
 
 // Contexto es opcional para handlers que no lo usan
@@ -180,8 +180,8 @@ ${formatCertificaciones(certificaciones)}
 const COMMAND_MAP: Record<string, CommandHandler> = {
   // Comandos principales (coherentes con labels)
   whoami: ({ print }, context) => {
-    if (context?.isHackAIMode) {
-      print(formatHackAIWhoami(hackaiWhoami));
+    if (context?.isL4tentMode) {
+      print(formatL4tentNoiseWhoami(l4tentnoiseWhoami));
     } else {
       print(formatWhoami(whoami));
     }
@@ -320,18 +320,18 @@ const COMMAND_MAP: Record<string, CommandHandler> = {
       });
   },
   // Secret identity toggle
-  hackai: ({ print, toggleHackAI }, context) => {
-    if (toggleHackAI) {
-      toggleHackAI();
+  hackai: ({ print, toggleL4tent }, context) => {
+    if (toggleL4tent) {
+      toggleL4tent();
       // Show activation or deactivation message based on CURRENT state
-      // (it will toggle, so if currently NOT in HackAI mode, we're activating)
-      if (!context?.isHackAIMode) {
-        print(formatHackAIActivation());
+      // (it will toggle, so if currently NOT in L4tent mode, we're activating)
+      if (!context?.isL4tentMode) {
+        print(formatL4tentNoiseActivation());
       } else {
-        print(formatHackAIDeactivation());
+        print(formatL4tentNoiseDeactivation());
       }
     } else {
-      print('<span style="color:#ff3333">[ERROR] HackAI toggle not available</span>');
+      print('<span style="color:#ff3333">[ERROR] L4tentNoise toggle not available</span>');
     }
   },
 };
@@ -468,12 +468,12 @@ function runBenchmark(actions: TerminalActions): void {
  *
  * @param cmd - Comando tal como lo escribió el usuario (se trimmea internamente)
  * @param actions - Callbacks de la terminal (print, clear)
- * @param context - Contexto opcional con estado del modo HackAI
+ * @param context - Contexto opcional con estado del modo L4tentNoise
  */
 export function resolveCommand(
   cmd: string,
   actions: TerminalActions,
-  context: CommandContext = { isHackAIMode: false }
+  context: CommandContext = { isL4tentMode: false }
 ): void {
   const trimmed = cmd.trim();
   if (trimmed === "") return;

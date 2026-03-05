@@ -1,10 +1,10 @@
 /**
- * Formateadores para el modo HackAI (identidad secreta).
+ * Formateadores para el modo L4tentNoise (identidad secreta).
  *
  * Estilo más agresivo, terminología de hacking/red team.
  */
 
-export interface HackAIWhoami {
+export interface L4tentNoiseWhoami {
   name: string;
   alias: string;
   role: string;
@@ -17,7 +17,7 @@ export interface HackAIWhoami {
   status: string;
   threat_level: string;
   contact: {
-    signal: string;
+    htb: string;
     pgp: string;
     onion: string;
   };
@@ -44,23 +44,29 @@ function gray(text: string): string {
   return `<span style="color:#888888">${text}</span>`;
 }
 
-/** Título de sección estilo HackAI */
+/** Título de sección estilo L4tentNoise */
 function hackSection(title: string): string {
   return `<span style="color:#ff0033">[ ${title.toUpperCase()} ]</span>`;
 }
 
-/** ASCII art del logo HackAI */
-function hackAILogo(): string {
+/** ASCII art del logo L4tentNoise */
+function l4tentNoiseLogo(): string {
   return `<span style="color:#ff0033">
-  ██╗  ██╗ █████╗  ██████╗██╗  ██╗ █████╗ ██╗
-  ██║  ██║██╔══██╗██╔════╝██║ ██╔╝██╔══██╗██║
-  ███████║███████║██║     █████╔╝ ███████║██║
-  ██╔══██║██╔══██║██║     ██╔═██╗ ██╔══██║██║
-  ██║  ██║██║  ██║╚██████╗██║  ██╗██║  ██║██║
-  ╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝╚═╝  ╚═╝╚═╝</span>`;
+  ██╗  ██╗  ██╗████████╗███████╗███╗   ██╗████████╗
+  ██║  ██║  ██║╚══██╔══╝██╔════╝████╗  ██║╚══██╔══╝
+  ██║  ███████║   ██║   █████╗  ██╔██╗ ██║   ██║
+  ██║  ╚════██║   ██║   ██╔══╝  ██║╚██╗██║   ██║
+  ███████╗  ██║   ██║   ███████╗██║ ╚████║   ██║
+  ╚══════╝  ╚═╝   ╚═╝   ╚══════╝╚═╝  ╚═══╝   ╚═╝
+  ███╗   ██╗ ██████╗ ██╗███████╗███████╗
+  ████╗  ██║██╔═══██╗██║██╔════╝██╔════╝
+  ██╔██╗ ██║██║   ██║██║███████╗█████╗
+  ██║╚██╗██║██║   ██║██║╚════██║██╔══╝
+  ██║ ╚████║╚██████╔╝██║███████║███████╗
+  ╚═╝  ╚═══╝ ╚═════╝ ╚═╝╚══════╝╚══════╝</span>`;
 }
 
-export function formatHackAIWhoami(data: HackAIWhoami): string {
+export function formatL4tentNoiseWhoami(data: L4tentNoiseWhoami): string {
   const specializations = data.specializations.map((s) => `  ${red(">")} ${s}`).join("\n");
 
   const arsenal = data.arsenal
@@ -70,7 +76,7 @@ export function formatHackAIWhoami(data: HackAIWhoami): string {
   const achievements = data.achievements.map((a) => `  ${darkRed("+")} ${a}`).join("\n");
 
   return `
-${hackAILogo()}
+${l4tentNoiseLogo()}
 
 ${hackSection("IDENTITY")}
   Codename:      ${red(data.name)}
@@ -95,7 +101,7 @@ ${hackSection("PHILOSOPHY")}
   ${gray('"')}${red(data.philosophy)}${gray('"')}
 
 ${hackSection("CONTACT")}
-  Signal:  ${gray(data.contact.signal)}
+  HTB:     ${gray(data.contact.htb)}
   PGP:     ${gray(data.contact.pgp)}
   .onion:  ${gray(data.contact.onion)}
 
@@ -104,23 +110,23 @@ ${red(">")} ${gray(data.warning)}
 }
 
 /**
- * Mensaje de activación del modo HackAI
+ * Mensaje de activación del modo L4tentNoise
  */
-export function formatHackAIActivation(): string {
+export function formatL4tentNoiseActivation(): string {
   return `
 <span style="color:#ff0033">
 ╔══════════════════════════════════════════════════════════════╗
 ║                                                              ║
-║   ██╗  ██╗ █████╗  ██████╗██╗  ██╗ █████╗ ██╗               ║
-║   ██║  ██║██╔══██╗██╔════╝██║ ██╔╝██╔══██╗██║               ║
-║   ███████║███████║██║     █████╔╝ ███████║██║               ║
-║   ██╔══██║██╔══██║██║     ██╔═██╗ ██╔══██║██║               ║
-║   ██║  ██║██║  ██║╚██████╗██║  ██╗██║  ██║██║               ║
-║   ╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝╚═╝  ╚═╝╚═╝               ║
+║   ██╗    ██╗  ██╗████████╗███████╗███╗   ██╗████████╗        ║
+║   ██║    ██║  ██║╚══██╔══╝██╔════╝████╗  ██║╚══██╔══╝        ║
+║   ██║    ███████║   ██║   █████╗  ██╔██╗ ██║   ██║            ║
+║   ██║    ╚════██║   ██║   ██╔══╝  ██║╚██╗██║   ██║            ║
+║   ███████╗  ██║   ██║   ███████╗██║ ╚████║   ██║            ║
+║   ╚══════╝  ╚═╝   ╚═╝   ╚══════╝╚═╝  ╚═══╝   ╚═╝            ║
 ║                                                              ║
 ║            [ SECRET IDENTITY ACTIVATED ]                     ║
 ║                                                              ║
-║   > Switching to HackAI mode...                              ║
+║   > Switching to L4tentNoise mode...                         ║
 ║   > Loading offensive toolkit...                             ║
 ║   > Bypassing safety protocols...                            ║
 ║   > Identity mask: ENABLED                                   ║
@@ -133,16 +139,16 @@ export function formatHackAIActivation(): string {
 }
 
 /**
- * Mensaje de desactivación del modo HackAI
+ * Mensaje de desactivación del modo L4tentNoise
  */
-export function formatHackAIDeactivation(): string {
+export function formatL4tentNoiseDeactivation(): string {
   return `
 <span style="color:#3399ff">
 ╔══════════════════════════════════════════════════════════════╗
 ║                                                              ║
 ║   [ RETURNING TO CIVILIAN IDENTITY ]                         ║
 ║                                                              ║
-║   > Disabling HackAI protocols...                            ║
+║   > Disabling L4tentNoise protocols...                       ║
 ║   > Restoring safety measures...                             ║
 ║   > Identity mask: DISABLED                                  ║
 ║                                                              ║

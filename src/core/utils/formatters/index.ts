@@ -37,10 +37,14 @@ export {
 
 export type { ThreatData, ThreatsResponse } from "./security";
 
-// HackAI mode formatters
-export { formatHackAIWhoami, formatHackAIActivation, formatHackAIDeactivation } from "./hackai";
+// L4tentNoise mode formatters
+export {
+  formatL4tentNoiseWhoami,
+  formatL4tentNoiseActivation,
+  formatL4tentNoiseDeactivation,
+} from "./l4tentnoise";
 
-export type { HackAIWhoami } from "./hackai";
+export type { L4tentNoiseWhoami } from "./l4tentnoise";
 
 // ML inference formatters
 export {

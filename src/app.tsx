@@ -5,7 +5,7 @@
  *  - Gestiona el estado global mínimo (login → terminal)
  *  - Orquesta los componentes principales (Header, Terminal, LoginPanel)
  *  - Mantiene la UI desacoplada de la lógica interna (useTerminal)
- *  - Soporta modo HackAI (identidad secreta via Konami code)
+ *  - Soporta modo L4tentNoise (identidad secreta via Konami code)
  *
  * La lógica de negocio NO vive aquí. Este archivo solo coordina.
  */
@@ -30,14 +30,14 @@ import CRTEffect from "./components/effects/CRTEffect";
 // Hook que encapsula toda la lógica de la terminal
 import { useTerminal } from "./core/hooks/useTerminal";
 
-// HackAI mode (identidad secreta)
-import { HackAIProvider, useHackAI } from "./core/context/HackAIContext";
+// L4tentNoise mode (identidad secreta)
+import { L4tentNoiseProvider, useL4tentNoise } from "./core/context/L4tentNoiseContext";
 import { useKonamiCode } from "./core/hooks/useKonamiCode";
 
 import "./styles/globals.css";
 
 /**
- * Componente interno que tiene acceso al contexto HackAI
+ * Componente interno que tiene acceso al contexto L4tentNoise
  */
 function AppContent() {
   /**
@@ -48,8 +48,8 @@ function AppContent() {
    */
   const [stage, setStage] = useState<"boot" | "login" | "terminal">("boot");
 
-  // HackAI mode context
-  const { isHackAIMode, toggleHackAI } = useHackAI();
+  // L4tentNoise mode context
+  const { isL4tentMode, toggleL4tent } = useL4tentNoise();
 
   // Estado para mostrar mensaje de activación
   const [showActivationMessage, setShowActivationMessage] = useState(false);
@@ -61,17 +61,17 @@ function AppContent() {
    *  - router de comandos
    *  - helpers de impresión
    */
-  const terminal = useTerminal({ isHackAIMode, toggleHackAI });
+  const terminal = useTerminal({ isL4tentMode, toggleL4tent });
 
   // Callback para cuando se activa el Konami code (alternativa al comando)
   const handleKonamiActivation = useCallback(() => {
-    toggleHackAI();
+    toggleL4tent();
     setShowActivationMessage(true);
     // Ocultar mensaje después de 3 segundos
     setTimeout(() => {
       setShowActivationMessage(false);
     }, 3000);
-  }, [toggleHackAI]);
+  }, [toggleL4tent]);
 
   // Escuchar Konami code (alternativa secreta)
   useKonamiCode(handleKonamiActivation);
@@ -120,17 +120,17 @@ function AppContent() {
       {/* Chatbot flotante */}
       <ChatBubble />
 
-      {/* Badge de modo HackAI */}
-      {isHackAIMode && stage === "terminal" && (
-        <div class="hackai-badge">
+      {/* Badge de modo L4tentNoise */}
+      {isL4tentMode && stage === "terminal" && (
+        <div class="l4tent-badge">
           <span class="mr-2">&#9760;</span>
-          HACKAI MODE
+          L4TENTNOISE MODE
         </div>
       )}
 
       {/* Header visible solo en modo terminal */}
       {stage === "terminal" && (
-        <PageHeader runCommand={terminal.runCommand} isHackAIMode={isHackAIMode} />
+        <PageHeader runCommand={terminal.runCommand} isL4tentMode={isL4tentMode} />
       )}
 
       {/* Contenedor principal de contenido */}
@@ -170,19 +170,19 @@ function AppContent() {
           <div
             class="text-center p-8 rounded-lg animate-fade-in"
             style={{
-              background: isHackAIMode ? "rgba(255,0,51,0.1)" : "rgba(51,153,255,0.1)",
-              border: `2px solid ${isHackAIMode ? "#ff0033" : "#3399ff"}`,
+              background: isL4tentMode ? "rgba(255,0,51,0.1)" : "rgba(51,153,255,0.1)",
+              border: `2px solid ${isL4tentMode ? "#ff0033" : "#3399ff"}`,
               backdropFilter: "blur(10px)",
             }}
           >
             <div
               class="text-4xl font-bold mb-2"
-              style={{ color: isHackAIMode ? "#ff0033" : "#3399ff" }}
+              style={{ color: isL4tentMode ? "#ff0033" : "#3399ff" }}
             >
-              {isHackAIMode ? "HACKAI ACTIVATED" : "CIVILIAN MODE"}
+              {isL4tentMode ? "L4TENTNOISE ACTIVATED" : "CIVILIAN MODE"}
             </div>
             <div class="text-sm text-gray-400">
-              {isHackAIMode
+              {isL4tentMode
                 ? "Secret identity unlocked. Type 'whoami' to see your true self."
                 : "Returning to normal operations."}
             </div>
@@ -194,12 +194,12 @@ function AppContent() {
 }
 
 /**
- * Componente raíz que envuelve todo con el provider de HackAI
+ * Componente raíz que envuelve todo con el provider de L4tentNoise
  */
 export function App() {
   return (
-    <HackAIProvider>
+    <L4tentNoiseProvider>
       <AppContent />
-    </HackAIProvider>
+    </L4tentNoiseProvider>
   );
 }

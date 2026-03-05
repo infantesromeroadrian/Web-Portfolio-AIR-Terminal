@@ -985,9 +985,9 @@ body {
    ============================================================================= */
 
 /**
- * Animación de activación del modo HackAI
+ * Animación de activación del modo L4tentNoise
  */
-@keyframes hackai-activate {
+@keyframes l4tent-activate {
   0% {
     filter: brightness(1) hue-rotate(0deg);
   }
@@ -1006,9 +1006,9 @@ body {
 }
 
 /**
- * Glitch constante para elementos en modo HackAI
+ * Glitch constante para elementos en modo L4tentNoise
  */
-@keyframes hackai-glitch {
+@keyframes l4tent-glitch {
   0%,
   90%,
   100% {
@@ -1038,9 +1038,9 @@ body {
 }
 
 /**
- * Override de variables en modo HackAI
+ * Override de variables en modo L4tentNoise
  */
-body.hackai-mode {
+body.l4tent-mode {
   /* Fondos más oscuros y rojos */
   --bg-deep: #0a0000;
   --bg-surface: #120808;
@@ -1074,9 +1074,9 @@ body.hackai-mode {
 }
 
 /**
- * Efectos adicionales en modo HackAI
+ * Efectos adicionales en modo L4tentNoise
  */
-body.hackai-mode::before {
+body.l4tent-mode::before {
   content: "";
   position: fixed;
   inset: 0;
@@ -1085,8 +1085,8 @@ body.hackai-mode::before {
   z-index: 9999;
 }
 
-/* Scanlines más visibles en modo HackAI */
-body.hackai-mode .scanlines::after {
+/* Scanlines más visibles en modo L4tentNoise */
+body.l4tent-mode .scanlines::after {
   background: repeating-linear-gradient(
     0deg,
     rgba(255, 0, 0, 0.03) 0px,
@@ -1096,41 +1096,41 @@ body.hackai-mode .scanlines::after {
   );
 }
 
-/* Logo con glitch constante en modo HackAI */
-body.hackai-mode .hackai-logo-glitch {
-  animation: hackai-glitch 2s infinite;
+/* Logo con glitch constante en modo L4tentNoise */
+body.l4tent-mode .l4tent-logo-glitch {
+  animation: l4tent-glitch 2s infinite;
 }
 
 /* Terminal con borde rojo pulsante */
-body.hackai-mode .glass-panel {
+body.l4tent-mode .glass-panel {
   border-color: rgba(255, 0, 51, 0.3);
   box-shadow:
     0 0 20px rgba(255, 0, 51, 0.1),
     inset 0 0 30px rgba(255, 0, 51, 0.05);
 }
 
-/* Cursor rojo en modo HackAI */
-body.hackai-mode .terminal-cursor {
+/* Cursor rojo en modo L4tentNoise */
+body.l4tent-mode .terminal-cursor {
   background-color: #ff0033;
   box-shadow: 0 0 10px #ff0033;
 }
 
 /* Selection en rojo */
-body.hackai-mode ::selection {
+body.l4tent-mode ::selection {
   background: #ff0033;
   color: #000;
 }
 
 /* Glow effects en rojo */
-body.hackai-mode .glow-accent:hover,
-body.hackai-mode .glow-coral:hover {
+body.l4tent-mode .glow-accent:hover,
+body.l4tent-mode .glow-coral:hover {
   box-shadow:
     0 0 20px rgba(255, 0, 51, 0.6),
     0 0 40px rgba(255, 0, 51, 0.3);
 }
 
-/* Badge de modo HackAI */
-.hackai-badge {
+/* Badge de modo L4tentNoise */
+.l4tent-badge {
   position: fixed;
   top: 80px;
   left: 20px;
@@ -1147,17 +1147,17 @@ body.hackai-mode .glow-coral:hover {
   z-index: 100;
 }
 
-/* Texto con efecto de corrupción en modo HackAI */
-body.hackai-mode .text-corrupt {
+/* Texto con efecto de corrupción en modo L4tentNoise */
+body.l4tent-mode .text-corrupt {
   position: relative;
 }
 
-body.hackai-mode .text-corrupt::after {
+body.l4tent-mode .text-corrupt::after {
   content: attr(data-text);
   position: absolute;
   left: 2px;
   top: 0;
   color: #ff0033;
   clip-path: inset(0 0 0 0);
-  animation: hackai-glitch 1s infinite;
+  animation: l4tent-glitch 1s infinite;
 }

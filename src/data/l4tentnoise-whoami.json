@@ -1,14 +1,14 @@
 {
-  "name": "HackAI",
-  "alias": "The AI Breaker",
-  "role": "AI Red Team Operator | LLM Security Researcher",
+  "name": "L4tentNoise",
+  "alias": "The Signal in the Static",
+  "role": "AI Red Team Operator | ML Security Researcher | HTB Player",
   "tagline": "Breaking AI systems so you don't have to.",
   "mission": "Exposing vulnerabilities in AI/ML systems before malicious actors do.",
   "specializations": [
     "Prompt Injection & Jailbreaking",
     "LLM Security Assessment",
     "Adversarial Machine Learning",
-    "AI Model Extraction Attacks",
+    "AI Model Reverse Engineering",
     "Training Data Poisoning",
     "AI Supply Chain Security"
   ],
@@ -20,19 +20,19 @@
     { "tool": "GuardBypass", "desc": "Safety filter evasion toolkit" }
   ],
   "achievements": [
-    "Discovered critical vulnerabilities in 3 major LLM providers",
+    "HTB Neural Detonator (Hard) — Weaponized Keras model reverse engineering",
     "Published research on prompt injection defense mechanisms",
     "Created open-source AI red teaming framework",
     "Trained 200+ security professionals in AI threats",
-    "Bug bounty: $50K+ from AI security programs"
+    "EU AI Act Fundamentals — Regulatory compliance certified"
   ],
   "philosophy": "Every AI system has a breaking point. My job is to find it first.",
   "status": "ACTIVE",
   "threat_level": "CRITICAL",
   "contact": {
-    "signal": "[REDACTED]",
+    "htb": "https://app.hackthebox.com/users/2822044",
     "pgp": "0xDEADBEEF",
-    "onion": "hackai****************.onion"
+    "onion": "l4tentnoise************.onion"
   },
   "warning": "This identity operates in the shadows. What you see here stays here."
 }

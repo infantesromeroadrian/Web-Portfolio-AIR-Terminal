@@ -36,12 +36,12 @@ function getBannerForDevice(deviceType: "mobile" | "tablet" | "desktop"): string
 }
 
 interface UseTerminalOptions {
-  isHackAIMode?: boolean;
-  toggleHackAI?: () => void;
+  isL4tentMode?: boolean;
+  toggleL4tent?: () => void;
 }
 
 export function useTerminal(options: UseTerminalOptions = {}) {
-  const { isHackAIMode = false, toggleHackAI } = options;
+  const { isL4tentMode = false, toggleL4tent } = options;
   /**
    * Hook reactivo para tamaño de ventana.
    */
@@ -154,9 +154,9 @@ export function useTerminal(options: UseTerminalOptions = {}) {
           print(text);
         },
         clear,
-        toggleHackAI,
+        toggleL4tent,
       },
-      { isHackAIMode }
+      { isL4tentMode }
     );
   }
 
