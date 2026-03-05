@@ -177,6 +177,7 @@ ${cat.items
 
 export function formatCertificaciones(data: CertificacionesData): string {
   // --- OBTAINED ---
+  const basePath = import.meta.env.BASE_URL;
   const obtenidas = data.obtenidas.length
     ? data.obtenidas
         .map((c: CertificacionObtenida) => {
@@ -185,6 +186,9 @@ export function formatCertificaciones(data: CertificacionesData): string {
           if (c.id) entry += `\n     - Credential ID: ${c.id}`;
           if (c.url) entry += `\n     - URL: ${linkify(c.url)}`;
           entry += `\n${c.detalles.map((d: string) => `     - ${d}`).join("\n")}\n`;
+          if (c.imagen) {
+            entry += `\n<img src="${basePath}${c.imagen}" alt="${c.nombre}" width="520" loading="lazy" style="border-radius:8px; border:1px solid #333; margin:8px 0 16px 0;">\n`;
+          }
           return entry;
         })
         .join("\n")

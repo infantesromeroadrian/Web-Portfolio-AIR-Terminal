@@ -19,7 +19,7 @@
  * Colores soportados por el sistema de iconos.
  * Corresponden a los valores usados en colorIcon() de formatters.ts
  */
-export type IconColor = "green" | "orange" | "red" | "blue" | "yellow" | "white";
+export type IconColor = "green" | "orange" | "red" | "blue" | "yellow" | "white" | "cyan";
 
 /**
  * Item genérico con icono coloreado.
@@ -116,6 +116,7 @@ export interface CertificacionObtenida {
   anio?: string;
   id?: string;
   url?: string;
+  imagen?: string;
   detalles: string[];
 }
 

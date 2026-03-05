@@ -21,6 +21,7 @@ const COLOR_MAP: Record<IconColor, string> = {
   blue: "#3399ff",
   yellow: "#ffff66",
   white: "#ffffff",
+  cyan: "#00ffcc",
 };
 
 /**

@@ -29,8 +29,8 @@ import DOMPurify from "dompurify";
  *  - Los enlaces solo pueden tener href, target y style
  *  - No se permiten eventos inline (onclick, onerror, etc.)
  */
-const ALLOWED_TAGS = ["span", "a", "br", "div", "i", "b", "strong", "em", "pre", "code"];
-const ALLOWED_ATTR = ["href", "target", "style", "class"];
+const ALLOWED_TAGS = ["span", "a", "br", "div", "i", "b", "strong", "em", "pre", "code", "img"];
+const ALLOWED_ATTR = ["href", "target", "style", "class", "src", "alt", "width", "loading"];
 
 /**
  * Sanitiza HTML para uso seguro en dangerouslySetInnerHTML.

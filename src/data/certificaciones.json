@@ -2,6 +2,18 @@
   "title": "Certifications & Achievements",
   "obtenidas": [
     {
+      "icon": "[★]",
+      "color": "cyan",
+      "nombre": "EU AI Act Fundamentals — DataCamp",
+      "url": "https://www.datacamp.com/completed/statement-of-accomplishment/track/9f24806ec900af63f2aec96daa6a5e2133a35035",
+      "imagen": "eu-ai-act-cert.png",
+      "detalles": [
+        "European AI regulation framework (8 hours)",
+        "Risk classification, compliance, AI governance",
+        "High-risk AI systems and prohibited practices"
+      ]
+    },
+    {
       "icon": "[+]",
       "color": "green",
       "nombre": "Azure AI Engineer Associate (AI-102)",
@@ -66,13 +78,7 @@
         "Document loaders, splitters, vectorstores"
       ]
     },
-    {
-      "icon": "[+]",
-      "color": "green",
-      "nombre": "EU AI Act - AI Security Regulation",
-      "url": "https://www.datacamp.com/completed/statement-of-accomplishment/track/9f24806ec900af63f2aec96daa6a5e2133a35035",
-      "detalles": ["European AI regulation", "Risk classification, compliance and AI governance"]
-    },
+
     {
       "icon": "[+]",
       "color": "green",
