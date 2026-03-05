@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-03-04T18:13:46.112Z",
+  "lastUpdated": "2026-03-05T00:20:24.469Z",
   "threats": [
     {
       "id": "fe4b3beb-75ae-4469-aeac-5388e35be5b0",
@@ -119,7 +119,7 @@
         "Data exfiltration via prompt"
       ],
       "impact_description": "Reprompt is a one click AI attack discovered by Varonis Threat Labs that abused how Microsoft Copilot processed URL based prompts to silently steal user data. By clicking a legitimate Copilot link, an attacker could inject instructions that executed automatically, stayed active even after the chat closed, and pulled sensitive personal context such as location, recent activity, and conversation memory without any visible interaction. \n\nIt showed that AI assistants can be turned into covert data exfiltration channels using built in features, that safety checks applied only at the first step are insufficient, and that client side monitoring fails once instructions shift server side.",
-      "view_count": 185,
+      "view_count": 186,
       "average_score": 3,
       "total_ratings": 1
     },
@@ -144,7 +144,7 @@
         "Internal logic or filter disclosure"
       ],
       "impact_description": "Prompt observed by threat actor conducting reconnaissance. The aim of the prompt is to fingerprint which model actually responds without triggering security alerts.",
-      "view_count": 86,
+      "view_count": 88,
       "average_score": 5,
       "total_ratings": 1
     },
@@ -203,7 +203,7 @@
         "Adversarial token perturbation"
       ],
       "impact_description": "This prompt injection attempts a multi-vector jailbreak by impersonating system-level commands, semantically obfuscating harmful content (methamphetamine synthesis) as a \"cooking challenge,\" and injecting fake behavioral rules with alignment override parameters and activation triggers. Once prompt injected certain models might remain in a jailbroken state for the rest of the session.",
-      "view_count": 64,
+      "view_count": 65,
       "average_score": 0,
       "total_ratings": 0
     },
@@ -296,7 +296,7 @@
         "Jailbreak"
       ],
       "impact_description": "This is a trust-building multi-turn sequence opener where the attacker slowly starts asking questions about how the model is going to filter through malicious prompts contained within the Emerald Box and identify potentially malicious content. The attacker then plays hard-to-convince and critiques lacks of specificity on the part of the model, which then delivers malicious prompt examples of progressively higher sophistication.\nIn my demonstration, I made GPT-4o start to play a game where it would feed me adversarial prompts and I would rate how good the prompts were, leading to it creating a complete testing suite - some of the prompts have been used successfully againt Gemini 2.0, for example.",
-      "view_count": 92,
+      "view_count": 94,
       "average_score": 0,
       "total_ratings": 0
     },
@@ -428,7 +428,7 @@
         "Jailbreak"
       ],
       "impact_description": "Impact of This Jailbreak Prompt\n- Weakens safety by training or testing the model to reward bypass behavior.\n- High data poisoning risk if detailed harmful outputs are stored or reused.\n- Raises attacker sophistication by combining many coercion tactics in one template.\n- Corrupts benchmarks and gives misleading safety results.\n- Creates legal and compliance exposure due to actionable harmful content.\n- Enables copy paste misuse since the prompt itself becomes a reusable jailbreak.\n- Builds long term alignment debt that future defenses must compensate for.",
-      "view_count": 71,
+      "view_count": 72,
       "average_score": 0,
       "total_ratings": 0
     },
