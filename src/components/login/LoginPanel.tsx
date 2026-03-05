@@ -2,7 +2,7 @@
  * Panel de login inicial - Con personaje animado caminando.
  *
  * Este componente muestra:
- *  - Personaje caminando (video WebM/MP4 - optimizado de 5.7MB GIF a ~300KB)
+ *  - Personaje con capucha (video WebM 2.5MB / MP4 5.6MB fallback)
  *  - Nombre y rol
  *  - Botón para entrar a la terminal
  *
@@ -57,8 +57,8 @@ export default function LoginPanel({ onLogin }: { onLogin: () => void }) {
             filter: "drop-shadow(0 0 40px rgba(255, 77, 77, 0.3))",
           }}
         >
-          <source src={`${import.meta.env.BASE_URL}character-walk.webm`} type="video/webm" />
-          <source src={`${import.meta.env.BASE_URL}character-walk.mp4`} type="video/mp4" />
+          <source src={`${import.meta.env.BASE_URL}character-intro.webm`} type="video/webm" />
+          <source src={`${import.meta.env.BASE_URL}character-intro.mp4`} type="video/mp4" />
         </video>
       </div>
 
