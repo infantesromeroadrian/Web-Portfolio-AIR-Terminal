@@ -33,7 +33,7 @@ export default function LoginPanel({ onLogin }: { onLogin: () => void }) {
   }, []);
 
   return (
-    <div class="w-full max-w-2xl px-4 relative z-10 flex flex-col items-center justify-center min-h-[70vh]">
+    <div class="w-full max-w-5xl px-4 relative z-10 flex flex-col items-center justify-center min-h-[70vh]">
       {/* Personaje caminando */}
       <div class="relative mb-8 animate-fade-in">
         {/* Glow detrás del personaje */}
