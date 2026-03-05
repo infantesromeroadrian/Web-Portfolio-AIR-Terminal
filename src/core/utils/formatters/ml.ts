@@ -62,11 +62,23 @@ ${header}
 
 // ── Progress Display ────────────────────────────────────────
 
+function formatBytes(bytes: number): string {
+  if (bytes >= 1_000_000_000) return `${(bytes / 1_000_000_000).toFixed(1)}GB`;
+  if (bytes >= 1_000_000) return `${(bytes / 1_000_000).toFixed(0)}MB`;
+  if (bytes >= 1_000) return `${(bytes / 1_000).toFixed(0)}KB`;
+  return `${bytes}B`;
+}
+
 export function formatClassifyProgress(progress: ModelLoadProgress): string {
   if (progress.status === "downloading") {
     const bar = generateProgressBar(progress.progress);
-    const file = progress.file ? ` (${progress.file.split("/").pop()})` : "";
-    return `<span style="color:#3399ff">[MODEL]</span> Downloading${file}  ${bar}  <span style="color:#ffff66">${progress.progress}%</span>`;
+    const file = progress.file ? (progress.file.split("/").pop() ?? "") : "";
+    // Show MB progress when available (e.g. "342MB / 704MB")
+    const sizeInfo =
+      progress.loaded !== undefined && progress.total !== undefined
+        ? ` <span style="color:#888888">${formatBytes(progress.loaded)} / ${formatBytes(progress.total)}</span>`
+        : "";
+    return `<span style="color:#3399ff">[MODEL]</span> ${file}  ${bar}  <span style="color:#ffff66">${progress.progress}%</span>${sizeInfo}`;
   }
 
   if (progress.status === "loading") {
@@ -110,12 +122,12 @@ export function formatClassifyHelp(): string {
   <span style="color:#3399ff">classify --benchmark</span>    Benchmark inference speed
 
 <span style="color:#ffff66">HOW IT WORKS:</span>
-  A DeBERTa-v3 transformer model (quantized to INT8) runs entirely
+  A DeBERTa-v3 transformer (184M params, FP32) runs entirely
   in your browser via ONNX Runtime WebAssembly. No data is sent
   to any server — all inference happens locally on your device.
 
-  First run downloads the model (~738MB FP32, cached after).
-  Subsequent classifications: <50ms latency.
+  First run downloads the model (~700MB, cached by browser after).
+  Subsequent visits load instantly from cache. Inference: &lt;200ms.
 
 <span style="color:#ffff66">┌─── EXAMPLE PROMPTS ──────────────────────────────────────────┐</span>
 ${examples}
@@ -160,7 +172,7 @@ ${lines}
 <span style="color:#888888">│</span>  <span style="color:#888888">Accuracy:</span>      <span style="color:#00ff00">${accuracy}/${total}</span> (${((accuracy / total) * 100).toFixed(1)}%)
 <span style="color:#888888">│</span>  <span style="color:#888888">Avg Latency:</span>   <span style="color:#00ff00">${avgLatency}ms</span>
 <span style="color:#888888">│</span>  <span style="color:#888888">Total Time:</span>    ${totalLatency}ms for ${total} samples
-<span style="color:#888888">│</span>  <span style="color:#888888">Runtime:</span>       ONNX Q8 · WebAssembly · Client-side
+<span style="color:#888888">│</span>  <span style="color:#888888">Runtime:</span>       ONNX FP32 · WebAssembly · Client-side
 <span style="color:#3399ff">└──────────────────────────────────────────────────────────────┘</span>
 
 <span style="color:#888888">All inference ran 100% in your browser. Zero API calls.</span>
@@ -176,7 +188,7 @@ export function formatClassifyError(error: string): string {
 <span style="color:#888888">Possible causes:</span>
   • Browser doesn't support WebAssembly (very rare)
   • Network error downloading the model
-  • Insufficient memory (model requires ~200MB RAM)
+  • Insufficient memory (model requires ~1GB RAM)
 
 <span style="color:#ffff66">Try refreshing the page and running the command again.</span>
 `;

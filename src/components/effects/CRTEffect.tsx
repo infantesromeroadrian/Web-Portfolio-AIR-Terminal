@@ -16,24 +16,34 @@ export default function CRTEffect() {
   const [flicker, setFlicker] = useState(false);
 
   useEffect(() => {
+    // Track all pending timeouts so cleanup can cancel them all
+    const pendingTimeouts: ReturnType<typeof setTimeout>[] = [];
+
+    const track = (id: ReturnType<typeof setTimeout>): void => {
+      pendingTimeouts.push(id);
+    };
+
     // Flicker aleatorio cada 3-8 segundos
     const triggerFlicker = (): void => {
       setFlicker(true);
-      setTimeout(
-        () => {
-          setFlicker(false);
-        },
-        50 + Math.random() * 100
+      track(
+        setTimeout(
+          () => {
+            setFlicker(false);
+          },
+          50 + Math.random() * 100
+        )
       );
 
       // Programar siguiente flicker
       const nextFlicker = 3000 + Math.random() * 5000;
-      setTimeout(triggerFlicker, nextFlicker);
+      track(setTimeout(triggerFlicker, nextFlicker));
     };
 
-    const initialDelay = setTimeout(triggerFlicker, 2000);
+    track(setTimeout(triggerFlicker, 2000));
+
     return () => {
-      clearTimeout(initialDelay);
+      for (const id of pendingTimeouts) clearTimeout(id);
     };
   }, []);
 

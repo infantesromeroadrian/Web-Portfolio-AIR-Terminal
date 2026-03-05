@@ -33,10 +33,10 @@ function LiveCounters() {
       }
     }, 2000);
 
-    // Packets scanned (incremento constante)
+    // Packets scanned (incremento visual — 1.5s interval para evitar re-renders excesivos)
     const packetInterval = setInterval(() => {
-      setPackets((prev) => prev + Math.floor(Math.random() * 500) + 100);
-    }, 100);
+      setPackets((prev) => prev + Math.floor(Math.random() * 5000) + 1000);
+    }, 1500);
 
     return () => {
       clearInterval(uptimeInterval);

@@ -202,13 +202,13 @@ This portfolio includes a DeBERTa-v3 transformer model that runs **entirely in y
 • \`classify --benchmark\` — Benchmark speed and accuracy
 
 **How it works:**
-1. First run downloads the model (~50MB, cached after)
-2. ONNX Runtime WebAssembly runs inference in your browser
+1. First run downloads the ONNX model (~738MB FP32, cached by browser after)
+2. ONNX Runtime WebAssembly runs inference locally
 3. Results include label, confidence, risk level, and latency
 
 **Model:** protectai/deberta-v3-base-prompt-injection-v2 (140K+ downloads)
-**Quantization:** INT8 for fast browser inference
-**Latency:** <50ms after first load
+**Format:** ONNX FP32 via @huggingface/transformers
+**Latency:** ~50-200ms per inference after model load
 
 This is real AI/ML engineering — not a frontend trick.`,
   },

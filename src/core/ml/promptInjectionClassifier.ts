@@ -46,6 +46,10 @@ export interface ModelLoadProgress {
   progress: number;
   /** File being downloaded */
   file?: string;
+  /** Bytes loaded so far */
+  loaded?: number;
+  /** Total bytes to download */
+  total?: number;
   /** Error message if status is "error" */
   error?: string;
 }
@@ -85,14 +89,19 @@ async function getClassifier(onProgress?: ProgressCallback): Promise<TextClassif
 
       const classifier = await pipeline("text-classification", MODEL_ID, {
         dtype: QUANTIZATION,
-        // Track download progress
+        // Track download progress — reports file name, %, and bytes
         progress_callback: (progressData: Record<string, unknown>) => {
           if (progressData.status === "progress") {
             const pct = typeof progressData.progress === "number" ? progressData.progress : 0;
+            const loaded =
+              typeof progressData.loaded === "number" ? progressData.loaded : undefined;
+            const total = typeof progressData.total === "number" ? progressData.total : undefined;
             onProgress?.({
               status: "downloading",
               progress: Math.round(pct),
               file: typeof progressData.file === "string" ? progressData.file : undefined,
+              loaded,
+              total,
             });
           } else if (progressData.status === "done") {
             onProgress?.({ status: "loading", progress: 100 });
