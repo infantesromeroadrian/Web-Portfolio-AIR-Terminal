@@ -52,7 +52,7 @@ export default function LoginPanel({ onLogin }: { onLogin: () => void }) {
           loop
           muted
           playsInline
-          class="relative w-[28rem] h-auto sm:w-[36rem] md:w-[42rem] max-w-full"
+          class="relative w-[36rem] h-auto sm:w-[48rem] md:w-[60rem] max-w-full"
           style={{
             filter: "drop-shadow(0 0 40px rgba(255, 77, 77, 0.3))",
           }}
