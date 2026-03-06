@@ -34,6 +34,9 @@ import { useTerminal } from "./core/hooks/useTerminal";
 import { L4tentNoiseProvider, useL4tentNoise } from "./core/context/L4tentNoiseContext";
 import { useKonamiCode } from "./core/hooks/useKonamiCode";
 
+// Returning visitor detection (shared with commandRouter for `replay` command)
+import { isReturningVisitor, markAsReturningVisitor } from "./core/utils/visitTracker";
+
 import "./styles/globals.css";
 
 /**
@@ -45,8 +48,12 @@ function AppContent() {
    *  - "boot": secuencia BIOS inicial
    *  - "login": se muestra el personaje caminando + intro
    *  - "terminal": se muestra la terminal interactiva
+   *
+   * Returning visitors skip boot+login and go straight to terminal.
    */
-  const [stage, setStage] = useState<"boot" | "login" | "terminal">("boot");
+  const [stage, setStage] = useState<"boot" | "login" | "terminal">(() =>
+    isReturningVisitor() ? "terminal" : "boot"
+  );
 
   // L4tentNoise mode context
   const { isL4tentMode, toggleL4tent } = useL4tentNoise();
@@ -62,6 +69,16 @@ function AppContent() {
    *  - helpers de impresión
    */
   const terminal = useTerminal({ isL4tentMode, toggleL4tent });
+
+  // Auto-run whoami for returning visitors who skip boot+login
+  useEffect(() => {
+    if (isReturningVisitor() && stage === "terminal") {
+      const timer = setTimeout(() => {
+        void terminal.runCommand("whoami");
+      }, 150);
+      return () => clearTimeout(timer);
+    }
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps -- only on mount
 
   // Callback para cuando se activa el Konami code (alternativa al comando)
   const handleKonamiActivation = useCallback(() => {
@@ -140,6 +157,7 @@ function AppContent() {
           <div class="flex-grow flex items-center justify-center">
             <LoginPanel
               onLogin={() => {
+                markAsReturningVisitor();
                 setStage("terminal");
                 // Ejecutar whoami automáticamente después de un breve delay
                 setTimeout(() => {

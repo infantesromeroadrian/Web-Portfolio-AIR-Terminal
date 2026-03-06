@@ -36,7 +36,7 @@ const SOCIAL_LINKS = [
 
 export default function Footer() {
   return (
-    <footer class="w-full border-t border-[var(--border-subtle)] bg-[var(--bg-deep)]/80 backdrop-blur-sm py-2 pb-16 sm:pb-2">
+    <footer class="w-full border-t border-[var(--border-subtle)] bg-[var(--bg-deep)]/80 backdrop-blur-sm py-2 pb-16 lg:pb-2">
       <div class="max-w-6xl mx-auto px-4 flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-xs font-mono">
         {/* Copyright + Nombre */}
         <span class="text-[var(--text-muted)]">

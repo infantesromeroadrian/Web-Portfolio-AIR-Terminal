@@ -251,7 +251,7 @@ export default function TerminalBody({ terminal }: { terminal: TerminalState }) 
         ) : (
           <div
             key={idx}
-            class="whitespace-pre-wrap break-words mb-2 animate-fade-slide-up"
+            class="whitespace-pre overflow-x-auto scrollbar-hide mb-2 animate-fade-slide-up"
             style={{ animationDelay: `${Math.min(idx * 20, 200)}ms` }}
             dangerouslySetInnerHTML={{ __html: sanitizeHtml(item.content) }}
           />

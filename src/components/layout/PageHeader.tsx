@@ -1,9 +1,10 @@
 /**
- * Header principal - Con menú hamburguesa.
+ * Header principal - Responsive navigation.
  *
  * Este componente:
- *  - Muestra identidad visual con logo SVG distintivo
- *  - Menú hamburguesa para navegación limpia
+ *  - Desktop (lg+): navbar horizontal con todos los items visibles
+ *  - Mobile/Tablet (< lg): menú hamburguesa desplegable
+ *  - Logo SVG con identidad visual
  *
  * Diseño: Glassmorphism, tipografía display, transiciones suaves.
  */
@@ -96,7 +97,22 @@ export default function PageHeader({ runCommand, isL4tentMode = false }: PageHea
             </div>
           </div>
 
-          {/* Columna derecha - Status + Hamburger */}
+          {/* Desktop horizontal nav — visible only on lg+ */}
+          <div class="hidden lg:flex items-center gap-1">
+            {NAV_ITEMS.map((item) => (
+              <button
+                key={item.command}
+                class="px-3 py-1.5 rounded-lg font-mono text-xs text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--coral-bright)]/10 transition-all duration-200 whitespace-nowrap"
+                onClick={() => {
+                  handleCommand(item.command);
+                }}
+              >
+                {item.label}
+              </button>
+            ))}
+          </div>
+
+          {/* Columna derecha - Status + Hamburger (mobile only) */}
           <div class="flex items-center gap-4">
             {/* Status badge */}
             <div class="flex items-center gap-2 px-3 py-1.5 rounded-full bg-[var(--bg-elevated)] border border-[var(--border-subtle)]">
@@ -104,9 +120,9 @@ export default function PageHeader({ runCommand, isL4tentMode = false }: PageHea
               <span class="text-xs font-mono text-[var(--text-muted)]">Online</span>
             </div>
 
-            {/* Hamburger button */}
+            {/* Hamburger button — hidden on lg+ (desktop has inline nav) */}
             <button
-              class="p-2 rounded-lg hover:bg-[var(--coral-bright)]/10 transition-all duration-300 focus-ring"
+              class="p-2 rounded-lg hover:bg-[var(--coral-bright)]/10 transition-all duration-300 focus-ring lg:hidden"
               onClick={() => {
                 setIsMenuOpen(!isMenuOpen);
               }}
@@ -119,9 +135,9 @@ export default function PageHeader({ runCommand, isL4tentMode = false }: PageHea
         </nav>
       </header>
 
-      {/* Dropdown menu */}
+      {/* Dropdown menu — only used on mobile/tablet (< lg) */}
       <div
-        class={`fixed top-[60px] right-4 z-50 transition-all duration-300 ${
+        class={`fixed top-[60px] right-4 z-50 transition-all duration-300 lg:hidden ${
           isMenuOpen
             ? "opacity-100 translate-y-0 pointer-events-auto"
             : "opacity-0 -translate-y-4 pointer-events-none"
@@ -144,10 +160,10 @@ export default function PageHeader({ runCommand, isL4tentMode = false }: PageHea
         </div>
       </div>
 
-      {/* Backdrop */}
+      {/* Backdrop — only on mobile/tablet */}
       {isMenuOpen && (
         <div
-          class="fixed inset-0 z-40 bg-black/20 backdrop-blur-sm"
+          class="fixed inset-0 z-40 bg-black/20 backdrop-blur-sm lg:hidden"
           onClick={() => {
             setIsMenuOpen(false);
           }}

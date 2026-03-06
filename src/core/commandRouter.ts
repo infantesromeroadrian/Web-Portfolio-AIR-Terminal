@@ -20,6 +20,8 @@ import type {
   BlogData,
 } from "../types/data";
 
+import { clearReturningVisitor } from "./utils/visitTracker";
+
 import {
   formatWhoami,
   formatEstudios,
@@ -138,6 +140,8 @@ export const AVAILABLE_COMMANDS: string[] = [
   "classify --benchmark",
   // Secret identity
   "hackai",
+  // Replay boot intro
+  "replay",
 ];
 
 // ── Tipo del mapa de comandos ───────────────────────────────
@@ -318,6 +322,16 @@ const COMMAND_MAP: Record<string, CommandHandler> = {
       .catch((_error: unknown) => {
         print(formatThreatsError());
       });
+  },
+  // Replay boot+login intro (clears returning visitor flag and reloads)
+  replay: ({ print }) => {
+    print(
+      '<span style="color:#3399ff">[SYSTEM]</span> Clearing session cache... Replaying boot sequence.'
+    );
+    clearReturningVisitor();
+    setTimeout(() => {
+      window.location.reload();
+    }, 800);
   },
   // Secret identity toggle
   hackai: ({ print, toggleL4tent }, context) => {

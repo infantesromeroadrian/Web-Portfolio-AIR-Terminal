@@ -80,6 +80,8 @@ export function formatHelp(commands: string[]): string {
     classify: "🧠 Prompt Injection Classifier (real ML model)",
     "classify --examples": "Run all example prompts through the model",
     "classify --benchmark": "Benchmark inference speed and accuracy",
+    // System
+    replay: "🔄 Replay boot + login intro sequence",
   };
 
   const lines = commands.map((cmd) => {
