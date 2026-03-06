@@ -35,11 +35,11 @@
     },
     {
       "id": "[03]",
-      "titulo": "Bachelor's Degree in Software Engineering - AI Specialization",
+      "titulo": "Double Bachelor's Degree in Computational Mathematics & Software Engineering",
       "inicio": "2017",
       "fin": "2021",
-      "centro": "U-tad",
-      "ubicacion": "Las Rozas, Madrid, Spain",
+      "centro": "Universidad Camilo José Cela",
+      "ubicacion": "Madrid, Spain",
       "temas": [
         { "icon": "[+]", "color": "green", "text": "Artificial Intelligence fundamentals" },
         { "icon": "[+]", "color": "green", "text": "Software Development and Architecture" },
