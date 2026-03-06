@@ -139,7 +139,7 @@ export const AVAILABLE_COMMANDS: string[] = [
   "classify --examples",
   "classify --benchmark",
   // Secret identity
-  "hackai",
+  "l4tentnoise",
   // Replay boot intro
   "replay",
 ];
@@ -334,7 +334,7 @@ const COMMAND_MAP: Record<string, CommandHandler> = {
     }, 800);
   },
   // Secret identity toggle
-  hackai: ({ print, toggleL4tent }, context) => {
+  l4tentnoise: ({ print, toggleL4tent }, context) => {
     if (toggleL4tent) {
       toggleL4tent();
       // Show activation or deactivation message based on CURRENT state
