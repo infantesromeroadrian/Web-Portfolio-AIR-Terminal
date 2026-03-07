@@ -76,7 +76,9 @@ function AppContent() {
       const timer = setTimeout(() => {
         void terminal.runCommand("whoami");
       }, 150);
-      return () => clearTimeout(timer);
+      return () => {
+        clearTimeout(timer);
+      };
     }
   }, []); // eslint-disable-line react-hooks/exhaustive-deps -- only on mount
 
