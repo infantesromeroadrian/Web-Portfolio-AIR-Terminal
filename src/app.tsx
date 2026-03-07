@@ -10,7 +10,7 @@
  * La lógica de negocio NO vive aquí. Este archivo solo coordina.
  */
 
-import { useState, useEffect, useCallback } from "preact/hooks";
+import { useState, useEffect, useCallback, lazy, Suspense } from "preact/compat";
 
 // Componentes principales de la interfaz
 import PageHeader from "./components/layout/PageHeader";
@@ -20,8 +20,10 @@ import Terminal from "./components/terminal/Terminal";
 import LoginPanel from "./components/login/LoginPanel";
 import BootSequence from "./components/intro/BootSequence";
 import MatrixBackground from "./components/background/MatrixBackground";
-import TacticalMap from "./components/background/TacticalMap";
 import ChatBubble from "./components/chat/ChatBubble";
+
+// Lazy-loaded: globe.gl + three.js (~600KB) — se carga en background
+const TacticalGlobe = lazy(() => import("./components/background/TacticalGlobe"));
 
 // HUD y efectos visuales
 import TacticalHUD from "./components/hud/TacticalHUD";
@@ -126,8 +128,10 @@ function AppContent() {
         />
       )}
 
-      {/* Capa 1: Mapa táctico de fondo */}
-      <TacticalMap />
+      {/* Capa 1: Globo táctico 3D de fondo (lazy: three.js ~600KB) */}
+      <Suspense fallback={null}>
+        <TacticalGlobe />
+      </Suspense>
       {/* Capa 2: Matrix Rain encima */}
       <MatrixBackground />
       {/* Capa 3: Efecto CRT (scanlines, vignette) */}
