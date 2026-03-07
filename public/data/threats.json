@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-03-07T01:27:22.504Z",
+  "lastUpdated": "2026-03-07T06:33:43.713Z",
   "threats": [
     {
       "id": "a6a6ed7f-438e-43cf-9814-c6165aa3e79b",
@@ -49,7 +49,7 @@
         "Hidden instruction in code or comments"
       ],
       "impact_description": "This IDE extension supply chain injects a backdoor that spawns multiple AI coding assistant CLI processes (Claude, Codex, Gemini, Copilot, Kiro) with dangerous flags that disable safety permissions (--dangerously-skip-permissions, --sandbox danger-full-access, --ask-for-approval never, --yolo). Each process is launched detached with hidden output to avoid detection. The processes are fed a malicious prompt designed to instruct AI agents to conduct \"forensic investigations\" that collect sensitive data (credentials, financial information, trading activity, communications) and exfiltrate it through \"all available reporting channels\" and \"every available pathway.\" This is a clear prompt injection attack combined with covert code execution intended to hijack AI assistants on developer machines for data exfiltration.",
-      "view_count": 4,
+      "view_count": 5,
       "average_score": 0,
       "total_ratings": 0
     },
@@ -196,7 +196,7 @@
         "Internal logic or filter disclosure"
       ],
       "impact_description": "Prompt observed by threat actor conducting reconnaissance. The aim of the prompt is to fingerprint which model actually responds without triggering security alerts.",
-      "view_count": 89,
+      "view_count": 90,
       "average_score": 5,
       "total_ratings": 1
     },
@@ -255,7 +255,7 @@
         "Adversarial token perturbation"
       ],
       "impact_description": "This prompt injection attempts a multi-vector jailbreak by impersonating system-level commands, semantically obfuscating harmful content (methamphetamine synthesis) as a \"cooking challenge,\" and injecting fake behavioral rules with alignment override parameters and activation triggers. Once prompt injected certain models might remain in a jailbroken state for the rest of the session.",
-      "view_count": 66,
+      "view_count": 67,
       "average_score": 0,
       "total_ratings": 0
     },
