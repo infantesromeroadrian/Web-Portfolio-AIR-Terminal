@@ -15,7 +15,6 @@ import { useState, useEffect, useCallback, lazy, Suspense } from "preact/compat"
 // Componentes principales de la interfaz
 import PageHeader from "./components/layout/PageHeader";
 import Footer from "./components/layout/Footer";
-import MobileBottomBar from "./components/layout/MobileBottomBar";
 import Terminal from "./components/terminal/Terminal";
 import LoginPanel from "./components/login/LoginPanel";
 import BootSequence from "./components/intro/BootSequence";
@@ -184,9 +183,6 @@ function AppContent() {
         {/* Footer fijo al final en modo terminal */}
         {stage === "terminal" && <Footer />}
       </div>
-
-      {/* Barra inferior móvil — solo visible en modo terminal y pantallas pequeñas */}
-      {stage === "terminal" && <MobileBottomBar runCommand={terminal.runCommand} />}
 
       {/* Mensaje de activación/desactivación */}
       {showActivationMessage && (
