@@ -169,6 +169,7 @@ export interface ProyectoItem {
   score: string;
   estado: string;
   github: string;
+  demo?: string;
   detalles: string[];
   stack: string[];
 }

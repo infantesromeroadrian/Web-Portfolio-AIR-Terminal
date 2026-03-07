@@ -38,6 +38,7 @@
     "score": "95/100",
     "estado": "Production-Ready",
     "github": "https://github.com/infantesromeroadrian/WatchDogs-Security-City",
+    "demo": "https://watchdogs-security-city.onrender.com/",
     "detalles": [
       "LangGraph Native Parallelism - 4 simultaneous agents",
       "Vision Agent + OCR Agent + Detection Agent + Geolocation Agent",

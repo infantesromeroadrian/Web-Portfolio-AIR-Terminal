@@ -18,9 +18,13 @@ export function formatLsProjects(data: ProyectosData): string {
     const githubShort = proyecto.github.replace("https://github.com/", "");
     const githubLink = `<a href="${proyecto.github}" target="_blank" rel="noopener noreferrer" style="color:#3399ff">${githubShort}</a>`;
 
+    const demoLink = proyecto.demo
+      ? `\n     → <a href="${proyecto.demo}" target="_blank" rel="noopener noreferrer" style="color:#00ff00">🚀 Live Demo</a>`
+      : "";
+
     return `  ${slugName} [${score}]
      ${proyecto.descripcion}
-     → ${githubLink}
+     → ${githubLink}${demoLink}
 `;
   });
 
@@ -47,6 +51,10 @@ export function formatProjectDetail(proyecto: ProyectoItem): string {
 
   const github = `<span style="color:#3399ff">GitHub:</span> <a href="${proyecto.github}" target="_blank" style="color:#3399ff">${proyecto.github}</a>`;
 
+  const demo = proyecto.demo
+    ? `\n<span style="color:#00ff00">Demo:</span>  <a href="${proyecto.demo}" target="_blank" style="color:#00ff00">🚀 ${proyecto.demo}</a>`
+    : "";
+
   return `
 ${header}
 ${estado}
@@ -57,7 +65,7 @@ ${detalles}
 
 ${stack}
 
-${github}
+${github}${demo}
 `;
 }
 
