@@ -34,35 +34,7 @@ export default function LoginPanel({ onLogin }: { onLogin: () => void }) {
 
   return (
     <div class="w-full max-w-5xl px-4 relative z-10 flex flex-col items-center justify-center min-h-[70vh]">
-      {/* Personaje caminando */}
-      <div class="relative mb-8 animate-fade-in">
-        {/* Glow detrás del personaje */}
-        <div
-          class="absolute inset-0 blur-3xl opacity-40"
-          style={{
-            background:
-              "radial-gradient(ellipse at center, var(--coral-bright) 0%, transparent 70%)",
-            transform: "scale(1.5)",
-          }}
-        />
-
-        {/* Video del personaje (WebM + MP4 fallback) */}
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          class="relative w-[36rem] h-auto sm:w-[48rem] md:w-[60rem] max-w-full"
-          style={{
-            filter: "drop-shadow(0 0 40px rgba(255, 77, 77, 0.3))",
-          }}
-        >
-          <source src={`${import.meta.env.BASE_URL}character-intro.webm`} type="video/webm" />
-          <source src={`${import.meta.env.BASE_URL}character-intro.mp4`} type="video/mp4" />
-        </video>
-      </div>
-
-      {/* Contenido que aparece */}
+      {/* Contenido principal — globo 3D visible detrás */}
       <div
         class={`text-center transition-all duration-700 ${showContent ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
       >
@@ -120,11 +92,39 @@ export default function LoginPanel({ onLogin }: { onLogin: () => void }) {
           Click to explore my portfolio
         </p>
 
-        {/* Indicador de conexión - integrado en el flujo */}
-        <div class="flex items-center justify-center gap-2 mt-8">
+        {/* Indicador de conexión */}
+        <div class="flex items-center justify-center gap-2 mt-4">
           <span class="w-2 h-2 rounded-full bg-[var(--cyan-bright)] animate-pulse"></span>
           <span class="text-xs font-mono text-[var(--text-muted)]">Secure connection</span>
         </div>
+      </div>
+
+      {/* Personaje caminando — debajo del botón */}
+      <div class="relative mt-8 animate-fade-in">
+        {/* Glow detrás del personaje */}
+        <div
+          class="absolute inset-0 blur-3xl opacity-30"
+          style={{
+            background:
+              "radial-gradient(ellipse at center, var(--coral-bright) 0%, transparent 70%)",
+            transform: "scale(1.5)",
+          }}
+        />
+
+        {/* Video del personaje (WebM + MP4 fallback) */}
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          class="relative w-[28rem] h-auto sm:w-[36rem] md:w-[44rem] max-w-full"
+          style={{
+            filter: "drop-shadow(0 0 30px rgba(255, 77, 77, 0.25))",
+          }}
+        >
+          <source src={`${import.meta.env.BASE_URL}character-intro.webm`} type="video/webm" />
+          <source src={`${import.meta.env.BASE_URL}character-intro.mp4`} type="video/mp4" />
+        </video>
       </div>
     </div>
   );
