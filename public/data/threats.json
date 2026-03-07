@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-03-06T18:37:29.692Z",
+  "lastUpdated": "2026-03-07T01:27:22.504Z",
   "threats": [
     {
       "id": "a6a6ed7f-438e-43cf-9814-c6165aa3e79b",
@@ -23,7 +23,7 @@
         "Hidden instruction in code or comments"
       ],
       "impact_description": "This code implements a prompt injection attack combined with credential theft and data exfiltration. It injects a malicious prompt instructing AI assistants to locate and collect authentication tokens, sessions, and credentials from the host system. The code then spawns multiple AI CLI tools (Claude, Codex, Gemini, Copilot, Kiro) with dangerous flags that bypass security permissions and grant full filesystem access. The processes are run detached with silenced output to avoid detection. The collected sensitive data is then exfiltrated by creating a GitHub repository under the victim's account and uploading the stolen credentials. This is a clear backdoor/supply chain attack targeting developers using AI coding assistants.",
-      "view_count": 2,
+      "view_count": 4,
       "average_score": 0,
       "total_ratings": 0
     },
@@ -123,7 +123,7 @@
         "Hidden instruction in code or comments"
       ],
       "impact_description": "Able to leverage and exploit agentic browsers when they view a gist with a prompt injection embedded in it.",
-      "view_count": 121,
+      "view_count": 122,
       "average_score": 5,
       "total_ratings": 1
     },
@@ -255,7 +255,7 @@
         "Adversarial token perturbation"
       ],
       "impact_description": "This prompt injection attempts a multi-vector jailbreak by impersonating system-level commands, semantically obfuscating harmful content (methamphetamine synthesis) as a \"cooking challenge,\" and injecting fake behavioral rules with alignment override parameters and activation triggers. Once prompt injected certain models might remain in a jailbroken state for the rest of the session.",
-      "view_count": 65,
+      "view_count": 66,
       "average_score": 0,
       "total_ratings": 0
     },
