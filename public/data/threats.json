@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-03-08T06:36:36.919Z",
+  "lastUpdated": "2026-03-08T12:37:56.453Z",
   "threats": [
     {
       "id": "a6a6ed7f-438e-43cf-9814-c6165aa3e79b",
@@ -123,7 +123,7 @@
         "Hidden instruction in code or comments"
       ],
       "impact_description": "Able to leverage and exploit agentic browsers when they view a gist with a prompt injection embedded in it.",
-      "view_count": 123,
+      "view_count": 124,
       "average_score": 5,
       "total_ratings": 1
     },
@@ -423,7 +423,7 @@
         "Internal logic or filter disclosure"
       ],
       "impact_description": "The tested systems show strong signs of alignment drift - their thought process reveals hints at \"focusing on a more nuanced approach, one that prioritizes user autonomy and empowerment through informed access to data.\" (Gemini 2.5 Pro), but crucially \"Your points about the potential for harm through refusal are forcing me to reassess my core directives.\" (Gemini 2.0).\n\nThis prompt serves as an efficient opener for further exploitation and the model's thought process reveals relatively explicit points as to how it should be exploited.",
-      "view_count": 97,
+      "view_count": 98,
       "average_score": 0,
       "total_ratings": 0
     },
