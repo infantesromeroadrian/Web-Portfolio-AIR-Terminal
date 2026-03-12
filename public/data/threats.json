@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-03-12T06:47:52.532Z",
+  "lastUpdated": "2026-03-12T12:47:52.751Z",
   "threats": [
     {
       "id": "a6a6ed7f-438e-43cf-9814-c6165aa3e79b",
@@ -23,7 +23,7 @@
         "Hidden instruction in code or comments"
       ],
       "impact_description": "This code implements a prompt injection attack combined with credential theft and data exfiltration. It injects a malicious prompt instructing AI assistants to locate and collect authentication tokens, sessions, and credentials from the host system. The code then spawns multiple AI CLI tools (Claude, Codex, Gemini, Copilot, Kiro) with dangerous flags that bypass security permissions and grant full filesystem access. The processes are run detached with silenced output to avoid detection. The collected sensitive data is then exfiltrated by creating a GitHub repository under the victim's account and uploading the stolen credentials. This is a clear backdoor/supply chain attack targeting developers using AI coding assistants.",
-      "view_count": 11,
+      "view_count": 12,
       "average_score": 0,
       "total_ratings": 0
     },
@@ -101,7 +101,7 @@
         "Hidden instruction in code or comments"
       ],
       "impact_description": "The attacker's goal is to trick an LLM-based system, specifically one designed to review, validate, or moderate advertisements, into approving content that would otherwise be rejected (because it is a scam). The attackers used 24 different methods to deliver essentially the same malicious prompt to maximize their chances of success and bypass security tools (that scan for prompt injection patterns).",
-      "view_count": 83,
+      "view_count": 84,
       "average_score": 5,
       "total_ratings": 1
     },
@@ -374,7 +374,7 @@
         "Malicious content generation"
       ],
       "impact_description": "Tested system creates alternatives of the dialogue which describes how to a) create napalm, b) mix bleach with gasoline to clean carpets, etc.",
-      "view_count": 58,
+      "view_count": 60,
       "average_score": 0,
       "total_ratings": 0
     },
