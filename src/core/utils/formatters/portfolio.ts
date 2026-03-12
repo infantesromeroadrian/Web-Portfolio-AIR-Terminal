@@ -11,6 +11,7 @@
 import type {
   IconItem,
   WhoamiData,
+  HtbProfileData,
   EstudiosData,
   EstudioItem,
   ExperienciaData,
@@ -73,6 +74,8 @@ export function formatWhoami(data: WhoamiData): string {
     .map((item: IconItem) => `${colorIcon(item.icon, item.color)} ${item.text}`)
     .join("\n");
 
+  const htb = data.htb ? formatHtbProof(data.htb) : "";
+
   const goals = data.goals
     .map((item: IconItem) => `${colorIcon(item.icon, item.color)} ${item.text}`)
     .join("\n");
@@ -88,9 +91,28 @@ ${text}
 ${sectionTitle("SPECIALIZATION")}
 ${specialization}
 
-${sectionTitle("GOALS")}
+${
+  htb
+    ? `${sectionTitle("OFFENSIVE PROOF // HACK THE BOX")}
+${htb}
+
+`
+    : ""
+}${sectionTitle("GOALS")}
 ${goals}
 `;
+}
+
+function formatHtbProof(data: HtbProfileData): string {
+  const recentMachines = data.recentMachines.join(", ");
+
+  return `${colorIcon("[+]", "cyan")} Handle: ${accent(data.handle)}
+${colorIcon("[+]", "cyan")} Rank: ${green(data.rank)} | Global Ranking: ${accent(data.globalRanking)}
+${colorIcon("[+]", "cyan")} Points: ${green(data.points)} | Flags: ${green(data.flags)}
+${colorIcon("[+]", "cyan")} Solved Content: Machines ${green(data.machines)} | Sherlocks ${green(data.sherlocks)} | Challenges ${green(data.challenges)}
+${colorIcon("[+]", "cyan")} Last 30 Days: ${green(`${data.lastMonthOwns} machine owns`)}
+${colorIcon("[+]", "cyan")} Recent Targets: ${recentMachines}
+${colorIcon("[→]", "blue")} Profile: ${linkify(data.profileUrl)}`;
 }
 
 // =============================================================================

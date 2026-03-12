@@ -41,7 +41,22 @@ export interface WhoamiData {
   text: string;
   quote: string;
   specialization: IconItem[];
+  htb?: HtbProfileData;
   goals: IconItem[];
+}
+
+export interface HtbProfileData {
+  handle: string;
+  rank: string;
+  globalRanking: string;
+  points: string;
+  flags: string;
+  machines: string;
+  sherlocks: string;
+  challenges: string;
+  lastMonthOwns: string;
+  recentMachines: string[];
+  profileUrl: string;
 }
 
 // =============================================================================

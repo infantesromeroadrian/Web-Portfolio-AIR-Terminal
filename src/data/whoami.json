@@ -10,6 +10,19 @@
     { "icon": "[+]", "color": "red", "text": "Secure RAG & Data Exfiltration Defense" },
     { "icon": "[+]", "color": "red", "text": "AI Security Evals for Regulated Environments" }
   ],
+  "htb": {
+    "handle": "L4tentNoise",
+    "rank": "Hacker",
+    "globalRanking": "#871",
+    "points": "94",
+    "flags": "41",
+    "machines": "12",
+    "sherlocks": "6",
+    "challenges": "16",
+    "lastMonthOwns": "8",
+    "recentMachines": ["AirTouch", "Pterodactyl", "Interpreter"],
+    "profileUrl": "https://app.hackthebox.com/users/2822044"
+  },
   "goals": [
     {
       "icon": "[→]",
