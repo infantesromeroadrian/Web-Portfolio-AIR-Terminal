@@ -95,7 +95,7 @@ Ask me about:
 • Available commands
 • Adrian's AI security projects
 • His experience and offensive / defensive skillset
-• Research, commands, and contact
+• Projects, commands, and contact
 • How to contact him
 
 What would you like to know?`,

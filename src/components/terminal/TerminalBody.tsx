@@ -31,7 +31,7 @@ const QUICK_ACTIONS = [
   { label: "classify", command: "classify" },
   { label: "threats", command: "threats" },
   { label: "proyectos", command: "proyectos" },
-  { label: "research", command: "blog" },
+  { label: "skills", command: "skills" },
 ];
 
 export default function TerminalBody({ terminal }: { terminal: TerminalState }) {

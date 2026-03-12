@@ -17,5 +17,4 @@ export const NAV_ITEMS: NavItem[] = [
   { label: "PROJECTS", command: "proyectos" },
   { label: "EXPERIENCE", command: "experiencia" },
   { label: "SKILLS", command: "skills" },
-  { label: "RESEARCH", command: "blog" },
 ];
