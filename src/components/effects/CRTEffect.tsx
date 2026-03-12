@@ -60,7 +60,7 @@ export default function CRTEffect() {
             transparent 1px,
             transparent 3px
           )`,
-          opacity: 0.4,
+          opacity: 0.18,
         }}
       />
 
@@ -72,7 +72,7 @@ export default function CRTEffect() {
             ellipse at center,
             transparent 0%,
             transparent 60%,
-            rgba(0, 0, 0, 0.4) 100%
+            rgba(0, 0, 0, 0.25) 100%
           )`,
         }}
       />
@@ -85,8 +85,8 @@ export default function CRTEffect() {
         class="absolute inset-0"
         style={{
           boxShadow: `
-            inset 0 0 100px rgba(37, 99, 235, 0.05),
-            inset 0 0 50px rgba(0, 0, 0, 0.3)
+            inset 0 0 100px rgba(37, 99, 235, 0.03),
+            inset 0 0 50px rgba(0, 0, 0, 0.18)
           `,
         }}
       />

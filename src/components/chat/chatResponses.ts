@@ -22,7 +22,6 @@ export const QUICK_REPLIES = [
   { label: "Commands", query: "what commands" },
   { label: "Projects", query: "projects" },
   { label: "Experience", query: "experience" },
-  { label: "Easter Eggs 👀", query: "easter eggs" },
   { label: "Contact", query: "contact" },
 ];
 

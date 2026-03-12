@@ -24,8 +24,6 @@ import ChatBubble from "./components/chat/ChatBubble";
 // Lazy-loaded: globe.gl + three.js (~600KB) — se carga en background
 const TacticalGlobe = lazy(() => import("./components/background/TacticalGlobe"));
 
-// HUD y efectos visuales
-import TacticalHUD from "./components/hud/TacticalHUD";
 import CRTEffect from "./components/effects/CRTEffect";
 
 // Hook que encapsula toda la lógica de la terminal
@@ -127,20 +125,19 @@ function AppContent() {
         />
       )}
 
-      {/* Capa 1: Globo táctico 3D de fondo (lazy: three.js ~600KB) */}
-      <Suspense fallback={null}>
-        <TacticalGlobe />
-      </Suspense>
-      {/* Capa 2: Matrix Rain encima */}
-      <MatrixBackground />
-      {/* Capa 3: Efecto CRT (scanlines, vignette) */}
-      <CRTEffect />
+      {/* Capa 1: Globo táctico 3D de fondo */}
+      {(stage === "login" || stage === "terminal") && (
+        <Suspense fallback={null}>
+          <TacticalGlobe />
+        </Suspense>
+      )}
 
-      {/* HUD Táctico — solo visible en modo terminal */}
-      {stage === "terminal" && <TacticalHUD />}
+      {/* Capas secundarias — solo en terminal para despejar el hero */}
+      {stage === "terminal" && <MatrixBackground />}
+      {stage === "terminal" && <CRTEffect />}
 
-      {/* Chatbot flotante */}
-      <ChatBubble />
+      {/* Chatbot flotante — solo cuando el usuario ya está en la terminal */}
+      {stage === "terminal" && <ChatBubble />}
 
       {/* Badge de modo L4tentNoise */}
       {isL4tentMode && stage === "terminal" && (

@@ -34,17 +34,6 @@ const QUICK_ACTIONS = [
   { label: "research", command: "blog" },
 ];
 
-/**
- * Easter egg hints — se muestran después de X comandos ejecutados.
- */
-const EASTER_EGG_HINTS = [
-  { threshold: 3, hint: "💡 Prueba: hack", command: "hack" },
-  { threshold: 5, hint: "🗺️ Prueba: threat-map", command: "threat-map" },
-  { threshold: 7, hint: "🔍 Prueba: nmap", command: "nmap" },
-  { threshold: 10, hint: "🎯 Prueba: demo", command: "demo" },
-  { threshold: 12, hint: "🔓 Prueba: sudo rm -rf /", command: "sudo rm -rf /" },
-];
-
 export default function TerminalBody({ terminal }: { terminal: TerminalState }) {
   /**
    * Hook reactivo para tamaño de ventana.
@@ -318,26 +307,6 @@ export default function TerminalBody({ terminal }: { terminal: TerminalState }) 
               </button>
             ))}
           </div>
-
-          {/* Easter Egg Hint — aparece después de X comandos */}
-          {(() => {
-            const cmdCount = terminal.commandHistory.length;
-            const hint = EASTER_EGG_HINTS.find((h) => cmdCount === h.threshold);
-            if (!hint) return null;
-            return (
-              <div class="mt-3 flex items-center gap-2 animate-slide-up">
-                <span class="text-xs text-yellow-500/80">{hint.hint}</span>
-                <button
-                  onClick={() => {
-                    terminal.executeUserCommand(hint.command);
-                  }}
-                  class="px-2 py-0.5 text-xs bg-yellow-900/30 border border-yellow-600/50 rounded hover:bg-yellow-800/40 text-yellow-400 transition-all focus-ring"
-                >
-                  Ejecutar
-                </button>
-              </div>
-            );
-          })()}
         </div>
       )}
     </div>

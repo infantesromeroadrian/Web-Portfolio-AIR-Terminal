@@ -13,7 +13,6 @@ import { useEffect, useState } from "preact/hooks";
 
 export default function LoginPanel({ onLogin }: { onLogin: () => void }) {
   const [showContent, setShowContent] = useState(false);
-  const [isReady, setIsReady] = useState(false);
 
   useEffect(() => {
     // Mostrar contenido después de que el GIF cargue un poco
@@ -21,14 +20,8 @@ export default function LoginPanel({ onLogin }: { onLogin: () => void }) {
       setShowContent(true);
     }, 800);
 
-    // Auto-entrar después de 4 segundos (opcional)
-    const readyTimer = setTimeout(() => {
-      setIsReady(true);
-    }, 2000);
-
     return () => {
       clearTimeout(contentTimer);
-      clearTimeout(readyTimer);
     };
   }, []);
 
@@ -54,7 +47,7 @@ export default function LoginPanel({ onLogin }: { onLogin: () => void }) {
         </p>
 
         {/* Badges */}
-        <div class="flex items-center justify-center gap-3 mb-8 flex-wrap">
+        <div class="flex items-center justify-center gap-3 mb-7 flex-wrap">
           <span class="badge badge-red">Prompt Injection</span>
           <span class="badge badge-coral">Agent Security</span>
           <span class="badge badge-blue">Adversarial ML</span>
@@ -62,7 +55,7 @@ export default function LoginPanel({ onLogin }: { onLogin: () => void }) {
         </div>
 
         {/* Tagline */}
-        <p class="text-[var(--text-muted)] mb-10 font-mono text-sm max-w-2xl mx-auto leading-relaxed">
+        <p class="text-[var(--text-muted)] mb-8 font-mono text-sm max-w-2xl mx-auto leading-relaxed">
           <span class="text-[var(--coral-bright)]">→</span> I break and harden AI systems before
           attackers do. Specialized in prompt injection, agent security, adversarial evaluation, and
           secure GenAI.
@@ -72,7 +65,7 @@ export default function LoginPanel({ onLogin }: { onLogin: () => void }) {
         <button
           type="button"
           onClick={onLogin}
-          class={`px-10 py-4 rounded-xl font-display font-semibold text-lg transition-all duration-500 btn-press focus-ring ${isReady ? "animate-pulse-soft" : ""}`}
+          class="px-10 py-4 rounded-xl font-display font-semibold text-lg transition-all duration-500 btn-press focus-ring"
           style={{
             background: "linear-gradient(135deg, var(--coral-bright) 0%, var(--coral-mid) 100%)",
             color: "white",
@@ -91,19 +84,13 @@ export default function LoginPanel({ onLogin }: { onLogin: () => void }) {
         </button>
 
         {/* Hint */}
-        <p class="text-[var(--text-muted)] text-xs font-mono mt-6 animate-pulse-soft">
+        <p class="text-[var(--text-muted)] text-xs font-mono mt-5">
           Start with whoami, proyectos, or classify
         </p>
-
-        {/* Indicador de conexión */}
-        <div class="flex items-center justify-center gap-2 mt-4">
-          <span class="w-2 h-2 rounded-full bg-[var(--cyan-bright)] animate-pulse"></span>
-          <span class="text-xs font-mono text-[var(--text-muted)]">Secure connection</span>
-        </div>
       </div>
 
       {/* Personaje caminando — debajo del botón */}
-      <div class="relative mt-8 animate-fade-in">
+      <div class="relative mt-6 animate-fade-in">
         {/* Glow detrás del personaje */}
         <div
           class="absolute inset-0 blur-3xl opacity-30"
@@ -120,9 +107,9 @@ export default function LoginPanel({ onLogin }: { onLogin: () => void }) {
           loop
           muted
           playsInline
-          class="relative w-[28rem] h-auto sm:w-[36rem] md:w-[44rem] max-w-full"
+          class="relative w-[24rem] h-auto sm:w-[30rem] md:w-[38rem] max-w-full opacity-90"
           style={{
-            filter: "drop-shadow(0 0 30px rgba(255, 77, 77, 0.25))",
+            filter: "drop-shadow(0 0 18px rgba(255, 77, 77, 0.18))",
           }}
         >
           <source src={`${import.meta.env.BASE_URL}character-intro.webm`} type="video/webm" />

@@ -8,6 +8,7 @@
  *  - Anillos de propagación en el HQ (Madrid)
  *  - Auto-rotación suave centrada en Europa
  *  - Atmósfera con glow azul
+ *  - Sin labels persistentes para evitar ruido visual
  *
  * Dependencia: globe.gl (three.js bajo el capó).
  * Posición: fixed, z-index:0, pointer-events:none — fondo decorativo.
@@ -212,18 +213,6 @@ export default function TacticalGlobe() {
       .pointColor((d: object) => getNodeColor((d as TacticalNode).type))
       .pointsMerge(false)
 
-      // ── Labels ──
-      .labelsData(NODES)
-      .labelLat("lat")
-      .labelLng("lng")
-      .labelText("name")
-      .labelSize(0.6)
-      .labelDotRadius(0.3)
-      .labelColor((d: object) => getNodeColor((d as TacticalNode).type))
-      .labelAltitude(0.015)
-      .labelResolution(2)
-      .labelIncludeDot(false)
-
       // ── Arcos de ataque/defensa ──
       .arcsData(ARCS)
       .arcStartLat("startLat")
@@ -235,8 +224,7 @@ export default function TacticalGlobe() {
       .arcDashLength("dashLength")
       .arcDashGap("dashGap")
       .arcDashAnimateTime("animateTime")
-      .arcAltitudeAutoScale(0.4)
-      .arcLabel("label")
+      .arcAltitudeAutoScale(0.35)
 
       // ── Anillos de propagación (Madrid HQ) ──
       .ringsData(RINGS)
@@ -290,7 +278,7 @@ export default function TacticalGlobe() {
     <div
       ref={containerRef}
       class="fixed inset-0 pointer-events-none"
-      style="z-index:0; opacity: 0.6"
+      style="z-index:0; opacity: 0.34"
       aria-hidden="true"
     />
   );
