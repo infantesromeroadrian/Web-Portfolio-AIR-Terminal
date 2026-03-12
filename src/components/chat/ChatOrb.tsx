@@ -2,8 +2,8 @@ import { useEffect, useRef } from "preact/hooks";
 import * as THREE from "three";
 
 const MAX_PIXEL_RATIO = 1.5;
-const CAMERA_DISTANCE = 4.2;
-const FOV = 28;
+const CAMERA_DISTANCE = 3.55;
+const FOV = 24;
 const OUTER_ROTATION_SPEED = 0.0045;
 const CORE_ROTATION_SPEED = 0.007;
 
@@ -27,21 +27,21 @@ export default function ChatOrb() {
     const camera = new THREE.PerspectiveCamera(FOV, 1, 0.1, 100);
     camera.position.z = CAMERA_DISTANCE;
 
-    const ambientLight = new THREE.AmbientLight(0x9ddcff, 1.5);
-    const keyLight = new THREE.PointLight(0x22d3ee, 12, 0, 2);
+    const ambientLight = new THREE.AmbientLight(0x9ddcff, 1.8);
+    const keyLight = new THREE.PointLight(0x22d3ee, 14, 0, 2);
     keyLight.position.set(3, 2.4, 5);
 
-    const rimLight = new THREE.PointLight(0xff7b72, 5, 0, 2);
+    const rimLight = new THREE.PointLight(0xff7b72, 6.5, 0, 2);
     rimLight.position.set(-2.8, -2, 4.5);
 
     scene.add(ambientLight, keyLight, rimLight);
 
     const orb = new THREE.Mesh(
-      new THREE.SphereGeometry(1.02, 48, 48),
+      new THREE.SphereGeometry(1.14, 48, 48),
       new THREE.MeshPhysicalMaterial({
         color: 0x142033,
         emissive: 0x0f2b40,
-        emissiveIntensity: 0.6,
+        emissiveIntensity: 0.78,
         roughness: 0.18,
         metalness: 0.3,
         transmission: 0.18,
@@ -53,32 +53,32 @@ export default function ChatOrb() {
     );
 
     const shell = new THREE.Mesh(
-      new THREE.SphereGeometry(1.18, 22, 22),
+      new THREE.SphereGeometry(1.34, 22, 22),
       new THREE.MeshBasicMaterial({
         color: 0x22d3ee,
         transparent: true,
-        opacity: 0.18,
+        opacity: 0.26,
         wireframe: true,
       })
     );
 
     const core = new THREE.Mesh(
-      new THREE.IcosahedronGeometry(0.38, 1),
+      new THREE.IcosahedronGeometry(0.48, 1),
       new THREE.MeshStandardMaterial({
         color: 0xff6b6b,
         emissive: 0xff4d4d,
-        emissiveIntensity: 0.32,
+        emissiveIntensity: 0.42,
         roughness: 0.25,
         metalness: 0.18,
       })
     );
 
     const halo = new THREE.Mesh(
-      new THREE.RingGeometry(1.28, 1.42, 64),
+      new THREE.RingGeometry(1.46, 1.66, 64),
       new THREE.MeshBasicMaterial({
         color: 0x60a5fa,
         transparent: true,
-        opacity: 0.18,
+        opacity: 0.24,
         side: THREE.DoubleSide,
       })
     );
@@ -134,7 +134,7 @@ export default function ChatOrb() {
   return (
     <canvas
       ref={canvasRef}
-      class="relative w-6 h-6 sm:w-7 sm:h-7 pointer-events-none"
+      class="relative w-8 h-8 sm:w-10 sm:h-10 pointer-events-none"
       aria-hidden="true"
     />
   );

@@ -60,9 +60,9 @@ export default function ChatBubble() {
           onMouseLeave={resetTilt}
           class={`
             relative
-            w-12 h-12 sm:w-14 sm:h-14 rounded-full
+            w-14 h-14 sm:w-16 sm:h-16 rounded-full
             bg-transparent
-            shadow-lg shadow-black/30
+            shadow-xl shadow-black/35
             flex items-center justify-center
             transition-all duration-300 ease-out
             hover:border-blue-500/50 hover:shadow-blue-500/15
@@ -80,7 +80,7 @@ export default function ChatBubble() {
             class="absolute inset-0 rounded-full border border-gray-700/70 bg-gray-900/88 backdrop-blur-md"
             style={{
               transform: "translateZ(-8px) scale(0.96)",
-              boxShadow: "0 14px 24px rgba(15, 23, 42, 0.35)",
+              boxShadow: "0 18px 28px rgba(15, 23, 42, 0.42)",
             }}
           />
 
@@ -88,8 +88,8 @@ export default function ChatBubble() {
             class="absolute inset-0 rounded-full"
             style={{
               transform: "translateZ(10px)",
-              background: `radial-gradient(circle at ${tilt.glowX}% ${tilt.glowY}%, rgba(34, 211, 238, 0.22), transparent 58%)`,
-              opacity: 0.9,
+              background: `radial-gradient(circle at ${tilt.glowX}% ${tilt.glowY}%, rgba(34, 211, 238, 0.3), transparent 58%)`,
+              opacity: 1,
             }}
           />
 
@@ -116,7 +116,7 @@ export default function ChatBubble() {
             >
               <Suspense
                 fallback={
-                  <span class="w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-cyan-400/25 border border-cyan-300/40" />
+                  <span class="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-cyan-400/25 border border-cyan-300/40" />
                 }
               >
                 <ChatOrb />
