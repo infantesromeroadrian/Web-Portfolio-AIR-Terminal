@@ -11,11 +11,32 @@
  *  - High z-index to stay accessible when needed
  */
 
+import { lazy, Suspense } from "preact/compat";
 import { useState } from "preact/hooks";
 import ChatPanel from "./ChatPanel";
 
+const ChatOrb = lazy(() => import("./ChatOrb"));
+
 export default function ChatBubble() {
   const [isOpen, setIsOpen] = useState(false);
+  const [tilt, setTilt] = useState({ rotateX: 0, rotateY: 0, glowX: 50, glowY: 50 });
+
+  const handleMouseMove = (e: MouseEvent) => {
+    const bounds = (e.currentTarget as HTMLButtonElement).getBoundingClientRect();
+    const offsetX = (e.clientX - bounds.left) / bounds.width - 0.5;
+    const offsetY = (e.clientY - bounds.top) / bounds.height - 0.5;
+
+    setTilt({
+      rotateX: Number((-offsetY * 10).toFixed(2)),
+      rotateY: Number((offsetX * 10).toFixed(2)),
+      glowX: Math.round((offsetX + 0.5) * 100),
+      glowY: Math.round((offsetY + 0.5) * 100),
+    });
+  };
+
+  const resetTilt = () => {
+    setTilt({ rotateX: 0, rotateY: 0, glowX: 50, glowY: 50 });
+  };
 
   return (
     <>
@@ -35,10 +56,12 @@ export default function ChatBubble() {
           onClick={() => {
             setIsOpen(!isOpen);
           }}
+          onMouseMove={handleMouseMove}
+          onMouseLeave={resetTilt}
           class={`
             relative
             w-12 h-12 sm:w-14 sm:h-14 rounded-full
-            bg-gray-900/88 backdrop-blur-md border border-gray-700/70
+            bg-transparent
             shadow-lg shadow-black/30
             flex items-center justify-center
             transition-all duration-300 ease-out
@@ -46,12 +69,35 @@ export default function ChatBubble() {
             focus-ring
             ${isOpen ? "rotate-0" : ""}
           `}
+          style={{
+            perspective: "800px",
+            transform: `rotateX(${tilt.rotateX}deg) rotateY(${tilt.rotateY}deg)`,
+            transformStyle: "preserve-3d",
+          }}
           aria-label={isOpen ? "Close chat" : "Open AI chat"}
         >
+          <span
+            class="absolute inset-0 rounded-full border border-gray-700/70 bg-gray-900/88 backdrop-blur-md"
+            style={{
+              transform: "translateZ(-8px) scale(0.96)",
+              boxShadow: "0 14px 24px rgba(15, 23, 42, 0.35)",
+            }}
+          />
+
+          <span
+            class="absolute inset-0 rounded-full"
+            style={{
+              transform: "translateZ(10px)",
+              background: `radial-gradient(circle at ${tilt.glowX}% ${tilt.glowY}%, rgba(34, 211, 238, 0.22), transparent 58%)`,
+              opacity: 0.9,
+            }}
+          />
+
           {isOpen ? (
             /* X icon to close */
             <svg
-              class="w-5 h-5 sm:w-6 sm:h-6 text-gray-200 transition-transform duration-200"
+              class="relative w-5 h-5 sm:w-6 sm:h-6 text-gray-200 transition-transform duration-200"
+              style={{ transform: "translateZ(18px)" }}
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -64,14 +110,18 @@ export default function ChatBubble() {
               />
             </svg>
           ) : (
-            /* Chat/AI icon */
-            <svg
-              class="w-5 h-5 sm:w-6 sm:h-6 text-gray-300 transition-transform duration-200"
-              fill="currentColor"
-              viewBox="0 0 24 24"
+            <span
+              class="relative flex items-center justify-center"
+              style={{ transform: "translateZ(18px)" }}
             >
-              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z" />
-            </svg>
+              <Suspense
+                fallback={
+                  <span class="w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-cyan-400/25 border border-cyan-300/40" />
+                }
+              >
+                <ChatOrb />
+              </Suspense>
+            </span>
           )}
         </button>
       </div>
