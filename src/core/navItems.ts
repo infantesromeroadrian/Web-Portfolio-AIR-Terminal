@@ -12,11 +12,10 @@ export interface NavItem {
 
 export const NAV_ITEMS: NavItem[] = [
   { label: "WHOAMI", command: "whoami" },
-  { label: "EDUCATION", command: "estudios" },
+  { label: "CLASSIFY", command: "classify" },
+  { label: "THREATS", command: "threats" },
+  { label: "PROJECTS", command: "proyectos" },
   { label: "EXPERIENCE", command: "experiencia" },
   { label: "SKILLS", command: "skills" },
-  { label: "CERTIFICATIONS", command: "certificaciones" },
-  { label: "PROJECTS", command: "proyectos" },
-  { label: "BLOG", command: "blog" },
-  { label: "THREATS", command: "threats" },
+  { label: "RESEARCH", command: "blog" },
 ];

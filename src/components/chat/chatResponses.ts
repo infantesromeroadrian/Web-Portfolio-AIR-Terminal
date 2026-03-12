@@ -214,7 +214,7 @@ This is real AI/ML engineering — not a frontend trick.`,
   },
   {
     keywords: ["security", "cyber", "hacking", "pentest", "red team", "blue team"],
-    response: `🔒 Adrian is an AI Security Architect. His approach:
+    response: `🔒 Adrian works as an AI Red Teamer and ML Security Engineer. His approach:
 
 **Offensive (Red Team):**
 • LLM Red Teaming — Prompt Injection, Jailbreaks
@@ -260,7 +260,7 @@ Source code: github.com/infantesromeroadrian/Web-Portfolio-AIR-Terminal`,
     keywords: ["who", "adrian", "about", "introduce", "yourself"],
     response: `Type \`whoami\` in the terminal for the full presentation.
 
-Summary: **Adrian Infantes** is an AI Security Architect at BBVA Technology (Financial Intelligence Unit). 7+ years of experience in AI/ML, specialized in AI systems security.
+Summary: **Adrian Infantes** is an AI Red Teamer and ML Security Engineer at BBVA Technology's Financial Intelligence Unit. 7+ years of experience across AI/ML, now focused on securing AI systems under adversarial pressure.
 
 His philosophy: "Defense in Depth applied to AI. An autonomous agent without hardening is an unacceptable risk."
 

@@ -89,12 +89,12 @@ export default function ChatPanel({ onClose }: { onClose: () => void }) {
       role: "assistant",
       content: `👋 Hey! I'm Adrian's AI assistant.
 
-This website is an interactive terminal-style portfolio — you can type real commands with your keyboard.
+This website is an interactive terminal-style portfolio focused on Adrian's AI Red Team work — you can type real commands with your keyboard.
 
 Ask me about:
 • Available commands
-• Adrian's projects
-• His experience and skills
+• Adrian's AI security projects
+• His experience and offensive / defensive skillset
 • Hidden easter eggs 👀
 • How to contact him
 
@@ -293,7 +293,7 @@ What would you like to know?`,
       <form onSubmit={handleSubmit} class="p-3 border-t border-gray-700/50 bg-gray-800/30">
         <div class="flex gap-2">
           <label class="sr-only" htmlFor="chat-input">
-            Ask about Adrian
+            Ask about AI Red Team work
           </label>
           <input
             ref={inputRef}
@@ -303,7 +303,7 @@ What would you like to know?`,
             onInput={(e) => {
               setInput((e.target as HTMLInputElement).value);
             }}
-            placeholder="Ask about Adrian..."
+            placeholder="Ask about AI Red Team work..."
             class="
               flex-1 bg-gray-900/80 border border-gray-700/50 rounded-xl
               px-4 py-2.5 text-sm text-white

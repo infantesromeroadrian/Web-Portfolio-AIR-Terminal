@@ -28,10 +28,10 @@ const asciiData = ascii as AsciiData;
  */
 const QUICK_ACTIONS = [
   { label: "whoami", command: "whoami" },
-  { label: "proyectos", command: "proyectos" },
-  { label: "skills", command: "skills" },
   { label: "classify", command: "classify" },
-  { label: "help", command: "help" },
+  { label: "threats", command: "threats" },
+  { label: "proyectos", command: "proyectos" },
+  { label: "research", command: "blog" },
 ];
 
 /**

@@ -47,7 +47,7 @@ export default function Footer() {
         <span class="text-[var(--text-muted)] hidden sm:inline">•</span>
 
         {/* Rol */}
-        <span class="text-[var(--coral-bright)]">AI Security Architect</span>
+        <span class="text-[var(--coral-bright)]">AI Red Teamer</span>
 
         <span class="text-[var(--text-muted)] hidden sm:inline">•</span>
 

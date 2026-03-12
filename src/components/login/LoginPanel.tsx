@@ -49,20 +49,23 @@ export default function LoginPanel({ onLogin }: { onLogin: () => void }) {
         </p>
 
         {/* Rol */}
-        <p class="text-[var(--text-secondary)] text-lg sm:text-xl mb-6">AI Security Architect</p>
+        <p class="text-[var(--text-secondary)] text-lg sm:text-xl mb-4">
+          AI Red Teamer | ML Security Engineer
+        </p>
 
         {/* Badges */}
         <div class="flex items-center justify-center gap-3 mb-8 flex-wrap">
-          <span class="badge badge-coral">LLM Security</span>
-          <span class="badge badge-blue">Blue Team</span>
-          <span class="badge badge-cyan">ML Engineering</span>
-          <span class="badge badge-red">AI Red Teaming</span>
+          <span class="badge badge-red">Prompt Injection</span>
+          <span class="badge badge-coral">Agent Security</span>
+          <span class="badge badge-blue">Adversarial ML</span>
+          <span class="badge badge-cyan">LLM Defense</span>
         </div>
 
         {/* Tagline */}
-        <p class="text-[var(--text-muted)] mb-10 font-mono text-sm max-w-md mx-auto">
-          <span class="text-[var(--coral-bright)]">→</span> Protecting AI systems from emerging
-          threats
+        <p class="text-[var(--text-muted)] mb-10 font-mono text-sm max-w-2xl mx-auto leading-relaxed">
+          <span class="text-[var(--coral-bright)]">→</span> I break and harden AI systems before
+          attackers do. Specialized in prompt injection, agent security, adversarial evaluation, and
+          secure GenAI.
         </p>
 
         {/* Botón de entrada */}
@@ -84,12 +87,12 @@ export default function LoginPanel({ onLogin }: { onLogin: () => void }) {
             (e.target as HTMLButtonElement).style.transform = "translateY(0) scale(1)";
           }}
         >
-          Enter Terminal →
+          Review My Work →
         </button>
 
         {/* Hint */}
         <p class="text-[var(--text-muted)] text-xs font-mono mt-6 animate-pulse-soft">
-          Click to explore my portfolio
+          Start with whoami, proyectos, or classify
         </p>
 
         {/* Indicador de conexión */}

@@ -134,7 +134,7 @@ ${examples}
 <span style="color:#ffff66">└──────────────────────────────────────────────────────────────┘</span>
 
 <span style="color:#888888">Model: protectai/deberta-v3-base-prompt-injection-v2 (140K+ downloads)</span>
-<span style="color:#888888">Built by Adrian Infantes — AI Security Architect</span>
+<span style="color:#888888">Built by Adrian Infantes — AI Red Teamer</span>
 `;
 }
 

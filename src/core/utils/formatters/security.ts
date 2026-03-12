@@ -124,7 +124,7 @@ export function formatNeofetch(): string {
     `<span style="color:#2563eb">Host:</span>    Adrian Infantes`,
     `<span style="color:#2563eb">Kernel:</span>  Blue Cyber Engine`,
     `<span style="color:#2563eb">Shell:</span>   portfolio-terminal 1.0`,
-    `<span style="color:#2563eb">Role:</span>    AI Security Architect`,
+    `<span style="color:#2563eb">Role:</span>    AI Red Teamer`,
     `<span style="color:#2563eb">DE:</span>      Neural Rain + Preact`,
     `<span style="color:#2563eb">Theme:</span>   Blue Cyber [dark]`,
     `<span style="color:#0db7ed">Docker:</span>  <span style="color:#0db7ed">Expert</span> — Multi-stage, Rootless, GPU`,
@@ -259,7 +259,7 @@ export function formatExploit(): string {
 <span style="color:#2563eb">I believe in building a safer digital world.</span>
 <span style="color:#2563eb">Security researchers are allies, not adversaries.</span>
 
-<span style="color:#888888">— Adrian Infantes, AI Security Architect</span>
+<span style="color:#888888">— Adrian Infantes, AI Red Teamer</span>
 `;
 }
 
@@ -281,7 +281,7 @@ export function formatCurl(): string {
 <span style="color:#888888">content-security:</span>     default-src 'self'
 <span style="color:#888888">referrer-policy:</span>      strict-origin-when-cross-origin
 <span style="color:#888888">permissions-policy:</span>   camera=(), microphone=(), geolocation=()
-<span style="color:#888888">x-architect:</span>          <span style="color:#00ff00">Adrian Infantes — AI Security Architect</span>
+<span style="color:#888888">x-red-team:</span>           <span style="color:#00ff00">Adrian Infantes — AI Red Teamer</span>
 <span style="color:#888888">x-built-with:</span>         Preact, TypeScript, Vite, TailwindCSS
 <span style="color:#888888">x-security-level:</span>     <span style="color:#ff3333">BLUE CYBER HARDENED</span>
 <span style="color:#888888">x-hiring:</span>             <span style="color:#ffff66">Open to strategic opportunities</span>
@@ -397,7 +397,7 @@ export function formatCve(): string {
 <span style="color:#2563eb">└──────────────────────────────────────────────────────────┘</span>
 
 <span style="color:#888888">Source: MITRE ATLAS, NVD, OWASP LLM Top 10</span>
-<span style="color:#888888">Curated by: Adrian Infantes — AI Security Architect</span>
+<span style="color:#888888">Curated by: Adrian Infantes — AI Red Teamer</span>
 `;
 }
 
@@ -574,7 +574,7 @@ export function formatThreats(data: ThreatsResponse): string {
   const lastUpdated = new Date(data.lastUpdated).toLocaleString();
   output += `<span style="color:#888888">Source: </span><a href="https://promptintel.novahunting.ai" target="_blank" style="color:#3399ff">promptintel.novahunting.ai</a><span style="color:#888888"> — NovaHunting</span>
 <span style="color:#888888">Last updated: ${lastUpdated}</span>
-<span style="color:#888888">Curated by: Adrian Infantes — AI Security Architect</span>
+<span style="color:#888888">Curated by: Adrian Infantes — AI Red Teamer</span>
 
 <span style="color:#00ff00">Use 'threats detail &lt;id&gt;' for full IoPC analysis (coming soon)</span>
 `;
@@ -659,6 +659,6 @@ export function formatDockerInspect(): string {
 <span style="color:#888888">]</span>
 
 <span style="color:#0db7ed">🐳 Docker expertise: Production-grade containerization for ML/AI workloads</span>
-<span style="color:#888888">— Adrian Infantes, AI Security Architect</span>
+<span style="color:#888888">— Adrian Infantes, AI Red Teamer</span>
 `;
 }

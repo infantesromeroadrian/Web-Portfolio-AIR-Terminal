@@ -1,26 +1,30 @@
 {
   "name": "Adrián Infantes Romero",
-  "role": "AI Security Architect | AI/ML Engineer | Blue Cyber AI",
-  "text": "I operate on the front line where AI becomes either a strategic asset or a critical vulnerability.\n\nWith over 7 years of experience, I've evolved from Data Scientist to AI Security Architect at BBVA's Financial Intelligence Unit. My specialty: designing, auditing, and fortifying AI systems to survive in hostile, regulated, and high-risk environments.\n\nMy approach transcends traditional MLOps. I focus on Offensive and Defensive AI Engineering: ensuring that GenAI capabilities, LLMs, and predictive systems are resistant to adversarial attacks, manipulation, and data exfiltration before operational deployment.\n\nPhilosophy: Defense in Depth applied to AI. An autonomous agent without hardening is an unacceptable risk.",
-  "quote": "The real challenge isn't the model's intelligence, but its robustness and control.",
+  "role": "AI Red Teamer | ML Security Engineer | Secure GenAI Architect",
+  "text": "I evaluate how AI systems fail under pressure before attackers do.\n\nMy work focuses on prompt injection, jailbreaks, agent abuse, data exfiltration paths, and adversarial ML risks across LLM, RAG, and hybrid AI systems.\n\nAt BBVA's Financial Intelligence Unit, I design and harden AI systems for sensitive, regulated environments where model behavior, access boundaries, and operational resilience matter as much as accuracy.\n\nI combine offensive security thinking with ML engineering: building evals, testing attack paths, shipping mitigations, and turning security findings into production controls.",
+  "quote": "AI systems are only useful if they remain controllable under adversarial pressure.",
   "specialization": [
-    { "icon": "[+]", "color": "red", "text": "Adversarial ML & Model Red Teaming" },
-    { "icon": "[+]", "color": "red", "text": "Secure GenAI (LLMs, RAG, Guardrails)" },
-    { "icon": "[+]", "color": "red", "text": "Secure Hybrid Architectures (On-Prem + Cloud)" },
-    { "icon": "[+]", "color": "red", "text": "Financial Crime & Threat Intelligence" },
-    { "icon": "[+]", "color": "red", "text": "Secured MLOps & Model Governance" }
+    { "icon": "[+]", "color": "red", "text": "Prompt Injection & Jailbreak Assessments" },
+    { "icon": "[+]", "color": "red", "text": "Agent / Tool-Use Security" },
+    { "icon": "[+]", "color": "red", "text": "Adversarial ML & Model Abuse" },
+    { "icon": "[+]", "color": "red", "text": "Secure RAG & Data Exfiltration Defense" },
+    { "icon": "[+]", "color": "red", "text": "AI Security Evals for Regulated Environments" }
   ],
   "goals": [
     {
       "icon": "[→]",
       "color": "orange",
-      "text": "Lead AI Security teams in critical environments"
+      "text": "Lead AI Red Team and ML Security programs in high-risk environments"
     },
-    { "icon": "[→]", "color": "orange", "text": "Evangelize security-by-design in AI systems" },
     {
       "icon": "[→]",
       "color": "orange",
-      "text": "Contribute to AI security standards (OWASP, MITRE ATLAS)"
+      "text": "Publish security research, evals, and offensive AI tooling"
+    },
+    {
+      "icon": "[→]",
+      "color": "orange",
+      "text": "Advance OWASP LLM and MITRE ATLAS-aligned AI security practices"
     }
   ]
 }

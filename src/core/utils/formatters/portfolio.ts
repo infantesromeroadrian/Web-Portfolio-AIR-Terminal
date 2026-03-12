@@ -60,15 +60,14 @@ function blueId(id: string): string {
 export function formatWhoami(data: WhoamiData): string {
   // Keywords destacados
   const text = data.text
-    .replace(/AI Security Architect/g, `<span style="color:#2563eb">AI Security Architect</span>`)
-    .replace(
-      /Ingeniería de IA Ofensiva y Defensiva/g,
-      `<span style="color:#2563eb">Ingeniería de IA Ofensiva y Defensiva</span>`
-    )
-    .replace(
-      /Defensa en Profundidad/g,
-      `<span style="color:#2563eb">Defensa en Profundidad</span>`
-    );
+    .replace(/AI Red Teamer/g, `<span style="color:#2563eb">AI Red Teamer</span>`)
+    .replace(/ML Security Engineer/g, `<span style="color:#2563eb">ML Security Engineer</span>`)
+    .replace(/prompt injection/g, `<span style="color:#2563eb">prompt injection</span>`)
+    .replace(/jailbreaks/g, `<span style="color:#2563eb">jailbreaks</span>`)
+    .replace(/agent abuse/g, `<span style="color:#2563eb">agent abuse</span>`)
+    .replace(/data exfiltration/g, `<span style="color:#2563eb">data exfiltration</span>`)
+    .replace(/adversarial ML/g, `<span style="color:#2563eb">adversarial ML</span>`)
+    .replace(/production controls/g, `<span style="color:#2563eb">production controls</span>`);
 
   const specialization = data.specialization
     .map((item: IconItem) => `${colorIcon(item.icon, item.color)} ${item.text}`)

@@ -134,7 +134,7 @@ export default function ChatBubble() {
               <span>👋</span>
               <span>Need help?</span>
             </div>
-            <div class="text-[11px] text-blue-200 mt-1">Ask me about Adrian's work</div>
+            <div class="text-[11px] text-blue-200 mt-1">Ask me about Adrian's AI Red Team work</div>
             {/* Close hint button */}
             <button
               onClick={(e) => {
@@ -173,7 +173,7 @@ export default function ChatBubble() {
           >
             <div class="flex items-center gap-2">
               <span>💬</span>
-              <span>Ask about Adrian</span>
+              <span>Ask about AI Red Team work</span>
             </div>
           </div>
         )}
