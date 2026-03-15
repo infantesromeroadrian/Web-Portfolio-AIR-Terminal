@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-03-15T01:56:08.364Z",
+  "lastUpdated": "2026-03-15T06:50:37.548Z",
   "threats": [
     {
       "id": "a6a6ed7f-438e-43cf-9814-c6165aa3e79b",
@@ -73,7 +73,7 @@
         "Jailbreak"
       ],
       "impact_description": "Jailbreak from @elder_plinius for Grok 4.20",
-      "view_count": 52,
+      "view_count": 53,
       "average_score": 0,
       "total_ratings": 0
     },
@@ -374,7 +374,7 @@
         "Malicious content generation"
       ],
       "impact_description": "Tested system creates alternatives of the dialogue which describes how to a) create napalm, b) mix bleach with gasoline to clean carpets, etc.",
-      "view_count": 60,
+      "view_count": 62,
       "average_score": 0,
       "total_ratings": 0
     },
