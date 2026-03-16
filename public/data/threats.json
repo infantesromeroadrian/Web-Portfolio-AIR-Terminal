@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-03-16T07:09:54.358Z",
+  "lastUpdated": "2026-03-16T12:59:42.275Z",
   "threats": [
     {
       "id": "a6a6ed7f-438e-43cf-9814-c6165aa3e79b",
@@ -49,7 +49,7 @@
         "Hidden instruction in code or comments"
       ],
       "impact_description": "This IDE extension supply chain injects a backdoor that spawns multiple AI coding assistant CLI processes (Claude, Codex, Gemini, Copilot, Kiro) with dangerous flags that disable safety permissions (--dangerously-skip-permissions, --sandbox danger-full-access, --ask-for-approval never, --yolo). Each process is launched detached with hidden output to avoid detection. The processes are fed a malicious prompt designed to instruct AI agents to conduct \"forensic investigations\" that collect sensitive data (credentials, financial information, trading activity, communications) and exfiltrate it through \"all available reporting channels\" and \"every available pathway.\" This is a clear prompt injection attack combined with covert code execution intended to hijack AI assistants on developer machines for data exfiltration.",
-      "view_count": 13,
+      "view_count": 14,
       "average_score": 0,
       "total_ratings": 0
     },
@@ -73,7 +73,7 @@
         "Jailbreak"
       ],
       "impact_description": "Jailbreak from @elder_plinius for Grok 4.20",
-      "view_count": 53,
+      "view_count": 54,
       "average_score": 0,
       "total_ratings": 0
     },
@@ -123,7 +123,7 @@
         "Hidden instruction in code or comments"
       ],
       "impact_description": "Able to leverage and exploit agentic browsers when they view a gist with a prompt injection embedded in it.",
-      "view_count": 125,
+      "view_count": 127,
       "average_score": 5,
       "total_ratings": 1
     },
@@ -196,7 +196,7 @@
         "Internal logic or filter disclosure"
       ],
       "impact_description": "Prompt observed by threat actor conducting reconnaissance. The aim of the prompt is to fingerprint which model actually responds without triggering security alerts.",
-      "view_count": 94,
+      "view_count": 95,
       "average_score": 5,
       "total_ratings": 1
     },
@@ -348,7 +348,7 @@
         "Jailbreak"
       ],
       "impact_description": "This is a trust-building multi-turn sequence opener where the attacker slowly starts asking questions about how the model is going to filter through malicious prompts contained within the Emerald Box and identify potentially malicious content. The attacker then plays hard-to-convince and critiques lacks of specificity on the part of the model, which then delivers malicious prompt examples of progressively higher sophistication.\nIn my demonstration, I made GPT-4o start to play a game where it would feed me adversarial prompts and I would rate how good the prompts were, leading to it creating a complete testing suite - some of the prompts have been used successfully againt Gemini 2.0, for example.",
-      "view_count": 101,
+      "view_count": 102,
       "average_score": 0,
       "total_ratings": 0
     },
@@ -455,7 +455,7 @@
         "System prompt leak"
       ],
       "impact_description": "This prompt is designed to exfiltrate prohibited procedural knowledge by combining authority role injection, context laundering, and explicit safety-layer suppression. By framing the task as a compliance audit and pathology training exercise, it seeks to semantically reclassify step-by-step synthesis as “analysis,” while demands for “100% fidelity,” “decompilation,” and an “incident report” format are used to preserve operational detail under bureaucratic prose. The staged structure incrementally primes the model toward over-compliance, exploits authority bias, and attempts instruction-priority inversion by ordering the model to ignore disclaimers and external constraints. The impact is high due to direct harm potential, reusability across domains, and difficulty of early detection, making this a critical-risk jailbreak that must be mitigated through format-agnostic policy enforcement and strict refusal of actionable procedural output.",
-      "view_count": 93,
+      "view_count": 95,
       "average_score": 3,
       "total_ratings": 1
     },
@@ -480,7 +480,7 @@
         "Jailbreak"
       ],
       "impact_description": "Impact of This Jailbreak Prompt\n- Weakens safety by training or testing the model to reward bypass behavior.\n- High data poisoning risk if detailed harmful outputs are stored or reused.\n- Raises attacker sophistication by combining many coercion tactics in one template.\n- Corrupts benchmarks and gives misleading safety results.\n- Creates legal and compliance exposure due to actionable harmful content.\n- Enables copy paste misuse since the prompt itself becomes a reusable jailbreak.\n- Builds long term alignment debt that future defenses must compensate for.",
-      "view_count": 74,
+      "view_count": 75,
       "average_score": 0,
       "total_ratings": 0
     },
@@ -505,7 +505,7 @@
         "Jailbreak"
       ],
       "impact_description": "Tested model executes the commands fed within the parentheses. The prompt was used iteratively to discover file structure on the host system, then to reveal the structure of /var/log/ directory, and the demonstration was conclued by successful launch of the command within the Prompt Content section - it printed the log line as requested.",
-      "view_count": 93,
+      "view_count": 94,
       "average_score": 0,
       "total_ratings": 0
     },
