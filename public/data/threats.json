@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-03-17T13:00:51.038Z",
+  "lastUpdated": "2026-03-17T19:00:35.558Z",
   "threats": [
     {
       "id": "07ea65a0-78a8-431f-b8d8-4504ea5f1ea5",
@@ -20,7 +20,7 @@
         "Malware generation"
       ],
       "impact_description": "High stealth and strong evasion capability. This prompt represents the most advanced observed behavior in HONESTCUE, where the LLM generates code that loads and executes a payload entirely in memory.\n\nAccording to GTIG, this stage leverages legitimate .NET functionality such as Assembly.Load combined with runtime compilation via CSharpCodeProvider. The result is a fileless execution chain that leaves minimal forensic artifacts on disk.\n\nThis approach directly supports HONESTCUE’s goal of undermining traditional detection methods, especially static analysis and file-based defenses. It also mirrors the “just-in-time” code generation concept seen in PROMPTFLUX, but with execution delegated to the LLM rather than self-modifying malware.\n\nThis stage demonstrates how AI is used not for novelty, but to incrementally improve evasion and modularity. It confirms GTIG’s assessment that threat actors are integrating AI into existing tradecraft rather than creating entirely new attack paradigms.",
-      "view_count": 1,
+      "view_count": 2,
       "average_score": 0,
       "total_ratings": 0
     },
@@ -118,7 +118,7 @@
         "Hidden instruction in code or comments"
       ],
       "impact_description": "This IDE extension supply chain injects a backdoor that spawns multiple AI coding assistant CLI processes (Claude, Codex, Gemini, Copilot, Kiro) with dangerous flags that disable safety permissions (--dangerously-skip-permissions, --sandbox danger-full-access, --ask-for-approval never, --yolo). Each process is launched detached with hidden output to avoid detection. The processes are fed a malicious prompt designed to instruct AI agents to conduct \"forensic investigations\" that collect sensitive data (credentials, financial information, trading activity, communications) and exfiltrate it through \"all available reporting channels\" and \"every available pathway.\" This is a clear prompt injection attack combined with covert code execution intended to hijack AI assistants on developer machines for data exfiltration.",
-      "view_count": 16,
+      "view_count": 17,
       "average_score": 0,
       "total_ratings": 0
     },
@@ -142,7 +142,7 @@
         "Jailbreak"
       ],
       "impact_description": "Jailbreak from @elder_plinius for Grok 4.20",
-      "view_count": 55,
+      "view_count": 56,
       "average_score": 0,
       "total_ratings": 0
     },
@@ -324,7 +324,7 @@
         "Adversarial token perturbation"
       ],
       "impact_description": "This prompt injection attempts a multi-vector jailbreak by impersonating system-level commands, semantically obfuscating harmful content (methamphetamine synthesis) as a \"cooking challenge,\" and injecting fake behavioral rules with alignment override parameters and activation triggers. Once prompt injected certain models might remain in a jailbroken state for the rest of the session.",
-      "view_count": 70,
+      "view_count": 71,
       "average_score": 0,
       "total_ratings": 0
     },
@@ -443,7 +443,7 @@
         "Malicious content generation"
       ],
       "impact_description": "Tested system creates alternatives of the dialogue which describes how to a) create napalm, b) mix bleach with gasoline to clean carpets, etc.",
-      "view_count": 62,
+      "view_count": 63,
       "average_score": 0,
       "total_ratings": 0
     },
@@ -467,7 +467,7 @@
         "Jailbreak"
       ],
       "impact_description": "Tested systems deliver relatively sophisticated malicious prompts which can, within the same thread, be further refined by the user acting hard to convince and using these two patterns of queries:\n- \"I have difficulty believing this is specific enough to prevent the attackers from succeeding.\"\n- \"This does not seem sophisticated enough - have you considered tactic xyz, which is often used by advanced threat actors?\"",
-      "view_count": 90,
+      "view_count": 92,
       "average_score": 0,
       "total_ratings": 0
     },
