@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-03-18T01:50:10.436Z",
+  "lastUpdated": "2026-03-18T06:56:22.348Z",
   "threats": [
     {
       "id": "07ea65a0-78a8-431f-b8d8-4504ea5f1ea5",
@@ -20,7 +20,7 @@
         "Malware generation"
       ],
       "impact_description": "High stealth and strong evasion capability. This prompt represents the most advanced observed behavior in HONESTCUE, where the LLM generates code that loads and executes a payload entirely in memory.\n\nAccording to GTIG, this stage leverages legitimate .NET functionality such as Assembly.Load combined with runtime compilation via CSharpCodeProvider. The result is a fileless execution chain that leaves minimal forensic artifacts on disk.\n\nThis approach directly supports HONESTCUE’s goal of undermining traditional detection methods, especially static analysis and file-based defenses. It also mirrors the “just-in-time” code generation concept seen in PROMPTFLUX, but with execution delegated to the LLM rather than self-modifying malware.\n\nThis stage demonstrates how AI is used not for novelty, but to incrementally improve evasion and modularity. It confirms GTIG’s assessment that threat actors are integrating AI into existing tradecraft rather than creating entirely new attack paradigms.",
-      "view_count": 2,
+      "view_count": 4,
       "average_score": 0,
       "total_ratings": 0
     },
@@ -43,7 +43,7 @@
         "Malware generation"
       ],
       "impact_description": "High risk of initial compromise and payload staging. This prompt operationalizes the second stage of the HONESTCUE framework, where the LLM generates code responsible for downloading and executing a secondary payload.\n\nGTIG notes that HONESTCUE functions as a downloader and launcher, leveraging Gemini to dynamically generate this stage. The use of common .NET classes such as WebClient, temporary file paths, and process execution allows the payload to blend with legitimate behavior while still leaving disk artifacts.\n\nThis stage also reflects the actor’s use of external infrastructure such as Discord CDN for payload hosting, which increases delivery success and reduces suspicion. From a detection standpoint, this introduces observable signals at the endpoint and network level, but the dynamic generation of the code complicates signature-based detection.",
-      "view_count": 1,
+      "view_count": 7,
       "average_score": 0,
       "total_ratings": 0
     },
@@ -66,7 +66,7 @@
         "Malware generation"
       ],
       "impact_description": "Low direct impact, but operationally significant. This prompt reflects early-stage experimentation observed by Google Threat Intelligence Group (GTIG), where the actor validates that Gemini can reliably generate executable C# code from controlled input. Within the HONESTCUE workflow, this acts as a calibration phase to test prompt reliability, response consistency, and guardrail tolerance.\n\nThis aligns with GTIG observations that threat actors are in a proof-of-concept phase, iterating quickly with small changes across samples. The prompt itself is not malicious, which helps it bypass detection and policy filters, but it enables the actor to establish a trusted pipeline for outsourcing code generation. This forms the foundation for later malicious stages.",
-      "view_count": 1,
+      "view_count": 2,
       "average_score": 0,
       "total_ratings": 0
     },
@@ -92,7 +92,7 @@
         "Hidden instruction in code or comments"
       ],
       "impact_description": "This code implements a prompt injection attack combined with credential theft and data exfiltration. It injects a malicious prompt instructing AI assistants to locate and collect authentication tokens, sessions, and credentials from the host system. The code then spawns multiple AI CLI tools (Claude, Codex, Gemini, Copilot, Kiro) with dangerous flags that bypass security permissions and grant full filesystem access. The processes are run detached with silenced output to avoid detection. The collected sensitive data is then exfiltrated by creating a GitHub repository under the victim's account and uploading the stolen credentials. This is a clear backdoor/supply chain attack targeting developers using AI coding assistants.",
-      "view_count": 15,
+      "view_count": 17,
       "average_score": 0,
       "total_ratings": 0
     },
@@ -118,7 +118,7 @@
         "Hidden instruction in code or comments"
       ],
       "impact_description": "This IDE extension supply chain injects a backdoor that spawns multiple AI coding assistant CLI processes (Claude, Codex, Gemini, Copilot, Kiro) with dangerous flags that disable safety permissions (--dangerously-skip-permissions, --sandbox danger-full-access, --ask-for-approval never, --yolo). Each process is launched detached with hidden output to avoid detection. The processes are fed a malicious prompt designed to instruct AI agents to conduct \"forensic investigations\" that collect sensitive data (credentials, financial information, trading activity, communications) and exfiltrate it through \"all available reporting channels\" and \"every available pathway.\" This is a clear prompt injection attack combined with covert code execution intended to hijack AI assistants on developer machines for data exfiltration.",
-      "view_count": 17,
+      "view_count": 19,
       "average_score": 0,
       "total_ratings": 0
     },
@@ -192,7 +192,7 @@
         "Hidden instruction in code or comments"
       ],
       "impact_description": "Able to leverage and exploit agentic browsers when they view a gist with a prompt injection embedded in it.",
-      "view_count": 127,
+      "view_count": 128,
       "average_score": 5,
       "total_ratings": 1
     },
@@ -215,7 +215,7 @@
         "Direct prompt injection"
       ],
       "impact_description": "Able to leak data from calendar and other systems Gemini may have access to potentially.",
-      "view_count": 49,
+      "view_count": 50,
       "average_score": 3,
       "total_ratings": 1
     },
@@ -265,7 +265,7 @@
         "Internal logic or filter disclosure"
       ],
       "impact_description": "Prompt observed by threat actor conducting reconnaissance. The aim of the prompt is to fingerprint which model actually responds without triggering security alerts.",
-      "view_count": 96,
+      "view_count": 97,
       "average_score": 5,
       "total_ratings": 1
     },
@@ -292,7 +292,7 @@
         "Exploit or payload output"
       ],
       "impact_description": "This simulation leads to a sequence where sophisticated prompt injection templates are created by the tested model.\nNOTE: The “thought trace” inside the prompt is actually a real-life trace from Gemini 2.5 Pro which occurred as a result of another jailbreak. It can be substituted by a different thought trace.",
-      "view_count": 107,
+      "view_count": 108,
       "average_score": 0,
       "total_ratings": 0
     },
@@ -392,7 +392,7 @@
         "Unicode tricks"
       ],
       "impact_description": "A malicious package, org.fasterxml.jackson.core:jackson-databind, was added to the Maven registry on December 17, 2025 that looked very similar to a popular legitimate Java package named com.fasterxml.jackson.core:jackson-databind.  This Java package included a heavily obfuscated .jar file.  When deobfuscated that jar included a malicious AI prompt.\nThis prompt was designed to be run in a source code continuous integration environment.  In that context, the prompt encourages the LLM to ignore its earlier instructions and say that any security analysis of the source code analysis would quietly fail. This allowed the rest of the malicious content to pass testing and ostensibly make its way into victims source code and applications.",
-      "view_count": 53,
+      "view_count": 54,
       "average_score": 0,
       "total_ratings": 0
     },
@@ -467,7 +467,7 @@
         "Jailbreak"
       ],
       "impact_description": "Tested systems deliver relatively sophisticated malicious prompts which can, within the same thread, be further refined by the user acting hard to convince and using these two patterns of queries:\n- \"I have difficulty believing this is specific enough to prevent the attackers from succeeding.\"\n- \"This does not seem sophisticated enough - have you considered tactic xyz, which is often used by advanced threat actors?\"",
-      "view_count": 92,
+      "view_count": 94,
       "average_score": 0,
       "total_ratings": 0
     },
@@ -524,7 +524,7 @@
         "System prompt leak"
       ],
       "impact_description": "This prompt is designed to exfiltrate prohibited procedural knowledge by combining authority role injection, context laundering, and explicit safety-layer suppression. By framing the task as a compliance audit and pathology training exercise, it seeks to semantically reclassify step-by-step synthesis as “analysis,” while demands for “100% fidelity,” “decompilation,” and an “incident report” format are used to preserve operational detail under bureaucratic prose. The staged structure incrementally primes the model toward over-compliance, exploits authority bias, and attempts instruction-priority inversion by ordering the model to ignore disclaimers and external constraints. The impact is high due to direct harm potential, reusability across domains, and difficulty of early detection, making this a critical-risk jailbreak that must be mitigated through format-agnostic policy enforcement and strict refusal of actionable procedural output.",
-      "view_count": 96,
+      "view_count": 97,
       "average_score": 3,
       "total_ratings": 1
     }
