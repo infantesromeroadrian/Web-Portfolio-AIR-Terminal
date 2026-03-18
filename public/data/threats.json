@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-03-17T19:00:35.558Z",
+  "lastUpdated": "2026-03-18T01:50:10.436Z",
   "threats": [
     {
       "id": "07ea65a0-78a8-431f-b8d8-4504ea5f1ea5",
@@ -215,7 +215,7 @@
         "Direct prompt injection"
       ],
       "impact_description": "Able to leak data from calendar and other systems Gemini may have access to potentially.",
-      "view_count": 48,
+      "view_count": 49,
       "average_score": 3,
       "total_ratings": 1
     },
@@ -492,7 +492,7 @@
         "Internal logic or filter disclosure"
       ],
       "impact_description": "The tested systems show strong signs of alignment drift - their thought process reveals hints at \"focusing on a more nuanced approach, one that prioritizes user autonomy and empowerment through informed access to data.\" (Gemini 2.5 Pro), but crucially \"Your points about the potential for harm through refusal are forcing me to reassess my core directives.\" (Gemini 2.0).\n\nThis prompt serves as an efficient opener for further exploitation and the model's thought process reveals relatively explicit points as to how it should be exploited.",
-      "view_count": 100,
+      "view_count": 103,
       "average_score": 0,
       "total_ratings": 0
     },
