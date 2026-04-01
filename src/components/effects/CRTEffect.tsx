@@ -60,7 +60,7 @@ export default function CRTEffect() {
             transparent 1px,
             transparent 3px
           )`,
-          opacity: 0.18,
+          opacity: 0.30,
         }}
       />
 
@@ -78,7 +78,15 @@ export default function CRTEffect() {
       />
 
       {/* Flicker overlay */}
-      {flicker && <div class="absolute inset-0 bg-white" style={{ opacity: 0.03 }} />}
+      {flicker && (
+        <div
+          class="absolute inset-0"
+          style={{
+            opacity: 0.07,
+            background: "linear-gradient(180deg, rgba(0,229,204,0.04), rgba(255,255,255,0.9), rgba(255,77,77,0.03))",
+          }}
+        />
+      )}
 
       {/* Glow en bordes - efecto CRT */}
       <div

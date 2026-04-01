@@ -138,8 +138,8 @@ export default function MatrixBackground() {
   return (
     <canvas
       ref={canvasRef}
-      class="fixed inset-0 pointer-events-none blur-[0.8px] sm:blur-[1px]"
-      style="z-index:1; opacity:0.08"
+      class="fixed inset-0 pointer-events-none blur-[0.3px] sm:blur-[0.5px]"
+      style="z-index:1; opacity:0.15"
       aria-hidden="true"
     />
   );

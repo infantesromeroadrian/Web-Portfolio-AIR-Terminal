@@ -228,24 +228,29 @@ export default function TerminalBody({ terminal }: { terminal: TerminalState }) 
       aria-label="Salida de terminal"
     >
       {/* Renderizado del historial de salida con animación */}
-      {terminal.output.map((item: OutputItem, idx: number) =>
-        item.type === "raw" ? (
+      {terminal.output.map((item: OutputItem, idx: number) => {
+        const isHeader =
+          item.content.includes("═══") || item.content.includes("===");
+        const animClass = isHeader ? "animate-glow-in" : "terminal-line";
+        const delay = Math.min(idx * 15, 150);
+
+        return item.type === "raw" ? (
           <pre
             key={idx}
-            class="whitespace-pre mb-2 animate-fade-slide-up"
-            style={{ animationDelay: `${Math.min(idx * 20, 200)}ms` }}
+            class={`whitespace-pre mb-2 ${animClass}`}
+            style={{ animationDelay: `${delay}ms` }}
           >
             {item.content}
           </pre>
         ) : (
           <div
             key={idx}
-            class="whitespace-pre overflow-x-auto scrollbar-hide mb-2 animate-fade-slide-up"
-            style={{ animationDelay: `${Math.min(idx * 20, 200)}ms` }}
+            class={`whitespace-pre overflow-x-auto scrollbar-hide mb-2 ${animClass}`}
+            style={{ animationDelay: `${delay}ms` }}
             dangerouslySetInnerHTML={{ __html: sanitizeHtml(item.content) }}
           />
-        )
-      )}
+        );
+      })}
 
       {/* Input interactivo (solo si no se está animando un comando) */}
       {!terminal.isTypingCommand && (
@@ -301,7 +306,7 @@ export default function TerminalBody({ terminal }: { terminal: TerminalState }) 
                 onClick={() => {
                   terminal.executeUserCommand(action.command);
                 }}
-                class="px-2 py-1 text-xs bg-gray-800/50 border border-gray-700 rounded hover:bg-blue-900/40 hover:border-blue-600/50 text-[var(--accent-soft)] transition-all focus-ring"
+                class="px-2 py-1 text-xs bg-gray-800/50 border border-gray-700 rounded text-[var(--accent-soft)] quick-action focus-ring"
               >
                 {action.label}
               </button>

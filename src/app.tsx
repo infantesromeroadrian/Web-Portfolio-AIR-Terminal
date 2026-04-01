@@ -10,7 +10,8 @@
  * La lógica de negocio NO vive aquí. Este archivo solo coordina.
  */
 
-import { useState, useEffect, useCallback, lazy, Suspense } from "preact/compat";
+import { useState, useEffect, useCallback, useRef, lazy, Suspense } from "preact/compat";
+import gsap from "gsap";
 
 // Componentes principales de la interfaz
 import PageHeader from "./components/layout/PageHeader";
@@ -94,24 +95,21 @@ function AppContent() {
   // Escuchar Konami code (alternativa secreta)
   useKonamiCode(handleKonamiActivation);
 
-  // Permitir saltar la secuencia de boot con cualquier tecla
+  // Ref para animar la entrada del terminal
+  const terminalWrapRef = useRef<HTMLDivElement>(null);
+
+  // GSAP entrance para terminal cuando se monta
   useEffect(() => {
-    if (stage !== "boot") return;
-
-    const handleKeyPress = () => {
-      setStage("login");
-    };
-    const handleClick = () => {
-      setStage("login");
-    };
-
-    window.addEventListener("keydown", handleKeyPress);
-    window.addEventListener("click", handleClick);
-
-    return () => {
-      window.removeEventListener("keydown", handleKeyPress);
-      window.removeEventListener("click", handleClick);
-    };
+    if (stage === "terminal" && terminalWrapRef.current) {
+      gsap.from(terminalWrapRef.current, {
+        opacity: 0,
+        y: 24,
+        scale: 0.99,
+        duration: 0.6,
+        ease: "power2.out",
+        delay: 0.05,
+      });
+    }
   }, [stage]);
 
   return (
@@ -172,7 +170,7 @@ function AppContent() {
 
         {/* TERMINAL */}
         {stage === "terminal" && (
-          <div class="flex-grow flex items-start justify-center">
+          <div ref={terminalWrapRef} class="flex-grow flex items-start justify-center">
             <Terminal terminal={terminal} />
           </div>
         )}

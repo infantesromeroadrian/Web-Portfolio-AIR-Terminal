@@ -1,206 +1,270 @@
 /**
- * Secuencia de arranque tipo BIOS.
+ * Secuencia de arranque tipo BIOS con efecto de typing real.
  *
- * Simula un boot de sistema con:
- *  - Efecto typing línea por línea
- *  - Checks de sistema (RAM, CPU, modules)
- *  - ASCII art del logo
- *  - Transición automática al login
+ * - Caracteres aparecen uno a uno (velocidad variable por tipo de línea)
+ * - Tags de estado ([OK], [LOADED], [ACTIVE]) resaltan en color
+ * - Barra de progreso sincronizada con glow
+ * - Skip disponible con cualquier tecla (completa instantáneamente)
+ * - Logo ASCII con GSAP entrance (scale + opacity)
+ * - Transición de salida con GSAP (scale + brightness + fade)
  */
 
-import { useState, useEffect } from "preact/hooks";
+import { useState, useEffect, useRef, useCallback } from "preact/hooks";
+import gsap from "gsap";
 
 interface BootSequenceProps {
   onComplete: () => void;
 }
 
-const BOOT_LINES = [
-  { text: "AIR BIOS v2.0.26 — Neural Security Systems", delay: 0, style: "title" },
-  { text: "Copyright (C) 2026 Adrian Infantes Research", delay: 100, style: "dim" },
-  { text: "", delay: 200, style: "normal" },
-  { text: "Initializing hardware...", delay: 300, style: "normal" },
-  { text: "CPU: Neural Processing Unit @ 4.2 GHz .............. [OK]", delay: 500, style: "check" },
-  { text: "RAM: 128 GB DDR5 Secure Memory .................... [OK]", delay: 700, style: "check" },
-  { text: "GPU: NVIDIA RTX 6090 Tensor Cores ................. [OK]", delay: 900, style: "check" },
-  { text: "TPM: Hardware Security Module v2.0 ................ [OK]", delay: 1100, style: "check" },
-  { text: "", delay: 1200, style: "normal" },
-  { text: "Loading security modules...", delay: 1300, style: "normal" },
-  {
-    text: "  ├─ threat_detection.ko .......................... [LOADED]",
-    delay: 1500,
-    style: "module",
-  },
-  {
-    text: "  ├─ prompt_guardian.ko ........................... [LOADED]",
-    delay: 1650,
-    style: "module",
-  },
-  {
-    text: "  ├─ llm_firewall.ko .............................. [LOADED]",
-    delay: 1800,
-    style: "module",
-  },
-  {
-    text: "  ├─ anomaly_detector.ko .......................... [LOADED]",
-    delay: 1950,
-    style: "module",
-  },
-  {
-    text: "  └─ neural_rain.ko ............................... [LOADED]",
-    delay: 2100,
-    style: "module",
-  },
-  { text: "", delay: 2200, style: "normal" },
-  { text: "Establishing secure connection...", delay: 2300, style: "normal" },
-  {
-    text: "  Encryption: AES-256-GCM ......................... [ACTIVE]",
-    delay: 2450,
-    style: "secure",
-  },
-  {
-    text: "  Protocol: TLS 1.3 ............................... [ACTIVE]",
-    delay: 2600,
-    style: "secure",
-  },
-  {
-    text: "  Firewall: AI-Enhanced ........................... [ACTIVE]",
-    delay: 2750,
-    style: "secure",
-  },
-  { text: "", delay: 2850, style: "normal" },
-  { text: "All systems operational. Launching interface...", delay: 3000, style: "success" },
-  { text: "", delay: 3200, style: "normal" },
+interface BootLine {
+  text: string;
+  style: string;
+  charDelay: number;
+  pauseAfter: number;
+}
+
+const BOOT_LINES: BootLine[] = [
+  { text: "AIR BIOS v2.0.26 — Neural Security Systems", style: "title", charDelay: 14, pauseAfter: 300 },
+  { text: "", style: "spacer", charDelay: 0, pauseAfter: 100 },
+  { text: "Initializing hardware...", style: "normal", charDelay: 10, pauseAfter: 400 },
+  { text: "CPU: Neural Processing Unit @ 4.2 GHz .............. [OK]", style: "check", charDelay: 3, pauseAfter: 80 },
+  { text: "RAM: 128 GB DDR5 Secure Memory .................... [OK]", style: "check", charDelay: 3, pauseAfter: 80 },
+  { text: "GPU: NVIDIA RTX 6090 Tensor Cores ................. [OK]", style: "check", charDelay: 3, pauseAfter: 80 },
+  { text: "TPM: Hardware Security Module v2.0 ................ [OK]", style: "check", charDelay: 3, pauseAfter: 120 },
+  { text: "", style: "spacer", charDelay: 0, pauseAfter: 100 },
+  { text: "Loading security modules...", style: "normal", charDelay: 10, pauseAfter: 300 },
+  { text: "  ├─ threat_detection.ko .......................... [LOADED]", style: "module", charDelay: 4, pauseAfter: 60 },
+  { text: "  ├─ prompt_guardian.ko ........................... [LOADED]", style: "module", charDelay: 4, pauseAfter: 60 },
+  { text: "  ├─ llm_firewall.ko .............................. [LOADED]", style: "module", charDelay: 4, pauseAfter: 60 },
+  { text: "  ├─ anomaly_detector.ko .......................... [LOADED]", style: "module", charDelay: 4, pauseAfter: 60 },
+  { text: "  └─ neural_rain.ko ............................... [LOADED]", style: "module", charDelay: 4, pauseAfter: 120 },
+  { text: "", style: "spacer", charDelay: 0, pauseAfter: 100 },
+  { text: "Establishing secure connection...", style: "normal", charDelay: 10, pauseAfter: 200 },
+  { text: "  Encryption: AES-256-GCM ......................... [ACTIVE]", style: "secure", charDelay: 3, pauseAfter: 60 },
+  { text: "  Protocol: TLS 1.3 ............................... [ACTIVE]", style: "secure", charDelay: 3, pauseAfter: 60 },
+  { text: "  Firewall: AI-Enhanced ........................... [ACTIVE]", style: "secure", charDelay: 3, pauseAfter: 120 },
+  { text: "", style: "spacer", charDelay: 0, pauseAfter: 100 },
+  { text: "All systems operational. Launching interface...", style: "success", charDelay: 12, pauseAfter: 400 },
 ];
 
 const ASCII_LOGO = `
     █████╗ ██╗██████╗     ███████╗███████╗ ██████╗
    ██╔══██╗██║██╔══██╗    ██╔════╝██╔════╝██╔════╝
-   ███████║██║██████╔╝    ███████╗█████╗  ██║     
-   ██╔══██║██║██╔══██╗    ╚════██║██╔══╝  ██║     
+   ███████║██║██████╔╝    ███████╗█████╗  ██║
+   ██╔══██║██║██╔══██╗    ╚════██║██╔══╝  ██║
    ██║  ██║██║██║  ██║    ███████║███████╗╚██████╗
    ╚═╝  ╚═╝╚═╝╚═╝  ╚═╝    ╚══════╝╚══════╝ ╚═════╝
 `;
 
+function getLineClasses(style: string): string {
+  switch (style) {
+    case "title":
+      return "text-[var(--coral-bright)] font-bold text-lg";
+    case "check":
+      return "text-[var(--text-secondary)]";
+    case "module":
+      return "text-[var(--cyan-bright)]";
+    case "secure":
+      return "text-[var(--blue-soft)]";
+    case "success":
+      return "text-[var(--cyan-bright)] font-bold";
+    case "spacer":
+      return "h-3";
+    default:
+      return "text-[var(--text-primary)]";
+  }
+}
+
+function renderText(text: string) {
+  const tagMatch = text.match(/\[(OK|LOADED|ACTIVE)\]$/);
+  if (!tagMatch) return <>{text}</>;
+
+  const base = text.slice(0, text.lastIndexOf("["));
+  const tag = tagMatch[0];
+  const color =
+    tag === "[OK]"
+      ? "var(--success)"
+      : tag === "[LOADED]"
+        ? "var(--cyan-bright)"
+        : "var(--blue-soft)";
+
+  return (
+    <>
+      {base}
+      <span style={{ color }} class="font-semibold">
+        {tag}
+      </span>
+    </>
+  );
+}
+
 export default function BootSequence({ onComplete }: BootSequenceProps) {
-  const [visibleLines, setVisibleLines] = useState<number>(0);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const logoRef = useRef<HTMLPreElement>(null);
+  const skipRef = useRef(false);
+  const timeoutsRef = useRef<number[]>([]);
+  const onCompleteRef = useRef(onComplete);
+  onCompleteRef.current = onComplete;
+
+  const [lines, setLines] = useState<Array<{ text: string; style: string }>>([]);
   const [showLogo, setShowLogo] = useState(false);
-  const [fadeOut, setFadeOut] = useState(false);
+  const [progress, setProgress] = useState(0);
+
+  const sleep = useCallback(
+    (ms: number): Promise<void> =>
+      new Promise((resolve) => {
+        if (skipRef.current) {
+          resolve();
+          return;
+        }
+        const id = window.setTimeout(resolve, ms);
+        timeoutsRef.current.push(id);
+      }),
+    []
+  );
 
   useEffect(() => {
-    // Mostrar líneas progresivamente
-    const timers: ReturnType<typeof setTimeout>[] = [];
+    let cancelled = false;
+    setLines([]);
+    setShowLogo(false);
+    setProgress(0);
 
-    BOOT_LINES.forEach((line, index) => {
-      const timer = setTimeout(() => {
-        setVisibleLines(index + 1);
-      }, line.delay);
-      timers.push(timer);
-    });
+    (async () => {
+      for (let i = 0; i < BOOT_LINES.length; i++) {
+        if (cancelled) return;
+        const line = BOOT_LINES[i];
 
-    // Mostrar logo después de las líneas
-    const logoTimer = setTimeout(() => {
+        setProgress(((i + 1) / BOOT_LINES.length) * 100);
+
+        if (line.text === "") {
+          setLines((prev) => [...prev, { text: "\u00A0", style: line.style }]);
+          await sleep(line.pauseAfter);
+          continue;
+        }
+
+        setLines((prev) => [...prev, { text: "", style: line.style }]);
+
+        if (!skipRef.current) {
+          for (let c = 1; c <= line.text.length; c++) {
+            if (cancelled || skipRef.current) break;
+            const partial = line.text.slice(0, c);
+            setLines((prev) => {
+              const copy = [...prev];
+              copy[copy.length - 1] = { text: partial, style: line.style };
+              return copy;
+            });
+            await sleep(line.charDelay);
+          }
+        }
+
+        setLines((prev) => {
+          const copy = [...prev];
+          copy[copy.length - 1] = { text: line.text, style: line.style };
+          return copy;
+        });
+
+        await sleep(skipRef.current ? 8 : line.pauseAfter);
+      }
+
+      if (cancelled) return;
+
       setShowLogo(true);
-    }, 3300);
-    timers.push(logoTimer);
+      await sleep(skipRef.current ? 150 : 800);
 
-    // Fade out y completar
-    const fadeTimer = setTimeout(() => {
-      setFadeOut(true);
-    }, 4200);
-    timers.push(fadeTimer);
+      if (cancelled) return;
 
-    const completeTimer = setTimeout(() => {
-      onComplete();
-    }, 4800);
-    timers.push(completeTimer);
+      if (containerRef.current) {
+        gsap.to(containerRef.current, {
+          opacity: 0,
+          scale: 1.02,
+          filter: "brightness(1.5)",
+          duration: skipRef.current ? 0.25 : 0.6,
+          ease: "power2.in",
+          onComplete: () => {
+            if (!cancelled) onCompleteRef.current();
+          },
+        });
+      } else {
+        onCompleteRef.current();
+      }
+    })();
 
     return () => {
-      timers.forEach(clearTimeout);
+      cancelled = true;
+      timeoutsRef.current.forEach((id) => clearTimeout(id));
     };
-  }, [onComplete]);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps -- runs once on mount
 
-  const getLineStyle = (style: string): string => {
-    switch (style) {
-      case "title":
-        return "text-[var(--coral-bright)] font-bold text-lg";
-      case "dim":
-        return "text-[var(--text-muted)] text-sm";
-      case "check":
-        return "text-[var(--text-secondary)]";
-      case "module":
-        return "text-[var(--cyan-bright)]";
-      case "secure":
-        return "text-[var(--blue-bright)]";
-      case "success":
-        return "text-[var(--green-bright)] font-bold";
-      default:
-        return "text-[var(--text-primary)]";
+  useEffect(() => {
+    if (showLogo && logoRef.current) {
+      gsap.from(logoRef.current, {
+        opacity: 0,
+        scale: 0.9,
+        y: 10,
+        duration: 0.6,
+        ease: "back.out(1.4)",
+      });
     }
-  };
+  }, [showLogo]);
+
+  useEffect(() => {
+    const handleSkip = () => {
+      if (!skipRef.current) {
+        skipRef.current = true;
+        timeoutsRef.current.forEach((id) => clearTimeout(id));
+        timeoutsRef.current = [];
+      }
+    };
+
+    window.addEventListener("keydown", handleSkip);
+    window.addEventListener("click", handleSkip);
+
+    return () => {
+      window.removeEventListener("keydown", handleSkip);
+      window.removeEventListener("click", handleSkip);
+    };
+  }, []);
 
   return (
     <div
-      class={`fixed inset-0 z-[100] bg-[#0a0a0a] flex items-center justify-center transition-opacity duration-500 ${
-        fadeOut ? "opacity-0" : "opacity-100"
-      }`}
+      ref={containerRef}
+      class="fixed inset-0 z-[100] bg-[#0a0a0a] flex items-center justify-center"
     >
       <div class="max-w-3xl w-full px-6 font-mono text-sm">
-        {/* Líneas de boot */}
-        <div class="space-y-1">
-          {BOOT_LINES.slice(0, visibleLines).map((line, index) => (
-            <div
-              key={index}
-              class={`${getLineStyle(line.style)} animate-fade-in`}
-              style={{ animationDelay: `${index * 20}ms` }}
-            >
-              {line.text.includes("[OK]") ? (
-                <>
-                  {line.text.replace("[OK]", "")}
-                  <span class="text-[var(--green-bright)]">[OK]</span>
-                </>
-              ) : line.text.includes("[LOADED]") ? (
-                <>
-                  {line.text.replace("[LOADED]", "")}
-                  <span class="text-[var(--cyan-bright)]">[LOADED]</span>
-                </>
-              ) : line.text.includes("[ACTIVE]") ? (
-                <>
-                  {line.text.replace("[ACTIVE]", "")}
-                  <span class="text-[var(--blue-bright)]">[ACTIVE]</span>
-                </>
-              ) : (
-                line.text
-              )}
-              {/* Cursor parpadeante en la última línea */}
-              {index === visibleLines - 1 && !showLogo && (
-                <span class="inline-block w-2 h-4 bg-[var(--coral-bright)] ml-1 animate-pulse" />
+        <div class="space-y-0.5">
+          {lines.map((line, idx) => (
+            <div key={idx} class={getLineClasses(line.style)}>
+              {line.style === "spacer" ? null : renderText(line.text)}
+              {idx === lines.length - 1 && !showLogo && line.style !== "spacer" && (
+                <span
+                  class="inline-block w-2 h-4 bg-[var(--coral-bright)] ml-0.5 align-text-bottom"
+                  style="animation:cursor-blink 0.6s steps(1) infinite"
+                />
               )}
             </div>
           ))}
         </div>
 
-        {/* ASCII Logo */}
         {showLogo && (
           <pre
-            class={`text-[var(--coral-bright)] text-xs sm:text-sm mt-6 text-center animate-fade-in ${
-              fadeOut ? "animate-pulse" : ""
-            }`}
+            ref={logoRef}
+            class="text-[var(--coral-bright)] text-xs sm:text-sm mt-6 text-center"
           >
             {ASCII_LOGO}
           </pre>
         )}
 
-        {/* Barra de progreso */}
         <div class="mt-8 h-1 bg-[var(--bg-elevated)] rounded-full overflow-hidden">
           <div
-            class="h-full bg-gradient-to-r from-[var(--coral-bright)] to-[var(--cyan-bright)] transition-all duration-300 ease-out"
+            class="h-full rounded-full transition-all duration-200 ease-out"
             style={{
-              width: `${Math.min((visibleLines / BOOT_LINES.length) * 100, 100)}%`,
+              width: `${progress}%`,
+              background: "linear-gradient(90deg, var(--coral-bright), var(--cyan-bright))",
+              boxShadow: "0 0 12px var(--coral-bright), 0 0 4px var(--cyan-bright)",
             }}
           />
         </div>
 
-        {/* Skip hint */}
         <p class="text-center text-[var(--text-muted)] text-xs mt-4 animate-pulse">
           Press any key to skip...
         </p>

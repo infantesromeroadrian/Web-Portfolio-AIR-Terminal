@@ -1,97 +1,165 @@
 /**
- * Panel de login inicial - Con personaje animado caminando.
+ * Panel de login inicial - Con globo 3D de fondo.
  *
  * Este componente muestra:
- *  - Personaje con capucha (video WebM 2.5MB / MP4 5.6MB fallback)
- *  - Nombre y rol
- *  - Botón para entrar a la terminal
+ *  - Nombre y rol con GSAP entrance animation
+ *  - Badges de especialización
+ *  - Botón CTA con CSS hover (sin inline JS)
+ *  - GSAP exit transition antes de navegar a terminal
  *
- * Diseño: Minimalista, centrado en el personaje.
+ * Transiciones: GSAP para entrada y salida coordinadas.
  */
 
-import { useEffect, useState } from "preact/hooks";
+import { useEffect, useRef } from "preact/hooks";
+import gsap from "gsap";
 
 export default function LoginPanel({ onLogin }: { onLogin: () => void }) {
-  const [showContent, setShowContent] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const exitingRef = useRef(false);
 
   useEffect(() => {
-    // Mostrar contenido después de que el GIF cargue un poco
-    const contentTimer = setTimeout(() => {
-      setShowContent(true);
-    }, 800);
+    if (!containerRef.current) return;
 
-    return () => {
-      clearTimeout(contentTimer);
-    };
+    const ctx = gsap.context(() => {
+      const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
+
+      tl.from(".login-title", {
+        opacity: 0,
+        y: 30,
+        scale: 0.97,
+        duration: 0.7,
+      })
+        .from(
+          ".login-alias",
+          {
+            opacity: 0,
+            y: 15,
+            duration: 0.4,
+          },
+          "-=0.35"
+        )
+        .from(
+          ".login-role",
+          {
+            opacity: 0,
+            y: 15,
+            duration: 0.4,
+          },
+          "-=0.25"
+        )
+        .from(
+          ".login-badges span",
+          {
+            opacity: 0,
+            scale: 0.8,
+            y: 10,
+            duration: 0.3,
+            stagger: { each: 0.06, from: "center" },
+          },
+          "-=0.2"
+        )
+        .from(
+          ".login-tagline",
+          {
+            opacity: 0,
+            y: 10,
+            duration: 0.4,
+          },
+          "-=0.15"
+        )
+        .from(
+          ".login-cta",
+          {
+            opacity: 0,
+            y: 20,
+            scale: 0.95,
+            duration: 0.5,
+            ease: "back.out(1.4)",
+          },
+          "-=0.2"
+        )
+        .from(
+          ".login-hint",
+          {
+            opacity: 0,
+            duration: 0.3,
+          },
+          "-=0.1"
+        );
+    }, containerRef.current);
+
+    return () => ctx.revert();
   }, []);
 
+  const handleLogin = () => {
+    if (exitingRef.current) return;
+    exitingRef.current = true;
+
+    if (!containerRef.current) {
+      onLogin();
+      return;
+    }
+
+    gsap.to(containerRef.current, {
+      opacity: 0,
+      y: -30,
+      scale: 0.98,
+      duration: 0.45,
+      ease: "power2.in",
+      onComplete: onLogin,
+    });
+  };
+
   return (
-    <div class="w-full max-w-5xl px-4 relative z-10 flex flex-col items-center justify-center min-h-[70vh]">
-      {/* Contenido principal — globo 3D visible detrás */}
-      <div
-        class={`text-center transition-all duration-700 ${showContent ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
-      >
-        {/* Nombre con tipografía display */}
-        <h1 class="font-display text-4xl sm:text-5xl md:text-6xl font-bold mb-1">
+    <div
+      ref={containerRef}
+      class="w-full max-w-5xl px-4 relative z-10 flex flex-col items-center justify-center min-h-[70vh]"
+    >
+      <div class="text-center">
+        <h1 class="login-title font-display text-4xl sm:text-5xl md:text-6xl font-bold mb-1">
           <span class="text-gradient">Adrian Infantes</span>
         </h1>
 
-        {/* Alias HTB */}
-        <p class="font-mono text-sm sm:text-base tracking-widest mb-4 text-[var(--cyan-bright)] opacity-70">
+        <p class="login-alias font-mono text-sm sm:text-base tracking-widest mb-4 text-[var(--cyan-bright)] opacity-70">
           <span class="text-[var(--text-muted)]">aka</span> L4tentNoise
         </p>
 
-        {/* Rol */}
-        <p class="text-[var(--text-secondary)] text-lg sm:text-xl mb-4">
+        <p class="login-role text-[var(--text-secondary)] text-lg sm:text-xl mb-4">
           AI Red Teamer | ML Security Engineer
         </p>
 
-        {/* Badges */}
-        <div class="flex items-center justify-center gap-3 mb-7 flex-wrap">
+        <div class="login-badges flex items-center justify-center gap-3 mb-7 flex-wrap">
           <span class="badge badge-red">Prompt Injection</span>
           <span class="badge badge-coral">Agent Security</span>
           <span class="badge badge-blue">Adversarial ML</span>
           <span class="badge badge-cyan">LLM Defense</span>
         </div>
 
-        {/* Tagline */}
-        <p class="text-[var(--text-muted)] mb-8 font-mono text-sm max-w-2xl mx-auto leading-relaxed">
+        <p class="login-tagline text-[var(--text-muted)] mb-8 font-mono text-sm max-w-2xl mx-auto leading-relaxed">
           <span class="text-[var(--coral-bright)]">→</span> I break and harden AI systems before
           attackers do. Specialized in prompt injection, agent security, adversarial evaluation, and
           secure GenAI.
         </p>
 
-        {/* Botón de entrada */}
         <button
           type="button"
-          onClick={onLogin}
-          class="px-10 py-4 rounded-xl font-display font-semibold text-lg transition-all duration-500 btn-press focus-ring"
+          onClick={handleLogin}
+          class="login-cta px-10 py-4 rounded-xl font-display font-semibold text-lg btn-cta btn-press focus-ring"
           style={{
             background: "linear-gradient(135deg, var(--coral-bright) 0%, var(--coral-mid) 100%)",
             color: "white",
             boxShadow: "0 4px 30px rgba(255, 77, 77, 0.4)",
           }}
-          onMouseEnter={(e) => {
-            (e.target as HTMLButtonElement).style.boxShadow = "0 8px 40px rgba(255, 77, 77, 0.6)";
-            (e.target as HTMLButtonElement).style.transform = "translateY(-3px) scale(1.02)";
-          }}
-          onMouseLeave={(e) => {
-            (e.target as HTMLButtonElement).style.boxShadow = "0 4px 30px rgba(255, 77, 77, 0.4)";
-            (e.target as HTMLButtonElement).style.transform = "translateY(0) scale(1)";
-          }}
         >
           Review My Work →
         </button>
 
-        {/* Hint */}
-        <p class="text-[var(--text-muted)] text-xs font-mono mt-5">
+        <p class="login-hint text-[var(--text-muted)] text-xs font-mono mt-5">
           Start with whoami, proyectos, or classify
         </p>
       </div>
 
-      {/* Personaje caminando — debajo del botón */}
-      <div class="relative mt-6 animate-fade-in">
-        {/* Glow detrás del personaje */}
+      <div class="relative mt-6">
         <div
           class="absolute inset-0 blur-3xl opacity-30"
           style={{
@@ -101,7 +169,6 @@ export default function LoginPanel({ onLogin }: { onLogin: () => void }) {
           }}
         />
 
-        {/* Video del personaje (WebM + MP4 fallback) */}
         <video
           autoPlay
           loop
