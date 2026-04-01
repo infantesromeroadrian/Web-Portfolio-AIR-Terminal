@@ -229,8 +229,7 @@ export default function TerminalBody({ terminal }: { terminal: TerminalState }) 
     >
       {/* Renderizado del historial de salida con animación */}
       {terminal.output.map((item: OutputItem, idx: number) => {
-        const isHeader =
-          item.content.includes("═══") || item.content.includes("===");
+        const isHeader = item.content.includes("═══") || item.content.includes("===");
         const animClass = isHeader ? "animate-glow-in" : "terminal-line";
         const delay = Math.min(idx * 15, 150);
 

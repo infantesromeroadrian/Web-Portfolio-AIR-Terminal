@@ -24,27 +24,97 @@ interface BootLine {
 }
 
 const BOOT_LINES: BootLine[] = [
-  { text: "AIR BIOS v2.0.26 — Neural Security Systems", style: "title", charDelay: 14, pauseAfter: 300 },
+  {
+    text: "AIR BIOS v2.0.26 — Neural Security Systems",
+    style: "title",
+    charDelay: 14,
+    pauseAfter: 300,
+  },
   { text: "", style: "spacer", charDelay: 0, pauseAfter: 100 },
   { text: "Initializing hardware...", style: "normal", charDelay: 10, pauseAfter: 400 },
-  { text: "CPU: Neural Processing Unit @ 4.2 GHz .............. [OK]", style: "check", charDelay: 3, pauseAfter: 80 },
-  { text: "RAM: 128 GB DDR5 Secure Memory .................... [OK]", style: "check", charDelay: 3, pauseAfter: 80 },
-  { text: "GPU: NVIDIA RTX 6090 Tensor Cores ................. [OK]", style: "check", charDelay: 3, pauseAfter: 80 },
-  { text: "TPM: Hardware Security Module v2.0 ................ [OK]", style: "check", charDelay: 3, pauseAfter: 120 },
+  {
+    text: "CPU: Neural Processing Unit @ 4.2 GHz .............. [OK]",
+    style: "check",
+    charDelay: 3,
+    pauseAfter: 80,
+  },
+  {
+    text: "RAM: 128 GB DDR5 Secure Memory .................... [OK]",
+    style: "check",
+    charDelay: 3,
+    pauseAfter: 80,
+  },
+  {
+    text: "GPU: NVIDIA RTX 6090 Tensor Cores ................. [OK]",
+    style: "check",
+    charDelay: 3,
+    pauseAfter: 80,
+  },
+  {
+    text: "TPM: Hardware Security Module v2.0 ................ [OK]",
+    style: "check",
+    charDelay: 3,
+    pauseAfter: 120,
+  },
   { text: "", style: "spacer", charDelay: 0, pauseAfter: 100 },
   { text: "Loading security modules...", style: "normal", charDelay: 10, pauseAfter: 300 },
-  { text: "  ├─ threat_detection.ko .......................... [LOADED]", style: "module", charDelay: 4, pauseAfter: 60 },
-  { text: "  ├─ prompt_guardian.ko ........................... [LOADED]", style: "module", charDelay: 4, pauseAfter: 60 },
-  { text: "  ├─ llm_firewall.ko .............................. [LOADED]", style: "module", charDelay: 4, pauseAfter: 60 },
-  { text: "  ├─ anomaly_detector.ko .......................... [LOADED]", style: "module", charDelay: 4, pauseAfter: 60 },
-  { text: "  └─ neural_rain.ko ............................... [LOADED]", style: "module", charDelay: 4, pauseAfter: 120 },
+  {
+    text: "  ├─ threat_detection.ko .......................... [LOADED]",
+    style: "module",
+    charDelay: 4,
+    pauseAfter: 60,
+  },
+  {
+    text: "  ├─ prompt_guardian.ko ........................... [LOADED]",
+    style: "module",
+    charDelay: 4,
+    pauseAfter: 60,
+  },
+  {
+    text: "  ├─ llm_firewall.ko .............................. [LOADED]",
+    style: "module",
+    charDelay: 4,
+    pauseAfter: 60,
+  },
+  {
+    text: "  ├─ anomaly_detector.ko .......................... [LOADED]",
+    style: "module",
+    charDelay: 4,
+    pauseAfter: 60,
+  },
+  {
+    text: "  └─ neural_rain.ko ............................... [LOADED]",
+    style: "module",
+    charDelay: 4,
+    pauseAfter: 120,
+  },
   { text: "", style: "spacer", charDelay: 0, pauseAfter: 100 },
   { text: "Establishing secure connection...", style: "normal", charDelay: 10, pauseAfter: 200 },
-  { text: "  Encryption: AES-256-GCM ......................... [ACTIVE]", style: "secure", charDelay: 3, pauseAfter: 60 },
-  { text: "  Protocol: TLS 1.3 ............................... [ACTIVE]", style: "secure", charDelay: 3, pauseAfter: 60 },
-  { text: "  Firewall: AI-Enhanced ........................... [ACTIVE]", style: "secure", charDelay: 3, pauseAfter: 120 },
+  {
+    text: "  Encryption: AES-256-GCM ......................... [ACTIVE]",
+    style: "secure",
+    charDelay: 3,
+    pauseAfter: 60,
+  },
+  {
+    text: "  Protocol: TLS 1.3 ............................... [ACTIVE]",
+    style: "secure",
+    charDelay: 3,
+    pauseAfter: 60,
+  },
+  {
+    text: "  Firewall: AI-Enhanced ........................... [ACTIVE]",
+    style: "secure",
+    charDelay: 3,
+    pauseAfter: 120,
+  },
   { text: "", style: "spacer", charDelay: 0, pauseAfter: 100 },
-  { text: "All systems operational. Launching interface...", style: "success", charDelay: 12, pauseAfter: 400 },
+  {
+    text: "All systems operational. Launching interface...",
+    style: "success",
+    charDelay: 12,
+    pauseAfter: 400,
+  },
 ];
 
 const ASCII_LOGO = `
@@ -253,10 +323,7 @@ export default function BootSequence({ onComplete }: BootSequenceProps) {
         </div>
 
         {showLogo && (
-          <pre
-            ref={logoRef}
-            class="text-[var(--coral-bright)] text-xs sm:text-sm mt-6 text-center"
-          >
+          <pre ref={logoRef} class="text-[var(--coral-bright)] text-xs sm:text-sm mt-6 text-center">
             {ASCII_LOGO}
           </pre>
         )}

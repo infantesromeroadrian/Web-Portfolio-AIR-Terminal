@@ -60,7 +60,7 @@ export default function CRTEffect() {
             transparent 1px,
             transparent 3px
           )`,
-          opacity: 0.30,
+          opacity: 0.3,
         }}
       />
 
@@ -83,7 +83,8 @@ export default function CRTEffect() {
           class="absolute inset-0"
           style={{
             opacity: 0.07,
-            background: "linear-gradient(180deg, rgba(0,229,204,0.04), rgba(255,255,255,0.9), rgba(255,77,77,0.03))",
+            background:
+              "linear-gradient(180deg, rgba(0,229,204,0.04), rgba(255,255,255,0.9), rgba(255,77,77,0.03))",
           }}
         />
       )}

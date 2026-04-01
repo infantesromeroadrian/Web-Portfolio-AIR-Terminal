@@ -29,16 +29,8 @@ export default function LoginPanel({ onLogin }: { onLogin: () => void }) {
       scale: 0.97,
       duration: 0.7,
     })
-      .from(
-        el.querySelector(".login-alias"),
-        { opacity: 0, y: 15, duration: 0.4 },
-        "-=0.35"
-      )
-      .from(
-        el.querySelector(".login-role"),
-        { opacity: 0, y: 15, duration: 0.4 },
-        "-=0.25"
-      )
+      .from(el.querySelector(".login-alias"), { opacity: 0, y: 15, duration: 0.4 }, "-=0.35")
+      .from(el.querySelector(".login-role"), { opacity: 0, y: 15, duration: 0.4 }, "-=0.25")
       .from(
         el.querySelectorAll(".login-badges .badge"),
         {
@@ -50,11 +42,7 @@ export default function LoginPanel({ onLogin }: { onLogin: () => void }) {
         },
         "-=0.2"
       )
-      .from(
-        el.querySelector(".login-tagline"),
-        { opacity: 0, y: 10, duration: 0.4 },
-        "-=0.15"
-      )
+      .from(el.querySelector(".login-tagline"), { opacity: 0, y: 10, duration: 0.4 }, "-=0.15")
       .from(
         el.querySelectorAll(".login-metrics > span"),
         { opacity: 0, y: 8, duration: 0.3, stagger: 0.06 },
@@ -65,11 +53,7 @@ export default function LoginPanel({ onLogin }: { onLogin: () => void }) {
         { opacity: 0, y: 20, scale: 0.95, duration: 0.5, ease: "back.out(1.4)" },
         "-=0.2"
       )
-      .from(
-        el.querySelector(".login-hint"),
-        { opacity: 0, duration: 0.3 },
-        "-=0.1"
-      );
+      .from(el.querySelector(".login-hint"), { opacity: 0, duration: 0.3 }, "-=0.1");
 
     return () => {
       tl.kill();
