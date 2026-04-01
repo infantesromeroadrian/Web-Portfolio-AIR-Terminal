@@ -76,7 +76,7 @@ function getLineClasses(style: string): string {
 }
 
 function renderText(text: string) {
-  const tagMatch = text.match(/\[(OK|LOADED|ACTIVE)\]$/);
+  const tagMatch = /\[(OK|LOADED|ACTIVE)\]$/.exec(text);
   if (!tagMatch) return <>{text}</>;
 
   const base = text.slice(0, text.lastIndexOf("["));
@@ -101,20 +101,20 @@ function renderText(text: string) {
 export default function BootSequence({ onComplete }: BootSequenceProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const logoRef = useRef<HTMLPreElement>(null);
-  const skipRef = useRef(false);
+  const skipRef = useRef({ value: false });
   const timeoutsRef = useRef<number[]>([]);
-  const pendingResolvesRef = useRef<Array<() => void>>([]);
+  const pendingResolvesRef = useRef<(() => void)[]>([]);
   const onCompleteRef = useRef(onComplete);
   onCompleteRef.current = onComplete;
 
-  const [lines, setLines] = useState<Array<{ text: string; style: string }>>([]);
+  const [lines, setLines] = useState<{ text: string; style: string }[]>([]);
   const [showLogo, setShowLogo] = useState(false);
   const [progress, setProgress] = useState(0);
 
   const sleep = useCallback(
     (ms: number): Promise<void> =>
       new Promise((resolve) => {
-        if (skipRef.current) {
+        if (skipRef.current.value) {
           resolve();
           return;
         }
@@ -126,14 +126,14 @@ export default function BootSequence({ onComplete }: BootSequenceProps) {
   );
 
   useEffect(() => {
-    let cancelled = false;
+    const state = { cancelled: false };
     setLines([]);
     setShowLogo(false);
     setProgress(0);
 
-    (async () => {
+    void (async () => {
       for (let i = 0; i < BOOT_LINES.length; i++) {
-        if (cancelled) return;
+        if (state.cancelled) return;
         const line = BOOT_LINES[i];
 
         setProgress(((i + 1) / BOOT_LINES.length) * 100);
@@ -146,17 +146,16 @@ export default function BootSequence({ onComplete }: BootSequenceProps) {
 
         setLines((prev) => [...prev, { text: "", style: line.style }]);
 
-        if (!skipRef.current) {
-          for (let c = 1; c <= line.text.length; c++) {
-            if (cancelled || skipRef.current) break;
-            const partial = line.text.slice(0, c);
-            setLines((prev) => {
-              const copy = [...prev];
-              copy[copy.length - 1] = { text: partial, style: line.style };
-              return copy;
-            });
-            await sleep(line.charDelay);
-          }
+        for (let c = 1; c <= line.text.length; c++) {
+          // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition -- mutated async by skip handler
+          if (state.cancelled || skipRef.current.value) break;
+          const partial = line.text.slice(0, c);
+          setLines((prev) => {
+            const copy = [...prev];
+            copy[copy.length - 1] = { text: partial, style: line.style };
+            return copy;
+          });
+          await sleep(line.charDelay);
         }
 
         setLines((prev) => {
@@ -165,25 +164,28 @@ export default function BootSequence({ onComplete }: BootSequenceProps) {
           return copy;
         });
 
-        await sleep(skipRef.current ? 8 : line.pauseAfter);
+        // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition -- mutated async by skip handler
+        await sleep(skipRef.current.value ? 8 : line.pauseAfter);
       }
 
-      if (cancelled) return;
+      if (state.cancelled) return;
 
       setShowLogo(true);
-      await sleep(skipRef.current ? 150 : 800);
+      // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition -- mutated async by skip handler
+      await sleep(skipRef.current.value ? 150 : 800);
 
-      if (cancelled) return;
+      // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition -- mutated async in cleanup
+      if (state.cancelled) return;
 
       if (containerRef.current) {
         gsap.to(containerRef.current, {
           opacity: 0,
           scale: 1.02,
           filter: "brightness(1.5)",
-          duration: skipRef.current ? 0.25 : 0.6,
+          duration: skipRef.current.value ? 0.25 : 0.6,
           ease: "power2.in",
           onComplete: () => {
-            if (!cancelled) onCompleteRef.current();
+            if (!state.cancelled) onCompleteRef.current();
           },
         });
       } else {
@@ -192,8 +194,8 @@ export default function BootSequence({ onComplete }: BootSequenceProps) {
     })();
 
     return () => {
-      cancelled = true;
-      timeoutsRef.current.forEach((id) => clearTimeout(id));
+      state.cancelled = true;
+      for (const id of timeoutsRef.current) clearTimeout(id);
     };
   }, []); // eslint-disable-line react-hooks/exhaustive-deps -- runs once on mount
 
@@ -211,12 +213,12 @@ export default function BootSequence({ onComplete }: BootSequenceProps) {
 
   useEffect(() => {
     const handleSkip = () => {
-      if (!skipRef.current) {
-        skipRef.current = true;
-        timeoutsRef.current.forEach((id) => clearTimeout(id));
+      if (!skipRef.current.value) {
+        skipRef.current.value = true;
+        for (const id of timeoutsRef.current) clearTimeout(id);
         timeoutsRef.current = [];
         // Resolve all pending sleep promises so the async loop continues
-        pendingResolvesRef.current.forEach((resolve) => resolve());
+        for (const resolve of pendingResolvesRef.current) resolve();
         pendingResolvesRef.current = [];
       }
     };
