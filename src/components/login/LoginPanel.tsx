@@ -18,77 +18,62 @@ export default function LoginPanel({ onLogin }: { onLogin: () => void }) {
   const exitingRef = useRef(false);
 
   useEffect(() => {
-    if (!containerRef.current) return;
+    const el = containerRef.current;
+    if (!el) return;
 
-    const ctx = gsap.context(() => {
-      const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
+    const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
 
-      tl.from(".login-title", {
-        opacity: 0,
-        y: 30,
-        scale: 0.97,
-        duration: 0.7,
-      })
-        .from(
-          ".login-alias",
-          {
-            opacity: 0,
-            y: 15,
-            duration: 0.4,
-          },
-          "-=0.35"
-        )
-        .from(
-          ".login-role",
-          {
-            opacity: 0,
-            y: 15,
-            duration: 0.4,
-          },
-          "-=0.25"
-        )
-        .from(
-          ".login-badges span",
-          {
-            opacity: 0,
-            scale: 0.8,
-            y: 10,
-            duration: 0.3,
-            stagger: { each: 0.06, from: "center" },
-          },
-          "-=0.2"
-        )
-        .from(
-          ".login-tagline",
-          {
-            opacity: 0,
-            y: 10,
-            duration: 0.4,
-          },
-          "-=0.15"
-        )
-        .from(
-          ".login-cta",
-          {
-            opacity: 0,
-            y: 20,
-            scale: 0.95,
-            duration: 0.5,
-            ease: "back.out(1.4)",
-          },
-          "-=0.2"
-        )
-        .from(
-          ".login-hint",
-          {
-            opacity: 0,
-            duration: 0.3,
-          },
-          "-=0.1"
-        );
-    }, containerRef.current);
+    tl.from(el.querySelector(".login-title"), {
+      opacity: 0,
+      y: 30,
+      scale: 0.97,
+      duration: 0.7,
+    })
+      .from(
+        el.querySelector(".login-alias"),
+        { opacity: 0, y: 15, duration: 0.4 },
+        "-=0.35"
+      )
+      .from(
+        el.querySelector(".login-role"),
+        { opacity: 0, y: 15, duration: 0.4 },
+        "-=0.25"
+      )
+      .from(
+        el.querySelectorAll(".login-badges .badge"),
+        {
+          opacity: 0,
+          scale: 0.8,
+          y: 10,
+          duration: 0.3,
+          stagger: { each: 0.06, from: "center" },
+        },
+        "-=0.2"
+      )
+      .from(
+        el.querySelector(".login-tagline"),
+        { opacity: 0, y: 10, duration: 0.4 },
+        "-=0.15"
+      )
+      .from(
+        el.querySelectorAll(".login-metrics > span"),
+        { opacity: 0, y: 8, duration: 0.3, stagger: 0.06 },
+        "-=0.1"
+      )
+      .from(
+        el.querySelector(".login-cta"),
+        { opacity: 0, y: 20, scale: 0.95, duration: 0.5, ease: "back.out(1.4)" },
+        "-=0.2"
+      )
+      .from(
+        el.querySelector(".login-hint"),
+        { opacity: 0, duration: 0.3 },
+        "-=0.1"
+      );
 
-    return () => ctx.revert();
+    return () => {
+      tl.kill();
+    };
   }, []);
 
   const handleLogin = () => {
@@ -135,11 +120,26 @@ export default function LoginPanel({ onLogin }: { onLogin: () => void }) {
           <span class="badge badge-cyan">LLM Defense</span>
         </div>
 
-        <p class="login-tagline text-[var(--text-muted)] mb-8 font-mono text-sm max-w-2xl mx-auto leading-relaxed">
+        <p class="login-tagline text-[var(--text-muted)] mb-5 font-mono text-sm max-w-2xl mx-auto leading-relaxed">
           <span class="text-[var(--coral-bright)]">→</span> I break and harden AI systems before
           attackers do. Specialized in prompt injection, agent security, adversarial evaluation, and
           secure GenAI.
         </p>
+
+        {/* Key metrics — what recruiters need to see in 5 seconds */}
+        <div class="login-metrics flex items-center justify-center gap-4 sm:gap-6 mb-8 font-mono text-xs flex-wrap">
+          <span class="flex items-center gap-1.5 text-[var(--text-secondary)]">
+            <span class="text-[var(--coral-bright)]">■</span> BBVA Financial Intelligence
+          </span>
+          <span class="hidden sm:inline text-[var(--border-subtle)]">|</span>
+          <span class="flex items-center gap-1.5 text-[var(--text-secondary)]">
+            <span class="text-[var(--cyan-bright)]">■</span> HTB Global #871
+          </span>
+          <span class="hidden sm:inline text-[var(--border-subtle)]">|</span>
+          <span class="flex items-center gap-1.5 text-[var(--text-secondary)]">
+            <span class="text-[var(--blue-soft)]">■</span> 12 Machines · 41 Flags
+          </span>
+        </div>
 
         <button
           type="button"

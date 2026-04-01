@@ -103,6 +103,7 @@ export default function BootSequence({ onComplete }: BootSequenceProps) {
   const logoRef = useRef<HTMLPreElement>(null);
   const skipRef = useRef(false);
   const timeoutsRef = useRef<number[]>([]);
+  const pendingResolvesRef = useRef<Array<() => void>>([]);
   const onCompleteRef = useRef(onComplete);
   onCompleteRef.current = onComplete;
 
@@ -119,6 +120,7 @@ export default function BootSequence({ onComplete }: BootSequenceProps) {
         }
         const id = window.setTimeout(resolve, ms);
         timeoutsRef.current.push(id);
+        pendingResolvesRef.current.push(resolve);
       }),
     []
   );
@@ -213,6 +215,9 @@ export default function BootSequence({ onComplete }: BootSequenceProps) {
         skipRef.current = true;
         timeoutsRef.current.forEach((id) => clearTimeout(id));
         timeoutsRef.current = [];
+        // Resolve all pending sleep promises so the async loop continues
+        pendingResolvesRef.current.forEach((resolve) => resolve());
+        pendingResolvesRef.current = [];
       }
     };
 
