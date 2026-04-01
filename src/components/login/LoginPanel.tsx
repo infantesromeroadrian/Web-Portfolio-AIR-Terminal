@@ -21,43 +21,50 @@ export default function LoginPanel({ onLogin }: { onLogin: () => void }) {
     const el = containerRef.current;
     if (!el) return;
 
+    // Set initial hidden state via GSAP (not CSS, so elements are visible if GSAP fails)
+    const allTargets = [
+      el.querySelector(".login-title"),
+      el.querySelector(".login-alias"),
+      el.querySelector(".login-role"),
+      ...el.querySelectorAll(".login-badges .badge"),
+      el.querySelector(".login-tagline"),
+      ...el.querySelectorAll(".login-metrics > span"),
+      el.querySelector(".login-cta"),
+      el.querySelector(".login-hint"),
+    ].filter(Boolean);
+
+    gsap.set(allTargets, { opacity: 0, y: 15 });
+
     const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
 
-    tl.from(el.querySelector(".login-title"), {
-      opacity: 0,
-      y: 30,
-      scale: 0.97,
-      duration: 0.7,
-    })
-      .from(el.querySelector(".login-alias"), { opacity: 0, y: 15, duration: 0.4 }, "-=0.35")
-      .from(el.querySelector(".login-role"), { opacity: 0, y: 15, duration: 0.4 }, "-=0.25")
-      .from(
+    tl.to(el.querySelector(".login-title"), { opacity: 1, y: 0, scale: 1, duration: 0.7 })
+      .to(el.querySelector(".login-alias"), { opacity: 1, y: 0, duration: 0.4 }, "-=0.35")
+      .to(el.querySelector(".login-role"), { opacity: 1, y: 0, duration: 0.4 }, "-=0.25")
+      .to(
         el.querySelectorAll(".login-badges .badge"),
         {
-          opacity: 0,
-          scale: 0.8,
-          y: 10,
+          opacity: 1,
+          scale: 1,
+          y: 0,
           duration: 0.3,
           stagger: { each: 0.06, from: "center" },
         },
         "-=0.2"
       )
-      .from(el.querySelector(".login-tagline"), { opacity: 0, y: 10, duration: 0.4 }, "-=0.15")
-      .from(
+      .to(el.querySelector(".login-tagline"), { opacity: 1, y: 0, duration: 0.4 }, "-=0.15")
+      .to(
         el.querySelectorAll(".login-metrics > span"),
-        { opacity: 0, y: 8, duration: 0.3, stagger: 0.06 },
+        { opacity: 1, y: 0, duration: 0.3, stagger: 0.06 },
         "-=0.1"
       )
-      .from(
+      .to(
         el.querySelector(".login-cta"),
-        { opacity: 0, y: 20, scale: 0.95, duration: 0.5, ease: "back.out(1.4)" },
+        { opacity: 1, y: 0, scale: 1, duration: 0.5, ease: "back.out(1.4)" },
         "-=0.2"
       )
-      .from(el.querySelector(".login-hint"), { opacity: 0, duration: 0.3 }, "-=0.1");
+      .to(el.querySelector(".login-hint"), { opacity: 1, duration: 0.3 }, "-=0.1");
 
-    return () => {
-      tl.kill();
-    };
+    // No cleanup — let timeline complete naturally
   }, []);
 
   const handleLogin = () => {
