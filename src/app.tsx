@@ -26,6 +26,7 @@ import ChatBubble from "./components/chat/ChatBubble";
 const TacticalGlobe = lazy(() => import("./components/background/TacticalGlobe"));
 
 import CRTEffect from "./components/effects/CRTEffect";
+import CursorGlow from "./components/effects/CursorGlow";
 
 // Hook que encapsula toda la lógica de la terminal
 import { useTerminal } from "./core/hooks/useTerminal";
@@ -114,6 +115,9 @@ function AppContent() {
 
   return (
     <div class="relative min-h-screen flex flex-col">
+      {/* Cursor glow — follows mouse on desktop */}
+      {stage !== "boot" && <CursorGlow />}
+
       {/* Secuencia de arranque BIOS */}
       {stage === "boot" && (
         <BootSequence

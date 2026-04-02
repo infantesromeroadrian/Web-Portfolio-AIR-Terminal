@@ -1,18 +1,141 @@
 /**
- * Panel de login inicial - Con globo 3D de fondo.
+ * Panel de login — Landing page que impresiona.
  *
- * Entrance: CSS keyframe animations with staggered delays (reliable in Preact).
- * Exit: GSAP for smooth coordinated fade-out before navigating to terminal.
+ * Efectos:
+ *  - Split text: cada letra del nombre entra con flip 3D + blur
+ *  - Scramble decode: el rol se "desencripta" de caracteres random
+ *  - Magnetic button: el CTA se mueve sutilmente hacia el cursor
+ *  - Glitch alias: L4tentNoise tiene glitch on hover
+ *  - Staggered CSS para badges y métricas
+ *  - GSAP exit solo para la transición a terminal
  */
 
-import { useRef } from "preact/hooks";
+import { useEffect, useRef } from "preact/hooks";
 import gsap from "gsap";
+
+/* ── Split Text ─────────────────────────────────────────────── */
+
+function SplitText({
+  text,
+  baseDelay,
+  className,
+}: {
+  text: string;
+  baseDelay: number;
+  className?: string;
+}) {
+  return (
+    <>
+      {text.split("").map((char, i) => (
+        <span
+          key={i}
+          class={`animate-letter-in ${className ?? ""}`}
+          style={{ animationDelay: `${baseDelay + i * 35}ms` }}
+        >
+          {char === " " ? "\u00A0" : char}
+        </span>
+      ))}
+    </>
+  );
+}
+
+/* ── Scramble Decode Text ───────────────────────────────────── */
+
+function ScrambleText({ text, delay }: { text: string; delay: number }) {
+  const spanRef = useRef<HTMLSpanElement>(null);
+
+  useEffect(() => {
+    const el = spanRef.current;
+    if (!el) return;
+    el.textContent = "";
+
+    const chars = "!<>-_\\/[]{}—=+*^?#@$%&01";
+    let frame: number;
+    let iteration = 0;
+
+    const timer = setTimeout(() => {
+      const animate = (): void => {
+        el.textContent = text
+          .split("")
+          .map((char, i) => {
+            if (char === " " || char === "|") return char;
+            if (i < iteration) return char;
+            return chars[Math.floor(Math.random() * chars.length)];
+          })
+          .join("");
+
+        iteration += 0.5;
+
+        if (iteration < text.length) {
+          frame = requestAnimationFrame(animate);
+        } else {
+          el.textContent = text;
+        }
+      };
+      frame = requestAnimationFrame(animate);
+    }, delay);
+
+    return () => {
+      clearTimeout(timer);
+      cancelAnimationFrame(frame);
+    };
+  }, [text, delay]);
+
+  return <span ref={spanRef} />;
+}
+
+/* ── Magnetic Button ────────────────────────────────────────── */
+
+function MagneticButton({
+  children,
+  onClick,
+  className,
+  style,
+}: {
+  children: preact.ComponentChildren;
+  onClick: () => void;
+  className: string;
+  style: Record<string, string>;
+}) {
+  const btnRef = useRef<HTMLButtonElement>(null);
+
+  const handleMouseMove = (e: MouseEvent): void => {
+    const btn = btnRef.current;
+    if (!btn) return;
+    const rect = btn.getBoundingClientRect();
+    const x = e.clientX - rect.left - rect.width / 2;
+    const y = e.clientY - rect.top - rect.height / 2;
+    btn.style.transform = `translate(${x * 0.18}px, ${y * 0.25}px)`;
+  };
+
+  const handleMouseLeave = (): void => {
+    if (btnRef.current) {
+      btnRef.current.style.transform = "translate(0, 0)";
+    }
+  };
+
+  return (
+    <button
+      ref={btnRef}
+      type="button"
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      onClick={onClick}
+      class={`magnetic-btn ${className}`}
+      style={style}
+    >
+      {children}
+    </button>
+  );
+}
+
+/* ── Login Panel ────────────────────────────────────────────── */
 
 export default function LoginPanel({ onLogin }: { onLogin: () => void }) {
   const containerRef = useRef<HTMLDivElement>(null);
   const exitingRef = useRef(false);
 
-  const handleLogin = () => {
+  const handleLogin = (): void => {
     if (exitingRef.current) return;
     exitingRef.current = true;
 
@@ -36,123 +159,102 @@ export default function LoginPanel({ onLogin }: { onLogin: () => void }) {
       ref={containerRef}
       class="w-full max-w-5xl px-4 relative z-10 flex flex-col items-center justify-center min-h-[70vh]"
     >
-      <div class="text-center">
-        <h1
-          class="font-display text-4xl sm:text-5xl md:text-6xl font-bold mb-1 animate-fade-slide-up"
-          style={{ animationDelay: "0ms" }}
-        >
-          <span class="text-gradient">Adrian Infantes</span>
+      <div class="text-center" style={{ perspective: "800px" }}>
+        {/* Split text name — each letter flips in from below */}
+        <h1 class="font-display text-4xl sm:text-5xl md:text-6xl font-bold mb-1">
+          <span class="text-gradient">
+            <SplitText text="Adrian" baseDelay={100} />
+            {"\u00A0"}
+            <SplitText text="Infantes" baseDelay={320} />
+          </span>
         </h1>
 
+        {/* Alias with glitch on hover */}
         <p
-          class="font-mono text-sm sm:text-base tracking-widest mb-4 text-[var(--cyan-bright)] opacity-0 animate-fade-slide-up"
-          style={{ animationDelay: "120ms" }}
+          class="font-mono text-sm sm:text-base tracking-widest mb-4 text-[var(--cyan-bright)] opacity-0 animate-fade-slide-up glitch-subtle"
+          style={{ animationDelay: "600ms" }}
+          data-text="aka L4tentNoise"
         >
           <span class="text-[var(--text-muted)]">aka</span> L4tentNoise
         </p>
 
+        {/* Role — scramble decode effect */}
         <p
           class="text-[var(--text-secondary)] text-lg sm:text-xl mb-4 opacity-0 animate-fade-slide-up"
-          style={{ animationDelay: "220ms" }}
+          style={{ animationDelay: "700ms" }}
         >
-          AI Red Teamer | ML Security Engineer
+          <ScrambleText text="AI Red Teamer | ML Security Engineer" delay={900} />
         </p>
 
+        {/* Badges with stagger */}
         <div class="flex items-center justify-center gap-3 mb-7 flex-wrap">
-          <span
-            class="badge badge-red opacity-0 animate-fade-slide-up"
-            style={{ animationDelay: "320ms" }}
-          >
-            Prompt Injection
-          </span>
-          <span
-            class="badge badge-coral opacity-0 animate-fade-slide-up"
-            style={{ animationDelay: "380ms" }}
-          >
-            Agent Security
-          </span>
-          <span
-            class="badge badge-blue opacity-0 animate-fade-slide-up"
-            style={{ animationDelay: "440ms" }}
-          >
-            Adversarial ML
-          </span>
-          <span
-            class="badge badge-cyan opacity-0 animate-fade-slide-up"
-            style={{ animationDelay: "500ms" }}
-          >
-            LLM Defense
-          </span>
+          {["Prompt Injection", "Agent Security", "Adversarial ML", "LLM Defense"].map(
+            (label, i) => (
+              <span
+                key={label}
+                class={`badge badge-${["red", "coral", "blue", "cyan"][i]} opacity-0 animate-fade-slide-up`}
+                style={{ animationDelay: `${820 + i * 70}ms` }}
+              >
+                {label}
+              </span>
+            )
+          )}
         </div>
 
+        {/* Tagline */}
         <p
           class="text-[var(--text-muted)] mb-5 font-mono text-sm max-w-2xl mx-auto leading-relaxed opacity-0 animate-fade-slide-up"
-          style={{ animationDelay: "560ms" }}
+          style={{ animationDelay: "1100ms" }}
         >
           <span class="text-[var(--coral-bright)]">→</span> I break and harden AI systems before
           attackers do. Specialized in prompt injection, agent security, adversarial evaluation, and
           secure GenAI.
         </p>
 
-        {/* Key metrics — what recruiters need to see in 5 seconds */}
+        {/* Key metrics */}
         <div class="flex items-center justify-center gap-4 sm:gap-6 mb-8 font-mono text-xs flex-wrap">
-          <span
-            class="flex items-center gap-1.5 text-[var(--text-secondary)] opacity-0 animate-fade-slide-up"
-            style={{ animationDelay: "640ms" }}
-          >
-            <span class="text-[var(--coral-bright)]">■</span> BBVA Financial Intelligence
-          </span>
-          <span
-            class="hidden sm:inline text-[var(--border-subtle)] opacity-0 animate-fade-slide-up"
-            style={{ animationDelay: "680ms" }}
-          >
-            |
-          </span>
-          <span
-            class="flex items-center gap-1.5 text-[var(--text-secondary)] opacity-0 animate-fade-slide-up"
-            style={{ animationDelay: "720ms" }}
-          >
-            <span class="text-[var(--cyan-bright)]">■</span> HTB Global #871
-          </span>
-          <span
-            class="hidden sm:inline text-[var(--border-subtle)] opacity-0 animate-fade-slide-up"
-            style={{ animationDelay: "760ms" }}
-          >
-            |
-          </span>
-          <span
-            class="flex items-center gap-1.5 text-[var(--text-secondary)] opacity-0 animate-fade-slide-up"
-            style={{ animationDelay: "800ms" }}
-          >
-            <span class="text-[var(--blue-soft)]">■</span> 12 Machines · 41 Flags
-          </span>
+          {[
+            { color: "var(--coral-bright)", text: "BBVA Financial Intelligence" },
+            { color: "var(--cyan-bright)", text: "HTB Global #871" },
+            { color: "var(--blue-soft)", text: "12 Machines · 41 Flags" },
+          ].map((metric, i) => (
+            <span
+              key={metric.text}
+              class="flex items-center gap-1.5 text-[var(--text-secondary)] opacity-0 animate-fade-slide-up"
+              style={{ animationDelay: `${1200 + i * 80}ms` }}
+            >
+              <span style={{ color: metric.color }}>■</span> {metric.text}
+            </span>
+          ))}
         </div>
 
-        <button
-          type="button"
-          onClick={handleLogin}
-          class="px-10 py-4 rounded-xl font-display font-semibold text-lg btn-cta btn-press focus-ring opacity-0 animate-fade-slide-up"
-          style={{
-            animationDelay: "880ms",
-            background: "linear-gradient(135deg, var(--coral-bright) 0%, var(--coral-mid) 100%)",
-            color: "white",
-            boxShadow: "0 4px 30px rgba(255, 77, 77, 0.4)",
-          }}
-        >
-          Review My Work →
-        </button>
+        {/* Magnetic CTA button */}
+        <div class="opacity-0 animate-fade-slide-up" style={{ animationDelay: "1450ms" }}>
+          <MagneticButton
+            onClick={handleLogin}
+            className="px-10 py-4 rounded-xl font-display font-semibold text-lg btn-cta btn-press focus-ring"
+            style={{
+              background: "linear-gradient(135deg, var(--coral-bright) 0%, var(--coral-mid) 100%)",
+              color: "white",
+              boxShadow: "0 4px 30px rgba(255, 77, 77, 0.4)",
+            }}
+          >
+            Review My Work →
+          </MagneticButton>
+        </div>
 
         <p
           class="text-[var(--text-muted)] text-xs font-mono mt-5 opacity-0 animate-fade-slide-up"
-          style={{ animationDelay: "960ms" }}
+          style={{ animationDelay: "1550ms" }}
         >
           Start with whoami, proyectos, or classify
         </p>
       </div>
 
+      {/* Character video */}
       <div
         class="relative mt-6 opacity-0 animate-fade-slide-up"
-        style={{ animationDelay: "400ms" }}
+        style={{ animationDelay: "900ms" }}
       >
         <div
           class="absolute inset-0 blur-3xl opacity-30"
@@ -162,16 +264,13 @@ export default function LoginPanel({ onLogin }: { onLogin: () => void }) {
             transform: "scale(1.5)",
           }}
         />
-
         <video
           autoPlay
           loop
           muted
           playsInline
           class="relative w-[24rem] h-auto sm:w-[30rem] md:w-[38rem] max-w-full opacity-90"
-          style={{
-            filter: "drop-shadow(0 0 18px rgba(255, 77, 77, 0.18))",
-          }}
+          style={{ filter: "drop-shadow(0 0 18px rgba(255, 77, 77, 0.18))" }}
         >
           <source src={`${import.meta.env.BASE_URL}character-intro.webm`} type="video/webm" />
           <source src={`${import.meta.env.BASE_URL}character-intro.mp4`} type="video/mp4" />
