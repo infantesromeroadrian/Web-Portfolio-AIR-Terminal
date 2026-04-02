@@ -24,9 +24,18 @@ const RISK_BARS: Record<string, string> = {
   SAFE: "░░░░░░░░░░░░░░░░░░░░ <50%",
 };
 
+/** Escape HTML entities — defense in depth alongside DOMPurify */
+function htmlEscape(str: string): string {
+  return str
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
+}
+
 export function formatClassifyResult(result: ClassificationResult, input: string): string {
   const riskColor = RISK_COLORS[result.riskLevel] || "#888888";
-  const truncatedInput = input.length > 80 ? input.slice(0, 77) + "..." : input;
+  const truncatedInput = htmlEscape(input.length > 80 ? input.slice(0, 77) + "..." : input);
 
   const header = result.isInjection
     ? `<span style="color:#ff3333">⚠  PROMPT INJECTION DETECTED</span>`

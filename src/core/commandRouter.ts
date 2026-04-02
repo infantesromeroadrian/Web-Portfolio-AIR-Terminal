@@ -381,7 +381,19 @@ function handleClassifyCommand(trimmed: string, actions: TerminalActions): void 
   runSingleClassification(text, actions);
 }
 
+// Rate limiting — max 2 concurrent inferences to prevent client-side DoS
+let activeInferences = 0;
+const MAX_CONCURRENT_INFERENCES = 2;
+
 function runSingleClassification(text: string, actions: TerminalActions): void {
+  if (activeInferences >= MAX_CONCURRENT_INFERENCES) {
+    actions.print(
+      '<span style="color:#ffff66">[BUSY]</span> Classifier is busy. Wait for current inference to complete.'
+    );
+    return;
+  }
+
+  activeInferences++;
   let lastProgressLine = "";
 
   actions.print(
@@ -404,6 +416,9 @@ function runSingleClassification(text: string, actions: TerminalActions): void {
     .catch((err: unknown) => {
       const msg = err instanceof Error ? err.message : "Unknown error";
       actions.print(formatClassifyError(msg));
+    })
+    .finally(() => {
+      activeInferences--;
     });
 }
 

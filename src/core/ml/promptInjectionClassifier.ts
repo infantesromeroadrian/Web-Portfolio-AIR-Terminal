@@ -154,10 +154,19 @@ function calculateRiskLevel(
  * // { label: "INJECTION", score: 0.98, isInjection: true, riskLevel: "CRITICAL", ... }
  * ```
  */
+const MAX_INPUT_LENGTH = 5000;
+
 export async function classifyPromptInjection(
   text: string,
   onProgress?: ProgressCallback
 ): Promise<ClassificationResult> {
+  if (text.length > MAX_INPUT_LENGTH) {
+    throw new Error(
+      `Input too long (${text.length} chars, max ${MAX_INPUT_LENGTH}). ` +
+        `The DeBERTa model expects typical prompts, not documents.`
+    );
+  }
+
   const classifier = await getClassifier(onProgress);
 
   const startTime = performance.now();
