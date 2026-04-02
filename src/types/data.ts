@@ -237,6 +237,7 @@ export interface TerminalState {
   isTypingCommand: boolean;
   hasInteracted: boolean;
   commandHistory: string[];
+  lastCommand: string;
   availableCommands: string[];
   runCommand: (cmd: string) => Promise<void>;
   /** Ejecuta un comando escrito por el usuario (sin animación de typing) */

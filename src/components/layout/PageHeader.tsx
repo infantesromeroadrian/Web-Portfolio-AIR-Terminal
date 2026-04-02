@@ -125,9 +125,14 @@ function HamburgerIcon({ isOpen }: { isOpen: boolean }) {
 interface PageHeaderProps {
   runCommand: (cmd: string) => Promise<void>;
   isL4tentMode?: boolean;
+  activeCommand?: string;
 }
 
-export default function PageHeader({ runCommand, isL4tentMode = false }: PageHeaderProps) {
+export default function PageHeader({
+  runCommand,
+  isL4tentMode = false,
+  activeCommand,
+}: PageHeaderProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const handleCommand = (cmd: string) => {
@@ -168,7 +173,9 @@ export default function PageHeader({ runCommand, isL4tentMode = false }: PageHea
             {NAV_ITEMS.map((item) => (
               <button
                 key={item.command}
-                class="px-3 py-1.5 rounded-lg font-mono text-xs text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--coral-bright)]/10 transition-all duration-200 whitespace-nowrap"
+                class={`px-3 py-1.5 rounded-lg font-mono text-xs hover:text-[var(--text-primary)] hover:bg-[var(--coral-bright)]/10 transition-all duration-200 whitespace-nowrap ${
+                  activeCommand === item.command ? "nav-active" : "text-[var(--text-secondary)]"
+                }`}
                 onClick={() => {
                   handleCommand(item.command);
                 }}

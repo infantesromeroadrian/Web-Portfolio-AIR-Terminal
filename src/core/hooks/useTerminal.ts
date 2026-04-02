@@ -64,6 +64,7 @@ export function useTerminal(options: UseTerminalOptions = {}) {
    * Permite navegar con ↑↓ en el input.
    */
   const [commandHistory, setCommandHistory] = useState<string[]>([]);
+  const [lastCommand, setLastCommand] = useState<string>("");
 
   /**
    * Ref para trackear si el usuario ha interactuado.
@@ -173,6 +174,7 @@ export function useTerminal(options: UseTerminalOptions = {}) {
       setCommandHistory((prev) => [...prev, cmd.trim()]);
     }
 
+    setLastCommand(cmd.trim());
     clear();
     await typeCommand(cmd);
     runResolve(cmd);
@@ -204,6 +206,7 @@ export function useTerminal(options: UseTerminalOptions = {}) {
     }
 
     // Ejecutar el comando
+    setLastCommand(trimmedCmd);
     runResolve(trimmedCmd);
   }
 
@@ -214,6 +217,7 @@ export function useTerminal(options: UseTerminalOptions = {}) {
     isTypingCommand,
     hasInteracted,
     commandHistory,
+    lastCommand,
     availableCommands: AVAILABLE_COMMANDS,
     runCommand,
     executeUserCommand,

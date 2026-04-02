@@ -163,16 +163,16 @@ export default function LoginPanel({ onLogin }: { onLogin: () => void }) {
         {/* Split text name — each letter flips in from below */}
         <h1 class="font-display text-4xl sm:text-5xl md:text-6xl font-bold mb-1">
           <span class="text-gradient">
-            <SplitText text="Adrian" baseDelay={100} />
+            <SplitText text="Adrian" baseDelay={50} />
             {"\u00A0"}
-            <SplitText text="Infantes" baseDelay={320} />
+            <SplitText text="Infantes" baseDelay={200} />
           </span>
         </h1>
 
         {/* Alias with glitch on hover */}
         <p
           class="font-mono text-sm sm:text-base tracking-widest mb-4 text-[var(--cyan-bright)] opacity-0 animate-fade-slide-up glitch-subtle"
-          style={{ animationDelay: "600ms" }}
+          style={{ animationDelay: "350ms" }}
           data-text="aka L4tentNoise"
         >
           <span class="text-[var(--text-muted)]">aka</span> L4tentNoise
@@ -181,9 +181,9 @@ export default function LoginPanel({ onLogin }: { onLogin: () => void }) {
         {/* Role — scramble decode effect */}
         <p
           class="text-[var(--text-secondary)] text-lg sm:text-xl mb-4 opacity-0 animate-fade-slide-up"
-          style={{ animationDelay: "700ms" }}
+          style={{ animationDelay: "450ms" }}
         >
-          <ScrambleText text="AI Red Teamer | ML Security Engineer" delay={900} />
+          <ScrambleText text="AI Red Teamer | ML Security Engineer" delay={550} />
         </p>
 
         {/* Badges with stagger */}
@@ -193,7 +193,7 @@ export default function LoginPanel({ onLogin }: { onLogin: () => void }) {
               <span
                 key={label}
                 class={`badge badge-${["red", "coral", "blue", "cyan"][i]} opacity-0 animate-fade-slide-up`}
-                style={{ animationDelay: `${820 + i * 70}ms` }}
+                style={{ animationDelay: `${550 + i * 60}ms` }}
               >
                 {label}
               </span>
@@ -204,7 +204,7 @@ export default function LoginPanel({ onLogin }: { onLogin: () => void }) {
         {/* Tagline */}
         <p
           class="text-[var(--text-muted)] mb-5 font-mono text-sm max-w-2xl mx-auto leading-relaxed opacity-0 animate-fade-slide-up"
-          style={{ animationDelay: "1100ms" }}
+          style={{ animationDelay: "800ms" }}
         >
           <span class="text-[var(--coral-bright)]">→</span> I break and harden AI systems before
           attackers do. Specialized in prompt injection, agent security, adversarial evaluation, and
@@ -221,7 +221,7 @@ export default function LoginPanel({ onLogin }: { onLogin: () => void }) {
             <span
               key={metric.text}
               class="flex items-center gap-1.5 text-[var(--text-secondary)] opacity-0 animate-fade-slide-up"
-              style={{ animationDelay: `${1200 + i * 80}ms` }}
+              style={{ animationDelay: `${900 + i * 60}ms` }}
             >
               <span style={{ color: metric.color }}>■</span> {metric.text}
             </span>
@@ -229,7 +229,7 @@ export default function LoginPanel({ onLogin }: { onLogin: () => void }) {
         </div>
 
         {/* Magnetic CTA button */}
-        <div class="opacity-0 animate-fade-slide-up" style={{ animationDelay: "1450ms" }}>
+        <div class="opacity-0 animate-fade-slide-up" style={{ animationDelay: "1100ms" }}>
           <MagneticButton
             onClick={handleLogin}
             className="px-10 py-4 rounded-xl font-display font-semibold text-lg btn-cta btn-press focus-ring"
@@ -245,7 +245,7 @@ export default function LoginPanel({ onLogin }: { onLogin: () => void }) {
 
         <p
           class="text-[var(--text-muted)] text-xs font-mono mt-5 opacity-0 animate-fade-slide-up"
-          style={{ animationDelay: "1550ms" }}
+          style={{ animationDelay: "1200ms" }}
         >
           Start with whoami, proyectos, or classify
         </p>
@@ -254,7 +254,7 @@ export default function LoginPanel({ onLogin }: { onLogin: () => void }) {
       {/* Character video */}
       <div
         class="relative mt-6 opacity-0 animate-fade-slide-up"
-        style={{ animationDelay: "900ms" }}
+        style={{ animationDelay: "600ms" }}
       >
         <div
           class="absolute inset-0 blur-3xl opacity-30"

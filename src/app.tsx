@@ -151,7 +151,11 @@ function AppContent() {
 
       {/* Header visible solo en modo terminal */}
       {stage === "terminal" && (
-        <PageHeader runCommand={terminal.runCommand} isL4tentMode={isL4tentMode} />
+        <PageHeader
+          runCommand={terminal.runCommand}
+          isL4tentMode={isL4tentMode}
+          activeCommand={terminal.lastCommand}
+        />
       )}
 
       {/* Contenedor principal de contenido */}

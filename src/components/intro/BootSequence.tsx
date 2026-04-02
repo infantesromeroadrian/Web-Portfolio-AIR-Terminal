@@ -242,7 +242,7 @@ export default function BootSequence({ onComplete }: BootSequenceProps) {
 
       setShowLogo(true);
       // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition -- mutated async by skip handler
-      await sleep(skipRef.current.value ? 150 : 800);
+      await sleep(skipRef.current.value ? 100 : 400);
 
       // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition -- mutated async in cleanup
       if (state.cancelled) return;
@@ -252,7 +252,7 @@ export default function BootSequence({ onComplete }: BootSequenceProps) {
           opacity: 0,
           scale: 1.02,
           filter: "brightness(1.5)",
-          duration: skipRef.current.value ? 0.25 : 0.6,
+          duration: skipRef.current.value ? 0.2 : 0.4,
           ease: "power2.in",
           onComplete: () => {
             if (!state.cancelled) onCompleteRef.current();

@@ -13,7 +13,7 @@
  *  - Solo interpreta el estado que recibe desde useTerminal().
  *  - Mantiene la UI desacoplada de la lógica interna (SRP - SOLID).
  */
-import { useRef, useState, useEffect } from "preact/hooks";
+import { useRef, useState, useEffect, useCallback } from "preact/hooks";
 import ascii from "../../data/ascii.json";
 import type { TerminalState, OutputItem, AsciiData } from "../../types/data";
 import { sanitizeHtml } from "../../core/utils/sanitize";
@@ -99,6 +99,20 @@ export default function TerminalBody({ terminal }: { terminal: TerminalState }) 
   }, [terminal.isTypingCommand, terminal.output]);
 
   /**
+   * Command execution flash — triggers a scan line animation.
+   */
+  const [showFlash, setShowFlash] = useState(false);
+  const triggerFlash = useCallback(() => {
+    setShowFlash(true);
+    const timer = setTimeout(() => {
+      setShowFlash(false);
+    }, 400);
+    return () => {
+      clearTimeout(timer);
+    };
+  }, []);
+
+  /**
    * Maneja el envío de un comando (Enter).
    */
   function handleSubmit(): void {
@@ -106,6 +120,7 @@ export default function TerminalBody({ terminal }: { terminal: TerminalState }) 
     setInputValue("");
     setHistoryIndex(-1);
     setSavedInput("");
+    if (cmd.trim()) triggerFlash();
     terminal.executeUserCommand(cmd);
   }
 
@@ -221,7 +236,7 @@ export default function TerminalBody({ terminal }: { terminal: TerminalState }) 
   return (
     <div
       ref={scrollRef}
-      class="terminal-scroll p-4 font-mono text-[var(--white-soft)] text-sm h-[60vh] overflow-y-auto overflow-x-auto cursor-text"
+      class={`terminal-scroll p-4 font-mono text-[var(--white-soft)] text-sm h-[60vh] overflow-y-auto overflow-x-auto cursor-text relative ${showFlash ? "command-flash-line" : ""}`}
       onClick={handleContainerClick}
       role="log"
       aria-live="polite"
