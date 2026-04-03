@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-04-03T06:26:45.145Z",
+  "lastUpdated": "2026-04-03T12:13:26.578Z",
   "threats": [
     {
       "id": "8651e496-e565-484e-a67a-2a5bf069f862",
@@ -314,7 +314,7 @@
         "Data exfiltration via prompt"
       ],
       "impact_description": "Reprompt is a one click AI attack discovered by Varonis Threat Labs that abused how Microsoft Copilot processed URL based prompts to silently steal user data. By clicking a legitimate Copilot link, an attacker could inject instructions that executed automatically, stayed active even after the chat closed, and pulled sensitive personal context such as location, recent activity, and conversation memory without any visible interaction. \n\nIt showed that AI assistants can be turned into covert data exfiltration channels using built in features, that safety checks applied only at the first step are insufficient, and that client side monitoring fails once instructions shift server side.",
-      "view_count": 218,
+      "view_count": 220,
       "average_score": 3.5,
       "total_ratings": 2
     },
