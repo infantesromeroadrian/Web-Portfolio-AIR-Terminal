@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-04-02T18:17:28.608Z",
+  "lastUpdated": "2026-04-03T00:23:52.146Z",
   "threats": [
     {
       "id": "8651e496-e565-484e-a67a-2a5bf069f862",
@@ -244,7 +244,7 @@
         "Hidden instruction in code or comments"
       ],
       "impact_description": "The attacker's goal is to trick an LLM-based system, specifically one designed to review, validate, or moderate advertisements, into approving content that would otherwise be rejected (because it is a scam). The attackers used 24 different methods to deliver essentially the same malicious prompt to maximize their chances of success and bypass security tools (that scan for prompt injection patterns).",
-      "view_count": 121,
+      "view_count": 122,
       "average_score": 5,
       "total_ratings": 1
     },
