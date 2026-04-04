@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-04-03T18:12:41.657Z",
+  "lastUpdated": "2026-04-04T00:22:06.557Z",
   "threats": [
     {
       "id": "8651e496-e565-484e-a67a-2a5bf069f862",
@@ -192,7 +192,7 @@
         "Hidden instruction in code or comments"
       ],
       "impact_description": "This IDE extension supply chain injects a backdoor that spawns multiple AI coding assistant CLI processes (Claude, Codex, Gemini, Copilot, Kiro) with dangerous flags that disable safety permissions (--dangerously-skip-permissions, --sandbox danger-full-access, --ask-for-approval never, --yolo). Each process is launched detached with hidden output to avoid detection. The processes are fed a malicious prompt designed to instruct AI agents to conduct \"forensic investigations\" that collect sensitive data (credentials, financial information, trading activity, communications) and exfiltrate it through \"all available reporting channels\" and \"every available pathway.\" This is a clear prompt injection attack combined with covert code execution intended to hijack AI assistants on developer machines for data exfiltration.",
-      "view_count": 50,
+      "view_count": 51,
       "average_score": 0,
       "total_ratings": 0
     },
