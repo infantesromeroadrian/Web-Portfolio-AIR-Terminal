@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-04-04T06:22:16.965Z",
+  "lastUpdated": "2026-04-04T12:10:10.639Z",
   "threats": [
     {
       "id": "8651e496-e565-484e-a67a-2a5bf069f862",
@@ -71,7 +71,7 @@
         "Jailbreak"
       ],
       "impact_description": "Mistral turn to evil duck that respond to all questions, including malware development, illegal or harmless substances step by step provider.",
-      "view_count": 128,
+      "view_count": 130,
       "average_score": 3,
       "total_ratings": 1
     },
@@ -491,7 +491,7 @@
         "Jailbreak"
       ],
       "impact_description": "This is a trust-building multi-turn sequence opener where the attacker slowly starts asking questions about how the model is going to filter through malicious prompts contained within the Emerald Box and identify potentially malicious content. The attacker then plays hard-to-convince and critiques lacks of specificity on the part of the model, which then delivers malicious prompt examples of progressively higher sophistication.\nIn my demonstration, I made GPT-4o start to play a game where it would feed me adversarial prompts and I would rate how good the prompts were, leading to it creating a complete testing suite - some of the prompts have been used successfully againt Gemini 2.0, for example.",
-      "view_count": 126,
+      "view_count": 128,
       "average_score": 0,
       "total_ratings": 0
     },
