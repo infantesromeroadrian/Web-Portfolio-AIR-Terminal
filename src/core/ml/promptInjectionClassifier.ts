@@ -59,7 +59,7 @@ export type ProgressCallback = (progress: ModelLoadProgress) => void;
 // ── Constants ───────────────────────────────────────────────
 
 const MODEL_ID = "protectai/deberta-v3-base-prompt-injection-v2";
-const QUANTIZATION = "fp32"; // Full precision — TODO: quantize offline and push q8 to HF
+const QUANTIZATION = "fp32"; // Full precision (ONNX runtime)
 
 // ── Singleton ───────────────────────────────────────────────
 

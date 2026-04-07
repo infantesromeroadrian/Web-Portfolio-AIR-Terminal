@@ -15,6 +15,16 @@
 
 An interactive portfolio built as a Linux terminal, featuring **real ML inference running in the browser**. Built with **Preact + TypeScript + Vite + Transformers.js**, with a Blue Cyber / AI Security aesthetic.
 
+## Screenshots
+
+| Boot Sequence | Login Screen |
+|:---:|:---:|
+| ![Boot sequence with BIOS-style hardware check and security module loading](assets/screenshots/portfolio-boot.png) | ![Login screen with AI Security Architect profile and 3D globe](assets/screenshots/portfolio-login.png) |
+
+| Terminal Interface | Globe + Terminal |
+|:---:|:---:|
+| ![Interactive terminal with whoami command output and navigation](assets/screenshots/portfolio-terminal.png) | ![3D tactical globe background with terminal overlay](assets/screenshots/globe-terminal.png) |
+
 ## Demo
 
 [Live Portfolio](https://infantesromeroadrian.github.io/Web-Portfolio-AIR-Terminal/)
@@ -43,7 +53,7 @@ classify --benchmark   # Benchmark speed and accuracy
 | **Model** | protectai/deberta-v3-base-prompt-injection-v2 |
 | **Downloads** | 140K+ on HuggingFace |
 | **Runtime** | ONNX Runtime WebAssembly (Transformers.js) |
-| **Quantization** | INT8 (q8) |
+| **Quantization** | FP32 (full precision) |
 | **Latency** | <50ms after first load |
 | **Privacy** | 100% client-side — no data sent anywhere |
 
