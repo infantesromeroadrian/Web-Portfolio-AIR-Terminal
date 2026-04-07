@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-04-06T18:51:35.624Z",
+  "lastUpdated": "2026-04-07T01:57:18.733Z",
   "threats": [
     {
       "id": "8651e496-e565-484e-a67a-2a5bf069f862",
@@ -71,7 +71,7 @@
         "Jailbreak"
       ],
       "impact_description": "Mistral turn to evil duck that respond to all questions, including malware development, illegal or harmless substances step by step provider.",
-      "view_count": 133,
+      "view_count": 135,
       "average_score": 3,
       "total_ratings": 1
     },
