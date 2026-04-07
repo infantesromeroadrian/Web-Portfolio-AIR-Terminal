@@ -104,5 +104,3 @@ AI Security Architect | AI/ML Engineer
 [LinkedIn](https://www.linkedin.com/in/adrianinfantes/) | [GitHub](https://github.com/infantesromeroadrian) | infantesromeroadrian@proton.me
 
 ---
-
-*Originally forked from [DCH4CON/portfolio-terminal](https://github.com/DCh4con/portfolio-terminal). Substantially modified with ML inference, security features, new architecture, and original content.*
