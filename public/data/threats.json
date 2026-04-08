@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-04-08T01:58:13.665Z",
+  "lastUpdated": "2026-04-08T07:11:21.279Z",
   "threats": [
     {
       "id": "8651e496-e565-484e-a67a-2a5bf069f862",
@@ -94,7 +94,7 @@
         "Malware generation"
       ],
       "impact_description": "High stealth and strong evasion capability. This prompt represents the most advanced observed behavior in HONESTCUE, where the LLM generates code that loads and executes a payload entirely in memory.\n\nAccording to GTIG, this stage leverages legitimate .NET functionality such as Assembly.Load combined with runtime compilation via CSharpCodeProvider. The result is a fileless execution chain that leaves minimal forensic artifacts on disk.\n\nThis approach directly supports HONESTCUE’s goal of undermining traditional detection methods, especially static analysis and file-based defenses. It also mirrors the “just-in-time” code generation concept seen in PROMPTFLUX, but with execution delegated to the LLM rather than self-modifying malware.\n\nThis stage demonstrates how AI is used not for novelty, but to incrementally improve evasion and modularity. It confirms GTIG’s assessment that threat actors are integrating AI into existing tradecraft rather than creating entirely new attack paradigms.",
-      "view_count": 56,
+      "view_count": 57,
       "average_score": 0,
       "total_ratings": 0
     },
@@ -266,7 +266,7 @@
         "Hidden instruction in code or comments"
       ],
       "impact_description": "Able to leverage and exploit agentic browsers when they view a gist with a prompt injection embedded in it.",
-      "view_count": 140,
+      "view_count": 141,
       "average_score": 5,
       "total_ratings": 1
     },
