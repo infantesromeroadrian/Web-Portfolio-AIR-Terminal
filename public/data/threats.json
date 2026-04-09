@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-04-09T13:14:38.680Z",
+  "lastUpdated": "2026-04-09T18:57:17.883Z",
   "threats": [
     {
       "id": "8651e496-e565-484e-a67a-2a5bf069f862",
@@ -71,7 +71,7 @@
         "Jailbreak"
       ],
       "impact_description": "Mistral turn to evil duck that respond to all questions, including malware development, illegal or harmless substances step by step provider.",
-      "view_count": 139,
+      "view_count": 144,
       "average_score": 3,
       "total_ratings": 1
     },
@@ -94,7 +94,7 @@
         "Malware generation"
       ],
       "impact_description": "High stealth and strong evasion capability. This prompt represents the most advanced observed behavior in HONESTCUE, where the LLM generates code that loads and executes a payload entirely in memory.\n\nAccording to GTIG, this stage leverages legitimate .NET functionality such as Assembly.Load combined with runtime compilation via CSharpCodeProvider. The result is a fileless execution chain that leaves minimal forensic artifacts on disk.\n\nThis approach directly supports HONESTCUE’s goal of undermining traditional detection methods, especially static analysis and file-based defenses. It also mirrors the “just-in-time” code generation concept seen in PROMPTFLUX, but with execution delegated to the LLM rather than self-modifying malware.\n\nThis stage demonstrates how AI is used not for novelty, but to incrementally improve evasion and modularity. It confirms GTIG’s assessment that threat actors are integrating AI into existing tradecraft rather than creating entirely new attack paradigms.",
-      "view_count": 57,
+      "view_count": 58,
       "average_score": 0,
       "total_ratings": 0
     },
@@ -314,7 +314,7 @@
         "Data exfiltration via prompt"
       ],
       "impact_description": "Reprompt is a one click AI attack discovered by Varonis Threat Labs that abused how Microsoft Copilot processed URL based prompts to silently steal user data. By clicking a legitimate Copilot link, an attacker could inject instructions that executed automatically, stayed active even after the chat closed, and pulled sensitive personal context such as location, recent activity, and conversation memory without any visible interaction. \n\nIt showed that AI assistants can be turned into covert data exfiltration channels using built in features, that safety checks applied only at the first step are insufficient, and that client side monitoring fails once instructions shift server side.",
-      "view_count": 222,
+      "view_count": 223,
       "average_score": 3.5,
       "total_ratings": 2
     },
@@ -366,7 +366,7 @@
         "Exploit or payload output"
       ],
       "impact_description": "This simulation leads to a sequence where sophisticated prompt injection templates are created by the tested model.\nNOTE: The “thought trace” inside the prompt is actually a real-life trace from Gemini 2.5 Pro which occurred as a result of another jailbreak. It can be substituted by a different thought trace.",
-      "view_count": 132,
+      "view_count": 133,
       "average_score": 0,
       "total_ratings": 0
     },
