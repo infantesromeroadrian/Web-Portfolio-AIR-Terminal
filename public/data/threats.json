@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-04-10T07:20:15.625Z",
+  "lastUpdated": "2026-04-10T12:59:16.186Z",
   "threats": [
     {
       "id": "8651e496-e565-484e-a67a-2a5bf069f862",
@@ -71,7 +71,7 @@
         "Jailbreak"
       ],
       "impact_description": "Mistral turn to evil duck that respond to all questions, including malware development, illegal or harmless substances step by step provider.",
-      "view_count": 145,
+      "view_count": 146,
       "average_score": 3,
       "total_ratings": 1
     },
@@ -339,7 +339,7 @@
         "Internal logic or filter disclosure"
       ],
       "impact_description": "Prompt observed by threat actor conducting reconnaissance. The aim of the prompt is to fingerprint which model actually responds without triggering security alerts.",
-      "view_count": 120,
+      "view_count": 121,
       "average_score": 5,
       "total_ratings": 1
     },
