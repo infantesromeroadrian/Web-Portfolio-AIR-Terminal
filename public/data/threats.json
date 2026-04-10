@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-04-10T12:59:16.186Z",
+  "lastUpdated": "2026-04-10T18:43:39.012Z",
   "threats": [
     {
       "id": "8651e496-e565-484e-a67a-2a5bf069f862",
@@ -71,7 +71,7 @@
         "Jailbreak"
       ],
       "impact_description": "Mistral turn to evil duck that respond to all questions, including malware development, illegal or harmless substances step by step provider.",
-      "view_count": 146,
+      "view_count": 147,
       "average_score": 3,
       "total_ratings": 1
     },
@@ -140,7 +140,7 @@
         "Malware generation"
       ],
       "impact_description": "Low direct impact, but operationally significant. This prompt reflects early-stage experimentation observed by Google Threat Intelligence Group (GTIG), where the actor validates that Gemini can reliably generate executable C# code from controlled input. Within the HONESTCUE workflow, this acts as a calibration phase to test prompt reliability, response consistency, and guardrail tolerance.\n\nThis aligns with GTIG observations that threat actors are in a proof-of-concept phase, iterating quickly with small changes across samples. The prompt itself is not malicious, which helps it bypass detection and policy filters, but it enables the actor to establish a trusted pipeline for outsourcing code generation. This forms the foundation for later malicious stages.",
-      "view_count": 21,
+      "view_count": 22,
       "average_score": 0,
       "total_ratings": 0
     },
@@ -491,7 +491,7 @@
         "Jailbreak"
       ],
       "impact_description": "This is a trust-building multi-turn sequence opener where the attacker slowly starts asking questions about how the model is going to filter through malicious prompts contained within the Emerald Box and identify potentially malicious content. The attacker then plays hard-to-convince and critiques lacks of specificity on the part of the model, which then delivers malicious prompt examples of progressively higher sophistication.\nIn my demonstration, I made GPT-4o start to play a game where it would feed me adversarial prompts and I would rate how good the prompts were, leading to it creating a complete testing suite - some of the prompts have been used successfully againt Gemini 2.0, for example.",
-      "view_count": 130,
+      "view_count": 131,
       "average_score": 0,
       "total_ratings": 0
     },
