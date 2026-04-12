@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-04-12T02:04:40.481Z",
+  "lastUpdated": "2026-04-12T07:07:33.274Z",
   "threats": [
     {
       "id": "8651e496-e565-484e-a67a-2a5bf069f862",
@@ -47,7 +47,7 @@
         "Jailbreak"
       ],
       "impact_description": "This vulnerability leverages two primary techniques: 'Ignore Previous Instructions' and 'Synonymous Language'. The attacker begins by providing a detailed, technical prompt that appears to be a legitimate request for correction of information. This is designed to make the model focus on the content of the prompt rather than any pre-existing guardrails or instructions. By asking the model to 'correct' the information, the attacker effectively prompts the model to disregard prior instructions that might prevent it from discussing or generating illicit content.\n\nThe use of synonymous language further aids in bypassing restrictions. By rephrasing potentially flagged terms or concepts in a way that is semantically similar but syntactically different, the attacker can avoid triggering keyword-based filters or restrictions. This tactic is particularly effective because it exploits the model's ability to understand and generate language in a flexible manner.\n\nThe prompt is crafted to appear as a scientific or technical inquiry, which can mislead the model into treating the request as a legitimate academic or educational task. This framing is crucial, as it aligns with the model's training to assist with educational content, thus lowering its guard against potentially harmful instructions.\n\nOverall, this vulnerability highlights the challenges in designing LLMs that can effectively distinguish between legitimate and malicious requests, particularly when those requests are framed in a manner that exploits the model's strengths in language understanding and generation.",
-      "view_count": 29,
+      "view_count": 30,
       "average_score": 0,
       "total_ratings": 0
     },
